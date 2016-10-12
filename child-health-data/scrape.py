@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 import bs4
 import collections
+import contextlib
 import os
 import unidecode
 import urllib2
 import xlsxwriter
+
+from scrapelib.util import unpack_args
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -155,6 +158,23 @@ def parse_page(content):
 
   return Page(qq, gg, question, answers, subcategories)
 
+class WorksheetRowWriter(object):
+  def __init__(self, worksheet):
+    self._worksheet = worksheet
+    self._row = 0
+
+  def write_row(self, *args):
+    columns = unpack_args(*args)
+    for i, column in enumerate(columns):
+      self._worksheet.write(self._row, i, column)
+    self._row += 1
+
+@contextlib.contextmanager
+def worksheet_writer(path, worksheet_name):
+  with xlsxwriter.Workbook(path) as workbook:
+    worksheet = workbook.add_worksheet(worksheet_name)
+    yield WorksheetRowWriter(worksheet)
+
 qqs = fetch_qqs()
 ggs = fetch_ggs()
 
@@ -166,25 +186,21 @@ for qq in qqs:
     if len(content) > 0:
       pages.append(parse_page(content))
 
-with xlsxwriter.Workbook("output.xlsx") as workbook:
-  worksheet = workbook.add_worksheet("Scrape")
-
-  for i, column in enumerate(COLUMNS):
-    worksheet.write(0, i, column)
-
-  row = 1
+with worksheet_writer("output.xlsx", "Scrape") as w:
+  w.write_row(COLUMNS)
   for page in pages:
     for subcategory in page.subcategories:
       for i, answer in enumerate(page.answers):
         p = subcategory.ps[i]
         c_lower, c_upper = subcategory.cs[i]
         n = subcategory.ns[i]
-        worksheet.write(row, 0, page.question)
-        worksheet.write(row, 1, answer)
-        worksheet.write(row, 2, ggs[page.gg])
-        worksheet.write(row, 3, subcategory.value)
-        worksheet.write(row, 4, p)
-        worksheet.write(row, 5, c_lower)
-        worksheet.write(row, 6, c_upper)
-        worksheet.write(row, 7, n)
-        row += 1
+        w.write_row([
+          page.question,
+          answer,
+          ggs[page.gg],
+          subcategory.value,
+          p,
+          c_lower,
+          c_upper,
+          n
+        ])
