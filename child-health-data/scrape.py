@@ -2,6 +2,7 @@
 import bs4
 import collections
 import contextlib
+import csv
 import os
 import unidecode
 import urllib2
@@ -175,6 +176,18 @@ def worksheet_writer(path, worksheet_name):
     worksheet = workbook.add_worksheet(worksheet_name)
     yield WorksheetRowWriter(worksheet)
 
+class CsvRowWriter(object):
+  def __init__(self, writer):
+    self._writer = writer
+
+  def write_row(self, *args):
+    self._writer.writerow(*args)
+
+@contextlib.contextmanager
+def csv_writer(path):
+  with open(path, "wt") as f:
+    yield CsvRowWriter(csv.writer(f))
+
 qqs = fetch_qqs()
 ggs = fetch_ggs()
 
@@ -186,7 +199,8 @@ for qq in qqs:
     if len(content) > 0:
       pages.append(parse_page(content))
 
-with worksheet_writer("output.xlsx", "Scrape") as w:
+#with worksheet_writer("output.xlsx", "Scrape") as w:
+with csv_writer("output.csv") as w:
   w.write_row(COLUMNS)
   for page in pages:
     for subcategory in page.subcategories:
