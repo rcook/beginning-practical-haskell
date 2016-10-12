@@ -1,0 +1,1312 @@
+
+
+<!DOCTYPE html>
+<html>
+<head id="head"><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta name="HandheldFriendly" content="True" /><meta http-equiv="cleartype" content="on" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><meta name="application-name" content="CAHMI - Data Resource Center for Child and Adolescent Health" /><meta name="msapplication-tooltip" content="CAHMI - Data Resource Center for Child and Adolescent Health" /><meta name="msapplication-window" content="width=1024;height=768" /><meta name="msapplication-starturl" content="./" /><meta name="msapplication-navbutton-color" content="#E72C53" /><meta name="msapplication-TileColor" content="#E72C53" /><link rel="shortcut icon" href="/Content/Icons/favicon.ico" /><link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css" />
+    
+<link href="/Content/base?v=XGeLnZZIkWC4lbWyVjHc7tckwcP9WiM_lM0_A3i2X5c1" rel="stylesheet"/>
+<link href="/Content/pdf.css" rel="stylesheet" type="text/css" media="print" /><title>
+	PATHWAYS 2011: CSHCN who have a written intervention plan called an Individualized Education Program (IEP), Nationwide, Age 2 groups (6-17 years)
+</title><link href="../../App_Themes/Base/results.css" type="text/css" rel="stylesheet" /><link href="../../App_Themes/Base/tablesorter.css" type="text/css" rel="stylesheet" /><script type="text/javascript">
+	<!--    //--><![CDATA[/><!--
+    sfHover = function () {
+        var sfEls = document.getElementById("nav").getElementsByTagName("LI");
+        for (var i = 0; i < sfEls.length; i++) {
+            sfEls[i].onmouseover = function () { this.className += " sfhover"; }
+            sfEls[i].onmouseout = function () { this.className = this.className.replace(new RegExp(" sfhover\\b"), ""); } 
+        } 
+    }
+    if (window.attachEvent) window.attachEvent("onload", sfHover);
+  //--><!]]>
+
+	function PrintView()
+	{
+		var newwindow = window.open("/PrintView.htm", "foo", "height=600,width=800,scrollbars=1,status=1");
+		newwindow.resizeTo(800, 600);
+		newwindow.focus();
+	}
+
+	function Email_Open()
+	{
+		$find('ctl00_Footer1_rwEmail').show();
+		$("#txtEmailSubject").val("Data Resource Center for Child and Adolescent Health");
+	}
+	function Email_Send()
+	{
+		var from = $("#txtEmailFrom").val();
+		var to = $("#txtEmailTo").val();
+		var subject = $("#txtEmailSubject").val();
+		var comments = $("#txtEmailComments").val();
+		var url = location.href;
+
+		if (!ValidateEmail_EmailAddress(to))
+		{
+			$("#lblEmailStatus").text("* Please enter a valid email address for the \"To Email Address\" field.");
+			return;
+		}
+		if (ValidateEmail_Click())
+		{
+			// TODO: Add validation to page to only allow incoming requests from same domain;
+			$.post("/Tools/SendMail.aspx",
+			{ emailFrom: from, emailTo: to, emailSubject: subject, emailComments: comments, emailUrl: url },
+			function (data)
+			{
+				$("#lblEmailStatus").text("Your email has been sent. Thank you.");
+				Email_Close();
+			}
+			);
+			return;
+		}
+		else
+		{
+			$("#lblEmailStatus").text("* All fields are required.");
+		}
+	}
+	function Email_Close()
+	{
+		$find('ctl00_Footer1_rwEmail').close();
+	}
+	function ValidateEmail_Click()
+	{
+		var ok = true;
+
+		// TODO: validate email in proper format; for now just ensure all fields are filled in.
+		if ($("#txtEmailFrom").val().length == 0)
+			ok = false;
+		if ($("#txtEmailTo").val().length == 0)
+			ok = false;
+		if ($("#txtEmailSubject").val().length == 0)
+			ok = false;
+		if ($("#txtEmailComments").val().length == 0)
+			ok = false;
+
+		return ok;
+	}
+	function ValidateEmail_EmailAddress(str)
+	{
+		// http://www.codetoad.com/javascript/is_valid_email.asp
+		return (str.indexOf(".") > 2) && (str.indexOf("@") > 0);
+	}
+	function Tweet_Open()
+	{
+		ShortenUrlWithGoogle(location.href);
+		// Tweet_Open_Part2() gets called from within async function;
+	}
+	function Tweet_Open_Part2(url)
+	{
+		//console.warn(url);
+		var title = document.title;
+		var text = "Your Data, Your Story. Access data on child health in your state: " + title;
+		var via = "childhealthdata";
+		var strLength = text.length + 1 + url.length + 1 + 3 + 1 + 1 + via.length; // via gets an extra 1 for the @;
+		//console.warn(strLength);
+		if (strLength > 140)
+		{
+			var overage = strLength - 140;
+			//console.warn(overage);
+			text = text.substr(0, text.length - overage - 3) + "...";
+			//console.warn(text);
+		}
+		var wnd = window.open("http://twitter.com/share?url=" + url + "&text=" + text + "&via=" + via, "tweet", "height=450,width=550,menubar=no,status=no,location=no");
+	}
+	function ShortenUrlWithGoogle(longUrl)
+	{
+		// TODO: Uncomment when ready to release to ded17;
+		//longUrl = "http://childhealthdata.org";
+		var shortUrl = longUrl;
+
+		$.ajax({
+			type: "POST",
+			contentType: "application/json; charset=utf-8",
+			url: "/GoogleServices.asmx/ShortenUrlWithGoogle",
+			data: "{ longUrl: '" + longUrl + "'}",
+			dataType: "json",
+			success: function (result)
+			{
+				//console.warn(result);
+				//console.warn(result.d);
+				shortUrl = result.d;
+				//console.warn(shortUrl);
+				Tweet_Open_Part2(shortUrl);
+			},
+			error: function (result)
+			{
+				// TODO: Log this error; do .. something!
+				alert(result.status + ' ' + result.statusText);
+			}
+		});
+	}
+	function Briefcase_Click()
+	{
+		var userId = 0;
+		var url = location.pathname + location.search;
+		var title = document.title;
+		$.ajax({
+			type: "POST",
+			contentType: "application/json; charset=utf-8",
+			url: "/Services.asmx/AddUserBriefcase",
+			data: "{ userId: " + userId + ", url: '" + url + "', title: '" + escape(title) + "'}",
+			dataType: "json",
+			success: function (result)
+			{
+				alert("This page has been saved to your briefcase. To view all items in your briefcase, click on \"Access Your Briefcase\" in the upper right hand corner of any page.");
+			},
+			error: function (result)
+			{
+				// TODO: Log this error; do .. something!
+				alert(result.status + ' ' + result.statusText);
+			}
+		});
+	}
+	</script><meta name="Generator" content="Sitefinity 7.3.5610.0 SE" /><link rel="canonical" href="http://childhealthdata.org/browse/survey/results" /><link href="/Telerik.Web.UI.WebResource.axd?d=34GCikbyKD7ZRZE97UntT5cjaAOrjA6A99Et20_W4PUxhLwrhT6VkWeWythihxElqmh82BA0I7IvbDOvUskw-X-Qa7LhsTwGCPnIlD330spEsP_NlX_1whPpBeMkUpHlmedfIfhcFJT701C7ownFjw2&amp;t=635823524443834005&amp;compress=0&amp;_TSM_CombinedScripts_=%3b%3bTelerik.Sitefinity.Resources%2c+Version%3d7.3.5610.0%2c+Culture%3dneutral%2c+PublicKeyToken%3db28c218413bdf563%3aen%3a066c438b-fd7d-43be-a3dc-07ea4bf1ce7d%3a7a90d6a%3bTelerik.Web.UI%2c+Version%3d2014.3.1209.40%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen%3a583085b5-d2ab-4213-8c8d-72e418962ce3%3a92753c09%3a91f742eb" type="text/css" rel="stylesheet" /><link href="http://childhealthdata.org/Styles/surveyresults.css" type="text/css" rel="stylesheet" media="all" /></head>
+<body>
+    <form method="post" action="./results?q=3200&amp;r=1&amp;g=556" id="form1">
+<input type="hidden" name="ctl19_TSSM" id="ctl19_TSSM" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3NDcyODE3NjYPZBYCAgEPZBYCZg9kFgICAw9kFgICBQ9kFgICFQ9kFgICAg9kFioCAg8PFgIeBFRleHQFMTIwMTEgU3VydmV5IG9mIFBhdGh3YXlzIHRvIERpYWdub3NpcyBhbmQgU2VydmljZXNkZAIDDw8WAh8ABThDaGlsZCBIZWFsdGggTWVhc3VyZXMgYW1vbmcgQ1NIQ04gd2l0aCBBU0QsIEREIGFuZC9vciBJRGRkAgQPFgIfAAUIUmVnaW9uOiBkAgUPDxYCHwAFCk5hdGlvbndpZGVkZAIGDw8WAh8ABR1IZWFsdGggYW5kIEVkdWNhdGlvbiBTZXJ2aWNlc2RkAgcPDxYCHwAFcFJlY2VpdmVkIGFuIEluZGl2aWR1YWxpemVkIEVkdWNhdGlvbiBQcm9ncmFtIDxhIGhyZWY9IiMiIG9uY2xpY2s9IlZhcmlhYmxlX0NsaWNrKCk7IHJldHVybiBmYWxzZTsiPihkZXRhaWxzKTwvYT5kZAIIDxYCHgdWaXNpYmxlZxYCAgEPDxYCHwAFGUFnZSAyIGdyb3VwcyAoNi0xNyB5ZWFycylkZAIJD2QWBGYPFgIeCWlubmVyaHRtbAUQQ29tcGFyZSBSZWdpb25zOmQCAQ8QDxYGHg5EYXRhVmFsdWVGaWVsZAUCSWQeDURhdGFUZXh0RmllbGQFBE5hbWUeC18hRGF0YUJvdW5kZ2QQFQYPU2VsZWN0IGEgUmVnaW9uC0FsbCBSZWdpb25zB01pZHdlc3QJTm9ydGhlYXN0BVNvdXRoBFdlc3QVBgABcgI1MwI1NAI1NQI1NhQrAwZnZ2dnZ2cWAWZkAgoPZBYCAgEPEA8WBh8DBQJJZB8EBQROYW1lHwVnZBAVChFVbnNlbGVjdCBTdWJncm91cBlBZ2UgMiBncm91cHMgKDYtMTcgeWVhcnMpDFNleCBvZiBjaGlsZBdSYWNlL2V0aG5pY2l0eSBvZiBjaGlsZBZIb3VzZWhvbGQgaW5jb21lIGxldmVsGEhvdXNlaG9sZCAgaW5jb21lIChDSElQKSdIaWdoZXN0IGVkdWNhdGlvbiBvZiBhZHVsdCBpbiBob3VzZWhvbGQRVHlwZSBvZiBpbnN1cmFuY2UUQ29uZGl0aW9uIC0gMyBncm91cHMUQ29uZGl0aW9uIC0gMiBncm91cHMVChFVbnNlbGVjdCBTdWJncm91cAM1NTYDNTU1AzU1OQM1NjADNTYyAzU2MQM1NjMDNTU3AzU1OBQrAwpnZ2dnZ2dnZ2dnFgECAWQCCw9kFgICAQ8QZGQWAGQCDA9kFgJmDw8WAh8ABSFDb21wYXJlIHRoaXMgbWVhc3VyZSBhY3Jvc3MgeWVhcnNkZAIODxQrAAMPFgYeFUVuYWJsZUVtYmVkZGVkU2NyaXB0c2ceHEVuYWJsZUVtYmVkZGVkQmFzZVN0eWxlc2hlZXRnHhJSZXNvbHZlZFJlbmRlck1vZGULKXNUZWxlcmlrLldlYi5VSS5SZW5kZXJNb2RlLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDE0LjMuMTIwOS40MCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0AWRkZBYCZg9kFhACAQ8PFgIfAAVbQ1NIQ04gd2hvIGhhdmUgYSB3cml0dGVuIGludGVydmVudGlvbiBwbGFuIGNhbGxlZCBhbiBJbmRpdmlkdWFsaXplZCBFZHVjYXRpb24gUHJvZ3JhbSAoSUVQKWRkAgMPDxYCHwAFA0VTNmRkAgUPDxYCHwAFpwFDU0hDTiBhZ2VzIDYtMTcgeWVhcnMgd2l0aCBjdXJyZW50IGF1dGlzbSBzcGVjdHJ1bSBkaXNvcmRlciwgZGV2ZWxvcG1lbnRhbCBkZWxheSwgYW5kL29yIGludGVsbGVjdHVhbCBkaXNhYmlsaXR5IHdobyBhcmUgY3VycmVudGx5IGVucm9sbGVkIGluIHB1YmxpYyBvciBwcml2YXRlIHNjaG9vbGRkAgcPDxYCHwAFcFllcywgY2hpbGQgaGFzIGFuICBJbmRpdmlkdWFsaXplZCBFZHVjYXRpb24gUHJvZ3JhbTsgTm8sIGNoaWxkIGRvZXMgbm90IGhhdmUgYW4gSW5kaXZpZHVhbGl6ZWQgRWR1Y2F0aW9uIFByb2dyYW1kZAIJDw8WAh8ABQNOL0FkZAILDw8WAh8ABQNOL0FkZAINDw8WAh8ABYgEVW5rbm93biB2YWx1ZXMgKHJlc3BvbnNlcyBjb2RlZCBhcyAncmVmdXNlZCcsICdkb24ndCBrbm93Jywgb3Igc3lzdGVtIG1pc3NpbmcpIGFyZSBub3QgaW5jbHVkZWQgaW4gdGhlIGRlbm9taW5hdG9yIHdoZW4gY2FsY3VsYXRpbmcgcHJldmFsZW5jZSBlc3RpbWF0ZXMgYW5kIHdlaWdodGVkIHBvcHVsYXRpb24gY291bnRzIGRpc3BsYXllZCBpbiB0aGUgZGF0YSBxdWVyeSByZXN1bHRzIHRhYmxlLiAgSW4gbW9zdCBjYXNlcywgdGhlIHByb3BvcnRpb24gb2YgdW5rbm93biB2YWx1ZXMgaXMgbG93ICg8NSUpIGFuZCB0aGUgZXhjbHVzaW9uIG9mIHRoZXNlIHZhbHVlcyBkb2VzIG5vdCBjaGFuZ2UgdGhlIHBlcmNlbnQgZXN0aW1hdGVzIGFuZCBvbmx5IG1hcmdpbmFsbHkgYWZmZWN0cyB0aGUgd2VpZ2h0ZWQgcG9wdWxhdGlvbiBjb3VudHMgKFdlaWdodGVkIEVzdC4pLiAgRXhjZXB0aW9ucyBhcmUgbm90ZWQgaW4gdGhlIGZvcm0gb2YgYSBEYXRhIEFsZXJ0IGF0IHRoZSBib3R0b20gb2YgYSByZXN1bHRzIHRhYmxlLmRkAg8PDxYCHwAF0ARUaGUgTmF0aW9uYWwgSW5zdGl0dXRlIG9mIE1lbnRhbCBIZWFsdGggbGVkIHRoZSBkZXZlbG9wbWVudCBvZiB0aGUgUGF0aHdheXMgc3VydmV5LCBpbmRpY2F0b3JzLCBhbmQgcGVyZm9ybWFuY2UgbWVhc3VyZXMsIGluIGNvbGxhYm9yYXRpb24gd2l0aCB0aGUgTmF0aW9uYWwgQ2VudGVyIGZvciBIZWFsdGggU3RhdGlzdGljcyAoTkNIUykgYW5kIGEgbmF0aW9uYWwgdGVjaG5pY2FsIGV4cGVydCBwYW5lbC4gIFRoZSBleHBlcnQgcGFuZWwgaW5jbHVkZXMgcmVwcmVzZW50YXRpdmVzIGZyb20gb3RoZXIgZmVkZXJhbCBhZ2VuY2llcywgZmFtaWx5IG9yZ2FuaXphdGlvbnMsIGFuZCBjaGlsZCBoZWFsdGggYW5kIGRldmVsb3BtZW50YWwgZGlzYWJpbGl0eSByZXNlYXJjaGVycy4gIFByZXZpb3VzbHkgdmFsaWRhdGVkIHF1ZXN0aW9ucyBhbmQgc2NhbGVzIGFyZSB1c2VkIHdoZW4gYXZhaWxhYmxlLiAgUmVzcG9uZGVudHPigJkgY29nbml0aXZlIHVuZGVyc3RhbmRpbmcgb2YgdGhlIHN1cnZleSBxdWVzdGlvbnMgd2VyZSBhc3Nlc3NlZCBkdXJpbmcgdGhlIHByZXRlc3QgcGhhc2UgYW5kIHJldmlzaW9ucyB3ZXJlIG1hZGUgYXMgcmVxdWlyZWQuZGQCDw8UKwADDxYGHwZnHwdnHwgLKwQBZGRkZAIQDw8WAh4HQ2FwdGlvbgWiAURvZXMgY2hpbGQgaGF2ZSBhIHdyaXR0ZW4gaW50ZXJ2ZW50aW9uIHBsYW4gY2FsbGVkIGFuIEluZGl2aWR1YWxpemVkIEVkdWNhdGlvbiBQcm9ncmFtIG9yIElFUD8gPGEgaHJlZj0iIyIgb25jbGljaz0iVmFyaWFibGVfQ2xpY2soKTsgcmV0dXJuIGZhbHNlOyI+KGRldGFpbHMpPC9hPmQWBAIBD2QWAmYPZBYGAgEPZBYCAgEPEGRkFgBkAgIPZBYCAgEPEGRkFgBkAgMPZBYCAgEPEGRkFgBkAgoPZBYCZg8PFgIeCkNvbHVtblNwYW4CBWRkAhIPDxYEHglCYWNrQ29sb3IKGx4EXyFTQgIIZGQCEw9kFgRmDxYCHwIFEENvbXBhcmUgUmVnaW9uczpkAgEPEA8WBh8DBQJJZB8EBQROYW1lHwVnZBAVBg9TZWxlY3QgYSBSZWdpb24LQWxsIFJlZ2lvbnMHTWlkd2VzdAlOb3J0aGVhc3QFU291dGgEV2VzdBUGAAFyAjUzAjU0AjU1AjU2FCsDBmdnZ2dnZxYBZmQCFA9kFgICAQ8QDxYGHwMFAklkHwQFBE5hbWUfBWdkEBUKEVVuc2VsZWN0IFN1Ymdyb3VwGUFnZSAyIGdyb3VwcyAoNi0xNyB5ZWFycykMU2V4IG9mIGNoaWxkF1JhY2UvZXRobmljaXR5IG9mIGNoaWxkFkhvdXNlaG9sZCBpbmNvbWUgbGV2ZWwYSG91c2Vob2xkICBpbmNvbWUgKENISVApJ0hpZ2hlc3QgZWR1Y2F0aW9uIG9mIGFkdWx0IGluIGhvdXNlaG9sZBFUeXBlIG9mIGluc3VyYW5jZRRDb25kaXRpb24gLSAzIGdyb3VwcxRDb25kaXRpb24gLSAyIGdyb3VwcxUKEVVuc2VsZWN0IFN1Ymdyb3VwAzU1NgM1NTUDNTU5AzU2MAM1NjIDNTYxAzU2MwM1NTcDNTU4FCsDCmdnZ2dnZ2dnZ2cWAQIBZAIVD2QWAgIBDxBkZBYBZmQCFg9kFgJmDw8WAh8ABSFDb21wYXJlIHRoaXMgbWVhc3VyZSBhY3Jvc3MgeWVhcnNkZAIgDxYCHwFnZAIhDw8WAh8ABQllc19pZXBfMTFkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAwU3Y3RsMDAkY3RsMDAkUGFnZUNvbnRlbnQkU2hhcmVXaWRnZXQkVDk0QjFGMDMxMDMwJGJ0blBERgU3Y3RsMDAkY3RsMDAkUGFnZUNvbnRlbnQkUGFnZUNvbnRlbnQkQzAwMSRyd1ZhcmlhYmxlRGF0YQU6Y3RsMDAkY3RsMDAkUGFnZUNvbnRlbnQkUGFnZUNvbnRlbnQkQzAwMSRyd1ZhcmlhYmxlRGF0YUZpeKM0aKL3oJ44SbEAIXDJl9fq/Fn6zvDAPCzA2ysPPJkV" />
+
+
+<script src="/ScriptResource.axd?d=ajnC2UTj7oaOGrojdlVlg1sXnkfiT9jAnBvP82T-fecZ-2I8rsrXTtRfS2nwckEytf8l2fzXqpCfCDQa-b1BFrCK5kLQkGvMpIPVw0cw1VsnFzFP-E7p-BInQMPjA1NS-xkvJf7owY-lq2jOSrVLKrA9TeVGIgKAO-jTQFUB4l81&amp;t=ffffffffeea0dba9" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=D9_QyLNmqzEPn1rmHt46HvT5ON6R0CQpKT50wN_RgDb5WG9z-7IJc4uxmE2B9S3CoXO5UN-N-VSoJPMQXCF__jNsVu0qHI6smNqDj_h7x8rFLJD8gCheQkSRsJepLteQDU5A4sTBxp-uomtYHw2NPd_v-ikPjOrj9kGR-GWR7LWhJZ32HRe8bMPr5DTuzby80&amp;t=37e4139a" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=UHlcYwP5I3YJdBLDI374mPwQYFMIeZsYSV-W-2Zoz9AbQcJ13l0qPKgIbY-RUw7UXWVtBLF6QBdSoukGyXjhTd-7bM3e3jV4l6b7uS62x4QOXn0paozbYxZpRjBWDo_N80TnRO3pizqc5Jhoj4miCQ2&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=3v4qu3fMI4SF48Zy8yHPU-kW3OOPW1Ew_WPf14n2byjWONWmbsiSl4F16A94VJ6hkO_59BzyC83Auc_Hbq_Z86HacB-UevNSbcAom0EV09BeWI3EerCAoKQiGRsyE7RnONCFtT_OcktrLw1S-yx27g2&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=fqQKSK1RrzV-IC9gRn_BWz_nwNUbY277uxFeG8-lGy8LGwNdAqegQ5QNZ_RWjrFdVnY21YYFIMYBz2Nk8UgSWet5adb6y_n4B4NBAwcAFsW5eSJsI7C1gWCBhh5TvfKW7tj5AmTJbi5tTfPJshdQrg2&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=wtxPUOII3f21Pu95EWSF_yWIZnU_JXmHW2Sg0RyDV4csh0_wfqnP4e6ggudC3ysKUiE2aCzvbAVV7f_4i6e1xO55b4m3w9PB5S3f3D87dpdXBq4QlBMOqqNnlF6YWvvqCz9kXJD5WHqlohD9q0uxtkwmyKyE-gWSOevOLuHkFPU1&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=gyDYChgxtYGNBjU3zY-iC8AdRONNAAwz4YmqsO_VLWC03OQ9m4LlpJnETMYYiSkIg13nBDvJbhmPh2d9bPPbDIFQVdKVE6bDpS2wiETBeD9x1DPJTYJw019rtIrLeRMOvhcARBgu2AZqGp4c_ifM-Hf-oQO0X7Dmv4J1LkHDHvr7empUDrheUhjX89wu7OGw0&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=7M0sdUWmwL4mc1nREyj7FBfC3apYpwuuAERWN7zWqvy2Jvwoqn3Wo59hRKargJBzv5fZLpFkQEntJiGdBfuqS1iVP2qMFO2TA72Zw0oQFhwwlh1sslF25LkUL-P6vI6XvQWwzwyAA5HuAc0u3JArBGsB9PfeuANWH9RB8bk3Wv41&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dSi5Hz_mv7Zokr73ABupPiatyxMA_ToafbL2kYUS1Dwl-Ky83F3o_lLXQRLHZ29D5CCXm_ngDY2AGASVtYF0Rob-cGFAa9DBD9GlVisOQw6WedhIwHTXseG8xM6lRWW7Xup6u-rk-vYIa8HKSPJSOF-jQUNnKsA-A1L8YjXWce01&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=tnWkdV2Vm1c59-t2KiBoAPA8lQMQjy9048iiDOSuGmqEx2YRxkgoel2aHLkpU2FpMbmwE9gbs223qAb7LTg6Ujcu8sBHejgqAUp2leex7cK9cRQonetyKvrZ7vo-Sioh-yrQ69zB-AijVQ6NhvC1KMy_Vycur0b9uUlCS9S6Dv81&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=RKOMaOI3WUhtgXwz07fOVmjab8bgCYuQEeQOs_PPkpCdxOO4mJKJuCIURnDD9sXKtPK4KRCq6jqrhuVoZmnTR3vvcRMgh84bF2kjbaz7oZIxkVZxKmmWMiIh3AQg9bD00NIUkvsaKkyuCmD1iaF5ED1rqhy-4kWLVRtjeDmDl201&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=aM8QbM6rM2_3I0VX7u5lHmxFWRvc0Fz79Hv6sp99ad6vGvJzh0fJW5obNA5Q2QE1XB5K6Z8Adp9XWDPd6owagl2dwJik1X1e5aFz6r9TT68TgmZIj7vSZ72JzNBGN6uV-nNMeF2j4fRe4JPai0ZfxQatMHkzzvKr3jdBPt0-a0Q1&amp;t=ffffffffd4bf70a6" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="93E645CC" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdACiyLUqhMS0OBv5QUS5MD7jhn4tVS4gjhpEZA4RVIlEW1Ba/LqZwNq6US87iy7DiCRqbY7q8wgA1wkwK2vje/d0Cl28RavC7HRoLk59qfOMIjyU9ECd7c2RGWO/5KUQYHhM7UWtdQ8pGCUww5kmBrCmaVwaLGBCe4WmEzgPtS65vrE8h0O/VzZySB10NSctfrNd7LOAygLDW5oCebY4q/chK1oHbRy+ZxW9zTuxKv3nr0j08igSD2go0197AyAFkJkmwpshQrm6KOGH7qx1iEj5A3WSzRNo3bGvX/P9xhvWq5rGhSYr7pup6cp5wNfz4o70MXk3F/GwskEJAk+8PaKpd80oREyTR8KloPYlUvW9flIWJXUVyDTDxt/+gthP0McYTkswMODcazkmxvE0Ml/bUeHHmXSu5HflPx0Ex8OSdHo1BRVet3/U8w53vz0tsh7xhlRMA3hVdW4dbpMO905yqPo4t5iqLISIYjp8QoS277xT+09+MD6qKqlxcGhSTXBp8Vn+aPOo8tA5CymsRgok9WyWgP7pEvuimDH+pcq59iLupExbYcpRLo47dN3WNv8Vrv/9mEpd8whHL0MXWIzRsZVBUoKIz94yP0CFokJDgrEIpnwFEv/5o51lmK9R4Hlgy9kKEAp70ewe5HTxjvqYqCHVfflKFgOoxBgmZ2ZEa51gDjKp/lPGEuxOqsTsH5Ae12DnP24TOHmOW9jTO2+jJJEqeHavsWS508YKZfG8kvCr0saaQKiWXbWxVgel6bkamYRCu9d0v8v7IiLAGoTOvjhPDPpg1VTbAK7px01/ZVNhlC3UVIITawn+nzVBboGO9teP76QBAlqsmompcqsICobbCu9uaZFfbkBJ/HTQAza76sqCVBS6zuT26UOHRLQ0=" />
+        
+
+        <a id="cwp_top" name="cpw_top"></a>
+        <a accesskey="s" href="#cpw_main" id="sfSkip" class="sr-only">
+            Skip To The Main Content</a>
+        <!--  ============================================================================== -->
+        
+    <div id="site" class="interior">
+        <div id="wrapper-outer">
+            <div id="wrapper-inner">
+                <div id="off-canvas">
+                    <div class="inner">
+                        <div id="toolbar">
+                            <div class="wrap">
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="TopNav">
+        <div id="PageContent_TopToolBar_T94B1F031001_Col00" class="sf_colsIn sf_1col_1in_100"><div class='sfContentBlock'><div id="sign-in"> <a href="/account/login"><span class="uppercase">Register&nbsp;</span><span>for Additional Features</span></a> </div> <div class="tool-wrap"> <div id="ask" class="tool"> <a href="/help/askus">Ask a Question</a> </div> <div id="request" class="tool"> <a href="/help/dataset">Request a Dataset</a> </div> <div id="funders" class="tool"> <a href="/about/drc/partners">Partners</a> </div> </div>
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+
+
+                            </div>
+                        </div>
+                        <div id="search">
+                            <div class="wrap">
+                                
+<label for="search-box">Enter Search Phrase</label>
+<input type="text" id="search-box" name="search" placeholder="What can we help you find?">
+<label for="search-button">Search APLU</label>
+<button id="search-button" title="Search">Search</button>
+<script>
+
+    $(document).ready( function(){
+        $('#search-box').on('keypress',function (e) {
+            if (e.keyCode == 13) { // 13 = Enter Key
+                e.preventDefault();
+                SubmitSearch($(this));
+                return false;
+            }
+        });
+
+        $("#search-button").on("click", function (e) {
+            e.preventDefault();
+            SubmitSearch($("#search-box"));
+            return false;
+        });
+    });
+
+    function SubmitSearch($searchbox)
+    {
+        var searchTerm = $searchbox.val();
+        var data = { term: searchTerm, searchIndex: "" };
+
+        if (searchTerm.length > 0) {
+
+            window.setTimeout(function () {
+                $searchbox.css('background-image', 'url(/Content/Icons/wait.gif)');
+                $searchbox.val('Running Search ...');
+
+                $.post("/ajax/sitesearch/submit", data, function (data, textStatus) {
+                   document.location = "/search-results/";
+                });
+           }, 10);
+        }
+    }
+
+</script>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="main-nav-container">
+                        <div class="inner">
+                            <div id="main-nav">
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="MainNav">
+        <div id="PageContent_MainNav_T94B1F031002_Col00" class="sf_colsIn sf_1col_1in_100"><ul>
+        <li class="navitemFirst">
+            <a href="/about">Learn About the DRC</a>
+                <div class="content">
+                    <ul>
+                            <li>
+                                <a href="/about/DRC">About the DRC</a>
+                            </li>
+                            <li>
+                                <a href="/about/drc/welcome">New to the DRC?</a>
+                            </li>
+                            <li>
+                                <a href="/about/overview">Data and Surveys Available</a>
+                            </li>
+                            <li>
+                                <a href="/about/news">DRC News and Highlights</a>
+                            </li>
+                            <li>
+                                <a href="/about/staff">Our Team</a>
+                            </li>
+                            <li>
+                                <a href="/about/partners">Partners and Sponsors</a>
+                            </li>
+                            <li>
+                                <a href="/about/partner-with-us">Partner With Us</a>
+                            </li>
+                            <li>
+                                <a href="/about/contact">Contact Us</a>
+                            </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="">
+            <a href="/learn">Review the Surveys</a>
+                <div class="content">
+                    <ul>
+                            <li>
+                                <a href="/learn/NSCH">National Survey of Children&#39;s Health</a>
+                            </li>
+                            <li>
+                                <a href="/learn/NS-CSHCN">National Survey of Children with Special Health Care Needs</a>
+                            </li>
+                            <li>
+                                <a href="/learn/pathways">Survey of Pathways to Diagnosis and Services</a>
+                            </li>
+                            <li>
+                                <a href="/learn/NHIS-Child">National Health Interview Survey-Child Component</a>
+                            </li>
+                            <li>
+                                <a href="/learn/nhis">National Health Interview Survey-CAM Supplement</a>
+                            </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="">
+            <a href="/browse">Explore the Data</a>
+                <div class="content">
+                    <ul>
+                            <li>
+                                <a href="/browse/survey">Data by Survey and Topic</a>
+                            </li>
+                            <li>
+                                <a href="/browse/data-snapshots">Data Snapshots</a>
+                            </li>
+                            <li>
+                                <a href="/browse/compare-data-across-states">Compare Data Across States</a>
+                            </li>
+                            <li>
+                                <a href="/browse/trends">Explore Data Trends</a>
+                            </li>
+                            <li>
+                                <a href="/browse/medicalhome">Medical Home Portal</a>
+                            </li>
+                            <li>
+                                <a href="/browse/healthy-people-2020">Healthy People 2020 Portal</a>
+                            </li>
+                            <li>
+                                <a href="/browse/systemsimprovement">Systems Improvement Portal</a>
+                            </li>
+                            <li>
+                                <a href="/browse/medicaid-perinatal-data-portal">Perinatal and Medicaid Data Portal</a>
+                            </li>
+                            <li>
+                                <a href="/browse/asd">Autism Spectrum Disorder Portal</a>
+                            </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="">
+            <a href="/action">See Your Data in Action</a>
+                <div class="content">
+                    <ul>
+                            <li>
+                                <a href="/action/effective">How to Use Data Effectively</a>
+                            </li>
+                            <li>
+                                <a href="/action/examples">Your Data, Your Stories</a>
+                            </li>
+                            <li>
+                                <a href="/action/databriefs">Data Briefs and Reports</a>
+                            </li>
+                            <li>
+                                <a href="/action/publications">Publications</a>
+                            </li>
+                            <li>
+                                <a href="/action/presentations">Presentations</a>
+                            </li>
+                            <li>
+                                <a href="/action/chartbooks">Chartbooks</a>
+                            </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="navitemLast">
+            <a href="/help">Get Help</a>
+                <div class="content">
+                    <ul>
+                            <li>
+                                <a href="/help/how">How to Use the DRC</a>
+                            </li>
+                            <li>
+                                <a href="/help/askus">Ask a Question</a>
+                            </li>
+                            <li>
+                                <a href="/help/dataset">Request a Dataset</a>
+                            </li>
+                            <li>
+                                <a href="/help/faq">FAQs</a>
+                            </li>
+                            <li>
+                                <a href="/help/glossary">Glossary</a>
+                            </li>
+                            <li>
+                                <a href="/help/resources">Other Child and Family Health Resources</a>
+                            </li>
+                    </ul>
+                </div>
+        </li>
+</ul>
+            
+        </div>
+    </div>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calls-to-action">
+                        <div class="wrap">
+                            
+<div class='sfContentBlock'><a href="/about/drc/welcome" class="btnCall-grey"> <div>New to DRC?</div> <div class="arrow-link">Start Here</div> </a>
+
+
+</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="header">
+                    <div class="top">
+                        <div class="inner">
+                            <a id="logo" href="/">
+                                <img src="/content/images/logo.png" alt="CAHMI Home" />
+                            </a>
+                            <div id="off-canvas-trigger">
+                                <div class="label">Menu</div>
+                                <div class="trigger">Menu</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mega-menu-container">
+                        <div id="mega-menu">
+                            <div class="inner">
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="MegaMenu">
+        <div id="PageContent_MegaMenu_T94B1F031003_Col00" class="sf_colsIn sf_1col_1in_100">
+<div>Browse Data By:</div>
+<ul>
+        <li class="first">
+            <a href="#"><span class="browse-text">Browse Data by&nbsp;</span>Survey</a>
+            <div class="content two-column"> <div class="wrap"> <div class="col col1"> <div class="title">Search the Data</div> <div class="intro">Interactive data search by survey, year, state/region, with results comparable by various subgroups.</div> <a class="btnAction-dark-pink" href="/browse/survey">Quick Data Search</a> </div> <div class="col col2 small-list"> <div class="title">View Survey Portals</div> <div class="intro">Click below to learn more about each of the surveys hosted on the Data Resource Center. </div> <ul class="link-list"> <li><a href="/learn/NSCH">National Survey of Children's Health (NSCH)</a> </li> <li><a href="/learn/NS-CSHCN">National Survey of Children with Special Health Care Needs (CSHCN)</a> </li> <li><a href="/learn/nhis">The National Health Interview Survey (NHIS) Child Complementary and Alternative Medicine (CAM) Supplement</a> </li> <li><a href="/learn/NHIS-Child">National Health Interview Survey Child Component</a> </li> <li><a href="/learn/pathways">Survey of Pathways to Diagnosis and Services</a> </li> </ul> </div> </div> </div>
+        </li>
+        <li class="">
+            <a href="#"><span class="browse-text">Browse Data by&nbsp;</span>State or Geographic Region</a>
+            <div class="content three-column"> <div class="wrap"> <div class="intro">Click below to see the data at the national, regional, or state level</div> <div class="col col1"> <div class="title">Nationwide</div> <img src="/Content/images/map.png" alt="Map" /> <ul class="link-list"> <li> <a href="/browse/data-snapshots/state-snapshot">View National Data</a> </li> </ul> </div> <div class="col col2"> <div class="title">Regional Data</div> <ul class="link-list"> <li><a href="/browse/data-snapshots/state-snapshot?geo=53">HRSA Region I</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=54">HRSA Region II</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=55">HRSA Region III</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=56">HRSA Region IV</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=57">HRSA Region V</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=58">HRSA Region VI</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=59">HRSA Region VII</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=60">HRSA Region VIII</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=61">HRSA Region IX</a></li> <li><a href="/browse/data-snapshots/state-snapshot?geo=62">HRSA Region X</a></li> </ul> </div> <div class="col col3 large-list"> <div class="title">State Snapshots</div> <div class="list-trigger">Select a State</div> <ul class="large-link-list"> <li> <a href="/browse/data-snapshots/state-snapshot?geo=2">Alabama</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=3">Alaska</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=4">Arizona</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=5">Arkansas</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=6">California</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=7">Colorado</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=8">Connecticut</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=9">Delaware</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=10">District of Columbia</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=11">Florida</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=12">Georgia</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=13">Hawaii</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=14">Idaho</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=15">Illinois</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=16">Indiana</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=17">Iowa</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=18">Kansas</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=19">Kentucky</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=20">Louisiana</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=21">Maine</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=22">Maryland</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=23">Massachusetts</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=24">Michigan</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=25">Minnesota</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=26">Mississippi</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=27">Missouri</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=28">Montana</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=29">Nebraska</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=30">Nevada</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=31">New Hampshire</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=32">New Jersey</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=33">New Mexico</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=34">New York</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=35">North Carolina</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=36">North Dakota</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=37">Ohio</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=38">Oklahoma</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=39">Oregon</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=40">Pennsylvania</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=41">Rhode Island</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=42">South Carolina</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=43">South Dakota</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=44">Tennessee</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=45">Texas</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=46">Utah</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=47">Vermont</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=48">Virginia</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=49">Washington</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=50">West Virginia</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=51">Wisconsin</a> </li> <li> <a href="/browse/data-snapshots/state-snapshot?geo=52">Wyoming</a> </li> </ul> </div> </div> </div>
+        </li>
+        <li class="lastNavItem">
+            <a href="#"><span class="browse-text">Browse Data by&nbsp;</span>Topic or Initiative</a>
+            <div class="content three-column"> <div class="wrap"> <div class="col  col1 image-links"> <div class="title">Highlighted Topic and Initiative Portals</div> <span data-sfref="[images|OpenAccessDataProvider]71e134f3-c026-6255-aab2-ff00001023b1" class="sfImageWrapper"><img src="/images/default-source/nsch/istock_000010143007_large6ae134f3c0266255aab2ff00001023b1.png?sfvrsn=0" alt="istock_000010143007_large" displaymode="Original" title="istock_000010143007_large" /></span> <ul class="link-list"> <li> <a href="/browse/systemsimprovement">Systems Improvement</a> </li> <li> <a href="/browse/medicalhome">Medical Home</a> </li> <li> <a href="/browse/healthy-people-2020">Healthy People 2020</a> </li> <li> <a href="/browse/medicaid-perinatal-data-portal">Perinatal and Medicaid Data</a></li> <li> <a href="/browse/asd">Autism Spectrum Disorder Portal</a></li> </ul> </div> <div class="col col2 small-list long"> <div class="title">Featured Data Snapshots</div> <ul class="link-list"> <li> <a href="/browse/data-snapshots/nsch-profiles?rpt=16&amp;geo=1">2011/12 NSCH National and State Profile Pages</a> </li> <li> <a href="/browse/data-snapshots/cshcn-profiles?rpt=9&amp;geo=1">2009/10 NS-CSHCN National and State Profile Pages</a> </li> <li> <a href="/browse/data-snapshots/medical-home-profiles-cshcn?geo=1">2009/10 NS-CSHCN: Medical Home Performance Snapshot &ndash; CSHCN Only</a> </li> <li> <a href="/browse/data-snapshots/nsch-profiles/race-ethnicity?geo=1">2007 NSCH Disparities Snapshot: Race/Ethnicity</a> </li> <li> <a href="/browse/data-snapshots/nsch-profiles/ruca-national">2007 NSCH National Rural Urban Commuting Area Snapshot</a> </li> <li> <a href="/browse/data-snapshots/cshcn-profiles/condition-specific?rpt=11&amp;geo=1">2009/10 NS-CSHCN Condition-Specific Snapshot</a> </li> </ul> <a class="btnAction-dark-pink" href="/browse/data-snapshots/state-snapshot">View All Data Snapshots</a> </div> <div class="col col3 short"> <div class="title">Topics Available on the DRC</div> <div class="intro">The surveys hosted on the DRC include data on a wide range of topics. Click below to learn more about the content available in each survey.</div> <a class="btnAction-dark-pink" href="/about/DRC/overview">Survey Content Maps</a> </div> </div> </div>
+        </li>
+</ul>
+            
+        </div>
+    </div>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="background-image">&nbsp;</div>
+                <div id="content">
+                    <div class="inner">
+                        <div id="site-info-container">
+                            <div class="inner">
+                                <div class="site-info">
+                                    
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="Breadcrumbs">
+        <div id="PageContent_Breadcrumbs_T94B1F031010_Col00" class="sf_colsIn sf_1col_1in_100">
+<div class="breadcrumbs">
+    <a class="home-crumb" href="/"><img src="/Content/images/svg/icon-home.svg" /></a>&nbsp;>&nbsp;
+            <span class=""><a class="" href="/browse">Explore the Data</a> &gt; </span>
+            <span class=""><a class="" href="/browse/survey">Data by Survey and Topic</a> &gt; </span>
+            <span class="">Data Search Results</span>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+                                    <div class="share">
+                                        
+<div class='sfContentBlock'><div class="addthis_inline_share_toolbox">&nbsp;</div>
+
+
+</div>
+<div id="pdf-generator">
+    <input type="image" name="ctl00$ctl00$PageContent$ShareWidget$T94B1F031030$btnPDF" id="PageContent_ShareWidget_T94B1F031030_btnPDF" src="../../Content/Images/pdf-download.png" />
+</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="section-title">
+                            <div>
+<div class='sfContentBlock'>Explore this Topic:
+
+
+</div></div>
+                        </div>
+                        <div class="cols-wrap">
+                            <div class="col1">
+                                <div id="side-nav">
+                                    <div class="nav-wrap">
+                                        
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="SideNav">
+        <div id="PageContent_NavigationSection_T94B1F031004_Col00" class="sf_colsIn sf_1col_1in_100"><div class="divnav1">
+    <ul>
+            <li class=" navitemFirst">
+                <a href="/browse/survey" title="Data by Survey and Topic">Data by Survey and Topic</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/data-snapshots" title="Data Snapshots">Data Snapshots</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/compare-data-across-states" title="Compare Data Across States">Compare Data Across States</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/trends" title="Explore Data Trends">Explore Data Trends</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/medicalhome" title="Medical Home Portal">Medical Home Portal</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/healthy-people-2020" title="Healthy People 2020 Portal">Healthy People 2020 Portal</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/systemsimprovement" title="Systems Improvement Portal">Systems Improvement Portal</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/medicaid-perinatal-data-portal" title="Perinatal and Medicaid Data Portal">Perinatal and Medicaid Data Portal</a>
+            </li>
+            <li class=" ">
+                <a href="/browse/asd" title="Autism Spectrum Disorder Portal">Autism Spectrum Disorder Portal</a>
+            </li>
+    </ul>
+</div>
+            
+        </div>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100">
+        <div id="PageContent_SideContent_T94B1F031007_Col00" class="sf_colsIn sf_1col_1in_100">
+            
+        </div>
+    </div>
+</div><div class="sf_cols callout">
+    <div class="sf_colsOut sf_1col_1_100" data-placeholder-label="DataInAction">
+        <div id="PageContent_SideContent_T94B1F031006_Col00" class="sf_colsIn sf_1col_1in_100"><div class="data-in-action-container">
+    <div class="name">Data in Action!</div>
+    <div class="image">
+        <img src="/images/default-source/website-images-for-pages/girl-and-boy-laughing.jpg?sfvrsn=4" alt="Title V Needs Assessment" />
+    </div>
+    <div class="details">
+        <div class="wrap">
+            <div class="icon databrief">Databrief</div>
+            <div class="title"><a href="http://childhealthdata.org/docs/nsch-docs/titlevdia_brief_508-pdf.pdf" alt="Title">Title V Needs Assessment</a></div>
+            <div class="desc">2-page profile on using data for Title V needs assessment</div>
+        </div>
+    </div>
+</div>
+            
+        </div>
+    </div>
+</div><div class='sfContentBlock'><div id="datatools"> <h3>Data Tools</h3> <!--- AddThis ---> <div class="addthis_toolbox addthis_default_style addthis_24x24_style"> <div class="data-col1"> <div class="data-item"><a class="addthis_button_print">Print this Page</a></div> <div class="data-item"><a class="addthis_button_email">Email this Page</a></div> <div class="data-item"><a class="addthis_button_twitter">Tweet this Page</a></div> </div> <div class="data-col2"> <div class="data-item"><a class="addthis_button_pdfonline">Download PDF</a></div> <div class="data-item"><a class="addthis_button_facebook">Share this Page</a></div> </div> <span class="clearfloat"> </span></div> </div>
+
+
+</div><div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100">
+        <div id="PageContent_SideContent_T94B1F031018_Col00" class="sf_colsIn sf_1col_1in_100">
+            
+        </div>
+    </div>
+</div>
+                            </div>
+                            <div class="col2">
+                                <div class="wrap">
+                                    
+
+
+<script type="text/javascript">
+	function Variable_Click()
+	{
+		$find('ctl00_ctl00_PageContent_PageContent_C001_rwVariableData').show();
+	}
+	function Variable_Close()
+	{
+		$find('ctl00_ctl00_PageContent_PageContent_C001_rwVariableData').close();
+	}
+	function Variable_Print()
+	{
+		alert("Print is currently unavailable. This feature is coming soon.");
+	}
+
+</script>
+
+
+	<div id="results" class="results">
+        <input type="hidden" name="ctl00$ctl00$PageContent$PageContent$C001$hdnSurveyID" id="PageContent_PageContent_C001_hdnSurveyID" value="4" />
+        <input type="hidden" name="ctl00$ctl00$PageContent$PageContent$C001$hdnSurveyAdminID" id="PageContent_PageContent_C001_hdnSurveyAdminID" value="8" />
+		<h1 class="offleft">Survey Results</h1>
+
+		<div id="criteria">
+			<h2>Current Search Criteria</h2>
+			<ul>
+				<li>Survey: <span id="PageContent_PageContent_C001_lblCriteriaSurveyYear">2011 Survey of Pathways to Diagnosis and Services</span></li>
+				<li>Starting Point: <span id="PageContent_PageContent_C001_lblCriteriaArea">Child Health Measures among CSHCN with ASD, DD and/or ID</span></li>
+				<li>Region: <span id="PageContent_PageContent_C001_lblCriteriaStateRegion">Nationwide</span></li>
+				<li>Topic: <span id="PageContent_PageContent_C001_lblCriteriaTopic">Health and Education Services</span></li>
+				<li>Question: <span id="PageContent_PageContent_C001_lblCriteriaQuestion">Received an Individualized Education Program <a href="#" onclick="Variable_Click(); return false;">(details)</a></span></li>
+				<li>Sub Group: <span id="PageContent_PageContent_C001_lblCriteriaSubGroup">Age 2 groups (6-17 years)</span></li>
+			</ul>
+		</div> <!-- end criteria -->
+
+		<div id="actions">
+			<h2>Edit Search Criteria</h2>
+			<label id="PageContent_PageContent_C001_lblDdlGeos2" for="ddlGeos2">Compare Regions:</label><select name="ctl00$ctl00$PageContent$PageContent$C001$ddlGeos2" id="ddlGeos2">
+	<option selected="selected" value="">Select a Region</option>
+	<option value="r">All Regions</option>
+	<option value="53">Midwest</option>
+	<option value="54">Northeast</option>
+	<option value="55">South</option>
+	<option value="56">West</option>
+
+</select>
+			
+				<label for="ddlMasterGroups">Compare Subgroups:</label>
+				<select name="ctl00$ctl00$PageContent$PageContent$C001$ddlMasterGroups" id="ddlMasterGroups">
+	<option value="Unselect Subgroup">Unselect Subgroup</option>
+	<option selected="selected" value="556">Age 2 groups (6-17 years)</option>
+	<option value="555">Sex of child</option>
+	<option value="559">Race/ethnicity of child</option>
+	<option value="560">Household income level</option>
+	<option value="562">Household  income (CHIP)</option>
+	<option value="561">Highest education of adult in household</option>
+	<option value="563">Type of insurance</option>
+	<option value="557">Condition - 3 groups</option>
+	<option value="558">Condition - 2 groups</option>
+
+</select>
+			
+			
+			<p style="margin: 2px 0px;"><a href="javascript:__doPostBack(&#39;ctl00$ctl00$PageContent$PageContent$C001$ctl00&#39;,&#39;&#39;)">Change question, topic or survey</a></p>
+		</div> <!-- end actions -->
+		
+
+		<!-- Variable Info Popup Window -->		
+		<div id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData" style="display:none;">
+	<!-- 2014.3.1209.40 --><div id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C" style="display:none;">
+		
+
+			<div style="text-align: right; padding: 10px 12px 0px 0px; display: none;"><a href="#" onclick="Variable_Print(); return false;">Print</a>&nbsp; <a href="#" onclick="Variable_Close(); return false;">Close</a></div>
+			<div class="variabledatapopup">
+				<p><strong>Variable Name:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblVariableName">CSHCN who have a written intervention plan called an Individualized Education Program (IEP)</span></p>
+				<p><strong>Survey Items:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblItems">ES6</span></p>
+				<p><strong>Denominator:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblDenominator">CSHCN ages 6-17 years with current autism spectrum disorder, developmental delay, and/or intellectual disability who are currently enrolled in public or private school</span></p>
+				<p><strong>Numerator:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblNumerator">Yes, child has an  Individualized Education Program; No, child does not have an Individualized Education Program</span></p>
+				<p><strong>Revisions and Changes:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblRevisions">N/A</span></p>
+				<p><strong>Additional Notes:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblAddNotes">N/A</span></p>
+				<p><strong>Treatment of Unknown Values:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblUnknownValues">Unknown values (responses coded as 'refused', 'don't know', or system missing) are not included in the denominator when calculating prevalence estimates and weighted population counts displayed in the data query results table.  In most cases, the proportion of unknown values is low (<5%) and the exclusion of these values does not change the percent estimates and only marginally affects the weighted population counts (Weighted Est.).  Exceptions are noted in the form of a Data Alert at the bottom of a results table.</span></p>
+				<p><strong>History and Development:</strong> <span id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_C_lblHistAndDev">The National Institute of Mental Health led the development of the Pathways survey, indicators, and performance measures, in collaboration with the National Center for Health Statistics (NCHS) and a national technical expert panel.  The expert panel includes representatives from other federal agencies, family organizations, and child health and developmental disability researchers.  Previously validated questions and scales are used when available.  Respondents’ cognitive understanding of the survey questions were assessed during the pretest phase and revisions were made as required.</span></p>
+			</div>
+
+		
+	</div><input id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_ClientState" name="ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_ClientState" type="hidden" />
+</div>
+
+		<div style="display: none;">
+		<div id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix" style="display:none;">
+	<div id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix_C" style="display:none;">
+
+	</div><input id="ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix_ClientState" name="ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix_ClientState" type="hidden" />
+</div>
+		</div>
+
+		<br class="clearfloat" />
+
+		<div id="tabular">
+
+			<h2 class="offleft">Tabular Data</h2>
+
+			<table id="PageContent_PageContent_C001_tblResults" class="chartingdata" width="100%">
+	<caption>
+		Does child have a written intervention plan called an Individualized Education Program or IEP? <a href="#" onclick="Variable_Click(); return false;">(details)</a>
+	</caption><thead>
+		<tr>
+			<th colspan="2"></th><th class="result">Yes, child has an IEP</th><th class="result">No, child does not have IEP</th><th class="result">Total %</th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<th class="compare" rowspan="4">6-11 yrs</th><th title="Estimated percent of specified child population after application of sampling weights." style="cursor:help;">%</th><td class="percent"><span title="Estimated percent of specified child population after application of sampling weights." class="type_p" style="cursor:help;">83.0</span></td><td class="percent"><span title="Estimated percent of specified child population after application of sampling weights." class="type_p" style="cursor:help;">17.0</span></td><td class="percent">100.0</td>
+		</tr><tr>
+			<th title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." style="cursor:help;">C.I.</th><td><span title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." class="type_c" style="cursor:help;">(79.3&nbsp;-&nbsp;86.7)</span></td><td><span title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." class="type_c" style="cursor:help;">(13.3&nbsp;-&nbsp;20.7)</span></td><td></td>
+		</tr><tr>
+			<th title="The actual number of responses to the survey question before weighting to reflect the population sampled." style="cursor:help;">n</th><td><span title="The actual number of responses to the survey question before weighting to reflect the population sampled." class="type_n" style="cursor:help;">1,387</span></td><td><span title="The actual number of responses to the survey question before weighting to reflect the population sampled." class="type_n" style="cursor:help;">256</span></td><td></td>
+		</tr><tr>
+			<th title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="lastset" style="cursor:help;">Pop. Est.</th><td class="lastset"><span title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="type_w" style="cursor:help;">724,896</span></td><td class="lastset"><span title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="type_w" style="cursor:help;">148,527</span></td><td class="lastset"></td>
+		</tr><tr>
+			<th class="compare" rowspan="4">12-17 yrs</th><th title="Estimated percent of specified child population after application of sampling weights." style="cursor:help;">%</th><td class="percent"><span title="Estimated percent of specified child population after application of sampling weights." class="type_p" style="cursor:help;">83.1</span></td><td class="percent"><span title="Estimated percent of specified child population after application of sampling weights." class="type_p" style="cursor:help;">16.9</span></td><td class="percent">100.0</td>
+		</tr><tr>
+			<th title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." style="cursor:help;">C.I.</th><td><span title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." class="type_c" style="cursor:help;">(79.6&nbsp;-&nbsp;86.7)</span></td><td><span title="The 95% confidence interval (C.I.) is a range that contains the true population value 95% of the time. The 95% C.I. is a standard that is widely used among researchers. A smaller C.I. range indicates a more precise estimate." class="type_c" style="cursor:help;">(13.3&nbsp;-&nbsp;20.4)</span></td><td></td>
+		</tr><tr>
+			<th title="The actual number of responses to the survey question before weighting to reflect the population sampled." style="cursor:help;">n</th><td><span title="The actual number of responses to the survey question before weighting to reflect the population sampled." class="type_n" style="cursor:help;">1,421</span></td><td><span title="The actual number of responses to the survey question before weighting to reflect the population sampled." class="type_n" style="cursor:help;">271</span></td><td></td>
+		</tr><tr>
+			<th title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="lastset" style="cursor:help;">Pop. Est.</th><td class="lastset"><span title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="type_w" style="cursor:help;">696,821</span></td><td class="lastset"><span title="Estimated number of children in the population after application of sampling weights. Weighted population counts are underestimates due to item nonresponse (n=195, 1.9% of sample children aged 4-17 years) and unknown values (responses coded as &#39;refused&#39; or &#39;don&#39;t know&#39;), both of which are excluded from the counts." class="type_w" style="cursor:help;">141,483</span></td><td class="lastset"></td>
+		</tr>
+	</tbody><tfoot>
+		<tr>
+			<td colspan="5"><p> <!-- TODO: Either 4 or 5 depending on report.. ugh -->
+					<span>C.I. = 95% Confidence Interval. <a href="#" onclick="return false;" style="cursor: help;" title="The population weights in the survey make adjustments for the probability of being selected, having a telephone, number of telephone lines, age, race/ethnicity and other demographic characteristics.">
+						Percentages are weighted to population characteristics.</a></span><br />
+					<span id="PageContent_PageContent_C001_lblNInfo">n = <a href="#" onclick="return false;" style="cursor: help;" title="The precision of a population estimate is influenced by the sample size. Cells with less than 50 responses may have 95% CI’s with ranges too large to meet standards for reliability or precision.">
+						Number of respondents (unweighted numerator).</a><br /></span>
+				</p></td>
+		</tr>
+	</tfoot>
+</table>
+
+
+			
+
+		</div> <!-- end tabular -->
+
+		<div id="chartinggraph">
+			<h2 class="offleft">Data Graph</h2>
+			<div id="PageContent_PageContent_C001_chart1">
+	<img id="PageContent_PageContent_C001_chart1_Image" src="../../charts/dnc-hj0sgair.png?636115447459926878" alt="table data presented as graph" height="500" width="700" />
+</div>
+		</div> <!-- end chartinggraph -->
+
+		<div id="actions" class="repeated">
+			<h2>Edit Search Criteria</h2>
+			<label id="PageContent_PageContent_C001_lblDdlGeos3" for="ddlGeos3">Compare Regions:</label><select name="ctl00$ctl00$PageContent$PageContent$C001$ddlGeos3" id="ddlGeos3">
+	<option selected="selected" value="">Select a Region</option>
+	<option value="r">All Regions</option>
+	<option value="53">Midwest</option>
+	<option value="54">Northeast</option>
+	<option value="55">South</option>
+	<option value="56">West</option>
+
+</select>
+			
+				<label for="ddlMasterGroups2">Compare Subgroups:</label>
+				<select name="ctl00$ctl00$PageContent$PageContent$C001$ddlMasterGroups2" id="ddlMasterGroups2">
+	<option value="Unselect Subgroup">Unselect Subgroup</option>
+	<option selected="selected" value="556">Age 2 groups (6-17 years)</option>
+	<option value="555">Sex of child</option>
+	<option value="559">Race/ethnicity of child</option>
+	<option value="560">Household income level</option>
+	<option value="562">Household  income (CHIP)</option>
+	<option value="561">Highest education of adult in household</option>
+	<option value="563">Type of insurance</option>
+	<option value="557">Condition - 3 groups</option>
+	<option value="558">Condition - 2 groups</option>
+
+</select>
+			
+			<label for="ddlChartTypes">Chart Type:</label>
+			<select name="ctl00$ctl00$PageContent$PageContent$C001$ddlChartTypes" id="ddlChartTypes">
+	<option selected="selected" value="bar">Bar Chart</option>
+	<option value="pie">Pie Chart</option>
+
+</select>
+			
+			<p style="margin: 5px 0px;"><a href="javascript:__doPostBack(&#39;ctl00$ctl00$PageContent$PageContent$C001$ctl01&#39;,&#39;&#39;)">Change question, topic or survey</a></p>
+		</div> <!-- end actions -->
+
+		<style type="text/css">
+		DIV#citations { margin: 10px 10px 0px 10px; padding-bottom: 0px; font-size: 70%; border-top: solid 1px #cccccc; padding-top: 5px; }
+		</style>
+
+		<div id="citations">
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+            
+
+            
+
+            
+                <p>With funding and direction from the National Institutes of Health’s National Institute of Mental Health, the Survey of Pathways to Diagnosis and Services was conducted by the Centers for Disease Control and Prevention’s National Center for Health Statistics, in partnership with the Health Resources and Services Administration’s Maternal and Child Health Bureau. CAHMI is responsible for the analyses, interpretations, presentations and conclusions included on this site.</p>
+                <p>Suggested citation format: Survey of Pathways to Diagnosis and Services. Pathways 2011. Data query from the Child and Adolescent Health Measurement Initiative, Data Resource Center for Child and Adolescent Health website. Retrieved [mm/dd/yy] <a href="http://www.childhealthdata.org">www.childhealthdata.org</a>.</p>
+            
+
+		</div>
+		
+		<div style="display: none;"><span id="PageContent_PageContent_C001_lblVariable" style="color: #ffffff;">es_iep_11</span></div>
+	</div>
+<script type="text/javascript">
+    function isItZero(val) {
+        if (val != '0' && val != '0.0' && val != '(0.0&nbsp;-&nbsp;0.0)' && val != '-') {
+            return false;
+        }
+        return true;
+    }
+
+    function changeVal(cell, changeTo, num) {
+        var i = 0;
+        $("table.chartingdata tr td span.type_" + cell).each(function (index, elem) {
+            if (i == num) {
+                $(this).html(changeTo);
+            }
+            i++;
+        })
+    }
+
+    $( document ).ready(function() {
+        var surveyId = document.getElementById('PageContent_PageContent_C001_hdnSurveyID').value;
+
+        var RSEwithoutUD = false;
+        $("table.chartingdata tr td").each(function (index, elem) {
+            if (!$(this).children("span").hasClass("type_n")) {
+                if ($(this).hasClass("cirule")) {
+                    if (!$(this).hasClass("unweight-denom")) {
+                        RSEwithoutUD = true;
+                    }
+                }
+            }
+            
+        });
+
+        if (RSEwithoutUD) {
+            $('.ciNote').show();
+        }
+        else
+        {
+            $('.ciNote').hide();
+        }
+
+        // Is this a RUCA subgroup?
+        var geoId = getParameterByName('r');
+        var geoId2 = getParameterByName('r2');
+        var adminId = document.getElementById('PageContent_PageContent_C001_hdnSurveyAdminID').value;
+        var mgId = getParameterByName('g');
+        var rucaRAused = false;
+
+        
+
+        if (mgId == '549' || mgId == '550' || mgId == '81' || mgId == '82' || mgId == '552' || mgId == '553') {
+            rucaRAused = true;
+            rucaDashes = false;
+
+            if (adminId == '5' || adminId == '6' || adminId == '4') {
+                
+                // is there a 2nd region? if yes, then need to check rows independently for DC/RI
+                var compareMode = false;
+                if (undefined != geoId2) {
+                    compareMode = true;
+                }
+
+                var i = 0;
+                $("table.chartingdata tr td span.type_n").each(function (index, elem) {
+                    // am i inside a 
+
+                    //alert(i);
+                    var n = $(this).html();
+                    n = parseInt(n.replace(/,/g, ""));
+                    if (n == 0) {
+                        if (!compareMode) {
+                            if (geoId != 10 && geoId != 41) {
+                                // this not DC or RI
+                                // all estimates become -
+                                changeVal('p', '-', i);
+                                changeVal('c', '-', i);
+                                changeVal('n', '-', i);
+                                changeVal('w', '-', i);
+                                rucaDashes = true;
+                            }
+                            else {
+                                // this is DC or RI
+                                // all estimates become 0
+                                changeVal('p', '0', i);
+                                changeVal('c', '(0.0 - 0.0)', i);
+                                changeVal('n', '0', i);
+                                changeVal('w', '0', i);
+                            }
+                        }
+                        else
+                        {
+                            // which rows/cells should i deal with?
+                            // how many n cells are there?
+                            var x = 0;
+                            $("table.chartingdata tr td span.type_n").each(function (index, elem) {
+                                x++;
+                            });
+                            
+                            // this is a comparison of 2 regions, so divide by 2
+                            x = x / 2;
+
+                            if (i >= x) {
+                                if (geoId2 != 10 && geoId2 != 41) {
+                                    // this not DC or RI
+                                    // all estimates become -
+                                    changeVal('p', '-', i);
+                                    changeVal('c', '-', i);
+                                    changeVal('n', '-', i);
+                                    changeVal('w', '-', i);
+                                    rucaDashes = true;
+                                }
+                                else {
+                                    // this is DC or RI
+                                    // all estimates become 0
+                                    changeVal('p', '0', i);
+                                    changeVal('c', '(0.0 - 0.0)', i);
+                                    changeVal('n', '0', i);
+                                    changeVal('w', '0', i);
+                                }
+                            }
+
+                            if (i < x) {
+                                if (geoId != 10 && geoId != 41) {
+                                    // this not DC or RI
+                                    // all estimates become -
+                                    changeVal('p', '-', i);
+                                    changeVal('c', '-', i);
+                                    changeVal('n', '-', i);
+                                    changeVal('w', '-', i);
+                                    rucaDashes = true;
+                                }
+                                else {
+                                    // this is DC or RI
+                                    // all estimates become 0
+                                    changeVal('p', '0', i);
+                                    changeVal('c', '(0.0 - 0.0)', i);
+                                    changeVal('n', '0', i);
+                                    changeVal('w', '0', i);
+                                }
+                            }
+                            
+                        }
+                    } else if (n > 0 && n <= 4) {
+                        changeVal('p', '-', i);
+                        changeVal('c', '-', i);
+                        changeVal('n', '-', i);
+                        changeVal('w', '-', i);
+                        rucaDashes = true;
+                    }
+                    i++;
+                });
+            }
+            else if (mgId == '80' || mgId == '551' || mgId == '554') {
+                var i = 0;
+                $("table.chartingdata tr td span.type_n").each(function (index, elem) {
+                    var n = parseInt($(this).html());
+                    if (n >= 0 && n <= 4) {
+                        changeVal('p', '-', i);
+                        changeVal('c', '-', i);
+                        changeVal('n', '-', i);
+                        changeVal('w', '-', i);
+                        rucaDashes = true;
+                    }
+                    i++;
+                });
+            }
+
+            if (rucaDashes) {
+                $('#PageContent_PageContent_C001_lblNInfo').append('- A dashed line indicates that data not available because the sample size is less than 5. When data is removed, total % may not add up to 100%.<br />');
+            }
+        }
+
+        if (surveyId == '5') {
+            var allZeroes0 = true;
+            var allZeroes = true;
+            var allZeroes3 = true;
+            var allZeroes4 = true;
+            var allZeroes2 = true;
+            var allZeroes6 = true;
+            var allZeroes7 = true;
+            var isNational = true;
+            var isDashed = false;
+            var isDoubleDashed = false;
+            var nums = [];
+
+    
+            var ddl = document.getElementById('ddlGeos2');
+            var geo = ddl.selectedIndex;
+            if (geo != 0) {
+                isNational = false;
+            }
+
+            var i = 0;
+            $("table.chartingdata tr td span.type_p").each(function (index, elem) {
+
+                if (i == 0 && allZeroes0) {
+                    var val = $(this).html();
+                    allZeroes0 = isItZero(val);
+                }
+
+                if (i == 2 && allZeroes2) {
+                    var val = $(this).html();
+                    allZeroes2 = isItZero(val);
+                }
+                if (i == 3 && allZeroes3) {
+                    var val = $(this).html();
+                    allZeroes3 = isItZero(val);
+                }
+                if (i == 4 && allZeroes4) {
+                    var val = $(this).html();
+                    allZeroes4 = isItZero(val);
+                }
+                if (i == 5 && allZeroes) {
+                    var val = $(this).html();
+                    allZeroes = isItZero(val);
+                }
+                if (i == 6 && allZeroes6) {
+                    var val = $(this).html();
+                    allZeroes6 = isItZero(val);
+                }
+                if (i == 7 && allZeroes7) {
+                    var val = $(this).html();
+                    allZeroes7 = isItZero(val);
+                }
+                if (i == 3) {
+                    //isNational = false;
+                }
+                i++;
+            });
+
+            i = 0;
+            $("table.chartingdata tr td span.type_c").each(function (index, elem) {
+                if (i == 0 && allZeroes0) {
+                    var val = $(this).html();
+                    allZeroes0 = isItZero(val);
+                }
+
+                if (i == 2 && allZeroes2) {
+                    var val = $(this).html();
+                    allZeroes2 = isItZero(val);
+                }
+                if (i == 3 && allZeroes3) {
+                    var val = $(this).html();
+                    allZeroes3 = isItZero(val);
+                }
+                if (i == 4 && allZeroes4) {
+                    var val = $(this).html();
+                    allZeroes4 = isItZero(val);
+                }
+                if (i == 5 && allZeroes) {
+                    var val = $(this).html();
+                    allZeroes = isItZero(val);
+                }
+                if (i == 6 && allZeroes6) {
+                    var val = $(this).html();
+                    allZeroes6 = isItZero(val);
+                }
+                if (i == 7 && allZeroes7) {
+                    var val = $(this).html();
+                    allZeroes7 = isItZero(val);
+                }
+                i++;
+            });
+
+            i = 0;
+            $("table.chartingdata tr td span.type_n").each(function (index, elem) {
+                var val = $(this).html();
+                if (i == 0 && allZeroes0) {
+                    allZeroes0 = isItZero(val);
+                }
+                if (i == 2 && allZeroes2) {
+                    allZeroes2 = isItZero(val);
+                }
+                if (i == 3 && allZeroes3) {
+                    allZeroes3 = isItZero(val);
+                }
+                if (i == 4 && allZeroes4) {
+                    allZeroes4 = isItZero(val);
+                }
+                if (i == 5 && allZeroes) {
+                    allZeroes = isItZero(val);
+                }
+                if (i == 6 && allZeroes6) {
+                    allZeroes6 = isItZero(val);
+                }
+                if (i == 7 && allZeroes7) {
+                    allZeroes7 = isItZero(val);
+                }
+                //if (i == 2 || i == 3 || i == 4 || i == 5 || i == 6) {
+                if (val == '0') {
+                        //$(this).html('-');
+                        isDashed = true;
+                    }
+
+                //}
+                i++;
+            });
+
+            i = 0;
+            $("table.chartingdata tr td span.type_w").each(function (index, elem) {
+                if (i == 0 && allZeroes0) {
+                    var val = $(this).html();
+                    allZeroes0 = isItZero(val);
+                    nums.push(0);
+                }
+                if (i == 2 && allZeroes2) {
+                    var val = $(this).html();
+                    allZeroes2 = isItZero(val);
+                    nums.push(2);
+                }
+                if (i == 3 && allZeroes3) {
+                    var val = $(this).html();
+                    allZeroes3 = isItZero(val);
+                    nums.push(3);
+                }
+                if (i == 4 && allZeroes4) {
+                    var val = $(this).html();
+                    allZeroes4 = isItZero(val);
+                    nums.push(4);
+                }
+                if (i == 5 && allZeroes) {
+                    var val = $(this).html();
+                    allZeroes = isItZero(val);
+                    nums.push(5);
+                }
+                if (i == 6 && allZeroes6) {
+                    var val = $(this).html();
+                    allZeroes6 = isItZero(val);
+                    nums.push(6);
+                }
+                if (i == 7 && allZeroes7) {
+                    var val = $(this).html();
+                    allZeroes7 = isItZero(val);
+                    nums.push(7);
+                }
+                i++;
+            });
+            
+            if (allZeroes0 || allZeroes || allZeroes4 || allZeroes3 || allZeroes2 || allZeroes6 || allZeroes7) {
+                var arrayLength = nums.length;
+                //foreach (i in nums) {
+                nums.forEach(function (entry) {
+                    //for (var i = 0; i < arrayLength; i++) {
+
+                    changeVal('p', '--', entry);
+                    changeVal('c', '--', entry);
+                    changeVal('n', '--', entry);
+                    changeVal('w', '--', entry);
+                    isDoubleDashed = true;
+                });
+
+                
+            }
+
+            
+            
+
+            if (!isNational || isDoubleDashed || isDashed) {
+                //$('#ContentPlaceHolder1_C001_lblNInfo').append('<br />');
+
+                if (!isNational) {
+                    $('#PageContent_PageContent_C001_lblNInfo').append('Source for state/census division data: NCHS restricted data files.<br />');
+                }
+
+                if (isDoubleDashed) {
+                    $('#PageContent_PageContent_C001_lblNInfo').append('-- Two dashed lines indicate that data not available because the sample size is less than 5. When data is removed, Total % may not add up to 100%.<br />');
+                }
+
+                if (isDashed) {
+                    $('#PageContent_PageContent_C001_lblNInfo').append('- A single dashed line indicates that data is not available due to NCHS data restrictions.<br />');
+                    //$('#ContentPlaceHolder1_C001_lblNInfo').append('- Single dashed line indicates that data not available (restricted).<br />');
+                }
+
+                //$('#ContentPlaceHolder1_C001_lblNInfo').append('</p>');
+            }
+        }
+
+        
+    });
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // get criteria area to see if Title V is in string
+        var criteria = $('#PageContent_PageContent_C001_lblCriteriaArea').html();
+        if (criteria.indexOf('Title V') == -1) {
+            // remove Virgin Islands from Select Box if not title v
+            $('#ddlGeos2 option[value="65"]').remove();
+        }
+        
+    });
+</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div class="inner">
+                        <div class="col-wrap">
+                            <div class="col1">
+                                
+<div class='sfContentBlock'><a href="#"> <img src="/content/images/logo-cahmi.png" alt="cahmi" /> </a> <a href="#"> <img src="/content/images/logo-hrsa.png" alt="hrsa" /> </a> <a href="#"> <img src="/content/images/logo-jhsph.png" alt="jhsph" /> </a>
+
+
+</div>
+                            </div>
+                            <div class="col2">
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100">
+        <div id="PageContent_FooterContactUs_T94B1F031008_Col00" class="sf_colsIn sf_1col_1in_100"><div class='sfContentBlock'><div class="title">Contact Us</div> <div class="details">
+Email us at: <a href="mailto:info@cahmi.org">info@cahmi.org</a> </div> <div class="details">For further assistance from DRC staff:</div> <a href="/help/askus" class="btnAction-green">Ask a Question</a>
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+                            </div>
+                            <div class="col3">
+                                <div class="title">Stay Connected</div>
+                                <div class="social">
+                                    <a class="icon-facebook" href="https://www.facebook.com/childhealthdata">Facebook</a>
+                                    <a href="https://twitter.com/childhealthdata" class="icon-twitter">Twitter</a>
+                                </div>
+                                
+<div class="sf_cols">
+    <div class="sf_colsOut sf_1col_1_100">
+        <div id="PageContent_FooterSubscribe_T94B1F031009_Col00" class="sf_colsIn sf_1col_1in_100"><div class='sfContentBlock'><div class="details">
+Subscribe to our newsletter to receive periodic updates on our current activities, projects, new data features and future initiatives.</div> <!--<div class="subscribe-form"> <input type="text" class="subscribe-box" name="search" placeholder="Enter your email address" /> <button class="subscribe-button">Subscribe</button> </div>--> <!-- BEGIN: Constant Contact Email List Form Button --> <div style="text-align: center;"><a class="subscribe-button" href="http://visitor.r20.constantcontact.com/d.jsp?llr=zfbhvfcab&amp;p=oi&amp;m=1101849134265&amp;sit=oyipr9wcb&amp;f=c9a0793c-c0ab-4c53-9c71-0af4261a9e84">Sign Up for Email Updates</a><!-- BEGIN: Email Marketing you can trust --> </div>
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!--  ============================================================================== -->
+        <!-- no content below - scriptwrapper is purely for js or css widgets in sitefinity  -->
+        <!--  ============================================================================== -->
+        <div id="ScriptWrapper" title="Place all scripts and styles in this region">
+            <script src="/Scripts/libs?v=wEzKBX3RADpug-7m148Z6iriRSzrP-1kFiWzaJstT941"></script>
+
+            
+  <script src="/scripts/jquery-ui.js"></script>
+    <script src="/Scripts/interior?v=8lYsKQwHlbdw9AwfhOPFfkwKy5brycgxoaph_slWg-c1"></script>
+
+    
+
+
+            <!--  ========================================================================== -->
+        </div>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6397920-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">
+//<![CDATA[
+;(function() {
+                        function loadHandler() {
+                            var hf = $get('ctl19_TSSM');
+                            if (!hf._RSSM_init) { hf._RSSM_init = true; hf.value = ''; }
+                            hf.value += ';Telerik.Sitefinity.Resources, Version=7.3.5610.0, Culture=neutral, PublicKeyToken=b28c218413bdf563:en:066c438b-fd7d-43be-a3dc-07ea4bf1ce7d:7a90d6a;Telerik.Web.UI, Version=2014.3.1209.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en:583085b5-d2ab-4213-8c8d-72e418962ce3:92753c09:91f742eb';
+                            Sys.Application.remove_load(loadHandler);
+                        };
+                        Sys.Application.add_load(loadHandler);
+                    })();Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":true,"behaviors":37,"clientStateFieldID":"ctl00_ctl00_PageContent_PageContent_C001_rwVariableData_ClientState","formID":"form1","height":"400px","iconUrl":"","minimizeIconUrl":"","modal":true,"name":"rwVariableData","skin":"Default","title":"Question Details","width":"600px"}, null, null, $get("ctl00_ctl00_PageContent_PageContent_C001_rwVariableData"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":false,"clientStateFieldID":"ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix_ClientState","formID":"form1","iconUrl":"","minimizeIconUrl":"","modal":true,"name":"rwVariableDataFix","skin":"Default"}, null, null, $get("ctl00_ctl00_PageContent_PageContent_C001_rwVariableDataFix"));
+});
+//]]>
+</script>
+</form>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57f5d2285af6338e"></script>
+
+</body>
+</html>

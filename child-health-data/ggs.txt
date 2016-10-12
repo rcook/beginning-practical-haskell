@@ -1,0 +1,9 @@
+-1 all
+556 Age 2 groups
+555 sex of child
+559 Race/ethnicity of child
+560 Household income level
+561 Highest education of an adult in household
+563 Type of insurance
+557 Condition - 3 groups
+558 Condition - 2 groups
