@@ -1,0 +1,32 @@
+name:                 child-health-data
+version:              0.1.0.0
+synopsis:             Simple, clean project template using MIT License by default
+description:          Please see README.md
+homepage:             https://github.com/rcook/child-health-data#readme
+license:              MIT
+license-file:         LICENSE
+author:               Richard Cook
+maintainer:           rcook@rcook.org
+copyright:            2016 Richard Cook
+category:             Web
+build-type:           Simple
+cabal-version:        >= 1.10
+
+source-repository head
+  type:               git
+  location:           https://github.com/rcook/child-health-data.git
+
+executable child-health-data
+  hs-source-dirs:     src
+  main-is:            Main.hs
+  default-language:   Haskell2010
+  build-depends:      base >= 4.7 && < 5
+
+test-suite doctests
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  main-is:            Main.hs
+  default-language:   Haskell2010
+  build-depends:      Glob
+                    , base >= 4.7 && < 5
+                    , doctest
