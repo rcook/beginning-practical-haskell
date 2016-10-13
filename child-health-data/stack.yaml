@@ -1,6 +1,7 @@
 resolver: lts-7.3
 packages:
 - .
-extra-deps: []
+extra-deps:
+- strings-1.1
 flags: {}
 extra-package-dbs: []
