@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module ChildHealthData.Table
@@ -7,10 +8,30 @@ module ChildHealthData.Table
  ) where
 
 import qualified Data.Map as M
+import qualified Data.Text as T
+import           Data.Text.ICU.Translit
 import           ChildHealthData.Types
+
+asciiTrans :: Transliterator
+asciiTrans = trans "Latin-ASCII"
+
+asciiTransliterate :: T.Text -> T.Text
+asciiTransliterate = transliterate asciiTrans
 
 type Row = (Question, Answer, SubgroupCategory, SubgroupValue, P, L, U, N)
 type Table = [Row]
+
+transliterateRow :: Row -> Row
+transliterateRow (q, a, sgc, sgv, p, l, u, n) =
+  ( (Question . asciiTransliterate . unQuestion) q
+  , (Answer . asciiTransliterate . unAnswer) a
+  , (SubgroupCategory . asciiTransliterate . unSubgroupCategory) sgc
+  , (SubgroupValue . asciiTransliterate . unSubgroupValue ) sgv
+  , p
+  , l
+  , u
+  , n
+  )
 
 answerRows :: SubgroupCategory -> SubgroupValue -> Question -> [(Answer, ValueTuple)] -> Table -> Table
 answerRows sgc sgv question answers rs = foldr (helper sgc sgv question) rs answers
@@ -24,4 +45,4 @@ subcategoryRows ggMap Page{..} rs = foldr (\(sgv, xyzs) -> answerRows sgc sgv qu
         Just sgc = M.lookup gg ggMap
 
 pageTable :: GGMap -> [Page] -> Table
-pageTable ggMap ps = foldr (subcategoryRows ggMap) [] ps
+pageTable ggMap ps = map transliterateRow $ foldr (subcategoryRows ggMap) [] ps

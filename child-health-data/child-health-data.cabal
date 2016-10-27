@@ -41,6 +41,7 @@ library
                     , taggy
                     , taggy-lens
                     , text
+                    , text-icu-translit
                     , wreq
 
 executable child-health-data-app
