@@ -42,6 +42,7 @@ library
                     , taggy-lens
                     , text
                     , text-icu-translit
+                    , vector
                     , wreq
 
 executable child-health-data-app
