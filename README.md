@@ -12,3 +12,26 @@
 * Handling Unicode
 * Generating CSV or Excel files
 * File I/O
+
+### Packages you'll learn about
+
+* Strings and text:
+  * `bytestring`
+  * `text`
+  * `text-icu-translit`
+  * `string-conv`
+  * `strings`
+* Specialized containers:
+  * `containers`
+  * `vector`
+* Parsing and serialization:
+  * `cassava`
+  * `taggy`
+  * `taggy-lens`
+* Network and file system:
+  * `directory`
+  * `filepath`
+  * `wreq`
+* Others:
+  * `extra`
+  * `lens`
