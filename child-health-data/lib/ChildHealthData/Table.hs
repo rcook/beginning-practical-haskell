@@ -8,8 +8,6 @@ module ChildHealthData.Table
  ) where
 
 import qualified Data.Map as M
-import qualified Data.Text as T
-import           Data.Text.ICU.Translit
 import           ChildHealthData.Types
 
 data Row = Row Question Answer SubgroupCategory SubgroupValue P L U N
