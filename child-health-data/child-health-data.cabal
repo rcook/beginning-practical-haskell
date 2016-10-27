@@ -52,20 +52,9 @@ executable child-health-data-app
   ghc-options:        -fwarn-unused-imports
   build-depends:      base >= 4.7 && < 5
                     , bytestring
-                    , cassava
                     , child-health-data
                     , containers
-                    , directory
-                    , extra
-                    , filepath
-                    , lens
-                    , string-conv
-                    , strings
-                    , taggy
-                    , taggy-lens
                     , text
-                    , text-format
-                    , wreq
 
 test-suite doctests
   type:               exitcode-stdio-1.0
