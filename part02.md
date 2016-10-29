@@ -18,18 +18,32 @@
 * This is a module that is implicitly imported into every Haskell source file, unless this is explicitly disabled
 * We'll use a few Prelude functions to explore I/O in Haskell
 
-# Let's get a number from the keyboard
+# Let's get a number from the keyboard and write it to the terminal
 
-## The `getLine` function
+## The `print` function
 
-* Let's do some more exploring using GHCI:
+* We've already seen this once or twice
+* Let's look at the details:
 
 ```ghci
-λ> :t getLine
-getLine :: IO String
+λ> :t print
+print :: Show a => a -> IO ()
 ```
 
-* What's `IO`?
+* This has a type constraint of `Show a`
+* `a` is a type variable again
+* `Show` is a type class
+* For the sake of this discussion, `Show` is a type class with a single "method" `show`:
+
+```ghci
+λ> :t show
+show :: Show a => a -> String
+```
+
+* A function on a type class is commonly referred to as a "method" by analogy with "method" on a class or interface in object-oriented programming
+* `show` takes an object of some type `a` and returns a `String`
+* Haskell's primitive types implement `show` and typically return a human-readable representation of a value
+* So, what's `IO`?
 * Well, clearly it's a type class much like `Num` etc.
 * It's not a type, so let's use `:i` in GHCI
 
@@ -49,6 +63,34 @@ instance Monoid a => Monoid (IO a) -- Defined in ‘GHC.Base’
 ```
 
 * This tells you that `IO` has instances for four other type classes, namely `Monad`, `Functor`, `Applicative` and `Monoid`
+* We'll talk more about these later
+* What's `()`?
+* It's pronounced "unit"
+* It's the single inhabitant of the [unit type][unittype]
+* The unit type is a type that allows only a single value which conveys no information
+* Not to be confused with the zero or bottom type which has no values or inhabitants
+* For now, we'll refer to `IO ()` as the I/O action with the unit value
+
+
+
+* Haskell's primitive types implement
+* This is a function that takes something of type `a` and returns `IO ()`
+* , where `a` is a type variable and returns `IO ()`
+* `a` is a type variable which can be any type that satisfies the type constraints on the left of `=>`
+* [`Read`][readdoc] is a type class that supports reading a value from a `String`
+* Most primitive types in Haskell have instances of `Read`
+* Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
+
+
+## The `getLine` function
+
+* Let's do some more exploring using GHCI:
+
+```ghci
+λ> :t getLine
+getLine :: IO String
+```
+
 * The one the we care about the most right now is `Monad`:
 
 ```ghci
@@ -67,7 +109,6 @@ instance Monad IO -- Defined in ‘GHC.Base’
 instance Monad ((->) r) -- Defined in ‘GHC.Base’
 ```
 
-* A function on a type class is typically referred to as a "method"
 * Since `IO` has an instance for `Monad`, it provides an instance of "method" `>>=`, pronounced "bind":
 
 ```ghci
@@ -110,3 +151,4 @@ readInteger :: String -> Integer
 ```
 
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
+[unittype]: https://en.wikipedia.org/wiki/Unit_type
