@@ -64,6 +64,7 @@ stack ghci
 * GHC is the Glasgow Haskell Compiler
 * GHCI is GHC _Interactive_
 * It's GHC's read-evaluate-print-loop (REPL)
+* Let's assign some values and evaluate some _expressions_
 
 ```ghci
 λ> x = 5
@@ -222,6 +223,13 @@ main :: IO ()
 main = print (addIntegers 5 6)
 ```
 
+# Summary
+
+* Described main characteristics of the Haskell programming language
+* Looked at values and simple expressions
+* Discussed type annotations
+* Defined a function
+* Applied a function
 
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
