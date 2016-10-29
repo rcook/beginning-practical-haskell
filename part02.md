@@ -224,23 +224,30 @@ readInteger :: String -> Integer
 getLine :: IO String
 ```
 
+## The `putStr` function
+
+* This one's pretty straightforward
+
+```ghci
+λ> :t putStr
+putStr :: String -> IO ()
+```
+
 ## Combine them all
 
 * Here's what we're going to do
-    * Print a prompt to the terminal (using `print`)
+    * Print a prompt to the terminal (using `putStrLn`)
     * Get a string from the keyboard (using `getLine`)
     * Read it as an integer (using `read`)
     * Print out the result (using `print`)
 * And it will all be a single expression:
 
 ```haskell
-module Main where
-
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
-main = print "Enter a number:"
+main = putStr "Enter a number: "
     >>= \_ -> getLine
     >>= \l -> print (readInteger l)
 ```
@@ -249,8 +256,7 @@ main = print "Enter a number:"
 
 ```console
 > stack runhaskell Scratch.hs
-"Enter a number:"
-5
+Enter a number: 5
 5
 ```
 
