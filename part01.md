@@ -1,4 +1,4 @@
-[Part 1]
+[Index](index.md) | **Part 1**
 
 # What is Haskell?
 

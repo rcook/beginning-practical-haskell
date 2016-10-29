@@ -23,6 +23,10 @@ stack exec my-project-exe
 
 * This course will use the [LTS 7.5][lts75] snapshot of Stack which uses [GHC 8.0.1][ghc801]
 
+## Contents
+
+* [Part 1](part01.md)
+
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts75]: https://www.stackage.org/lts-7.5
 [seahug]: http://seattlehaskell.org/

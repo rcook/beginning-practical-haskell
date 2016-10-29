@@ -1,5 +1,7 @@
 # Beginning Practical Haskell
 
+[Go to course landing page](index.md)
+
 ## Course outline
 
 ### Library selection
