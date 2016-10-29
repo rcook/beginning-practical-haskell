@@ -50,6 +50,7 @@ show :: Show a => a -> String
 * It's the single inhabitant of the [unit type][unittype]
 * The unit type is a type that allows only a single value which conveys no information
 * Not to be confused with the zero or bottom type which has no values or inhabitants
+* So, this is a function that takes something of type `a` (subject to the `Show a` constraint) and returns `IO ()`
 
 ## `>>=` a.k.a. "bind"
 
@@ -186,17 +187,15 @@ main = print 5 >>= \_ -> print "hello"
 
 ## The `getLine` function
 
-* Let's do some more exploring using GHCI:
+* Here's `getline` in all its glory:
 
 ```ghci
 λ> :t getLine
 getLine :: IO String
 ```
 
-* Haskell's primitive types implement
-* This is a function that takes something of type `a` and returns `IO ()`
-* , where `a` is a type variable and returns `IO ()`
-* `a` is a type variable which can be any type that satisfies the type constraints on the left of `=>`
+
+
 * [`Read`][readdoc] is a type class that supports reading a value from a `String`
 * Most primitive types in Haskell have instances of `Read`
 * Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
