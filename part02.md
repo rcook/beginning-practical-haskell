@@ -12,13 +12,22 @@
 * There are several different solutions to this problem
 * Haskell uses what I will refer to as the continuation-passing style, though other people will use other terms
 
-## The Prelude
+# The Prelude
 
 * Haskell defines many standard functions in what is known as the "Prelude"
 * This is a module that is implicitly imported into every Haskell source file, unless this is explicitly disabled
 * We'll use a few Prelude functions to explore I/O in Haskell
 
-## Let's get a number from the keyboard
+# Let's get a number from the keyboard
+
+## The `getLine` function
+
+* Let's do some more exploring using GHCI:
+
+```ghci
+λ> :t getLine
+getLine :: IO String
+```
 
 ## The `read` function
 
