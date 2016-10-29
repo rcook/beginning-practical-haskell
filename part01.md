@@ -133,7 +133,7 @@ Hello.hs:4:1: error:
 ```ghci
 λ> x :: Integer; x = 5
 λ> y :: Integer; x = 6
-λ> z = x + y
+λ> z :: Integer; z = x + y
 λ> z
 11
 λ> :t x
@@ -172,6 +172,16 @@ main = print z
   * These have no `=>` and, therefore, no type constraints
   * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
 
+## When to use them
+
+* Haskell has powerful type inference
+* Haskell designed in such a way that usually you won't need them
+* Sometimes ambiguities arise
+* Some more [advanced language features][dependenttypes] make ambiguities more likely
+* Even so, type annotations are useful as documentation and for type-driven development
+* Most experienced Haskell developers recommend that all _top-level_ definitions should carry a type annotation
+
+[dependenttypes]: https://wiki.haskell.org/Dependent_type
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
 [wikipediahaskell]: https://en.wikipedia.org/wiki/Haskell_(programming_language)
