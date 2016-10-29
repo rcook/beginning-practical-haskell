@@ -98,7 +98,39 @@ instance Monad ((->) r) -- Defined in ‘GHC.Base’
 
 * Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCI and Haskell source code
 * Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`
+* Try out `print` by itself:
 
+```ghci
+λ> print 5
+5
+λ> :t print 5
+print 5 :: IO ()
+λ> print "hello"
+"hello"
+λ> :t print "hello"
+print "hello" :: IO ()
+```
+
+* It works on primitive types
+* Note that these are two separate statements in GHCI
+* Let's see if we can combine them into a single expression using `>>=`
+* Given a `IO ()`, we need a function that takes unit and returns `IO b`
+* `b` can be unit too
+* So let's build such a function using `print "hello"` as the return value and call it `f` for now:
+
+```ghci
+λ> f :: () -> IO (); f x = print "hello"
+```
+
+* Now, we'll combine it with `print 5`:
+
+```ghci
+λ> print 5 >>= f
+5
+"hello"
+```
+
+TODO
 
 ## The `getLine` function
 
