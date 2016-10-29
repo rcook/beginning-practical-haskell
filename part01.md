@@ -188,6 +188,8 @@ main = print z
 * Even so, type annotations are useful as documentation and for type-driven development
 * Most experienced Haskell developers recommend that all _top-level_ definitions should carry a type annotation
 
+TODO: Function application, function definitions
+
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
