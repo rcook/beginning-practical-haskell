@@ -29,6 +29,55 @@
 getLine :: IO String
 ```
 
+* What's `IO`?
+* Well, clearly it's a type class much like `Num` etc.
+* It's not a type, so let's use `:i` in GHCI
+
+```ghci
+λ> :i IO
+newtype IO a
+  = ghc-prim-0.5.0.0:GHC.Types.IO (ghc-prim-0.5.0.0:GHC.Prim.State#
+                                     ghc-prim-0.5.0.0:GHC.Prim.RealWorld
+                                   -> (# ghc-prim-0.5.0.0:GHC.Prim.State#
+                                           ghc-prim-0.5.0.0:GHC.Prim.RealWorld,
+                                         a #))
+  	-- Defined in ‘ghc-prim-0.5.0.0:GHC.Types’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Functor IO -- Defined in ‘GHC.Base’
+instance Applicative IO -- Defined in ‘GHC.Base’
+instance Monoid a => Monoid (IO a) -- Defined in ‘GHC.Base’
+```
+
+* This tells you that `IO` has instances for four other type classes, namely `Monad`, `Functor`, `Applicative` and `Monoid`
+* The one the we care about the most right now is `Monad`:
+
+```ghci
+λ> :i Monad
+class Applicative m => Monad (m :: * -> *) where
+  (>>=) :: m a -> (a -> m b) -> m b
+  (>>) :: m a -> m b -> m b
+  return :: a -> m a
+  fail :: String -> m a
+  {-# MINIMAL (>>=) #-}
+  	-- Defined in ‘GHC.Base’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Monad ((->) r) -- Defined in ‘GHC.Base’
+```
+
+* A function on a type class is typically referred to as a "method"
+* Since `IO` has an instance for `Monad`, it provides an instance of "method" `>>=`, pronounced "bind":
+
+```ghci
+λ> :t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+```
+
+* Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses
+* Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`
+
 ## The `read` function
 
 * Let's do some more exploring using GHCI:
