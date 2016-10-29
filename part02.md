@@ -231,6 +231,28 @@ getLine :: IO String
     * Get a string from the keyboard (using `getLine`)
     * Read it as an integer (using `read`)
     * Print out the result (using `print`)
+* And it will all be a single expression:
+
+```haskell
+module Main where
+
+readInteger :: String -> Integer
+readInteger = read
+
+main :: IO ()
+main = print "Enter a number:"
+    >>= \_ -> getLine
+    >>= \l -> print (readInteger l)
+```
+
+* And let's run it:
+
+```console
+> stack runhaskell Scratch.hs
+"Enter a number:"
+5
+5
+```
 
 [lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
