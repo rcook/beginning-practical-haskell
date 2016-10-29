@@ -153,11 +153,34 @@ g :: () -> IO ()
 λ> print 5 >>= \x -> print "hello"
 5
 "hello"
+λ> :t print 5 >>= \x -> print "hello"
+print 5 >>= \x -> print "hello" :: IO ()
+```
+
+* Now we have single expression whose type is `IO ()`
+* Let's get rid of all the extraneous names
+* `_` is a "throwaway" name and you'll see it used a lot
+
+```ghci
+λ> print 5 >>= \_ -> print "hello"
+5
+"hello"
 ```
 
 ## Let's put it in a source file
 
-TODO
+```haskell
+module Main where
+
+main :: IO ()
+main = print 5 >>= \_ -> print "hello"
+```
+
+```console
+> stack runhaskell Scratch.hs
+5
+"hello"
+```
 
 ## The `getLine` function
 
