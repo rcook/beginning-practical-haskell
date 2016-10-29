@@ -7,8 +7,8 @@
 * Otherwise all they're doing is warming up your CPU
 * Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world
 * But what about purely functional programming languages?
-  * Mathematical functions cannot read files from disc or write to the screen
-  * Mathematical functions can only return values that are functions of their arguments or other pure functions
+    * Mathematical functions cannot read files from disc or write to the screen
+    * Mathematical functions can only return values that are functions of their arguments or other pure functions
 * There are several different solutions to this problem
 * Haskell uses what I will refer to as the continuation-passing style, though other people will use other terms
 
