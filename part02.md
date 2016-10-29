@@ -260,6 +260,25 @@ Enter a number: 5
 5
 ```
 
+## Wait a minute!
+
+* Didn't you say that Haskell was purely functional?
+* Surely, `putStr`, `getLine` and `print` have side effects
+* Well, no not at all
+    * They're actions
+    * They're strung together using `>>=`
+    * At no point do they mutate global state or interact with the outside world
+    * We build up an expression of these actions
+    * They are "executed" when the program is run
+* Did you mention something about continuation passing?
+    * Why, yes, I did!
+    * That's what `>>=` is doing
+    * You provide an action as its first argument
+    * And the continuation as the second argument
+    * This is the thing that is to be evaluated when the first value is executed at program execution time
+* All this `>>=` is kinda ugly
+* Well, yes it is
+
 [lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
 [unittype]: https://en.wikipedia.org/wiki/Unit_type
