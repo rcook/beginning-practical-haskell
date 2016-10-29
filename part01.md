@@ -45,7 +45,7 @@ control constructs where other languages require language-level syntax
 
 # Let's do something
 
-## Interactive (REPL) Haskell
+## Interactive Haskell
 
 * Fire up your terminal or command prompt
 * Create a new project named `hello-world`
