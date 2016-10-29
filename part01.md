@@ -35,6 +35,13 @@
 * Much of this is a consequence of some of these other characteristics
 * Example: non-strict evaluation allows us to _build_ certain flow
 control constructs where other languages require language-level syntax
+* To a first approximation, Haskell programs consist of two elements:
+    * Definitions
+    * Expressions
+* Nontrivial Haskell programs will also likely include some extras:
+    * Type annotations
+    * Pragmas
+    * Import statements
 
 # Let's do something
 
@@ -164,13 +171,13 @@ main = print z
 ```
 
 * Consider the type of `a`:
-  * Items to the left of `=>` are _type constraints_
-  * Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
-  * `Num t` constrains `t` to be an instance of the `Num` _type class_
-  * For now, it suffices to say that `Num` is a _type class_ which has an instance for (or "is implemented by") all numeric types in Haskell
+    * Items to the left of `=>` are _type constraints_
+    * Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
+    * `Num t` constrains `t` to be an instance of the `Num` _type class_
+    * For now, it suffices to say that `Num` is a _type class_ which has an instance for (or "is implemented by") all numeric types in Haskell
 * Consider the type of `x`, `y` and `z`:
-  * These have no `=>` and, therefore, no type constraints
-  * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
+    * These have no `=>` and, therefore, no type constraints
+    * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
 
 ## When to use them
 
