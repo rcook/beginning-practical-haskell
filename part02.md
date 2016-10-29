@@ -138,9 +138,24 @@ f :: () -> IO ()
 * We use it exactly once
 * So do we really have to give it a name?
 * Absolutely not!
+* This is known as a "lambda" and we can assign them since they are values just like `5` or `"hello"`:
 
 ```ghci
+λ> g :: () -> IO (); g = \x -> print "hello"
+λ> :t g
+g :: () -> IO ()
 ```
+
+* This is pretty much indistinguishable from `f` defined previously
+* Instead of assigning to a name `g` we can use the right-hand side directly:
+
+```ghci
+λ> print 5 >>= \x -> print "hello"
+5
+"hello"
+```
+
+## Let's put it in a source file
 
 TODO
 
