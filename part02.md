@@ -45,6 +45,15 @@ show :: Show a => a -> String
 * Haskell's primitive types implement `show` and typically return a human-readable representation of a value
 * So, what's `IO`?
 * Well, clearly it's a type class much like `Num` etc.
+* What's `()`?
+* It's pronounced "unit"
+* It's the single inhabitant of the [unit type][unittype]
+* The unit type is a type that allows only a single value which conveys no information
+* Not to be confused with the zero or bottom type which has no values or inhabitants
+
+## `>>=` a.k.a. "bind"
+
+* Let's look at the `IO` type class some more
 * It's not a type, so let's use `:i` in GHCI
 
 ```ghci
@@ -63,35 +72,6 @@ instance Monoid a => Monoid (IO a) -- Defined in ‘GHC.Base’
 ```
 
 * This tells you that `IO` has instances for four other type classes, namely `Monad`, `Functor`, `Applicative` and `Monoid`
-* We'll talk more about these later
-* What's `()`?
-* It's pronounced "unit"
-* It's the single inhabitant of the [unit type][unittype]
-* The unit type is a type that allows only a single value which conveys no information
-* Not to be confused with the zero or bottom type which has no values or inhabitants
-* For now, we'll refer to `IO ()` as the I/O action with the unit value
-
-
-
-* Haskell's primitive types implement
-* This is a function that takes something of type `a` and returns `IO ()`
-* , where `a` is a type variable and returns `IO ()`
-* `a` is a type variable which can be any type that satisfies the type constraints on the left of `=>`
-* [`Read`][readdoc] is a type class that supports reading a value from a `String`
-* Most primitive types in Haskell have instances of `Read`
-* Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
-
-
-## The `getLine` function
-
-* Let's do some more exploring using GHCI:
-
-```ghci
-λ> :t getLine
-getLine :: IO String
-```
-
-* The one the we care about the most right now is `Monad`:
 
 ```ghci
 λ> :i Monad
@@ -109,15 +89,35 @@ instance Monad IO -- Defined in ‘GHC.Base’
 instance Monad ((->) r) -- Defined in ‘GHC.Base’
 ```
 
-* Since `IO` has an instance for `Monad`, it provides an instance of "method" `>>=`, pronounced "bind":
+* Since `IO` has an instance for `Monad`, it provides an implementation of "method" `>>=`, pronounced "bind":
 
 ```ghci
 λ> :t (>>=)
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
-* Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses
+* Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCI and Haskell source code
 * Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`
+
+
+## The `getLine` function
+
+* Let's do some more exploring using GHCI:
+
+```ghci
+λ> :t getLine
+getLine :: IO String
+```
+
+* Haskell's primitive types implement
+* This is a function that takes something of type `a` and returns `IO ()`
+* , where `a` is a type variable and returns `IO ()`
+* `a` is a type variable which can be any type that satisfies the type constraints on the left of `=>`
+* [`Read`][readdoc] is a type class that supports reading a value from a `String`
+* Most primitive types in Haskell have instances of `Read`
+* Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
+* The one the we care about the most right now is `Monad`:
+
 
 ## The `read` function
 
