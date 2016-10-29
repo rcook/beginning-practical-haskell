@@ -25,9 +25,9 @@ stack exec my-project-exe
 
 ## Part 1
 
-*[Sources: [1][haskellwikifp], [2][wikipediahaskell]]*
-
 ### 1.1 What is Haskell?
+
+*[Sources: [1][haskellwikifp], [2][wikipediahaskell]]*
 
 * Purely functional programming language
 * Non-strict
@@ -148,7 +148,57 @@ Hello.hs:4:1: error:
 * In "full" Haskell, a top-level name can be used exactly once
 * Though "full" Haskell allows shadowing within nested lexical scopes
 
+### 1.3 A more realistic example
+
+*[Sources: [1][haskellnumbers]]*
+
+* Let's add a `module` declaration and type annotations
+* Start up GHCI again
+
+```ghci
+λ> x :: Integer; x = 5
+λ> y :: Integer; x = 6
+λ> z = x + y
+λ> z
+11
+λ> :t x
+x :: Integer
+λ> :t y
+y :: Integer
+λ> :t z
+z :: Integer
+λ> a = 5
+λ> :t a
+a :: Num t => t
+```
+
+* Let's do that in our source file:
+
+```haskell
+x :: Integer
+x = 5
+
+y :: Integer
+y = 6
+
+z :: Integer
+z = x + y
+
+main :: IO ()
+main = print z
+```
+
+* Consider the type of `a`:
+  * Items to the left of `=>` are _type constraints_
+  * Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
+  * `Num t` constrains `t` to be an instance of the `Num` _type class_
+  * For now, it suffices to say that `Num` is a _type class_ which has an instance for (or "is implemented by") all numeric types in Haskell
+* Consider the type of `x`, `y` and `z`:
+  * These have no `=>` and, therefore, no type constraints
+  * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
+
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
+[haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
 [lts75]: https://www.stackage.org/lts-7.5
 [seahug]: http://seattlehaskell.org/
