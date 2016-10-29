@@ -185,23 +185,6 @@ main = print 5 >>= \_ -> print "hello"
 "hello"
 ```
 
-## The `getLine` function
-
-* Here's `getline` in all its glory:
-
-```ghci
-λ> :t getLine
-getLine :: IO String
-```
-
-
-
-* [`Read`][readdoc] is a type class that supports reading a value from a `String`
-* Most primitive types in Haskell have instances of `Read`
-* Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
-* The one the we care about the most right now is `Monad`:
-
-
 ## The `read` function
 
 * Let's do some more exploring using GHCI:
@@ -211,8 +194,7 @@ getLine :: IO String
 read :: Read a => String -> a
 ```
 
-* This is a function that takes `String` and returns `a`
-* `a` is a type variable which can be any type that satisfies the type constraints on the left of `=>`
+* This takes `String` and returns `a` where is subject to the `Read a` constraint
 * [`Read`][readdoc] is a type class that supports reading a value from a `String`
 * Most primitive types in Haskell have instances of `Read`
 * Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
@@ -232,6 +214,23 @@ readInteger :: String -> Integer
 λ> readInteger "123"
 123
 ```
+
+## The `getLine` function
+
+* Here's `getline` in all its glory:
+
+```ghci
+λ> :t getLine
+getLine :: IO String
+```
+
+## Combine them all
+
+* Here's what we're going to do
+    * Print a prompt to the terminal (using `print`)
+    * Get a string from the keyboard (using `getLine`)
+    * Read it as an integer (using `read`)
+    * Print out the result (using `print`)
 
 [lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
