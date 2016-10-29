@@ -276,8 +276,17 @@ Enter a number: 5
     * You provide an action as its first argument
     * And the continuation as the second argument
     * This is the thing that is to be evaluated when the first value is executed at program execution time
-* All this `>>=` is kinda ugly
+* `>>=` is great as it provides the ability to sequence actions (at least when it's used with `IO`)
+* All this `>>=` is kinda ugly, though, isn't it?
 * Well, yes it is
+
+# Summary
+
+* Explored some common functions from Haskell's Prelude
+* Briefly some type classes, particularly `IO`
+* Learnt what a "method" is
+* Learnt how to string actions together
+* Hinted at things to come
 
 [lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
