@@ -120,6 +120,8 @@ print "hello" :: IO ()
 
 ```ghci
 λ> f :: () -> IO (); f x = print "hello"
+λ> :t f
+f :: () -> IO ()
 ```
 
 * Now, we'll combine it with `print 5`:
@@ -128,6 +130,16 @@ print "hello" :: IO ()
 λ> print 5 >>= f
 5
 "hello"
+```
+
+## Anonymous functions a.k.a. lambdas
+
+* Our function `f` is great
+* We use it exactly once
+* So do we really have to give it a name?
+* Absolutely not!
+
+```ghci
 ```
 
 TODO
