@@ -167,6 +167,8 @@ print 5 >>= \x -> print "hello" :: IO ()
 "hello"
 ```
 
+* What they called [lambdas][lambdas]?
+
 ## Let's put it in a source file
 
 ```haskell
@@ -232,5 +234,6 @@ readInteger :: String -> Integer
 123
 ```
 
+[lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
 [unittype]: https://en.wikipedia.org/wiki/Unit_type
