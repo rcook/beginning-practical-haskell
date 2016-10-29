@@ -134,7 +134,7 @@ Hello.hs:4:1: error:
 
 *[Sources: [1][haskellnumbers]]*
 
-* Let's add a `module` declaration and type annotations
+* Let's add some type annotations
 * Start up GHCI again
 
 ```ghci
@@ -178,6 +178,7 @@ main = print z
 * Consider the type of `x`, `y` and `z`:
     * These have no `=>` and, therefore, no type constraints
     * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
+* We'll talk about `IO ()` next lesson
 
 ## When to use them
 
@@ -188,7 +189,39 @@ main = print z
 * Even so, type annotations are useful as documentation and for type-driven development
 * Most experienced Haskell developers recommend that all _top-level_ definitions should carry a type annotation
 
-TODO: Function application, function definitions
+# Our first function
+
+* `z` was a value which was the result of applying the `+` operator to `x` and `y`
+* Let's generalize this to a function which adds it two arguments:
+
+```ghci
+λ> addIntegers :: Integer -> Integer -> Integer; addIntegers x y = x + y
+λ> :t addIntegers
+addIntegers :: Integer -> Integer -> Integer
+```
+
+* Now, let's use it:
+
+```ghci
+λ> addIntegers 5 6
+11
+λ> addIntegers 10 11
+21
+```
+
+* Some languages use parentheses `(` and `)` for function application
+* However, applying functions is Haskell's raison d'&ecirc;tre
+* In the spirit of minimal, clean syntax, function application eschews parentheses
+* In a source file, this would look like:
+
+```haskell
+addIntegers :: Integer -> Integer -> Integer
+addIntegers x y = x + y
+
+main :: IO ()
+main = print (addIntegers 5 6)
+```
+
 
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
