@@ -159,6 +159,34 @@ main = do
 
 Inside `do` notation, Haskell also drops the `in` from let-bindings to clean things even more.
 
-There. That's pretty much all of Haskell's syntax. The rest is just using it all together.
+# Other concepts and syntax
+
+## `if`, `then`, `else`
+
+TODO
+
+## Pattern matching
+
+TODO
+
+## Types
+
+TODO
+
+### Algebraic data types
+
+TODO
+
+#### Product types
+
+TODO
+
+#### Sum types
+
+TODO
+
+### Lists
+
+TODO
 
 [syntactisugar]: https://en.wikipedia.org/wiki/Syntactic_sugar
