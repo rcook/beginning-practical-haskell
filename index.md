@@ -27,6 +27,7 @@ stack exec my-project-exe
 
 * [Part 1](part01.md)
 * [Part 2](part02.md)
+* [Part 3](part03.md)
 
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts75]: https://www.stackage.org/lts-7.5

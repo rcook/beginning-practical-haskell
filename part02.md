@@ -1,4 +1,4 @@
-[Index](index.md) | [Part 1](part01.md) | **Part 2**
+[Contents](index.md) | [P1](part01.md) | **P2** | [P3](part03.md)
 
 # I/O
 
@@ -18,7 +18,7 @@
 * This is a module that is implicitly imported into every Haskell source file, unless this is explicitly disabled
 * We'll use a few Prelude functions to explore I/O in Haskell
 
-# Let's get a number from the keyboard and write it to the terminal
+# Read a number and do something to it
 
 ## The `print` function
 
@@ -238,7 +238,8 @@ putStr :: String -> IO ()
 * Here's what we're going to do
     * Print a prompt to the terminal (using `putStrLn`)
     * Get a string from the keyboard (using `getLine`)
-    * Read it as an integer (using `read`)
+    * Read it as an integer (using `read`/`readInteger`)
+    * Multiply the integer by 2 (using `*`)
     * Print out the result (using `print`)
 * And it will all be a single expression:
 
@@ -247,17 +248,17 @@ readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
-main = putStr "Enter a number: "
+main = putStr "Enter a number and I'll double it: "
     >>= \_ -> getLine
-    >>= \l -> print (readInteger l)
+    >>= \l -> print (2 * readInteger l)
 ```
 
 * And let's run it:
 
 ```console
 > stack runhaskell Scratch.hs
-Enter a number: 5
-5
+Enter a number and I'll double it: 5
+10
 ```
 
 ## Wait a minute!
