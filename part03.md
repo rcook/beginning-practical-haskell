@@ -73,7 +73,7 @@ main =
 
 Even better!
 
-This code shape is so common, however, that Haskell introduces special syntax to make it even cleaner. This is known as `do` notation named after the `do` keyword used to introduce it.
+This code shape is so common, however, that Haskell introduces special syntax to make it even cleaner. This is known as `do`-notation named after the `do` keyword used to introduce it.
 
 Consider:
 
@@ -107,7 +107,7 @@ action2 >>
 action3
 ```
 
-The second form that can be included in `do` notation includes a binding of the action's result to a name:
+The second form that can be included in `do`-notation includes a binding of the action's result to a name:
 
 ```haskell
 do x1 <- action1
@@ -157,7 +157,7 @@ main = do
     putStrLn ("z = " ++ show z)
 ```
 
-Inside `do` notation, Haskell also drops the `in` from let-bindings to clean things even more.
+Inside `do`-notation, Haskell also drops the `in` from let-bindings to clean things even more.
 
 # Other concepts and syntax
 
