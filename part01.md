@@ -47,15 +47,14 @@ control constructs where other languages require language-level syntax
 
 ## Interactive Haskell
 
-* Fire up your terminal or command prompt
-* Create a new project named `hello-world`
+First you'll need to start your terminal or command prompt. Once you've done that, we'll create a brand-new Stack project named `hello-world`:
 
 ```bash
 stack new hello-world --resolver=lts-7.5
 cd hello-world
 ```
 
-* Fire up GHCI
+Next we'll start up GHCI, the interactive Haskell interpreter:
 
 ```bash
 stack ghci
@@ -66,23 +65,34 @@ stack ghci
 * It's GHC's read-evaluate-print-loop (REPL)
 * Let's assign some values and evaluate some _expressions_
 
-```ghci
-λ> x = 5
-λ> y = 6
-λ> z = x + y
-λ> z
-11
-λ> :t z
-z :: Num a => a
-λ> :t 5
-5 :: Num t => t
-λ> z = "hello"
-λ> z
-"hello"
-λ> :t z
-z :: [Char]
-λ> :q
-```
+Input | Output | Comment
+:--- | :--- | :---
+`λ> x = 5` | | Assigns name `x` to value `5`
+`λ> y = 6` | | Assigns name `y` to value `6`
+`λ> z = x + y` | | Assigns name `z` to value `x + y`
+`λ> z` | 11 | Evaluates `z` and displays value
+`λ> :type z`<br>or<br>`λ> :t z` | `z :: Num a => a` | Shows type of `z` `λ> :t 5` | `5 :: Num t => t` | Shows type of `5`
+`λ> z = "hello"` | | Assigns name `z` to value `"hello"`
+`λ> z` | `"hello"` | Evaluates `z` and displays value
+`λ> :t z` | `z :: [Char]` | Shows type of `z`
+`λ> :q` | | Quits GHCI session
+
+Notes:
+
+* We say "assigns name `foo` to `bar`" as opposed to "assigns value `bar` to `foo`"
+    * In imperative programming languages `=` or equivalent operators typically perform _assignment_ and the different values can be assigned to existing names from time to time
+    * In Haskell, the name `foo` is _defined to be_ the `value` in the equational sense of `=`: it's a definition and this is at the root of [equational reasoning][equationalreasoning]
+* In the absence of type annotations&mdash;which we'll cover later&mdash;GHCI will typically assign the most general type possible to an expression, subject to certain rules
+* GHCI will assign exactly one type to a given expression
+* Despite the absence of explicit type annotations in this example, the expressions are strongly statically typed
+* Type signatures consist of:
+    * Optional: one or more constraints to the left of `=>` ([pronounced][pronunciation] "implies")
+    * Types and [type classes][typeclasses] always spelt with initial upper-case letter
+    * Type variables always spelt with initial lower-case letter
+    * One or more types separated by `->` (pronounced "to")
+    * We haven't seen any `->` yet, but we will soon
+* `Num a` is the type class `Num` with one type variable `a`: more on this later
+
 
 ## Your first Haskell source file
 
@@ -192,6 +202,8 @@ main = print z
 
 # Our first function
 
+* But, isn't Haskell a functional programming language?
+    * What about the functions?
 * `z` was a value which was the result of applying the `+` operator to `x` and `y`
 * Let's generalize this to a function which adds it two arguments:
 
@@ -223,6 +235,8 @@ main :: IO ()
 main = print (addIntegers 5 6)
 ```
 
+* What makes Haskell a functional programming language is that functions are first-class values just like the things that we would traditionally consider to be values, such as `5`, `"hello"` etc.
+
 # Summary
 
 * Described main characteristics of the Haskell programming language
@@ -232,6 +246,9 @@ main = print (addIntegers 5 6)
 * Applied a function
 
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
+[equationalreasoning]: http://www.haskellforall.com/2013/12/equational-reasoning.html
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
+[pronunciation]: https://wiki.haskell.org/Pronunciation
+[typeclasses]: https://www.haskell.org/tutorial/classes.html
 [wikipediahaskell]: https://en.wikipedia.org/wiki/Haskell_(programming_language)
