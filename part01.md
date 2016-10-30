@@ -87,7 +87,7 @@ Notes:
 * Despite the absence of explicit type annotations in this example, the expressions are strongly statically typed
 * Type signatures consist of:
     * Optional: one or more constraints to the left of `=>` ([pronounced][pronunciation] "implies")
-    * Types and [type classes][typeclasses] always spelt with initial upper-case letter
+    * Types and [_type classes_][typeclasses] always spelt with initial upper-case letter
     * Type variables always spelt with initial lower-case letter
     * One or more types separated by `->` (pronounced "to")
     * We haven't seen any `->` yet, but we will soon
@@ -186,16 +186,15 @@ main = print z
 ```
 
 * Consider the type of `a`:
-    * Items to the left of `=>` are _type constraints_
     * Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
-    * `Num t` constrains `t` to be an instance of the `Num` _type class_
-    * For now, it suffices to say that `Num` is a _type class_ which has an instance for (or "is implemented by") all numeric types in Haskell
+    * `Num t` constrains `t` to be an instance of the `Num` type class
+    * `Num` has instances for (or "is implemented by") all primitive numeric types in Haskell
 * Consider the type of `x`, `y` and `z`:
     * These have no `=>` and, therefore, no type constraints
     * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
 * We'll talk about `IO ()` next lesson
 
-## When to use them
+## When to use type annotations
 
 * Haskell has powerful type inference
 * Haskell designed in such a way that usually you won't need them
@@ -207,7 +206,7 @@ main = print z
 # Our first function
 
 * But, isn't Haskell a functional programming language?
-    * What about the functions?
+* What about the functions?
 * `z` was a value which was the result of applying the `+` operator to `x` and `y`
 * Let's generalize this to a function which adds it two arguments:
 
