@@ -43,7 +43,7 @@ control constructs where other languages require language-level syntax
     * Pragmas
     * Import statements
 
-# Let's do something
+# Our first Haskell
 
 ## Interactive Haskell
 
@@ -93,11 +93,9 @@ Notes:
     * We haven't seen any `->` yet, but we will soon
 * `Num a` is the type class `Num` with one type variable `a`: more on this later
 
-
 ## Your first Haskell source file
 
-* Let's do some similar stuff in a source file
-* Create `Hello.hs`:
+Now we'll create a source file and write similar code. We'll then run this through a compiler and execute it. In your favourite editor, open a new file `Hello.hs` in the existing `hello-world` project directory and type the following text into it:
 
 ```haskell
 x = 5
@@ -107,13 +105,16 @@ z = x + y
 main = print z
 ```
 
-* Run it as follows:
+* Most things you type into GHCI are valid lines of code in a Haskell source file
+* In order to be able to run a program, a Haskell program must have exactly one function named `main`
+
+Now we can run the program as follows:
 
 ```bash
 stack runhaskell Hello.hs
 ```
 
-* Change `Hello.hs` to the following to mimic the GHCI example:
+Now we'll change `Hello.hs` to the following to mimic our GHCI example:
 
 ```haskell
 x = 5
@@ -124,7 +125,7 @@ z = "hello"
 main = print z
 ```
 
-* Run it again:
+And we'll try to run it again:
 
 ```console
 > stack runhaskell Hello.hs
@@ -137,9 +138,12 @@ Hello.hs:4:1: error:
 
 ## Differences between GHC and GHCI
 
+There are naturally many differences between the interactive and non-interactive Haskell environments. The most important ones for our immediate purposes are:
+
 * Names can be _shadowed_ in GHCI: i.e. we can introduce a new `z` that _hides_ the previous definition with name `z`
-* In "full" Haskell, a top-level name can be used exactly once
-* Though "full" Haskell allows shadowing within nested lexical scopes
+* In Haskell source files, a top-level name can be used exactly once
+* Shadowing is allowed within Haskell source files, specifically within nested lexical scopes
+* In fact, that is exactly what's happening in GHCI: each line entered at the prompt is effectively a new lexical scope nested within the previous lexical scope
 
 # A more realistic example
 
