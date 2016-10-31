@@ -65,17 +65,18 @@ stack ghci
 * It's GHC's read-evaluate-print-loop (REPL)
 * Let's assign some values and evaluate some _expressions_
 
-Input | Output | Comment
-:--- | :--- | :---
-`λ> x = 5` | | Assigns name `x` to value `5`
-`λ> y = 6` | | Assigns name `y` to value `6`
-`λ> z = x + y` | | Assigns name `z` to value `x + y`
-`λ> z` | 11 | Evaluates `z` and displays value
-`λ> :type z`<br>or<br>`λ> :t z` | `z :: Num a => a` | Shows type of `z` `λ> :t 5` | `5 :: Num t => t` | Shows type of `5`
-`λ> z = "hello"` | | Assigns name `z` to value `"hello"`
-`λ> z` | `"hello"` | Evaluates `z` and displays value
-`λ> :t z` | `z :: [Char]` | Shows type of `z`
-`λ> :q` | | Quits GHCI session
+Input                           | Output            | Comment
+:-------------------------------|:------------------|:-------
+`λ> x = 5`                      |                   | Assigns name `x` to value `5`
+`λ> y = 6`                      |                   | Assigns name `y` to value `6`
+`λ> z = x + y`                  |                   | Assigns name `z` to value `x + y`
+`λ> z`                          | `11`              | Evaluates `z` and displays value
+`λ> :type z`<br>or<br>`λ> :t z` | `z :: Num a => a` | Shows type of `z`
+`λ> :t 5`                       | `5 :: Num t => t` | Shows type of `5`
+`λ> z = "hello"`                |                   | Assigns name `z` to value `"hello"`
+`λ> z`                          | `"hello"`         | Evaluates `z` and displays value
+`λ> :t z`                       | `z :: [Char]`     | Shows type of `z`
+`λ> :q`                         |                   | Quits GHCI session
 
 Notes:
 
