@@ -6,7 +6,3 @@ extra-deps:
 - text-icu-translit-0.1.0.7
 flags: {}
 extra-package-dbs: []
-extra-lib-dirs:
-- /usr/local/opt/icu4c/lib
-extra-include-dirs:
-- /usr/local/opt/icu4c/include
