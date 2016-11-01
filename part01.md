@@ -60,6 +60,10 @@ Next we'll start up GHCI, the interactive Haskell interpreter:
 stack ghci
 ```
 
+> ***TODO:***
+>
+> * Talk about the prompt `λ>` vs. `Prelude>` etc.
+
 * GHC is the Glasgow Haskell Compiler
 * GHCI is GHC _Interactive_
 * It's GHC's read-evaluate-print-loop (REPL)
