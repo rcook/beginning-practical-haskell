@@ -33,6 +33,20 @@ stack exec -- pacman -Syu
 stack exec -- pacman -Sy mingw64/mingw-w64-x86_64-icu
 ```
 
+## Running the program
+
+Linux/OS X:
+
+```bash
+stack exec child-health-data-app
+```
+
+Windows:
+
+```cmd
+.\child-health-data-app.cmd
+```
+
 ## Licence
 
 Released under MIT License
