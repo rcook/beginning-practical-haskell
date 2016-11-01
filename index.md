@@ -26,6 +26,10 @@ stack exec my-project-exe
 ## Contents
 
 * [Part 1](part01.md)
+    * What is Haskell?
+    * Interactive Haskell
+    * Type annotations
+    * Functions
 * [Part 2](part02.md)
 * [Part 3](part03.md)
 
