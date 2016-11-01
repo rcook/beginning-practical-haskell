@@ -20,7 +20,7 @@ Linux (Ubuntu):
 apt-get install libicu-dev
 ```
 
-OS X (with [Homebrew][homebrew]):
+OS X (using [Homebrew][homebrew]):
 
 ```bash
 brew install icu4c
@@ -29,7 +29,8 @@ brew install icu4c
 Windows (using [pacman][pacman] in Stack):
 
 ```cmd
-stack exec -- pacman -Sy icu-devel
+stack exec -- pacman -Syu
+stack exec -- pacman -Sy mingw64/mingw-w64-x86_64-icu
 ```
 
 ## Licence
