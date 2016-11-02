@@ -39,6 +39,8 @@ This version of `Colour` is a [_product type_][producttype].
 
 ## Sum types
 
+* Equivalent to tagged union, variant, discriminated union etc. in other languages
+
 ## Product types
 
 *[Sources: [1][cardinalityproof]]*
