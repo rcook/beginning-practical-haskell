@@ -41,19 +41,10 @@ This version of `Colour` is a [_product type_][producttype].
 
 ## Product types
 
-Tuple length $n$ | Name        | Alternative names
-----------------:|:------------|:-----------------
-0                | empty tuple | unit
-1                | single      | singleton, monuple
-2                | double      | pair
-3                | triple      | |
-4                | quadruple   | |
-5                | quintuple   | |
-6                | sextuple    | |
-7                | septuple    | |
-8                | octuple     | |
-9                | nonuple     | |
-10               | decuple     | |
+* Isomorphic to strongly-typed tuples
+* So-called because the _cardinality_ (i.e. size or number of inhabitants) of a type is equal to the product of the cardinality of each of its component types
+* Thus equivalent to a Cartesian product of finite sets
+* For the Cartesian product $S \times T$ of two finite sets $S$ and $T$, $\left|{S \times T}\right| = \left|{S}\right| \times \left|{T}\right|$ where $\left|{S}\right|$ denotes cardinality
 
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [producttype]: https://en.wikipedia.org/wiki/Product_type
