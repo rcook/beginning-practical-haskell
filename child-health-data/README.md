@@ -1,10 +1,13 @@
-# child-health-data
+# Child Health Data Scraping Tool
 
-## Development
-
-This project uses [Stack][stack].
+* A simple web-scraping tool written in [Haskell][haskell]
+* Written [Richard Cook][rcookdotorg]
 
 ## Prerequisites
+
+### Stack
+
+Install [Stack][stack]. This'll take care of the Haskell bits.
 
 ### ICU
 
@@ -55,15 +58,22 @@ stack exec -- pacman -Syu
 stack exec -- pacman -Sy mingw64/mingw-w64-x86_64-icu
 ```
 
+## Building
+
+```bash
+stack setup
+stack build
+```
+
 ## Running the program
 
-Linux/OS X:
+### Linux/OS X
 
 ```bash
 stack exec child-health-data-app
 ```
 
-Windows:
+### Windows
 
 ```cmd
 .\child-health-data-app.cmd
@@ -73,8 +83,10 @@ Windows:
 
 Released under MIT License
 
-Copyright (c) 2016 Richard Cook
+Copyright &copy; 2016 Richard Cook
 
+[haskell]: https://www.haskell.org/
 [homebrew]: http://brew.sh/
 [pacman]: https://wiki.archlinux.org/index.php/pacman
+[rcookdotorg]: http://rcook.org/
 [stack]: https://haskellstack.org/
