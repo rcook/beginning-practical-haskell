@@ -2,7 +2,7 @@
 
 # What is Haskell?
 
-*[Sources: [1][haskellwikifp], [2][wikipediahaskell]]*
+*[Sources: [1][haskellwikifp], [2][wikipediahaskell], [3][evaluation]]*
 
 * Purely functional programming language
 * Non-strict
@@ -262,6 +262,7 @@ main = print (addIntegers 5 6)
 
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
 [equationalreasoning]: http://www.haskellforall.com/2013/12/equational-reasoning.html
+[evaluation]: http://dev.stephendiehl.com/fun/005_evaluation.html
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
 [pronunciation]: https://wiki.haskell.org/Pronunciation
