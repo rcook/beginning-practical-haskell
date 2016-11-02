@@ -45,3 +45,9 @@ Install Pandoc:
 ```bash
 stack install pandoc
 ```
+
+### Windows
+
+```cmd
+.\make-doc.cmd
+```
