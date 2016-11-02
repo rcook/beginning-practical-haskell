@@ -15,6 +15,7 @@ import           ChildHealthData.Table
 import           ChildHealthData.TextUtil
 import           ChildHealthData.Types
 import           ChildHealthData.Util
+import           Paths_child_health_data
 
 readQQFile :: FilePath -> IO [QQ]
 readQQFile path = do
@@ -39,8 +40,11 @@ readPages qqs ggs = accumulateM [] [(qq, gg) | qq <- qqs, gg <- ggs] $ \ps (qq, 
 
 main :: IO ()
 main = do
-    qqs <- readQQFile "qqs.txt"
-    (ggs, ggMap) <- readGGFile "ggs.txt"
+    qqPath <- getDataFileName "qqs.txt"
+    ggPath <- getDataFileName "ggs.txt"
+
+    qqs <- readQQFile qqPath
+    (ggs, ggMap) <- readGGFile ggPath
 
     pages <- readPages qqs ggs
 

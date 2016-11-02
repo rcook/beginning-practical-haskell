@@ -11,6 +11,8 @@ copyright:            2016 Richard Cook
 category:             Web
 build-type:           Simple
 cabal-version:        >= 1.10
+data-dir:             data
+data-files:           ggs.txt qqs.txt
 
 source-repository head
   type:               git
