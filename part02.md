@@ -15,7 +15,7 @@ Consider the following `data` declaration:
 data Colour = Red | Green | Blue
 ```
 
-`Colour` is the _type constructor_ and appears on the left-hand side of the `=` sign. This type has three _data constructors_, named `Red`, `Green` and `Blue` which appear on the right-hand side of the `=` sign. You use type constructors where you'd expect a type (e.g. in type annotations) and data constructors where you'd expect a value. `Colour` is a type while `Red`, `Green` and `Blue` contain values of type `Colour`. This is known as a _sum type_.
+`Colour` is the _type constructor_ and appears on the left-hand side of the `=` sign. This type has three _data constructors_, named `Red`, `Green` and `Blue` which appear on the right-hand side of the `=` sign. You use type constructors where you'd expect a type (e.g. in type annotations) and data constructors where you'd expect a value. `Colour` is a type while `Red`, `Green` and `Blue` contain values of type `Colour`. This is known as a [_sum type_][taggedunion].
 
 Let's try a more interesting version of this type:
 
@@ -35,6 +35,26 @@ Input                                     | Output                              
 `λ> c` | `<interactive>:13:1:`<br><code>&nbsp;&nbsp;&nbsp;&nbsp;No instance for (Show Colour) arising from a use of &#96;print'</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;In a stmt of an interactive GHCi command: print it</code> | What?
 `λ> data Colour = RGB Int Int Int deriving Show`<br>`λ> let c = RGB 10 20 30`<br>`λ> c` | `RGB 10 20 30`      | That's better!
 
-This version of `Colour` is a _product type_.
+This version of `Colour` is a [_product type_][producttype].
+
+## Sum types
+
+## Product types
+
+Tuple length $n$ | Name        | Alternative names
+----------------:|:------------|:-----------------
+0                | empty tuple | unit
+1                | single      | singleton, monuple
+2                | double      | pair
+3                | triple      | |
+4                | quadruple   | |
+5                | quintuple   | |
+6                | sextuple    | |
+7                | septuple    | |
+8                | octuple     | |
+9                | nonuple     | |
+10               | decuple     | |
 
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
+[producttype]: https://en.wikipedia.org/wiki/Product_type
+[taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
