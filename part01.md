@@ -7,6 +7,7 @@
 * Purely functional programming language
 * Non-strict
 * Statically typed
+* Call-by-value
 
 ## Purely functional programming language
 
@@ -28,6 +29,12 @@
 
 * Catch many kinds of programmer error at _compile time_
 * Expressive type system allows programmer lots of power and flexibility
+
+## Call by value
+
+> ***TODO:***
+>
+> * Describe call by value etc.
 
 ## What else?
 
