@@ -37,3 +37,11 @@
 * Others:
   * `extra`
   * `lens`
+
+## Building the lecture notes
+
+Install Pandoc:
+
+```bash
+stack install pandoc
+```
