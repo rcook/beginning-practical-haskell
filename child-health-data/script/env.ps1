@@ -5,7 +5,7 @@ if (Test-Path $icuBinPathFile) {
 }
 else {
   pushd $PSScriptRoot
-  stack exec -- sh get-icu-bin-path.sh > $icuBinPathFile
+  stack exec -- sh get-icu-bin-path.sh | Add-Content $icuBinPathFile
   popd
 }
 
