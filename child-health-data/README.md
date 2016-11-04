@@ -67,16 +67,22 @@ stack build
 
 ## Running the program
 
-### Linux/OS X
+On Windows, you'll need to run `script\env.cmd` (Windows command prompt) or `script\env.ps1` (Powershell) to set up the `PATH` environment variable so that various libraries (e.g. ICU) can be located at runtime:
+
+```cmd
+script\env.cmd
+```
+
+or
+
+```ps
+script\env.ps1
+```
+
+To run the program after building it (all platforms):
 
 ```bash
 stack exec child-health-data-app
-```
-
-### Windows
-
-```cmd
-.\child-health-data-app.cmd
 ```
 
 ## Licence
