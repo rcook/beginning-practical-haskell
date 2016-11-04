@@ -58,14 +58,7 @@ stack exec -- pacman -Syu
 stack exec -- pacman -Sy mingw64/mingw-w64-x86_64-icu
 ```
 
-## Building
-
-```bash
-stack setup
-stack build
-```
-
-## Running the program
+## Setting up runtime environment
 
 On Windows, you'll need to run `script\env.cmd` (Windows command prompt) or `script\env.ps1` (Powershell) to set up the `PATH` environment variable so that various libraries (e.g. ICU) can be located at runtime:
 
@@ -79,10 +72,25 @@ or
 script\env.ps1
 ```
 
-To run the program after building it (all platforms):
+On other platforms, assuming your installations of ICU etc. are system-wide, you won't need to adjust your `PATH`.
+
+## Building
+
+```bash
+stack setup
+stack build
+```
+
+## Running the program
 
 ```bash
 stack exec child-health-data-app
+```
+
+## Rebuilding automatically on file changes
+
+```bash
+stack build --file-watch --exec child-health-data-app
 ```
 
 ## Licence
