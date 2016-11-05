@@ -1,5 +1,4 @@
 OUTDIR := doc
-OUTEXT := .pdf
 PANDOCOPTS := \
   --highlight-style=tango \
   --latex-engine=xelatex \
@@ -12,9 +11,17 @@ INPUTFILES := \
   part03.md \
   part04.md
 
-${OUTDIR}/notes${OUTEXT}: ${INPUTFILES}
+${OUTDIR}/notes.html: ${INPUTFILES}
+	pandoc ${PANDOCOPTS} -s -o $@ $^
+
+${OUTDIR}/notes.pdf: ${INPUTFILES}
+	pandoc ${PANDOCOPTS} -s -o $@ $^
+
+${OUTDIR}/notes.tex: ${INPUTFILES}
 	pandoc ${PANDOCOPTS} -s -o $@ $^
 
 .PHONY: clean
 clean:
-	rm -rf ${OUTDIR}/notes${OUTEXT}
+	rm -rf ${OUTDIR}/notes.html
+	rm -rf ${OUTDIR}/notes.pdf
+	rm -rf ${OUTDIR}/notes.tex
