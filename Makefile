@@ -4,6 +4,7 @@ PANDOCOPTS := \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo
+BASENAME := notes
 INPUTFILES := \
   index.md \
   part01.md \
@@ -11,17 +12,15 @@ INPUTFILES := \
   part03.md \
   part04.md
 
-${OUTDIR}/notes.html: ${INPUTFILES}
+${OUTDIR}/${BASENAME}.html: ${INPUTFILES}
 	pandoc ${PANDOCOPTS} -s -o $@ $^
 
-${OUTDIR}/notes.pdf: ${INPUTFILES}
+${OUTDIR}/${BASENAME}.pdf: ${INPUTFILES}
 	pandoc ${PANDOCOPTS} -s -o $@ $^
 
-${OUTDIR}/notes.tex: ${INPUTFILES}
+${OUTDIR}/${BASENAME}.tex: ${INPUTFILES}
 	pandoc ${PANDOCOPTS} -s -o $@ $^
 
 .PHONY: clean
 clean:
-	rm -rf ${OUTDIR}/notes.html
-	rm -rf ${OUTDIR}/notes.pdf
-	rm -rf ${OUTDIR}/notes.tex
+	rm -rf ${OUTDIR}/${BASENAME}*
