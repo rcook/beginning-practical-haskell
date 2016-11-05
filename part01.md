@@ -8,6 +8,7 @@
 * Non-strict
 * Statically typed
 * Call-by-value
+* Whitespace-sensitive
 
 ## Purely functional programming language
 
@@ -35,6 +36,12 @@
 > ***TODO:***
 >
 > * Describe call by value etc.
+
+## Whitespace-sensitive
+
+> ***TODO:***
+>
+> * Describe whitespace sensitivity etc.
 
 ## What else?
 
