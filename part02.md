@@ -35,7 +35,7 @@ Input                                     | Output                              
 `λ> c` | `<interactive>:13:1:`<br><code>&nbsp;&nbsp;&nbsp;&nbsp;No instance for (Show Colour) arising from a use of &#96;print'</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;In a stmt of an interactive GHCi command: print it</code> | What?
 `λ> data Colour = RGB Int Int Int deriving Show`<br>`λ> let c = RGB 10 20 30`<br>`λ> c` | `RGB 10 20 30`      | That's better!
 
-This version of `Colour` is a [_product type_][producttype].
+This version of `Colour` is a [_product type_][producttype]. It is isometric to a 3-tuple, or triple, of `Int`s.
 
 ## Sum types
 
@@ -50,6 +50,16 @@ This version of `Colour` is a [_product type_][producttype].
 * Thus equivalent to a Cartesian product of finite sets
 * For the Cartesian product $S \times T$ of two finite sets $S$ and $T$, $\left|{S \times T}\right| = \left|{S}\right| \times \left|{T}\right|$ where $\left|{S}\right|$ denotes cardinality
 * Equivalent to records and structures in other languages
+
+## Records
+
+Another way of defining a product type with the convenience of automatically-generated accessor functions, Haskell has _record_ syntax:
+
+```haskell
+data Colour = RGB { red :: Int, green :: Int, blue :: Int }
+```
+
+Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int → Int → Int → Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour → Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
