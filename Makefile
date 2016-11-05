@@ -1,9 +1,11 @@
-OUT_DIR := doc
-PANDOC_OPTS := --highlight-style=tango
+OUTDIR := doc
+OUTEXT := .tex
+PANDOCOPTS := --highlight-style=tango
+INPUTFILES := index.md part01.md part02.md part03.md part04.md
 
-${OUT_DIR}/notes.html: index.md part01.md part02.md part03.md part04.md
-	pandoc ${PANDOC_OPTS} -s -o $@ $^
+${OUTDIR}/notes${OUTEXT}: ${INPUTFILES}
+	pandoc ${PANDOCOPTS} -s -o $@ $^
 
 .PHONY: clean
 clean:
-	rm -rf ${OUT_DIR}/notes.html
+	rm -rf ${OUTDIR}/notes${OUTEXT}
