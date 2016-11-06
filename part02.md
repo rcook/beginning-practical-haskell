@@ -51,7 +51,7 @@ This version of `Colour` is a [_product type_][producttype]. It is isometric to 
 * For the Cartesian product $S \times T$ of two finite sets $S$ and $T$, $\left|{S \times T}\right| = \left|{S}\right| \times \left|{T}\right|$ where $\left|{S}\right|$ denotes cardinality
 * Equivalent to records and structures in other languages
 
-## Records
+## <a name="recordsyntax"></a> Records
 
 Another way of defining a product type with the convenience of automatically-generated accessor functions, Haskell has _record_ syntax:
 
@@ -60,6 +60,32 @@ data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 ```
 
 Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour` $\rightarrow$ `Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
+
+## Pattern matching
+
+Given `Colour` defined as a product type without using record syntax, how do we extract the component values? This is where "pattern matching" comes in. Pattern matching is a mechanism for _deconstructing_ Haskell values, so-called because the patterns mimic the _data constructor_ invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine _how_ a value was constructed at runtime.
+
+There are two distinct places where you'll see pattern matching:
+
+* In function definitions, used to deconstruct function arguments
+* In `case` expressions, used to deconstruct arbitrary values
+
+### Pattern matching in function definitions
+
+This is equivalent to the code that the Haskell compiler generates for record accessor functions described [previously](#recordsyntax). Here's an example using our trusty `Colour` data type:
+
+```haskell
+data Colour = RGB Int Int Int
+
+red :: Colour -> Int
+red (RGB r _ _) = r
+
+green :: Colour -> Int
+green (RGB _ g _) = g
+
+blue :: Colour -> Int
+blue (RGB _ _ b) = b
+```
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
