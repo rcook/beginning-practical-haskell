@@ -61,6 +61,15 @@ data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 
 Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour` $\rightarrow$ `Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
+Similarly, we might define a "pair" type as follows:
+
+Input | Output | Comment
+:-----|:-------|:-------
+data Pair a b = Pair { first :: a, second :: b }
+
+> ***TODO:***
+> Complete `Pair` walkthrough
+
 ## Pattern matching
 
 Given `Colour` defined as a product type without using record syntax, how do we extract the component values? This is where "pattern matching" comes in. Pattern matching is a mechanism for _deconstructing_ Haskell values, so-called because the patterns mimic the _data constructor_ invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine _how_ a value was constructed at runtime.
