@@ -100,6 +100,7 @@ blue (RGB _ _ b) = b
 * You'll see it used a lot
 * It can also be used to represent a [typed hole][typedholes]
 * `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`, matching `r` to the first value of the triple and ignoring the second and third values
+* Interestingly, "regular" function argument names are really just a degenerate case of pattern matching
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
