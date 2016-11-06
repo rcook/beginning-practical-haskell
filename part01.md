@@ -8,7 +8,8 @@
 * Non-strict
 * Statically typed
 * Call-by-value
-* Whitespace-sensitive
+* Whitespace-sensitive syntax
+* Memory managed using garbage collector
 
 ## Purely functional programming language
 
@@ -37,11 +38,17 @@
 >
 > * Describe call by value etc.
 
-## Whitespace-sensitive
+## Whitespace-sensitive syntax
 
 > ***TODO:***
 >
 > * Describe whitespace sensitivity etc.
+
+## Garbage collection
+
+> ***TODO:***
+>
+> Describe garbage collection etc.
 
 ## What else?
 
