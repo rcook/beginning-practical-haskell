@@ -60,7 +60,7 @@ stack exec -- pacman -Sy mingw64/mingw-w64-x86_64-icu
 
 ## Setting up runtime environment
 
-On Windows, you'll need to run `script\env.cmd` (Windows command prompt) or `script\env.ps1` (Powershell) to set up the `PATH` environment variable so that various libraries (e.g. ICU) can be located at runtime:
+On Windows, you'll need to run `script\env.cmd` (Windows command prompt) or `script\env.ps1` (PowerShell) to set up the `PATH` environment variable so that various libraries (e.g. ICU) can be located at runtime:
 
 ```cmd
 script\env.cmd
