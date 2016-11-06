@@ -96,6 +96,10 @@ blue :: Colour -> Int
 blue (RGB _ _ b) = b
 ```
 
+* `_` ("unknown") is a "throwaway" name: it matches a value but does not assign a name to it which is useful when we don't care about that specific value
+* You'll see it used a lot
+* `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`, matching `r` to the first value of the triple and ignoring the second and third values
+
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [producttype]: https://en.wikipedia.org/wiki/Product_type

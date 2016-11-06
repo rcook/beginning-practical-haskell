@@ -160,7 +160,6 @@ print 5 >>= \x -> print "hello" :: IO ()
 
 * Now we have single expression whose type is `IO ()`
 * Let's get rid of all the extraneous names
-* `_` is a "throwaway" name and you'll see it used a lot
 
 ```ghci
 λ> print 5 >>= \_ -> print "hello"
