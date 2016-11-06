@@ -131,6 +131,33 @@ main =
 
 This will yield `cs1=CMYK, cs2=RGB`.
 
+Patterns can be matched both in function argument position and in `case` expressions. Here's a contrived example using our `RGB`/`CMYK` definition of `Colour`:
+
+```haskell
+data Point = Point { x :: Int, y :: Int }
+
+data Line = Line
+  { start :: Point
+  , end :: Point
+  , thickness :: Int
+  , colour :: Colour
+  }
+
+lineRedness :: Line -> Int
+lineRedness (Line _ _ _ (RGB r _ _)) = r
+
+main :: IO ()
+main =
+    let l = Line
+                (Point 10 10)
+                (Point 50 50)
+                1
+                (RGB 255 0 0)
+    in print (lineRedness l)
+```
+
+This example illustrates another important aspect of pattern matching, namely
+
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [producttype]: https://en.wikipedia.org/wiki/Product_type
