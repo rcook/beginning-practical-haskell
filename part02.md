@@ -3,7 +3,7 @@
 > ***TODO:***
 >
 > * List Haskell's primitive types, especially `Int` so that the `Colour` example below makes more sense.
->* More on functions so that `Int -> Int -> Int` etc. makes more sense.
+>* More on functions so that `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` etc. makes more sense.
 
 # Algebraic data types
 
