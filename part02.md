@@ -102,6 +102,35 @@ blue (RGB _ _ b) = b
 * `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`, matching `r` to the first value of the triple and ignoring the second and third values
 * Interestingly, "regular" function argument names are really just a degenerate case of pattern matching
 
+### Pattern matching using `case`
+
+An alternative implementation can make use of a `case` expression:
+
+```haskell
+data Colour =
+    RGB Int Int Int |
+    CMYK Int Int Int Int
+
+colourSpaceV1 :: Colour -> String
+colourSpaceV1 (RGB _ _ _) = "RGB"
+colourSpaceV1 (CMYK _ _ _ _) = "CMYK"
+
+colourSpaceV2 :: Colour -> String
+colourSpaceV2 c =
+    case c of RGB _ _ _ -> "RGB"
+              CMYK _ _ _ _ -> "CMYK"
+
+main :: IO ()
+main =
+    let c1 = CMYK 10 20 30 40
+        cs1 = colourSpaceV1 c1
+        c2 = RGB 50 100 150
+        cs2 = colourSpaceV2 c2
+    in putStrLn ("cs1=" ++ cs1 ++ ", cs2=" ++ cs2)
+```
+
+This will yield `cs1=CMYK, cs2=RGB`.
+
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [producttype]: https://en.wikipedia.org/wiki/Product_type
