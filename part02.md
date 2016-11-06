@@ -59,7 +59,7 @@ Another way of defining a product type with the convenience of automatically-gen
 data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 ```
 
-Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int → Int → Int → Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour → Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
+Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour` $\rightarrow$ `Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
