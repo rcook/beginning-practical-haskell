@@ -79,6 +79,10 @@ There are two distinct places where you'll see pattern matching:
 * In function definitions, used to deconstruct function arguments
 * In `case` expressions, used to deconstruct arbitrary values
 
+> ***TODO:***
+>
+> Similar to the first type of pattern matching, lambdas can also perform pattern matching in their argument lists.
+
 ### Pattern matching in function definitions
 
 This is equivalent to the code that the Haskell compiler generates for record accessor functions described [previously](#recordsyntax). Here's an example using our trusty `Colour` data type:
