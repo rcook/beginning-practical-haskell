@@ -287,6 +287,16 @@ https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
 > Discuss catching non-exhaustive matches at compile time
 > This is a bit of wart on Haskell
 
+# Type aliases
+
+> ***TODO:***
+> Discuss type aliases defined with `type`
+
+# Wrapper types
+
+> ***TODO:***
+> Discuss wrapper types defined with `newtype`
+
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
