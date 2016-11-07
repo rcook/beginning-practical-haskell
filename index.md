@@ -21,7 +21,7 @@ stack build
 stack exec my-project-exe
 ```
 
-* This course will use the [LTS 7.5][lts75] snapshot of Stack which uses [GHC 8.0.1][ghc801]
+* This course will use the [LTS 7.8][lts78] snapshot of Stack which uses [GHC 8.0.1][ghc801]
 
 ## Contents
 
@@ -72,7 +72,7 @@ stack exec my-project-exe
 >   * `lens`
 
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
-[lts75]: https://www.stackage.org/lts-7.5
+[lts78]: https://www.stackage.org/lts-7.8
 [seahug]: http://seattlehaskell.org/
 [stack]: https://docs.haskellstack.org/
 [stackhowto]: https://docs.haskellstack.org/en/stable/README/#how-to-install
