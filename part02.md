@@ -284,7 +284,7 @@ So, why? The general consensus, among GHC developers at least, seems to be that 
 
 Personally, I think that this is a bit of a wart on Haskell in principle, but&mdash;in practice&mdash;I've never run into a false positive and so would recommend enabling the warning and promoting warnings to errors.
 
-# Type aliases
+## Type aliases
 
 Haskell provides `type` definitions used to create aliases, or alternative names, for existing types:
 
@@ -305,7 +305,7 @@ main = print (doubleX (Point 100 200))
 
 You'll see `type` used a lot in Haskell code even though it doesn't give you any type safety&mdash;as shown in the sample above, `Ordinate` is completely indistinguishable from a regular `Int`.
 
-# Strongly-typed wrapper types using `newtype`
+## Strongly-typed wrapper types using `newtype`
 
 `newtype`, on the other hand, is an altogether different beast:
 
