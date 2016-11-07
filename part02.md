@@ -246,6 +246,32 @@ Well, it turns out that this can be detected at compile time by enabling the `in
 
 When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line or by inserting a "pragma" into the top of a source file as follows:
 
+```haskell
+{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
+
+data Colour = Red | Green | Blue
+
+render :: Colour -> String
+render Red = "red"
+
+main :: IO ()
+main = putStrLn (render Green)
+```
+
+However, it's still a warning: therefore, the build still succeeds and the program still runs and fails at runtime. Therefore, we need to promote warnings to errors.
+
+```haskell
+{-# OPTIONS_GHC -fwarn-incomplete-patterns -Werror #-}
+
+data Colour = Red | Green | Blue
+
+render :: Colour -> String
+render Red = "red"
+
+main :: IO ()
+main = putStrLn (render Green)
+```
+
 http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
 https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
 http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
