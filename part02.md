@@ -109,7 +109,7 @@ An alternative implementation can make use of a `case` expression:
 ```haskell
 data Colour =
     RGB Int Int Int |
-    CMYK Int Int Int Int
+    CMYK Float Float Float Float
 
 colourModelV1 :: Colour -> String
 colourModelV1 (RGB _ _ _) = "RGB"
@@ -122,7 +122,7 @@ colourModelV2 c =
 
 main :: IO ()
 main =
-    let c1 = CMYK 10 20 30 40
+    let c1 = CMYK 0.5 0.5 0.5 0.0
         cm1 = colourModelV1 c1
         c2 = RGB 50 100 150
         cm2 = colourModelV2 c2
@@ -167,7 +167,7 @@ main =
                 (Point 10 10)
                 (Point 50 50)
                 1
-                (CMYK 10 20 30 40)
+                (CMYK 0.5 0.5 0.5 0.0)
     in print (lineRedness l)
 ```
 
@@ -177,7 +177,7 @@ Let's compile and run this. Here's the output:
 scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
 ```
 
-Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 10 20 30 40` since it was not constructed using the `RGB` data constructor.
+Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 0.5 0.5 0.5 0.0` since it was not constructed using the `RGB` data constructor.
 
 Such a problem can be addressed in one of several ways:
 
@@ -189,12 +189,12 @@ Such a problem can be addressed in one of several ways:
 
 The option you'd choose depends primarily on the semantics of the function. I'll attempt to illustrate these five approaches.
 
-Pattern-match on `CMYK`:
+Here we pattern-match on `CMYK` and apply a [formula][cmytorgb]:
 
 ```haskell
 lineRedness :: Line -> Int
 lineRedness (Line _ _ _ (RGB r _ _)) = r
-lineRedness (Line _ _ _ (CMYK r _ _)) = r
+lineRedness (Line _ _ _ (CMYK c _ _ _)) = round ((1.0 - c) * 255.0)
 ```
 
 > ***TODO:***
@@ -202,6 +202,7 @@ lineRedness (Line _ _ _ (CMYK r _ _)) = r
 > This is a bit of wart on Haskell
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
+[cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
