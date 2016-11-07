@@ -1,5 +1,3 @@
-[Contents](index.md) | [P1](part01.md) | [P2](part02.md) | **P3** | [P4](part04.md)
-
 # I/O
 
 * We want to write useful programs

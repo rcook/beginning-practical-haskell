@@ -1,5 +1,3 @@
-[Contents](index.md) | [P1](part01.md) | [P2](part02.md) | [P3](part03.md) | **P4**
-
 # Let's get ugly
 
 Let's look at a more complicated example:
