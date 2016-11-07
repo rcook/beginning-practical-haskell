@@ -334,10 +334,27 @@ Main.hs:9:33: error:
       In an equation for ‘doubleX’: doubleX (Point x _) = doubleInt x
 ```
 
-`newtype` defines a distinct new type whose internal representation is equivalent to a base type. In this case the new type is `Ordinate` and the underlying (base) type is `Int`. Syntactically, a `newtype` definition is closer to a `data` definition&mdash;with exactly one data constructor and exactly one field inside it. Furthermore, like `data` and unlike `type` the resulting type is distinct from, and not directly compatible with, the original type. In order to pass an `Ordinate` into a function expecting an `Int`, as in this example, one must first unwrap the field either using pattern matching or, in the case of record-style syntax, using the accessor function.
+`newtype` defines a distinct new type whose internal representation is equivalent to a base type. In this case the new type is `Ordinate` and the underlying (base) type is `Int`. Syntactically, a `newtype` definition is closer to a `data` definition&mdash;with exactly one data constructor and exactly one field inside it, which can be specified in normal or record syntax. Furthermore, like `data` and unlike `type`, the resulting type is distinct from, and not directly compatible with, the original type. In order to pass an `Ordinate` into a function expecting an `Int`, as in this example, one must first unwrap the field either using pattern matching or, in the case of record-style syntax, using the accessor function:
 
-> ***TODO:***
-> Mention that `newtype` has zero runtime overhead
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int }
+
+data Point = Point { x :: Ordinate, y :: Ordinate }
+
+translateBy :: Int -> Int -> Int
+translateBy o ord = o + ord
+
+main :: IO ()
+main =
+    let p = Point (Ordinate 10) (Ordinate 20)
+        translate = translateBy 10
+        translatedP = Point (Ordinate (translate (unOrdinate (x p)))) (Ordinate (translate (unOrdinate (y p))))
+        translatedX = unOrdinate (x translatedP)
+        translatedY = unOrdinate (y translatedP)
+    in putStrLn ("x=" ++ show translatedX ++ ", y=" ++ show translatedY)
+```
+
+We will return to this example shortly to explain some new things you may have spotted as well as some ways to make this less ugly while retaining type safety.
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
