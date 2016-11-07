@@ -281,6 +281,7 @@ This will generate a similar warning as above and will abort the build.
 http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
 https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
 http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
+https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
 
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
