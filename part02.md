@@ -179,15 +179,18 @@ scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
 
 Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 0.5 0.5 0.5 0.0` since it was not constructed using the `RGB` data constructor.
 
-Such a problem can be addressed in one of several ways:
+Such a problem can be addressed in one of [several ways][haskellerrorreporting]:
 
 * Provide a pattern match on the `CMYK` data constructor: this would require a valid conversion from the `CMYK` representation of a colour to `RGB` in order to provide a red component
 * Provide a fall-through case using `_` to match any `Colour` value after the `RGB` match: this would require the existence of some "default" notion of line redness
-* Continue to allow a runtime error with the existing error message
-* Report a more useful error message through one of various exception mechanisms
 * Augment the return type to include the notion of failure
 
-The option you'd choose depends primarily on the semantics of the function. I'll attempt to illustrate these five approaches.
+The option you will choose will depend primarily on the semantics of the function. To make this determination, you'd need to ask questions such as:
+
+* Is there a valid "conversion" from the other data constructors?
+* Is there a semantically reasonable default value?
+
+I'll illustrate these three alternatives to the existing behaviour. Note that there are also other ways to provide different runtime error messages through Haskell's various [exception mechanisms][haskellisexceptionallyunsafe] etc. We will discuss these more when we get to I/O.
 
 Here we pattern-match on `CMYK` and apply a [formula][cmytorgb]:
 
@@ -197,6 +200,21 @@ lineRedness (Line _ _ _ (RGB r _ _)) = r
 lineRedness (Line _ _ _ (CMYK c _ _ _)) = round ((1.0 - c) * 255.0)
 ```
 
+Look sideways and ignore the fact that we're ignoring the K-component!
+
+Here we provide a catch-all or fall-through case:
+
+```haskell
+defaultRed :: Int
+defaultRed = 0
+
+lineRedness :: Line -> Int
+lineRedness (Line _ _ _ (RGB r _ _)) = r
+lineRedness _ = defaultRed
+```
+
+Here we throw an
+
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
 > This is a bit of wart on Haskell
@@ -204,6 +222,8 @@ lineRedness (Line _ _ _ (CMYK c _ _ _)) = round ((1.0 - c) * 255.0)
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
+[haskellerrorreporting]: http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/
+[haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
