@@ -280,9 +280,9 @@ main = putStrLn (render Green)
 
 This will generate a similar warning as above and will abort the build.
 
-> ***TODO:***
-> Discuss catching non-exhaustive matches at compile time
-> This is a bit of wart on Haskell
+So, why? The general consensus, among GHC developers at least, seems to be that the exhaustiveness checker ["is not very good"][nonexhaustive5]: it tends to report false positives and counterintuitive error messages given in terms of desugared forms instead of the original source code&mdash;we'll look at desugaring a little more later.
+
+Personally, I think that this is a bit of a wart on Haskell in principle, but&mdash;in practice&mdash;I've never run into a false positive and so would recommend enabling the warning and promoting warnings to errors.
 
 # Type aliases
 
@@ -305,6 +305,7 @@ This will generate a similar warning as above and will abort the build.
 [nonexhaustive2]: https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
 [nonexhaustive3]: http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
 [nonexhaustive4]: https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
+[nonexhaustive5]: https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017225.html
 [nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
