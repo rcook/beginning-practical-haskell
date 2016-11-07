@@ -198,7 +198,7 @@ main =
 
 Let's compile and run this. Here's the output:
 
-```text
+```console
 scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
 ```
 
@@ -345,7 +345,7 @@ main = print (doubleX (Point 100 200))
 
 Attempting to compile this example will result in the following:
 
-```text
+```console
 Main.hs:9:33: error:
     • Couldn't match expected type ‘Int’ with actual type ‘Ordinate’
     • In the first argument of ‘doubleInt’, namely ‘x’
@@ -473,7 +473,7 @@ main =
 
 This generates the following output:
 
-```text
+```console
 Point {x = Ordinate {unOrdinate = 20}, y = Ordinate {unOrdinate = 30}}
 ```
 
