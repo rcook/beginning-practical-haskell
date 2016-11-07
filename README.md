@@ -6,7 +6,7 @@ Written by Richard Cook
 
 [Start here](index.md)
 
-## Generating the lecture notes
+## Generating the course notes
 
 You'll need [Stack][stack] and [Pandoc][pandoc]:
 
