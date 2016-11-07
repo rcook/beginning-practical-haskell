@@ -473,7 +473,7 @@ main =
     let p = Point (Ordinate 10) (Ordinate 20)
         translatedP = translatedPoint 10 10 p
     in print translatedP
-````
+```
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
