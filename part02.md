@@ -156,7 +156,32 @@ main =
     in print (lineRedness l)
 ```
 
-This example illustrates another important aspect of pattern matching, namely
+This will output `255`.
+
+This example illustrates another important aspect of pattern matching, namely _exhaustiveness_ of our pattern matching. Let's change our `main` function to the following to illustrate this:
+
+```haskell
+main :: IO ()
+main =
+    let l = Line
+                (Point 10 10)
+                (Point 50 50)
+                1
+                (CMYK 10 20 30 40)
+    in print (lineRedness l)
+```
+
+Let's compile and run this. Here's the output:
+
+```text
+scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
+```
+
+Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 10 20 30 40` since it was not constructed using the `RGB` data constructor.
+
+> ***TODO:***
+> Discuss catching non-exhaustive matches at compile time
+> This is a bit of wart on Haskell
 
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
