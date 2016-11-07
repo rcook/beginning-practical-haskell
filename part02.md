@@ -286,8 +286,28 @@ Personally, I think that this is a bit of a wart on Haskell in principle, but&md
 
 # Type aliases
 
-> ***TODO:***
-> Discuss type aliases defined with `type`
+Haskell provides `type` definitions used to create aliases, or alternative names, for existing types:
+
+```haskell
+type Ordinate = Int
+
+data Point = Point Ordinate Ordinate
+
+doubleInt :: Int -> Int
+doubleInt x = x * 2
+
+doubleX :: Point -> Int
+doubleX (Point x _) = doubleInt x
+
+main :: IO ()
+main = print (doubleX (Point 100 200))
+```
+
+You'll see `type` used a lot in Haskell code even though it doesn't give you any type safety&mdash;as shown in the sample above, `Ordinate` is completely indistinguishable from a regular `Int`.
+
+# Strongly-typed wrapper types using `newtype`
+
+`newtype`, on the other hand, is an altogether different beast.
 
 # Wrapper types
 
