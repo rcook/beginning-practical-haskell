@@ -227,7 +227,7 @@ We'll definitely talk more about `Maybe` later. Suffice it to say for now that i
 
 ### Can't we do better?
 
-Something about this may irk you. Given that the compiler has full information about a given type's data constructor, surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.
+Something about this may irk you. Given that the compiler has full information about a given type's data constructor (at least in code defined in the same module as the type), surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.
 
 Well, it turns out that this can be detected at compile time by enabling the `incomplete-patterns` warning. From GHCI, this can be done using the `:set` command:
 
@@ -244,7 +244,7 @@ Well, it turns out that this can be detected at compile time by enabling the `in
             Blue
 ```
 
-When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line or by inserting a "pragma" into the top of a source file as follows:
+When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line, setting `ghc-options` in your project's [.cabal][cabaluserguide] or by inserting a "pragma" into the top of a source file as follows:
 
 ```haskell
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
@@ -258,7 +258,7 @@ main :: IO ()
 main = putStrLn (render Green)
 ```
 
-However, it's still a warning: therefore, the build still succeeds and the program still runs and fails at runtime. Therefore, we need to promote warnings to errors.
+However, this is still just a warning: therefore, the build still succeeds and the program still runs and fails at runtime. Therefore, we need to promote warnings to errors.
 
 ```haskell
 {-# OPTIONS_GHC -fwarn-incomplete-patterns -Werror #-}
@@ -272,6 +272,8 @@ main :: IO ()
 main = putStrLn (render Green)
 ```
 
+This will generate a similar warning as above and will abort the build.
+
 http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
 https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
 http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
@@ -280,6 +282,7 @@ http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-match
 > Discuss catching non-exhaustive matches at compile time
 > This is a bit of wart on Haskell
 
+[cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
