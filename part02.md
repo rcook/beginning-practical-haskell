@@ -367,7 +367,31 @@ This last example is ugly. In this section we'll cover a few other items:
 
 ## Function composition
 
-Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turns to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
+Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
+
+Notionally, `.` is equivalent to the function `compose` of type (`b` $\rightarrow$ `c`) $\rightarrow$ (`a` $\rightarrow$ `b`) $\rightarrow$ (`a` $\rightarrow$ `c`): i.e. a function taking two functions and yielding a third function:
+
+```ghci
+λ> compose f g x = f (g x)
+λ> :t compose
+compose :: (t -> t1) -> (t2 -> t) -> t2 -> t1
+λ> myStr :: Double -> String; myStr = show
+λ> :t myStr
+myStr :: Double -> String
+λ> myLen :: String -> Int; myLen = length
+λ> :t myLen
+myLen :: String -> Int
+λ> lengthOfDoubleAsString = compose myLen myStr
+λ> :t lengthOfDoubleAsString
+lengthOfDoubleAsString :: Double -> Int
+λ> lengthOfDoubleAsString 3.141
+5
+λ> lengthOfDoubleAsString' = myLen . myStr
+λ> lengthOfDoubleAsString' 1.23456
+7
+```
+
+Thus, `Ordinate (translate (unOrdinate someExpression))` can be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does eliminate some parentheses and make the code look less [Lisp-like][seaofparentheses]. It also emphasizes the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. Function composition and treatment of functions as values are the principles underlying _higher-order functions_ and are what really make Haskell a functional programming language.
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
@@ -384,5 +408,6 @@ Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doi
 [nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
+[seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
