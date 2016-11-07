@@ -413,6 +413,24 @@ Partial application of binary operator is known as a _left_ or _right_ _section_
 
 We'll see more about `\`, λ or "lambda" soon.
 
+So, we eliminated some repeated code and composed some functions. Let's finish with a mention of Haskell's other anti-parentheses countermeasure: the `$` operator:
+
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int }
+data Point = Point { x :: Ordinate, y :: Ordinate }
+
+main :: IO ()
+main =
+    let p = Point (Ordinate 10) (Ordinate 20)
+        translateOrdinate = Ordinate . ((+) 10) . unOrdinate
+        translatedP = Point (translateOrdinate (x p)) (translateOrdinate (y p))
+        translatedX = unOrdinate $ x translatedP
+        translatedY = unOrdinate $ y translatedP
+    in putStrLn $ "x=" ++ show translatedX ++ ", y=" ++ show translatedY
+```
+
+If whitespace between identifiers in Haskell is _function application_ (e.g. `f x`), then `$` is simply another form of function application with lower precedence.
+
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
