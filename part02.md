@@ -475,9 +475,11 @@ main =
     in print translatedP
 ```
 
-# <a name="anonymousfunctions"></a> Anonymous functions or lambda abstraction
+# <a name="anonymousfunctions"></a> Anonymous functions and lambda abstraction
 
-Functions are so important in Haskell that we get to refer to them by their own individual names or with no name at all. They also get their own letter of the Greek alphabet, namely lambda, so-called as they refer to [the lambda calculus][lambdacalculus]. What's important about lambda calculus is that it's a universal model of computation equivalent in power to a Turing machine. It's based on function abstraction and function application. Consider the named (mathematical) function $\operatorname{square\_sum}$:
+Functions are so important in Haskell that we get to refer to them by their own individual names or with no name at all. They also get their own letter of the Greek alphabet, namely lambda, so-called because of [the lambda calculus][lambdacalculus]. What's important about lambda calculus is that it's a universal model of computation equivalent in power to a Turing machine. It's based on function abstraction and function application.
+
+Consider the named (mathematical) function $\operatorname{square\_sum}$:
 
 $\operatorname{square\_sum}(x, y) = x ^ 2 + y ^ 2$
 
@@ -501,17 +503,54 @@ is equivalent to
 
 $x \mapsto (y \mapsto x ^ 2 + y ^ 2)$
 
-Application of the function $\operatorname{square_sum}$ to the arguments $(5, 2)$ yields:
+Application of the function $\operatorname{square\_sum}$ to the arguments $(5, 2)$ yields:
 
-$(x,y) \mapsto x ^ 2 + y ^ 2$
+$((x,y) \mapsto x ^ 2 + y ^ 2)(5, 2)$<br>
+$= 5 ^ 2 + 2 ^ 2$<br>
+$= 29$
 
-Explains:
+while applying our curried versions looks like:
 
-* Why whitespace is function application (it's common, so let's make it easy to type)
-* Ubiquity of the lambda character in everything Haskell-related
-* Currying
-* All functions are really functions of a single argument which yield additional functions
-* Higher-order functions
+$((x \mapsto (y \mapsto x ^ 2 + y ^ 2))(5))(2)$<br>
+$= (y \mapsto 5 ^ 2 + y ^ 2)(2)$<br>
+$= 5 ^ 2 + 2 ^ 2$<br>
+$= 29$
+
+Functions are so central to the Haskell way of thinking about things, that the language designers intentionally chose the tersest syntax possible for function definitions and function application: whitespace, i.e. instead of
+
+$\operatorname{f}(x, y) = x ^ 2 + y ^ 2$<br>
+$\operatorname{g}(x, y) = x ^ 3 + y ^ 3$<br>
+$\operatorname{h}(x, y) = \operatorname{f}(x, y) + \operatorname{g}(x, y)$
+
+Haskell uses:
+
+```haskell
+f x y = x ^ 2 + y ^ 2
+g x y = x ^ 3 + y ^ 3
+h x y = f x y + g x y
+```
+
+Haskell aims to minimize the use of parentheses and assigns the highest precedence of all infix operators to keep things minimalist and streamlined. Finally, lambda forms are represented as follows:
+
+$x \mapsto x ^ 2$ also written $\lambda x . x ^ 2$
+
+becomes
+
+```haskell
+\x -> x ^ 2
+```
+
+Similarly, the anonymous form of our $\operatorname{square\_sum}$ function becomes:
+
+```haskell
+\x y -> x ^ 2 + y ^ 2
+```
+
+or, in curried form:
+
+```haskell
+\x -> \y -> x ^ 2 + y ^ 2
+```
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
