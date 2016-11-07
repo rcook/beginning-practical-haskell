@@ -73,17 +73,17 @@ Just like the previous product type definition of `Colour`, this definition cons
 
 Similarly, we might define a "pair" as follows:
 
-Input                                              | Output
-:--------------------------------------------------|:------
-`λ> data Pair a b = P { first :: a, second :: b }` |
-`λ> :t P`                                          | `P :: a -> b -> Pair a b`
-`λ> :t first`                                      | `first :: Pair a b -> a`
-`λ> :t second`                                     | `second :: Pair a b -> b`
-`λ> indianaPi = P "pi" (4 / 1.25)`                 |
-`λ> first indianaPi`                               | `"pi"`
-`λ> :t first indianaPi`                            | `first indianaPi :: [Char]`
-`λ> second indianaPi`                              | `3.2`
-`λ> :t second indianaPi`                           | `second indianaPi :: Fractional b => b`
+Input                                              | Output                                  |
+:--------------------------------------------------|:----------------------------------------|
+`λ> data Pair a b = P { first :: a, second :: b }` |                                         |
+`λ> :t P`                                          | `P :: a -> b -> Pair a b`               |
+`λ> :t first`                                      | `first :: Pair a b -> a`                |
+`λ> :t second`                                     | `second :: Pair a b -> b`               |
+`λ> indianaPi = P "pi" (4 / 1.25)`                 |                                         |
+`λ> first indianaPi`                               | `"pi"`                                  |
+`λ> :t first indianaPi`                            | `first indianaPi :: [Char]`             |
+`λ> second indianaPi`                              | `3.2`                                   |
+`λ> :t second indianaPi`                           | `second indianaPi :: Fractional b => b` |
 
 * `a` and `b` are type arguments/variables and demonstrate the definition of a _polymorphic type_
 * `Pair` is the type constructor in two type arguments
