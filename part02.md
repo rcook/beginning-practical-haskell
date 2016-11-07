@@ -213,7 +213,15 @@ lineRedness (Line _ _ _ (RGB r _ _)) = r
 lineRedness _ = defaultRed
 ```
 
-Here we throw an
+Here we augment the return type:
+
+```haskell
+lineRedness :: Line -> Maybe Int
+lineRedness (Line _ _ _ (RGB r _ _)) = Just r
+lineRedness _ = Nothing
+```
+
+We'll definitely talk more about `Maybe` later. Suffice it to say for now that it's a type constructor taking one type variable and is analogous to [option types][optiontypes] and [nullable types][nullabletypes] in other languages.
 
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
@@ -224,6 +232,8 @@ Here we throw an
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [haskellerrorreporting]: http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/
 [haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
+[optiontypes]: https://en.wikipedia.org/wiki/Option_type
+[nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
