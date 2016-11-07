@@ -28,10 +28,13 @@ make
 
 ## Licence
 
-Copyright &copy; 2016, Richard Cook. All rights reserved.
+[![Creative Commons Licence][cclicenceimage]][cclicence]
 
-> ***TODO:***
-> Figure out best licence for this kind of thing
+This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Licence][cclicence].
 
+Copyright &copy; 2016, Richard Cook
+
+[cclicence]: http://creativecommons.org/licenses/by-nc-nd/4.0/
+[cclicenceimage]: https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png
 [pandoc]: http://pandoc.org/
 [stack]: https://docs.haskellstack.org/
