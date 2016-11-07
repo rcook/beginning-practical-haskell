@@ -357,6 +357,8 @@ We will return to this example shortly to explain some new things you may have s
 
 # Miscellaneous
 
+*[Sources: [1][sections]]*
+
 This last example is ugly. In this section we'll cover a few other items:
 
 * Function composition
@@ -404,6 +406,13 @@ main =
     in putStrLn ("x=" ++ show translatedX ++ ", y=" ++ show translatedY)
 ```
 
+Partial application of binary operator is known as a _left_ or _right_ _section_ depending on the order in which the operands are handled. Notionally:
+
+* `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
+* `(^2)` (right section) is equivalent to `\x -> x ^ 2`
+
+We'll see more about `\`, λ or "lambda" soon.
+
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
@@ -420,5 +429,6 @@ main =
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
+[sections]: https://wiki.haskell.org/Section_of_an_infix_operator
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
