@@ -231,6 +231,8 @@ We'll definitely talk more about `Maybe` later. Suffice it to say for now that i
 
 ### Can't we do better?
 
+*[Sources: [1][nonexhaustive1], [2][nonexhaustive2], [3][nonexhaustive3], [4][nonexhaustive4]]*
+
 Something about this may irk you. Given that the compiler has full information about a given type's data constructor (at least in code defined in the same module as the type), surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.
 
 Well, it turns out that this can be detected at compile time by enabling the `incomplete-patterns` warning. From GHCI, this can be done using the `:set` command:
@@ -278,11 +280,6 @@ main = putStrLn (render Green)
 
 This will generate a similar warning as above and will abort the build.
 
-http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
-https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
-http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
-https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
-
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
 > This is a bit of wart on Haskell
@@ -304,6 +301,10 @@ https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
 [haskellerrorreporting]: http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/
 [haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
 [optiontypes]: https://en.wikipedia.org/wiki/Option_type
+[nonexhaustive1]: http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
+[nonexhaustive2]: https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
+[nonexhaustive3]: http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
+[nonexhaustive4]: https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
 [nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
