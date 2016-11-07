@@ -225,6 +225,31 @@ lineRedness _ = Nothing
 
 We'll definitely talk more about `Maybe` later. Suffice it to say for now that it's a type constructor taking one type variable and is analogous to [option types][optiontypes] and [nullable types][nullabletypes] in other languages.
 
+### Can't we do better?
+
+Something about this may irk you. Given that the compiler has full information about a given type's data constructor, surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.
+
+Well, it turns out that this can be detected at compile time by enabling the `incomplete-patterns` warning. From GHCI, this can be done using the `:set` command:
+
+```ghci
+λ> :set -Wincomplete-patterns
+λ> data Colour = Red | Green | Blue
+λ> render :: Colour -> String; render Red = "red"
+
+<interactive>:5:29: warning: [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘render’:
+        Patterns not matched:
+            Green
+            Blue
+```
+
+When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line or by inserting a "pragma" into the top of a source file as follows:
+
+http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
+https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
+http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell
+
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
 > This is a bit of wart on Haskell
@@ -236,6 +261,7 @@ We'll definitely talk more about `Maybe` later. Suffice it to say for now that i
 [haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
 [optiontypes]: https://en.wikipedia.org/wiki/Option_type
 [nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
+[pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
