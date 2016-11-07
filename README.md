@@ -1,6 +1,6 @@
 # Beginning Practical Haskell
 
-Written by Richard Cook
+An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
 ## Course contents
 
@@ -37,4 +37,5 @@ Copyright &copy; 2016, Richard Cook
 [cclicence]: http://creativecommons.org/licenses/by-nc-nd/4.0/
 [cclicenceimage]: https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png
 [pandoc]: http://pandoc.org/
+[rcookdotorg]: http://rcook.org/
 [stack]: https://docs.haskellstack.org/

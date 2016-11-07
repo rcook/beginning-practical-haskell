@@ -1,5 +1,7 @@
 # Beginning Practical Haskell
 
+An introductory Haskell programming course by [Richard Cook][rcookdotorg]
+
 ## Overview
 
 * Will teach the essentials required to write real programs in Haskell
@@ -75,6 +77,7 @@ stack exec my-project-exe
 
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts78]: https://www.stackage.org/lts-7.8
+[rcookdotorg]: http://rcook.org/
 [seahug]: http://seattlehaskell.org/
 [stack]: https://docs.haskellstack.org/
 [stackhowto]: https://docs.haskellstack.org/en/stable/README/#how-to-install
