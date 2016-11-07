@@ -3,7 +3,7 @@
 > ***TODO:***
 >
 > * List Haskell's primitive types, especially `Int` so that the `Colour` example below makes more sense.
->* More on functions so that `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` etc. makes more sense.
+>* More on functions so that `Int -> Int -> Int` etc. makes more sense.
 
 # Algebraic data types
 
@@ -59,7 +59,7 @@ Another way of defining a product type with the convenience of automatically-gen
 data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 ```
 
-Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour` $\rightarrow$ `Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
+Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
 Similarly, we might define a "pair" type as follows:
 
@@ -103,7 +103,7 @@ blue (RGB _ _ b) = b
 * `_` ("unknown") is a "throwaway" name: it matches a value but does not assign a name to it which is useful when we don't care about that specific value
 * You'll see it used a lot
 * It can also be used to represent a [typed hole][typedholes]
-* `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int` $\rightarrow$ `Int` $\rightarrow$ `Int` $\rightarrow$ `Colour`, matching `r` to the first value of the triple and ignoring the second and third values
+* `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int -> Int -> Int -> Colour`, matching `r` to the first value of the triple and ignoring the second and third values
 * Interestingly, "regular" function argument names are really just a degenerate case of pattern matching
 
 ### Pattern matching using `case`
@@ -375,7 +375,7 @@ This last example is ugly. In this section we'll cover a few other items:
 
 Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
 
-Notionally, `.` is equivalent to the function `compose` of type (`b` $\rightarrow$ `c`) $\rightarrow$ (`a` $\rightarrow$ `b`) $\rightarrow$ (`a` $\rightarrow$ `c`): i.e. a function taking two functions and yielding a third function:
+Notionally, `.` is equivalent to the function `compose` of type `(b -> c) -> (a -> b) -> (a -> c)`: i.e. a function taking two functions and yielding a third function:
 
 ```ghci
 λ> compose f g x = f (g x)
@@ -418,7 +418,7 @@ Partial application of binary operator is known as a _left_ or _right_ _section_
 * `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
 * `(^2)` (right section) is equivalent to `\x -> x ^ 2`
 
-We'll see more about `\`, λ or "lambda" soon.
+We'll see more about `\` or "lambda" soon.
 
 So, we eliminated some repeated code and composed some functions. Let's now mention Haskell's other anti-parentheses countermeasure: the `$` operator:
 
