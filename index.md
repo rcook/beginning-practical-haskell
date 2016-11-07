@@ -33,7 +33,9 @@ stack exec my-project-exe
 * [Part 2](part02.md)
     * Algebraic data types
 * [Part 3](part03.md)
+    * I/O
 * [Part 4](part04.md)
+    * `do`-notation
 
 > ***TODO:***
 >
