@@ -338,11 +338,10 @@ Main.hs:9:33: error:
 
 ```haskell
 newtype Ordinate = Ordinate { unOrdinate :: Int }
-
 data Point = Point { x :: Ordinate, y :: Ordinate }
 
 translateBy :: Int -> Int -> Int
-translateBy o ord = o + ord
+translateBy o ord = ord + o
 
 main :: IO ()
 main =
@@ -361,11 +360,9 @@ We will return to this example shortly to explain some new things you may have s
 This last example is ugly. In this section we'll cover a few other items:
 
 * Function composition
-* Function application with `$`
 * Higher-order functions
 * Operators
-
-## Function composition
+* Function application with `$`
 
 Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
 
@@ -391,7 +388,21 @@ lengthOfDoubleAsString :: Double -> Int
 7
 ```
 
-Thus, `Ordinate (translate (unOrdinate someExpression))` can be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does eliminate some parentheses and make the code look less [Lisp-like][seaofparentheses]. It also emphasizes the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. Function composition and treatment of functions as values are the principles underlying _higher-order functions_ and are what really make Haskell a functional programming language.
+Thus, `Ordinate (translate (unOrdinate someExpression))` can be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does eliminate some parentheses and make the code look less [Lisp-like][seaofparentheses]. It also emphasizes the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. Function composition and treatment of functions as values are the principles underlying _higher-order functions_ and are what really make Haskell a functional programming language. We'll take our time and notice that `translateBy` is really just the "add this value to my argument function", which is the same as a _partially_ applied `+` operator. Here's our ugly `Point` example rewritten to use `.` and `+`:
+
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int }
+data Point = Point { x :: Ordinate, y :: Ordinate }
+
+main :: IO ()
+main =
+    let p = Point (Ordinate 10) (Ordinate 20)
+        translateOrdinate = Ordinate . ((+) 10) . unOrdinate
+        translatedP = Point (translateOrdinate (x p)) (translateOrdinate (y p))
+        translatedX = unOrdinate (x translatedP)
+        translatedY = unOrdinate (y translatedP)
+    in putStrLn ("x=" ++ show translatedX ++ ", y=" ++ show translatedY)
+```
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
