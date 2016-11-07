@@ -18,6 +18,7 @@ set INPUTPATHS=%INPUTPATHS% part04.md
 set PANDOCDIR=%APPDATA%\local\bin
 set PANDOCPATH=%PANDOCDIR%\pandoc.exe
 
+call :CleanAndMake %OUTDIR%\%BASENAME%.docx
 call :CleanAndMake %OUTDIR%\%BASENAME%.html
 call :CleanAndMake %OUTDIR%\%BASENAME%.pdf
 call :CleanAndMake %OUTDIR%\%BASENAME%.tex

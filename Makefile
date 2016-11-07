@@ -14,6 +14,12 @@ INPUTFILES := \
   part03.md \
   part04.md
 
+.PHONY: all
+all: clean ${OUTDIR}/${BASENAME}.docx ${OUTDIR}/${BASENAME}.html ${OUTDIR}/${BASENAME}.pdf ${OUTDIR}/${BASENAME}.tex
+
+${OUTDIR}/${BASENAME}.docx: ${INPUTFILES}
+	pandoc ${PANDOCOPTS} -s -o $@ $^
+
 ${OUTDIR}/${BASENAME}.html: ${INPUTFILES}
 	pandoc ${PANDOCOPTS} -s -o $@ $^
 
