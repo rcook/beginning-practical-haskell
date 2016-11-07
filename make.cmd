@@ -19,9 +19,12 @@ set PANDOCPATH=%PANDOCDIR%\pandoc.exe
 call :CleanAndMake %OUTDIR%\%BASENAME%.html
 call :CleanAndMake %OUTDIR%\%BASENAME%.pdf
 call :CleanAndMake %OUTDIR%\%BASENAME%.tex
+echo Done
 goto :eof
 
 :CleanAndMake
-del "%~dp1" >nul 2>&1
-%PANDOCPATH% %PANDOCOPTS% -s -o "%~dp1" %INPUTPATHS%
+echo Creating %~f1...
+del "%~f1" >nul 2>&1
+%PANDOCPATH% %PANDOCOPTS% -s -o "%~f1" %INPUTPATHS%
+echo Created
 goto :eof
