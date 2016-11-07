@@ -418,7 +418,7 @@ Partial application of binary operator is known as a _left_ or _right_ _section_
 * `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
 * `(^2)` (right section) is equivalent to `\x -> x ^ 2`
 
-We'll see more about `\` or "lambda" soon.
+We'll see more about `\` or ["lambda"](#anonymousfunctions) soon.
 
 So, we eliminated some repeated code and composed some functions. Let's now mention Haskell's other anti-parentheses countermeasure: the `$` operator:
 
@@ -475,12 +475,51 @@ main =
     in print translatedP
 ```
 
+# <a name="anonymousfunctions"></a> Anonymous functions or lambda abstraction
+
+Functions are so important in Haskell that we get to refer to them by their own individual names or with no name at all. They also get their own letter of the Greek alphabet, namely lambda, so-called as they refer to [the lambda calculus][lambdacalculus]. What's important about lambda calculus is that it's a universal model of computation equivalent in power to a Turing machine. It's based on function abstraction and function application. Consider the named (mathematical) function $\operatorname{square\_sum}$:
+
+$\operatorname{square\_sum}(x, y) = x ^ 2 + y ^ 2$
+
+Based on an initial simplification, rewriting in _anonymous form_, we get:
+
+$(x,y) \mapsto x ^ 2 + y ^ 2$
+
+i.e. the pair of $x$ and $y$ maps to $x ^ 2 + y ^ 2$. Similarly, the $\operatorname{id}$ function is:
+
+$\operatorname{id}(x) = x$
+
+or
+
+$x \mapsto x$
+
+A second simplification is to refactor multiple-argument functions, such as $\operatorname{square\_sum}$, into equivalent functions in a single argument:
+
+$(x,y) \mapsto x ^ 2 + y ^ 2$
+
+is equivalent to
+
+$x \mapsto (y \mapsto x ^ 2 + y ^ 2)$
+
+Application of the function $\operatorname{square_sum}$ to the arguments $(5, 2)$ yields:
+
+$(x,y) \mapsto x ^ 2 + y ^ 2$
+
+Explains:
+
+* Why whitespace is function application (it's common, so let's make it easy to type)
+* Ubiquity of the lambda character in everything Haskell-related
+* Currying
+* All functions are really functions of a single argument which yield additional functions
+* Higher-order functions
+
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [haskellerrorreporting]: http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/
 [haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
+[lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [optiontypes]: https://en.wikipedia.org/wiki/Option_type
 [nonexhaustive1]: http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
 [nonexhaustive2]: https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
