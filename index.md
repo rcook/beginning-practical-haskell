@@ -35,6 +35,42 @@ stack exec my-project-exe
 * [Part 3](part03.md)
 * [Part 4](part04.md)
 
+> ***TODO:***
+>
+> ### Library selection
+>
+> * Making web requests (`wreq`)
+> * Parsing HTML
+> * Looping over things
+> * Conversion from strings to int/double/%/CI
+> * Handle noise/extraneous characters in parsing
+> * Handling Unicode
+> * Generating CSV or Excel files
+> * File I/O
+>
+> ### Packages you'll learn about
+>
+> * Strings and text:
+>   * `bytestring`
+>   * `text`
+>   * `text-icu-translit`
+>   * `string-conv`
+>   * `strings`
+> * Specialized containers:
+>   * `containers`
+>   * `vector`
+> * Parsing and serialization:
+>   * `cassava`
+>   * `taggy`
+>   * `taggy-lens`
+> * Network and file system:
+>   * `directory`
+>   * `filepath`
+>   * `wreq`
+> * Others:
+>   * `extra`
+>   * `lens`
+
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts75]: https://www.stackage.org/lts-7.5
 [seahug]: http://seattlehaskell.org/
