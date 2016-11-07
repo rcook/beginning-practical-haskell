@@ -64,7 +64,7 @@ control constructs where other languages require language-level syntax
     * Pragmas
     * Import statements
 
-# Our first Haskell
+# Our first Haskell code
 
 ## Interactive Haskell
 
@@ -81,13 +81,10 @@ Next we'll start up GHCI, the interactive Haskell interpreter:
 stack ghci
 ```
 
-> ***TODO:***
->
-> * Talk about the prompt `λ>` vs. `Prelude>` etc.
-
 * GHC is the Glasgow Haskell Compiler
 * GHCI is GHC _Interactive_
 * It's GHC's read-evaluate-print-loop (REPL)
+* I've configured my prompt to display `λ>` but the default is likely to be `Prelude>` or `Main>`
 * Let's assign some values and evaluate some _expressions_
 
 Input                           | Output            | Comment
