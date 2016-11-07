@@ -365,6 +365,13 @@ This last example is ugly. In this section we'll cover a few other items:
 * Higher-order functions
 * Operators
 * Function application with `$`
+* Automatic deriving
+
+> ***TODO:***
+>
+> Function application and composition and higher-order functions are really important.
+>
+> They probably shouldn't be in a section entitled "Miscellaneous".
 
 Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
 
