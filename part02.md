@@ -111,25 +111,25 @@ data Colour =
     RGB Int Int Int |
     CMYK Int Int Int Int
 
-colourSpaceV1 :: Colour -> String
-colourSpaceV1 (RGB _ _ _) = "RGB"
-colourSpaceV1 (CMYK _ _ _ _) = "CMYK"
+colourModelV1 :: Colour -> String
+colourModelV1 (RGB _ _ _) = "RGB"
+colourModelV1 (CMYK _ _ _ _) = "CMYK"
 
-colourSpaceV2 :: Colour -> String
-colourSpaceV2 c =
+colourModelV2 :: Colour -> String
+colourModelV2 c =
     case c of RGB _ _ _ -> "RGB"
               CMYK _ _ _ _ -> "CMYK"
 
 main :: IO ()
 main =
     let c1 = CMYK 10 20 30 40
-        cs1 = colourSpaceV1 c1
+        cm1 = colourModelV1 c1
         c2 = RGB 50 100 150
-        cs2 = colourSpaceV2 c2
-    in putStrLn ("cs1=" ++ cs1 ++ ", cs2=" ++ cs2)
+        cm2 = colourModelV2 c2
+    in putStrLn ("cm1=" ++ cm1 ++ ", cm2=" ++ cm2)
 ```
 
-This will yield `cs1=CMYK, cs2=RGB`.
+This will yield `cm1=CMYK, cm2=RGB`.
 
 Patterns can be matched both in function argument position and in `case` expressions. Here's a contrived example using our `RGB`/`CMYK` definition of `Colour`:
 
@@ -178,6 +178,24 @@ scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
 ```
 
 Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 10 20 30 40` since it was not constructed using the `RGB` data constructor.
+
+Such a problem can be addressed in one of several ways:
+
+* Provide a pattern match on the `CMYK` data constructor: this would require a valid conversion from the `CMYK` representation of a colour to `RGB` in order to provide a red component
+* Provide a fall-through case using `_` to match any `Colour` value after the `RGB` match: this would require the existence of some "default" notion of line redness
+* Continue to allow a runtime error with the existing error message
+* Report a more useful error message through one of various exception mechanisms
+* Augment the return type to include the notion of failure
+
+The option you'd choose depends primarily on the semantics of the function. I'll attempt to illustrate these five approaches.
+
+Pattern-match on `CMYK`:
+
+```haskell
+lineRedness :: Line -> Int
+lineRedness (Line _ _ _ (RGB r _ _)) = r
+lineRedness (Line _ _ _ (CMYK r _ _)) = r
+```
 
 > ***TODO:***
 > Discuss catching non-exhaustive matches at compile time
