@@ -3,7 +3,9 @@ PANDOCOPTS := \
   --highlight-style=tango \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
-  --variable monofont=Menlo
+  --variable monofont=Menlo \
+	-c buttondown.css \
+	--self-contained
 BASENAME := notes
 INPUTFILES := \
   index.md \

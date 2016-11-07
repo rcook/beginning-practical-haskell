@@ -6,6 +6,8 @@ set PANDOCOPTS=%PANDOCOPTS% --highlight-style=tango
 set PANDOCOPTS=%PANDOCOPTS% --latex-engine=xelatex
 set PANDOCOPTS=%PANDOCOPTS% --variable mainfont="Times New Roman"
 set PANDOCOPTS=%PANDOCOPTS% --variable monofont=Menlo
+set PANDOCOPTS=%PANDOCOPTS% -c buttondown.css
+set PANDOCOPTS=%PANDOCOPTS% --self-contained
 set BASENAME=notes
 set INPUTPATHS=
 set INPUTPATHS=%INPUTPATHS% index.md
