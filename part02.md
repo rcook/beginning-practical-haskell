@@ -71,14 +71,23 @@ data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 
 Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
-Similarly, we might define a "pair" type as follows:
+Similarly, we might define a "pair" as follows:
 
-Input | Output | Comment
-:-----|:-------|:-------
-data Pair a b = Pair { first :: a, second :: b }
+Input                                              | Output
+:--------------------------------------------------|:------
+`λ> data Pair a b = P { first :: a, second :: b }` |
+`λ> :t P`                                          | `P :: a -> b -> Pair a b`
+`λ> :t first`                                      | `first :: Pair a b -> a`
+`λ> :t second`                                     | `second :: Pair a b -> b`
+`λ> indianaPi = P "pi" (4 / 1.25)`                 |
+`λ> first indianaPi`                               | `"pi"`
+`λ> :t first indianaPi`                            | `first indianaPi :: [Char]`
+`λ> second indianaPi`                              | `3.2`
+`λ> :t second indianaPi`                           | `second indianaPi :: Fractional b => b`
 
-> ***TODO:***
-> Complete `Pair` walkthrough
+* `a` and `b` are type arguments/variables and demonstrate the definition of a _polymorphic type_
+* `Pair` is the type constructor in two type arguments
+* `P` is a data constructor
 
 ## Pattern matching
 
