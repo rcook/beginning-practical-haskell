@@ -420,7 +420,7 @@ Partial application of binary operator is known as a _left_ or _right_ _section_
 
 We'll see more about `\`, λ or "lambda" soon.
 
-So, we eliminated some repeated code and composed some functions. Let's finish with a mention of Haskell's other anti-parentheses countermeasure: the `$` operator:
+So, we eliminated some repeated code and composed some functions. Let's now mention Haskell's other anti-parentheses countermeasure: the `$` operator:
 
 ```haskell
 newtype Ordinate = Ordinate { unOrdinate :: Int }
@@ -437,6 +437,43 @@ main =
 ```
 
 If whitespace between identifiers in Haskell is _function application_ (e.g. `f x`), then `$` is simply another form of function application with lower precedence.
+
+We'll also try to simplify the output using "automatic deriving":
+
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int } deriving Show
+data Point = Point { x :: Ordinate, y :: Ordinate } deriving Show
+
+main :: IO ()
+main =
+    let p = Point (Ordinate 10) (Ordinate 20)
+        translateOrdinate = Ordinate . ((+) 10) . unOrdinate
+        translatedP = Point (translateOrdinate (x p)) (translateOrdinate (y p))
+    in print translatedP
+```
+
+This generates the following output:
+
+```text
+Point {x = Ordinate {unOrdinate = 20}, y = Ordinate {unOrdinate = 30}}
+```
+
+Of course, [there is more than one way to skin a cat][skinningacat], and this code can be elegantly reformulated using pattern matching:
+
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int } deriving Show
+data Point = Point { x :: Ordinate, y :: Ordinate } deriving Show
+
+translatedPoint :: Int -> Int -> Point -> Point
+translatedPoint xOffset yOffset (Point (Ordinate xValue) (Ordinate yValue))
+    = Point (Ordinate $ xValue + xOffset) (Ordinate $ yValue + yOffset)
+
+main :: IO ()
+main =
+    let p = Point (Ordinate 10) (Ordinate 20)
+        translatedP = translatedPoint 10 10 p
+    in print translatedP
+````
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
@@ -455,5 +492,6 @@ If whitespace between identifiers in Haskell is _function application_ (e.g. `f 
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
 [sections]: https://wiki.haskell.org/Section_of_an_infix_operator
+[skinningacat]: http://english.stackexchange.com/questions/32123/origin-of-the-phrase-theres-more-than-one-way-to-skin-a-cat
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
