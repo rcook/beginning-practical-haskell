@@ -9,6 +9,16 @@
 
 *[Sources: [1][datadecl]]*
 
+> ***TODO:***
+>
+> Mandatory naming conventions:
+> * Values and type variables start with initial lower-case letter
+> * Types and type classes start with initial capital letter
+> * Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
+> * Punctuation such as `'` allowed
+> * Some special suffixes such as `M` and `M_` etc.
+> * Mention infix operators, backticks etc.
+
 Consider the following `data` declaration:
 
 ```haskell
