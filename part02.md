@@ -356,6 +356,19 @@ main =
 
 We will return to this example shortly to explain some new things you may have spotted as well as some ways to make this less ugly while retaining type safety.
 
+# Miscellaneous
+
+This last example is ugly. In this section we'll cover a few other items:
+
+* Function composition
+* Function application with `$`
+* Higher-order functions
+* Operators
+
+## Function composition
+
+Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turns to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
+
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
