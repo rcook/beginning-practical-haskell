@@ -307,12 +307,37 @@ You'll see `type` used a lot in Haskell code even though it doesn't give you any
 
 # Strongly-typed wrapper types using `newtype`
 
-`newtype`, on the other hand, is an altogether different beast.
+`newtype`, on the other hand, is an altogether different beast:
 
-# Wrapper types
+```haskell
+newtype Ordinate = Ordinate { unOrdinate :: Int }
+
+data Point = Point Ordinate Ordinate
+
+doubleInt :: Int -> Int
+doubleInt x = x * 2
+
+doubleX :: Point -> Int
+doubleX (Point x _) = doubleInt x
+
+main :: IO ()
+main = print (doubleX (Point 100 200))
+```
+
+Attempting to compile this example will result in the following:
+
+```text
+Main.hs:9:33: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Ordinate’
+    • In the first argument of ‘doubleInt’, namely ‘x’
+      In the expression: doubleInt x
+      In an equation for ‘doubleX’: doubleX (Point x _) = doubleInt x
+```
+
+`newtype` defines a distinct new type whose internal representation is equivalent to a base type. In this case the new type is `Ordinate` and the underlying (base) type is `Int`. Syntactically, a `newtype` definition is closer to a `data` definition&mdash;with exactly one data constructor and exactly one field inside it. Furthermore, like `data` and unlike `type` the resulting type is distinct from, and not directly compatible with, the original type. In order to pass an `Ordinate` into a function expecting an `Int`, as in this example, one must first unwrap the field either using pattern matching or, in the case of record-style syntax, using the accessor function.
 
 > ***TODO:***
-> Discuss wrapper types defined with `newtype`
+> Mention that `newtype` has zero runtime overhead
 
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
