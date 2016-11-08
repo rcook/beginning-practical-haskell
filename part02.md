@@ -113,7 +113,7 @@ $= 29$
 
 It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical.
 
-Finally, these _lambda forms_ can be written in an abbreviated form:
+Finally, these anonymous functions can be rewritten as _lambda forms_:
 
 $x \mapsto x ^ 2$ is identical to $\lambda x . x ^ 2$
 
@@ -122,6 +122,8 @@ In Haskell this becomes:
 ```haskell
 \x -> x ^ 2
 ```
+
+The backslash is chosen due its (questionable) resemblance to the lambda character.
 
 Similarly, the anonymous form of our $\operatorname{square\_sum}$ function becomes:
 
