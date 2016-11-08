@@ -1,5 +1,7 @@
 # Functions
 
+## Where are the functions?
+
 But, wait, isn't Haskell supposed to be a functional programming language? It's already part 2 of the course and we haven't encountered any functions yet.
 
 Since Haskell is a functional programming language, functions are first-class values. You will recall an earlier example with a value named `z` which was the result of applying the `+` operator to `x` and `y`. Let's generalize this to a function that adds its two arguments together:
@@ -37,7 +39,7 @@ h x y = f x y + g x y
 
 To further reduce the use of parentheses, Haskell also assigns the highest precedence of all infix operators to function application.
 
-Moving our `addIntegers` function to a source file, we get:
+Moving our `addIntegers` function to a source file and adding its type signature, we get:
 
 ```haskell
 addIntegers :: Integer -> Integer -> Integer
@@ -60,9 +62,9 @@ main :: IO ()
 main = print (functionTakingAFunction addIntegers 5 6)
 ```
 
-# Anonymous functions and lambda abstraction
+## Anonymous functions and lambda abstraction
 
-Functions are so important in Haskell that we get to refer to them by their own individual names or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of [the lambda calculus][lambdacalculus]. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application.
+Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of [the lambda calculus][lambdacalculus]. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.
 
 Consider the named (mathematical) function $\operatorname{square\_sum}$:
 
