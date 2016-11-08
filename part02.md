@@ -23,7 +23,7 @@ We can use this function as follows:
 21
 ```
 
-Many languages use parentheses `(` and `)` to delimit the arguments of a function application or call. Functions are so central to the Haskell Way that the language designers intentionally chose the tersest syntax possible for function definitions and function application. Thus, instead of:
+Many languages use parentheses, `(` and `)`, to delimit the arguments of a function application or call. Functions are so central to the Haskell Way that the language designers intentionally chose the tersest syntax possible for function definitions and function application. Thus, instead of:
 
 $\operatorname{f}(x, y) = x ^ 2 + y ^ 2$<br>
 $\operatorname{g}(x, y) = x ^ 3 + y ^ 3$<br>
