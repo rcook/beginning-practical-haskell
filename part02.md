@@ -435,8 +435,6 @@ Partial application of binary operator is known as a _left_ or _right_ _section_
 * `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
 * `(^2)` (right section) is equivalent to `\x -> x ^ 2`
 
-We'll see more about `\` or ["lambda"](#anonymousfunctions) soon.
-
 So, we eliminated some repeated code and composed some functions. Let's now mention Haskell's other anti-parentheses countermeasure: the `$` operator:
 
 ```haskell
@@ -492,90 +490,12 @@ main =
     in print translatedP
 ```
 
-# <a name="anonymousfunctions"></a> Anonymous functions and lambda abstraction
-
-Functions are so important in Haskell that we get to refer to them by their own individual names or with no name at all. They also get their own letter of the Greek alphabet, namely lambda, so-called because of [the lambda calculus][lambdacalculus]. What's important about lambda calculus is that it's a universal model of computation equivalent in power to a Turing machine. It's based on function abstraction and function application.
-
-Consider the named (mathematical) function $\operatorname{square\_sum}$:
-
-$\operatorname{square\_sum}(x, y) = x ^ 2 + y ^ 2$
-
-Based on an initial simplification, rewriting in _anonymous form_, we get:
-
-$(x,y) \mapsto x ^ 2 + y ^ 2$
-
-i.e. the pair of $x$ and $y$ maps to $x ^ 2 + y ^ 2$. Similarly, the $\operatorname{id}$ function is:
-
-$\operatorname{id}(x) = x$
-
-or
-
-$x \mapsto x$
-
-A second simplification is to refactor multiple-argument functions, such as $\operatorname{square\_sum}$, into equivalent functions in a single argument:
-
-$(x,y) \mapsto x ^ 2 + y ^ 2$
-
-is equivalent to
-
-$x \mapsto (y \mapsto x ^ 2 + y ^ 2)$
-
-Application of the function $\operatorname{square\_sum}$ to the arguments $(5, 2)$ yields:
-
-$((x,y) \mapsto x ^ 2 + y ^ 2)(5, 2)$<br>
-$= 5 ^ 2 + 2 ^ 2$<br>
-$= 29$
-
-while applying our curried versions looks like:
-
-$((x \mapsto (y \mapsto x ^ 2 + y ^ 2))(5))(2)$<br>
-$= (y \mapsto 5 ^ 2 + y ^ 2)(2)$<br>
-$= 5 ^ 2 + 2 ^ 2$<br>
-$= 29$
-
-Functions are so central to the Haskell way of thinking about things, that the language designers intentionally chose the tersest syntax possible for function definitions and function application: whitespace, i.e. instead of
-
-$\operatorname{f}(x, y) = x ^ 2 + y ^ 2$<br>
-$\operatorname{g}(x, y) = x ^ 3 + y ^ 3$<br>
-$\operatorname{h}(x, y) = \operatorname{f}(x, y) + \operatorname{g}(x, y)$
-
-Haskell uses:
-
-```haskell
-f x y = x ^ 2 + y ^ 2
-g x y = x ^ 3 + y ^ 3
-h x y = f x y + g x y
-```
-
-Haskell aims to minimize the use of parentheses and assigns the highest precedence of all infix operators to keep things minimalist and streamlined. Finally, lambda forms are represented as follows:
-
-$x \mapsto x ^ 2$ also written $\lambda x . x ^ 2$
-
-becomes
-
-```haskell
-\x -> x ^ 2
-```
-
-Similarly, the anonymous form of our $\operatorname{square\_sum}$ function becomes:
-
-```haskell
-\x y -> x ^ 2 + y ^ 2
-```
-
-or, in curried form:
-
-```haskell
-\x -> \y -> x ^ 2 + y ^ 2
-```
-
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
 [datadecl]: http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor
 [haskellerrorreporting]: http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/
 [haskellisexceptionallyunsafe]: https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/
-[lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [optiontypes]: https://en.wikipedia.org/wiki/Option_type
 [nonexhaustive1]: http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors
 [nonexhaustive2]: https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/
