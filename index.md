@@ -31,13 +31,13 @@ stack exec my-project-exe
     * What is Haskell?
     * Interactive Haskell
     * Type annotations
-* [Part 1a](part01a.md)
-    * Functions
 * [Part 2](part02.md)
-    * Algebraic data types
+    * Functions
 * [Part 3](part03.md)
-    * I/O
+    * Algebraic data types
 * [Part 4](part04.md)
+    * I/O
+* [Part 5](part05.md)
     * `do`-notation
 
 > ***TODO:***
