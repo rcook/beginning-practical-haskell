@@ -74,7 +74,9 @@ Based on an initial simplification, rewriting in _anonymous form_, we obtain:
 
 $(x,y) \mapsto x ^ 2 + y ^ 2$
 
-i.e. the pair of $x$ and $y$ maps to $x ^ 2 + y ^ 2$. Similarly, the identity function, $\operatorname{id}$, is given by:
+i.e. the pair of $x$ and $y$ maps to $x ^ 2 + y ^ 2$. In essence, this is a definition of a "thing" that maps $x$ and $y$ to $x ^ 2 + y ^ 2$.
+
+Similarly, the identity function, $\operatorname{id}$, is given by:
 
 $\operatorname{id}(x) = x$
 
@@ -82,15 +84,19 @@ or
 
 $x \mapsto x$
 
-in anonymous form.
+in anonymous form. This anonymous form is a different "thing" that maps $x$ to itself, i.e. $x$.
 
-A second simplification is to refactor multiple-argument functions, such as $\operatorname{square\_sum}$, into equivalent functions in a single argument, known as [_currying_][haskellcurry] (or [_schönfinkelization_][mosesschoenfinkel]):
+Under the notion of _alpha-equivalence_, the exact name of the _bound variable_, in this case $x$, does not matter as long as there are no name collisions since the name $x$ does not "leak" out of the anonymous function's body. With this intuition, it's straightforward to see that the anonymous form of $\operatorname{id}$ is a "thing" that maps something to itself.
+
+A second simplification is to transform multiple-argument functions, such as $\operatorname{square\_sum}$, into equivalent functions in a single argument, known as [_currying_][haskellcurry] (or [_schönfinkelization_][mosesschoenfinkel]):
 
 $(x,y) \mapsto x ^ 2 + y ^ 2$
 
 is equivalent to
 
 $x \mapsto (y \mapsto x ^ 2 + y ^ 2)$
+
+i.e. a function that maps $x$ to another function in $y$ that evaluates to $x ^ 2 + y ^ 2$.
 
 Application of the function $\operatorname{square\_sum}$ to the arguments $(5, 2)$ yields:
 
@@ -107,11 +113,11 @@ $= 29$
 
 It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them.
 
-Finally, lambda forms are represented as follows:
+Finally, these _lambda forms_ can be written in an abbreviated form:
 
-$x \mapsto x ^ 2$ also written $\lambda x . x ^ 2$
+$x \mapsto x ^ 2$ is identical to $\lambda x . x ^ 2$
 
-becomes
+In Haskell this becomes:
 
 ```haskell
 \x -> x ^ 2
