@@ -84,7 +84,7 @@ or
 
 $x \mapsto x$
 
-in anonymous form. This anonymous form is a different "thing" that maps $x$ to itself, i.e. $x$.
+in anonymous form. This anonymous form is a another "thing": this time it's something that maps $x$ to itself, i.e. $x$.
 
 Under the notion of _alpha-equivalence_, the exact name of the _bound variable_, in this case $x$, does not matter as long as there are no name collisions since the name $x$ does not "leak" out of the anonymous function's body. With this intuition, it's straightforward to see that the anonymous form of $\operatorname{id}$ is a "thing" that maps something to itself.
 
@@ -111,7 +111,7 @@ $= (y \mapsto 5 ^ 2 + y ^ 2)(2)$<br>
 $= 5 ^ 2 + 2 ^ 2$<br>
 $= 29$
 
-It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them.
+It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical.
 
 Finally, these _lambda forms_ can be written in an abbreviated form:
 
