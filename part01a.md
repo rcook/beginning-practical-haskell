@@ -135,6 +135,17 @@ or, in curried form:
 \x -> \y -> x ^ 2 + y ^ 2
 ```
 
+At this point, it should not surprise you that
+these anonymous functions are values in their own right. Thus, names can be assigned to them. This brings us full circle and illustrate the equivalence of functions and anonymous functions modulo the name itself:
+
+```ghci
+λ> squareSum = \x -> \y -> x ^ 2 + y ^ 2
+λ> :t squareSum
+squareSum :: Num a => a -> a -> a
+λ> squareSum 3 4
+25
+```
+
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [mosesschoenfinkel]: https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel
