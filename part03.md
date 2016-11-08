@@ -1,9 +1,11 @@
+# Types
+
 > ***TODO:***
 >
 > * List Haskell's primitive types, especially `Int` so that the `Colour` example below makes more sense.
 >* More on functions so that `Int -> Int -> Int` etc. makes more sense.
 
-# Algebraic data types
+## Algebraic data types
 
 *[Sources: [1][datadecl]]*
 
@@ -45,11 +47,11 @@ Input                                     | Output                              
 
 This version of `Colour` is a [_product type_][producttype]. It is isometric to a 3-tuple, or triple, of `Int`s.
 
-## Sum types
+### Sum types
 
 * Equivalent to tagged union, variant, discriminated union etc. in other languages
 
-## Product types
+### Product types
 
 *[Sources: [1][cardinalityproof]]*
 
@@ -59,7 +61,7 @@ This version of `Colour` is a [_product type_][producttype]. It is isometric to 
 * For the Cartesian product $S \times T$ of two finite sets $S$ and $T$, $\left|{S \times T}\right| = \left|{S}\right| \times \left|{T}\right|$ where $\left|{S}\right|$ denotes cardinality
 * Equivalent to records and structures in other languages
 
-## <a name="recordsyntax"></a> Records
+### <a name="recordsyntax"></a> Records
 
 Another way of defining a product type with the convenience of automatically-generated accessor functions, Haskell has _record_ syntax:
 
