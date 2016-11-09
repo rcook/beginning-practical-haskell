@@ -1,5 +1,34 @@
 # Types
 
+## Predefined and primitive types
+
+*[Sources: [1][primitivetypes]]*
+
+Primitive data types cannot be defined in Haskell itself. There are some additional predefined types which are derived from these.
+
+Name        | Description
+:-----------|:-----------
+`Bool`      | [Nullary type constructor][nullaryconstructor] with two nullary data constructors `True` and `False` representing Boolean truth values
+`Char`      | An enumeration whose values represent Unicode characters
+`String`    | A list of Unicode characters
+`Integer`   | Arbitrary-precision integer
+`Int`       | Fixed-precision integer, typically 64-bit signed integer on 64-bit platforms
+`Ratio a`   | Rational numbers
+`Float`     | Single-precision floating-point real number
+`Double`    | Double-precision floating-point real number
+`Complex a` | Complex floating-point number
+
+Additionally:
+
+* Lists
+* Tuples
+* Unit
+
+> ***TODO:***
+>
+> Talk about lists and type aliases
+> So we can say `type String = [Char]`
+
 > ***TODO:***
 >
 > * List Haskell's primitive types, especially `Int` so that the `Colour` example below makes more sense.
@@ -505,7 +534,9 @@ main =
 [nonexhaustive4]: https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html
 [nonexhaustive5]: https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017225.html
 [nullabletypes]: https://en.wikipedia.org/wiki/Nullable_type
+[nullaryconstructor]: https://en.wikipedia.org/wiki/Nullary_constructor
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
+[primitivetypes]: https://downloads.haskell.org/~ghc/7.0.1/docs/html/users_guide/primitives.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
 [seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
 [sections]: https://wiki.haskell.org/Section_of_an_infix_operator
