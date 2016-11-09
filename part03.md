@@ -18,12 +18,6 @@ Name        | Description
 `Double`    | Double-precision floating-point real number
 `Complex a` | Complex floating-point number
 
-Additionally:
-
-* Lists
-* Tuples
-* Unit
-
 > ***TODO:***
 >
 > Talk about lists and type aliases
@@ -47,6 +41,19 @@ Additionally:
 > * Punctuation such as `'` allowed
 > * Some special suffixes such as `M` and `M_` etc.
 > * Mention infix operators, backticks etc.
+
+We will also run into the following predefined _algebraic data types_:
+
+Description | Comment
+:-----------|:-------
+Lists       | Homogeneous singly-linked list, conceptually equivalent to `data [a] = [] | a : [a]`
+Tuples      | Conceptually equivalent to a family of types of the form `data (a, b) = (a, b)`
+Unit        | Conceptually equivalent to `data () = ()`
+
+These are not primitive types given that all three are algebraic data types and can be constructed from other
+
+> ***TODO:***
+> Do it!
 
 Consider the following `data` declaration:
 
