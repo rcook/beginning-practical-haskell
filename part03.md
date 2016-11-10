@@ -91,6 +91,8 @@ Input                                              | Output                     
 
 This is our first experience of _parametric polymorphism_. In this case, `a` and `b` are type arguments/variables and define the _polymorphic type_ `Pair a b`. `Pair` is the type constructor in two type arguments, so-called because each distinct pair of concrete types substituted for `a` and `b` _construct_ a new type. As with previous `data` definitions, `P` is a data constructor and construct specific _values_ belonging to a concrete instantiation of `Pair a b`.
 
+The type of `first indianaPi` is is also our first experience of a _list_ in Haskell which we'll discuss in more detail soon and are ubiquitous in Haskell.
+
 > ***TODO:***
 > Do it
 
