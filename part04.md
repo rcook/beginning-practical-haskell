@@ -1,16 +1,14 @@
 # I/O
 
-* We want to write useful programs
-* Practical programs typically need to interact with the outside world
-* Otherwise all they're doing is warming up your CPU
-* Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world
-* But what about purely functional programming languages?
-    * Mathematical functions cannot read files from disc or write to the screen
-    * Mathematical functions cannot read or mutate global state
-    * Mathematical functions can only return values that are functions of their arguments or other pure functions
-* There are several different solutions to this problem
-* Haskell makes use of an abstract `IO` type
-* Haskell model is functionally equivalent to continuation-passing style, though few people actually explicitly this out as such
+Given the title of this course, I'll use you came here to learn how to write useful programs. Practical programs typically need to interact with the outside world. In the absence of input/output, all your programs can do is warm up your CPU.
+
+Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world. However, this is fundamentally incompatible with a language such as Haskell which maintains a strong correspondence between its functions and mathematical functions:
+
+* Mathematical functions cannot read files from disc or write to the screen
+* Mathematical functions cannot read or mutate global state
+* Mathematical functions can only return values that are functions of their arguments or other pure functions
+
+Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract `IO` type. The model is functionally equivalent to continuation-passing style, though few people actually explicitly this out as such. We'll build up step-by-step to full-blown I/O.
 
 # The Prelude
 
@@ -167,8 +165,6 @@ print 5 >>= \x -> print "hello" :: IO ()
 "hello"
 ```
 
-* What they called [lambdas][lambdas]?
-
 ## Let's put it in a source file
 
 ```haskell
@@ -288,6 +284,5 @@ Enter a number and I'll double it: 5
 * Learnt how to string actions together
 * Hinted at things to come
 
-[lambdas]: https://en.wikipedia.org/wiki/Anonymous_function
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
 [unittype]: https://en.wikipedia.org/wiki/Unit_type
