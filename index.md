@@ -39,6 +39,8 @@ stack exec my-project-exe
     * I/O
 * [Part 5](part05.md)
     * `do`-notation
+* [Part 6](part06.md)
+    * Other
 
 > ***TODO:***
 >

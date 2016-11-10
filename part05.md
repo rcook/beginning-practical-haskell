@@ -156,34 +156,4 @@ main = do
 
 Inside `do`-notation, Haskell also drops the `in` from let-bindings.
 
-# Other concepts and syntax
-
-## `if`, `then`, `else`
-
-TODO
-
-## Pattern matching
-
-TODO
-
-## Types
-
-TODO
-
-### Algebraic data types
-
-TODO
-
-#### Product types
-
-TODO
-
-#### Sum types
-
-TODO
-
-### Lists
-
-TODO
-
 [syntacticsugar]: https://en.wikipedia.org/wiki/Syntactic_sugar
