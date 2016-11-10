@@ -23,7 +23,7 @@ This program displays a prompt and reads in a line of input twice. It then conve
 * `let` and `in`: let-bindings introduce one or more new names with associated expressions into the expression after `in`
 *  `++`: pronounced "append"; joins two lists together; `String` is `[Char]`, so this joins two strings together
 
-I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this looks kinda ugly. Let's try to do something about that. First, let's reflow the code:
+I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this does not look pleasant. Let's try to do something about that. First, let's reflow the code:
 
 ```haskell
 readInteger :: String -> Integer
@@ -42,7 +42,7 @@ main =
     putStrLn $ "z = " ++ show z
 ```
 
-That looks a bit better! There's still a proliferation of `>>=` operators and lambdas. What next? Let's take a look at another method provided by `Monad`, namely `>>` or "then" which is the second "monadic sequencing operator" with the following type signature:
+That's a bit better. There's still a proliferation of `>>=` operators and lambdas. What next? Let's take a look at another method provided by `Monad`, namely `>>` or "then" which is the second "monadic sequencing operator" with the following type signature:
 
 ```ghci
 λ> :t (>>)
@@ -70,7 +70,7 @@ main =
 
 Even better!
 
-This code shape is so common, however, that Haskell introduces special syntax to make it even cleaner. This is known as `do`-notation named after the `do` keyword used to introduce it.
+This code shape is so common, however, that Haskell introduces special syntax to make it even cleaner. This is known as `do`-notation named after the `do`-keyword used to introduce it.
 
 Consider:
 
