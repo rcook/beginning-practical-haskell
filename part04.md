@@ -10,18 +10,16 @@ Most other programming languages allow subroutines to directly perform arbitrary
 
 Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract `IO` type. The model is functionally equivalent to continuation-passing style, though few people actually explicitly this out as such. We'll build up step-by-step to full-blown I/O.
 
-# The Prelude
+## The Prelude
 
-* Haskell defines many standard functions in what is known as the "Prelude"
-* This is a module that is implicitly imported into every Haskell source file, unless this is explicitly disabled
-* We'll use a few Prelude functions to explore I/O in Haskell
+Haskell's prelude is a module provided by the implementation that defines many standard functions.
+It is implicitly imported into every Haskell source file, unless this is explicitly disabled. We'll use a few functions from `Prelude` to explore I/O.
 
-# Read a number and do something to it
+Our mission is to read a number in from the user, do something to it and then output the result to the terminal.
 
-## The `print` function
+### The `print` function
 
-* We've already seen this once or twice
-* Let's look at the details:
+We've already seen this function, but now we'll look at in a little more depth:
 
 ```ghci
 λ> :t print
@@ -50,7 +48,7 @@ show :: Show a => a -> String
 * Not to be confused with the zero or bottom type which has no values or inhabitants
 * So, this is a function that takes something of type `a` (subject to the `Show a` constraint) and returns `IO ()`
 
-## `>>=` a.k.a. "bind"
+### `>>=` a.k.a. "bind"
 
 * Let's look at the `IO` type class some more
 * It's not a type, so let's use `:i` in GHCI
@@ -131,7 +129,10 @@ f :: () -> IO ()
 "hello"
 ```
 
-## Anonymous functions a.k.a. lambdas
+### Anonymous functions a.k.a. lambdas
+
+> ***TODO:***
+> We can now assume the user is familiar with lambdas!
 
 * Our function `f` is great
 * We use it exactly once
