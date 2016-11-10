@@ -110,16 +110,13 @@ We'll describe `type` definitions in more detail later, but suffice it to say th
 
 ## Pattern matching
 
-Given `Colour` defined as a product type without using record syntax, how do we extract the component values? This is where "pattern matching" comes in. Pattern matching is a mechanism for _deconstructing_ Haskell values, so-called because the patterns mimic the _data constructor_ invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine _how_ a value was constructed at runtime.
+Given our previous definition of `Colour` as a product type without record syntax, how do we extract the component values? This is where "pattern matching" comes in. Pattern matching is a mechanism for _deconstructing_ Haskell values, so-called because the patterns mimic the _data constructor_ invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine _how_ a value was constructed at runtime.
 
-There are two distinct places where you'll see pattern matching:
+There are two-and-a-half distinct places where you'll see pattern matching:
 
 * In function definitions, used to deconstruct function arguments
 * In `case` expressions, used to deconstruct arbitrary values
-
-> ***TODO:***
->
-> Similar to the first type of pattern matching, lambdas can also perform pattern matching in their argument lists.
+* Similar to function definitions, lambdas can also perform pattern matching on their argument
 
 ### Pattern matching in function definitions
 
