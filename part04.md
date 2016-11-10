@@ -100,15 +100,13 @@ print "hello" :: IO ()
 
 Note that `print 5` and `print "hello"` are two separate statements in GHCI. In "full" Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using `>>=`.
 
-Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function that evalutes to `print "hello"` and call it `f` for now:
+Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function that ignores its first argument and evaluates to `print "hello"`. We'll call it `f` for now:
 
 ```ghci
-λ> f :: () -> IO (); f x = print "hello"
-λ> :t f
-f :: () -> IO ()
+λ> f :: () -> IO (); f _ = print "hello"
 ```
 
-We can then combine it with `print 5`:
+We can then combine it with `print 5` by passing it as the second operand to `>>=`:
 
 ```ghci
 λ> print 5 >>= f
@@ -116,41 +114,32 @@ We can then combine it with `print 5`:
 "hello"
 ```
 
-Our function `f` is great. However, we use it exactly once so it might make most sense to use a lambda
-
-> ***TODO:***
-> Continue here
-
-* Absolutely not!
-* This is known as a "lambda" and we can assign them since they are values just like `5` or `"hello"`:
+Our function `f` is great. However, we use it exactly once and never need to refer to it by name. So, let's use a lambda instead. Let's start by defining a alternative version of `f`, named `f'`, which we assign to such an anonymous function:
 
 ```ghci
-λ> g :: () -> IO (); g = \x -> print "hello"
-λ> :t g
-g :: () -> IO ()
+λ> f' :: () -> IO (); f' = \_ -> print "hello"
 ```
 
-* This is pretty much indistinguishable from `f` defined previously
-* Instead of assigning to a name `g` we can use the right-hand side directly:
+Function `f'` is semantically identical to `f` and, so, we can write:
 
 ```ghci
-λ> print 5 >>= \x -> print "hello"
+λ> print 5 >>= f'
 5
 "hello"
-λ> :t print 5 >>= \x -> print "hello"
-print 5 >>= \x -> print "hello" :: IO ()
 ```
 
-* Now we have single expression whose type is `IO ()`
-* Let's get rid of all the extraneous names
+Since `f'` is referentially transparent, we can replace it with its value instead:
+
 
 ```ghci
 λ> print 5 >>= \_ -> print "hello"
 5
 "hello"
+λ> :t print 5 >>= \_ -> print "hello"
+print 5 >>= \_ -> print "hello" :: IO ()
 ```
 
-## Let's put it in a source file
+Now we have single expression whose type is `IO ()` with no unnecessary names. We can then put this in a source file:
 
 ```haskell
 module Main where
@@ -159,11 +148,15 @@ main :: IO ()
 main = print 5 >>= \_ -> print "hello"
 ```
 
+And compile and run as follows:
+
 ```console
 > stack runhaskell Scratch.hs
 5
 "hello"
 ```
+
+We have successfully demonstrated several functionally equivalent ways of using a functional dependency to provide an explicit ordering of execution.
 
 ## The `read` function
 
