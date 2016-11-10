@@ -28,21 +28,16 @@ We've already seen this function, but now we'll look at in a little more detail:
 print :: Show a => a -> IO ()
 ```
 
-* This has a type constraint of `Show a`
-* `a` is a type variable again
-* `Show` is a type class
-* For the sake of this discussion, `Show` is a type class with a single "method" `show`:
+ The type signature has a type constraint of `Show a` where `a` is a type variable again. For the sake of this discussion, `Show` is a type class with a single "method" `show` (it's not quite this simple but, whatever!):
 
 ```ghci
 λ> :t show
 show :: Show a => a -> String
 ```
 
-* A function on a type class is commonly referred to as a "method" by analogy with "method" on a class or interface in object-oriented programming
-* `show` takes an object of some type `a` and returns a `String`
-* Haskell's primitive types implement `show` and typically return a human-readable representation of a value
-* So, what's `IO`?
-* Well, clearly it's a type class much like `Num` etc.
+A function on a type class is commonly referred to as a "method" by analogy with methods on a class or interface in object-oriented languages. Thus, `show` is a method taking a value of some type `a` and returning a `String`. All of Haskell's primitive types implement `Show` which typically return a human-readable representation of a value. You can provide instances for user-defined types&mdash;which we'll discuss eventually&mdash;or have them derived automatically for you using `deriving Show` where possible.
+
+So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()` or the unit type.
 * What's `()`?
 * It's pronounced "unit"
 * It's the single inhabitant of the [unit type][unittype]
@@ -289,4 +284,3 @@ Enter a number and I'll double it: 5
 
 [cps]: https://en.wikipedia.org/wiki/Continuation-passing_style
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
-[unittype]: https://en.wikipedia.org/wiki/Unit_type
