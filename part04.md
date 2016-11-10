@@ -4,7 +4,7 @@ Given the title of this course, I'll use you came here to learn how to write use
 
 Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world. However, this is fundamentally incompatible with a language such as Haskell which maintains a strong correspondence between its functions and mathematical functions.
 
-Mathematical functions
+Mathematical functions:
 
 * Cannot read files from disc or write to the screen
 * Cannot read or mutate global state
