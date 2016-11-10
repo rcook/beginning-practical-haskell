@@ -37,13 +37,7 @@ show :: Show a => a -> String
 
 A function on a type class is commonly referred to as a "method" by analogy with methods on a class or interface in object-oriented languages. Thus, `show` is a method taking a value of some type `a` and returning a `String`. All of Haskell's primitive types implement `Show` which typically return a human-readable representation of a value. You can provide instances for user-defined types&mdash;which we'll discuss eventually&mdash;or have them derived automatically for you using `deriving Show` where possible.
 
-So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()` or the unit type.
-* What's `()`?
-* It's pronounced "unit"
-* It's the single inhabitant of the [unit type][unittype]
-* The unit type is a type that allows only a single value which conveys no information
-* Not to be confused with the zero or bottom type which has no values or inhabitants
-* So, this is a function that takes something of type `a` (subject to the `Show a` constraint) and returns `IO ()`
+So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()` or the unit type. Therefore, this is a function that takes something of type `a` in the type (subject to the `Show a` constraint) and returns `IO ()`
 
 ### `>>=` a.k.a. "bind"
 
