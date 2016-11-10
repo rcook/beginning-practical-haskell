@@ -394,37 +394,11 @@ We will return to this example shortly to explain some new things you may have s
 
 *[Sources: [1][sections]]*
 
-This last example is ugly. In this section we'll cover a few other items:
+This last example is ugly. Can we make it more pleasing to the eye?
 
-* Higher-order functions
-* Operators
-* Function application with `$`
-* Automatic deriving
+Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn: we apply `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This should leap out at you: it's simply the composition of three functions. This can, therefore, be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does reveal a nice structure to the code by emphasizing the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. This is core to a functional programming language.
 
-Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn to an expression: `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This is so ubiquitous that it gets its own name&mdash;function composition&mdash;and its own single-character operator `.`.
-
-Thus, `Ordinate (translate (unOrdinate someExpression))` can be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does eliminate some parentheses and make the code look less [Lisp-like][seaofparentheses]. It also emphasizes the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. Function composition and treatment of functions as values are the principles underlying _higher-order functions_ and are what really make Haskell a functional programming language. We'll take our time and notice that `translateBy` is really just the "add this value to my argument function", which is the same as a _partially_ applied `+` operator. Here's our ugly `Point` example rewritten to use `.` and `+`:
-
-```haskell
-newtype Ordinate = Ordinate { unOrdinate :: Int }
-data Point = Point { x :: Ordinate, y :: Ordinate }
-
-main :: IO ()
-main =
-    let p = Point (Ordinate 10) (Ordinate 20)
-        translateOrdinate = Ordinate . ((+) 10) . unOrdinate
-        translatedP = Point (translateOrdinate (x p)) (translateOrdinate (y p))
-        translatedX = unOrdinate (x translatedP)
-        translatedY = unOrdinate (y translatedP)
-    in putStrLn ("x=" ++ show translatedX ++ ", y=" ++ show translatedY)
-```
-
-Partial application of binary operator is known as a _left_ or _right_ _section_ depending on the order in which the operands are handled. Notionally:
-
-* `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
-* `(^2)` (right section) is equivalent to `\x -> x ^ 2`
-
-So, we eliminated some repeated code and composed some functions. Let's now mention Haskell's other anti-parentheses countermeasure: the `$` operator:
+Let's use `$` and also observe that `translateBy` is really just the "add this value to my argument function", which is the same as a _partially_ applied `+` operator. Here's our ugly `Point` example rewritten to use `.` and `+`:
 
 ```haskell
 newtype Ordinate = Ordinate { unOrdinate :: Int }
@@ -440,27 +414,10 @@ main =
     in putStrLn $ "x=" ++ show translatedX ++ ", y=" ++ show translatedY
 ```
 
-If whitespace between identifiers in Haskell is _function application_ (e.g. `f x`), then `$` is simply another form of function application with lower precedence.
+Partial application of a binary operator is known as a _left_ or _right_ _section_ depending on the order in which the operands are handled. Conceptually:
 
-We'll also try to simplify the output using "automatic deriving":
-
-```haskell
-newtype Ordinate = Ordinate { unOrdinate :: Int } deriving Show
-data Point = Point { x :: Ordinate, y :: Ordinate } deriving Show
-
-main :: IO ()
-main =
-    let p = Point (Ordinate 10) (Ordinate 20)
-        translateOrdinate = Ordinate . ((+) 10) . unOrdinate
-        translatedP = Point (translateOrdinate (x p)) (translateOrdinate (y p))
-    in print translatedP
-```
-
-This generates the following output:
-
-```console
-Point {x = Ordinate {unOrdinate = 20}, y = Ordinate {unOrdinate = 30}}
-```
+* `(2^)` (left section) is equivalent to `\x -> 2 ^ x`
+* `(^2)` (right section) is equivalent to `\x -> x ^ 2`
 
 Of course, [there is more than one way to skin a cat][skinningacat], and this code can be elegantly reformulated using pattern matching:
 
@@ -478,6 +435,8 @@ main =
         translatedP = translatedPoint 10 10 p
     in print translatedP
 ```
+
+This also takes advantage of _automatic deriving_ to eliminate the calls to `show`.
 
 [adts]: https://en.wikipedia.org/wiki/Algebraic_data_type
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
