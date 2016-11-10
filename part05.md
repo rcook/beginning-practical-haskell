@@ -1,4 +1,4 @@
-# Let's get ugly
+# Ugly code
 
 Let's look at a more complicated example:
 
@@ -15,7 +15,7 @@ main = putStr "Enter x: "
         let x = readInteger xStr
             y = readInteger yStr
             z = x + y
-        in putStrLn ("z = " ++ show z)
+        in putStrLn $ "z = " ++ show z
 ```
 
 This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an `Integer`, computes their sum and then writes the output to the terminal. Let's consider the new things we see here:
@@ -40,7 +40,7 @@ main =
         y = readInteger yStr
         z = x + y
     in
-    putStrLn ("z = " ++ show z)
+    putStrLn $ "z = " ++ show z
 ```
 
 That looks a bit better! There's still a proliferation of `>>=` operators and lambdas. What next? Let's take a look at another method provided by `Monad`, namely `>>` or "then" which is the second "monadic sequencing operator" with the following type signature:
@@ -66,7 +66,7 @@ main =
         y = readInteger yStr
         z = x + y
     in
-    putStrLn ("z = " ++ show z)
+    putStrLn $ "z = " ++ show z
 ```
 
 Even better!
@@ -152,7 +152,7 @@ main = do
     let x = readInteger xStr
         y = readInteger yStr
         z = x + y
-    putStrLn ("z = " ++ show z)
+    putStrLn $ "z = " ++ show z
 ```
 
 Inside `do`-notation, Haskell also drops the `in` from let-bindings to clean things even more.
