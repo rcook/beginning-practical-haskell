@@ -154,7 +154,7 @@ main = do
     putStrLn $ "z = " ++ show z
 ```
 
-Inside `do`-notation, Haskell also drops the `in` from let-bindings to clean things even more.
+Inside `do`-notation, Haskell also drops the `in` from let-bindings.
 
 # Other concepts and syntax
 
