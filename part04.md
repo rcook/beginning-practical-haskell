@@ -158,27 +158,23 @@ And compile and run as follows:
 
 We have successfully demonstrated several functionally equivalent ways of using a functional dependency to provide an explicit ordering of execution.
 
-## The `read` function
+### The `read` function
 
-* Let's do some more exploring using GHCI:
+Let's do some more exploring using GHCI:
 
 ```ghci
 λ> :t read
 read :: Read a => String -> a
 ```
 
-* This takes `String` and returns `a` where is subject to the `Read a` constraint
-* [`Read`][readdoc] is a type class that supports reading a value from a `String`
-* Most primitive types in Haskell have instances of `Read`
-* Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
+This takes `String` and returns `a` which is subject to the `Read a` constraint. [`Read`][readdoc] is a type class that supports reading a value from a `String`. Haskell's primitive types have instances of `Read`. Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
 
 ```ghci
 λ> :t read :: String -> Integer
 read :: String -> Integer :: String -> Integer
 ```
 
-* This is a function that takes `String` and returns `Integer`
-* We can assign this specific instance of `read` to another name and test it out:
+This is a function that takes `String` and returns an `Integer`. We can assign a (monomorphic) name to this specific instance of `read` and test it out:
 
 ```ghci
 λ> readInteger :: String -> Integer; readInteger = read
