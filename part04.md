@@ -58,7 +58,7 @@ instance Applicative IO -- Defined in ‘GHC.Base’
 instance Monoid a => Monoid (IO a) -- Defined in ‘GHC.Base’
 ```
 
-* This tells you that `IO` has instances for four other type classes, namely `Monad`, `Functor`, `Applicative` and `Monoid`
+This tells us that `IO` has instances for four other type classes, namely `Monad`, `Functor`, `Applicative` and `Monoid`. Let's look at `Monad`:
 
 ```ghci
 λ> :i Monad
@@ -76,16 +76,16 @@ instance Monad IO -- Defined in ‘GHC.Base’
 instance Monad ((->) r) -- Defined in ‘GHC.Base’
 ```
 
-* Since `IO` has an instance for `Monad`, it provides an implementation of "method" `>>=`, pronounced "bind":
+Since `IO` has an instance for `Monad`, it provides an implementation of method `>>=`, pronounced "bind":
 
 ```ghci
 λ> :t (>>=)
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
-* Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCI and Haskell source code
-* Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`
-* Try out `print` by itself:
+Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCI and Haskell source code.
+
+Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`. We can try out `print` by itself:
 
 ```ghci
 λ> print 5
