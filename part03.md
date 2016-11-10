@@ -497,7 +497,6 @@ main =
 [pragmas]: https://downloads.haskell.org/~ghc/7.0.3/docs/html/users_guide/pragmas.html
 [primitivetypes]: https://downloads.haskell.org/~ghc/7.0.1/docs/html/users_guide/primitives.html
 [producttype]: https://en.wikipedia.org/wiki/Product_type
-[seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
 [sections]: https://wiki.haskell.org/Section_of_an_infix_operator
 [skinningacat]: http://english.stackexchange.com/questions/32123/origin-of-the-phrase-theres-more-than-one-way-to-skin-a-cat
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union

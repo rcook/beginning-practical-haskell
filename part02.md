@@ -195,6 +195,18 @@ Again, this example is totally contrived and we'll build up to more realistic us
 
 ## More function application
 
+We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: `$`. This is semantically identical to our existing function application model, using whitespace, but we different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:
+
+```ghci
+λ> (sqrt . squareSumWith3) 4
+5.0
+λ> sqrt . squareSumWith3 $ 4
+5.0
+```
+
+This doesn't look like much, but when dealing with multiple levels of nested parentheses, `$` can eliminate a lot of this line noise and go a long towards making the code look less [Lisp-like][seaofparentheses]. When you use parentheses, `$` or a combination of the two is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.
+
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [mosesschoenfinkel]: https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel
+[seaofparentheses]: http://wiki.c2.com/?LostInaSeaofParentheses
