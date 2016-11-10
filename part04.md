@@ -184,33 +184,36 @@ readInteger :: String -> Integer
 123
 ```
 
-## The `getLine` function
+### The `getLine` function
 
-* Here's `getline` in all its glory:
+Here's `getline` in all its glory:
 
 ```ghci
 λ> :t getLine
 getLine :: IO String
 ```
 
-## The `putStr` function
+### The `putStr` function
 
-* This one's pretty straightforward
+This one is straightforward:
 
 ```ghci
 λ> :t putStr
 putStr :: String -> IO ()
 ```
 
-## Combine them all
+This is simply `putStrLn` without the extra line ending.
 
-* Here's what we're going to do
-    * Print a prompt to the terminal (using `putStrLn`)
-    * Get a string from the keyboard (using `getLine`)
-    * Read it as an integer (using `read`/`readInteger`)
-    * Multiply the integer by 2 (using `*`)
-    * Print out the result (using `print`)
-* And it will all be a single expression:
+### Combine them all
+
+This is what we're going to do:
+* Print a prompt to the terminal (using `putStr`)
+* Get a string from the keyboard (using `getLine`)
+* Convert the string to an integer (using `read`/`readInteger`)
+* Multiply the integer by 2 (using `*`)
+* Print out the result (using `print`)
+
+The resulting program will be a single expression:
 
 ```haskell
 readInteger :: String -> Integer
@@ -222,7 +225,7 @@ main = putStr "Enter a number and I'll double it: "
     >>= \l -> print (2 * readInteger l)
 ```
 
-* And let's run it:
+Let's run it:
 
 ```console
 > stack runhaskell Scratch.hs
@@ -230,33 +233,27 @@ Enter a number and I'll double it: 5
 10
 ```
 
-## Wait a minute!
+### Wait a minute!
 
-* Didn't you say that Haskell was purely functional?
-* Surely, `putStr`, `getLine` and `print` have side effects
-* Well, no not at all
-    * They're actions
-    * They're strung together using `>>=`
-    * At no point do they mutate global state or interact with the outside world
-    * We build up an expression of these actions
-    * They are "executed" when the program is run
-* Did you mention something about continuation passing?
-    * Why, yes, I did!
-    * That's what `>>=` is doing
-    * You provide an action as its first argument
-    * And the continuation as the second argument
-    * This is the thing that is to be evaluated when the first value is executed at program execution time
-* `>>=` is great as it provides the ability to sequence actions (at least when it's used with `IO`)
-* All this `>>=` is kinda ugly, though, isn't it?
-* Well, yes it is
+But, didn't you say that Haskell was purely functional? Surely, `putStr`, `getLine` and `print` have side effects?
 
-# Summary
+Well, no, not at all:
 
-* Explored some common functions from Haskell's Prelude
-* Briefly some type classes, particularly `IO`
-* Learnt what a "method" is
-* Learnt how to string actions together
-* Hinted at things to come
+* They're "actions"
+* They're strung together using `>>=`
+* At no point do they mutate global state or interact with the outside world
+* We build up an expression of these actions
+* They are "executed" when the program is run
+
+Did you mention something about continuation passing?
+
+* Why, yes, I did!
+* That's what `>>=` is doing
+* You provide an action as its first argument
+* And the continuation as the second argument
+* This is the thing that is to be evaluated when the first value is executed at program execution time
+
+`>>=` is great as it provides the ability to sequence actions (at least when it's used with `IO`). However, all of these `>>=`s will become ugly as we sequence more and more subexpressions in our program. We will talk about how to clean this up soon.
 
 [cps]: https://en.wikipedia.org/wiki/Continuation-passing_style
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
