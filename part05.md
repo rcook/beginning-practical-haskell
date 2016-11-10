@@ -21,7 +21,6 @@ main = putStr "Enter x: "
 This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an `Integer`, computes their sum and then writes the output to the terminal. Let's consider the new things we see here:
 
 * `let` and `in`: let-bindings introduce one or more new names with associated expressions into the expression after `in`
-*  `putStrLn`: a variant of `putStr` which outputs a `String` followed by a line break
 *  `++`: pronounced "append"; joins two lists together; `String` is `[Char]`, so this joins two strings together
 
 I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this looks kinda ugly. Let's try to do something about that. First, let's reflow the code:
