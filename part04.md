@@ -6,9 +6,11 @@
 * Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world
 * But what about purely functional programming languages?
     * Mathematical functions cannot read files from disc or write to the screen
+    * Mathematical functions cannot read or mutate global state
     * Mathematical functions can only return values that are functions of their arguments or other pure functions
 * There are several different solutions to this problem
-* Haskell uses what I will refer to as the continuation-passing style, though other people will use other terms
+* Haskell makes use of an abstract `IO` type
+* Haskell model is functionally equivalent to continuation-passing style, though few people actually explicitly this out as such
 
 # The Prelude
 
