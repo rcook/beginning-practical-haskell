@@ -396,7 +396,7 @@ We will return to this example shortly to explain some new things you may have s
 
 This last example is ugly. Can we make it more pleasing to the eye?
 
-Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn: we apply `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This should leap out at you: it's simply the composition of three functions. This can, therefore, be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does reveal a nice structure to the code by emphasizing the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other value. This is core to a functional programming language.
+Recall `Ordinate (translate (unOrdinate someExpression))`. What we're really doing here is applying three functions in turn: we apply `unOrdinate` to `someExpression`, `translate` to the result of that and `Ordinate` to the result of that. This should leap out at you: it's simply the composition of three functions. This can, therefore, be rewritten as `(Ordinate . translate . unOrdinate) someExpression`. This doesn't save many characters of typing, but it does reveal a nice structure to the code by emphasizing the "valueness" of functions, since `Ordinate . translate . unOrdinate` is a value just like any other. This is core to a functional programming language.
 
 Let's use `$` and also observe that `translateBy` is really just the "add this value to my argument function", which is the same as a _partially_ applied `+` operator. Here's our ugly `Point` example rewritten to use `.` and `+`:
 
