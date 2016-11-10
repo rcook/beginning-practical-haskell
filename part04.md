@@ -98,12 +98,9 @@ print 5 :: IO ()
 print "hello" :: IO ()
 ```
 
-* It works on primitive types
-* Note that these are two separate statements in GHCI
-* Let's see if we can combine them into a single expression using `>>=`
-* Given a `IO ()`, we need a function that takes unit and returns `IO b`
-* `b` can be unit too
-* So let's build such a function using `print "hello"` as the return value and call it `f` for now:
+Note that `print 5` and `print "hello"` are two separate statements in GHCI. In "full" Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using `>>=`.
+
+Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function using `print "hello"` as the return value and call it `f` for now:
 
 ```ghci
 λ> f :: () -> IO (); f x = print "hello"
