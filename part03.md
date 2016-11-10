@@ -104,7 +104,7 @@ Name                       | Definition                  | Description
 `Complex a`                | _n/a_                       | A complex floating-point number represented as a pair of primitive numeric values
 `[a]`                      | `data [a] = [] | a : [a]`   | A homogeneous singly-linked list represented as a pair of head element and tail list
 `(a, b)`, `(a, b, c)` etc. | `data (a, b) = (a, b)` etc. | A heterogeneous $n$-tuple
-`()` ("unit")              | `data () = ()`              | A type with the single nullary member `()`
+`()` ("unit")              | `data () = ()`              | [A type with the single nullary member `()`][unittype]
 
 We'll describe `type` definitions in more detail later, but suffice it to say that `type` defines simple type aliases for other types.
 
@@ -460,3 +460,4 @@ This also takes advantage of _automatic deriving_ to eliminate the calls to `sho
 [skinningacat]: http://english.stackexchange.com/questions/32123/origin-of-the-phrase-theres-more-than-one-way-to-skin-a-cat
 [taggedunion]: https://en.wikipedia.org/wiki/Tagged_union
 [typedholes]: https://wiki.haskell.org/GHC/Typed_holes
+[unittype]: https://en.wikipedia.org/wiki/Unit_type
