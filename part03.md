@@ -4,56 +4,22 @@
 
 *[Sources: [1][primitivetypes]]*
 
-Primitive data types cannot be defined in Haskell itself. There are some additional predefined types which are derived from these.
+Below are Haskell's primitive data types. These cannot be defined in Haskell itself and must, therefore, be provided by the implementation.
 
 Name        | Description
 :-----------|:-----------
 `Bool`      | [Nullary type constructor][nullaryconstructor] with two nullary data constructors `True` and `False` representing Boolean truth values
 `Char`      | An enumeration whose values represent Unicode characters
-`String`    | A list of Unicode characters
 `Integer`   | Arbitrary-precision integer
 `Int`       | Fixed-precision integer, typically 64-bit signed integer on 64-bit platforms
-`Ratio a`   | Rational numbers
 `Float`     | Single-precision floating-point real number
 `Double`    | Double-precision floating-point real number
-`Complex a` | Complex floating-point number
-
-> ***TODO:***
->
-> Talk about lists and type aliases
-> So we can say `type String = [Char]`
-
-> ***TODO:***
->
-> * List Haskell's primitive types, especially `Int` so that the `Colour` example below makes more sense.
->* More on functions so that `Int -> Int -> Int` etc. makes more sense.
 
 ## Algebraic data types
 
-*[Sources: [1][datadecl]]*
+*[Sources: [1][datadecl], [2][adts]]*
 
-> ***TODO:***
->
-> Mandatory naming conventions:
-> * Values and type variables start with initial lower-case letter
-> * Types and type classes start with initial capital letter
-> * Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
-> * Punctuation such as `'` allowed
-> * Some special suffixes such as `M` and `M_` etc.
-> * Mention infix operators, backticks etc.
-
-We will also run into the following predefined _algebraic data types_:
-
-Description | Comment
-:-----------|:-------
-Lists       | Homogeneous singly-linked list, conceptually equivalent to `data [a] = [] | a : [a]`
-Tuples      | Conceptually equivalent to a family of types of the form `data (a, b) = (a, b)`
-Unit        | Conceptually equivalent to `data () = ()`
-
-These are not primitive types given that all three are algebraic data types and can be constructed from other
-
-> ***TODO:***
-> Do it!
+Additional user-defined types can be defined as composites of other types using Haskell's support for _algebraic data types_.
 
 Consider the following `data` declaration:
 
@@ -124,6 +90,38 @@ Input                                              | Output                     
 * `a` and `b` are type arguments/variables and demonstrate the definition of a _polymorphic type_
 * `Pair` is the type constructor in two type arguments
 * `P` is a data constructor
+
+## Parametric polymorphism
+
+> ***TODO:***
+> Do it
+
+## Predefined algebraic data types
+
+> ***TODO:***
+> Do it
+
+We will also run into the following predefined _algebraic data types_:
+
+There are some additional predefined types which are derived from these. These can, at least conceptually, be defined as _algebraic data types_.
+
+Name        | Description
+:-----------|:-----------
+`String`    | A list of Unicode characters
+`Ratio a`   | Rational numbers
+`Complex a` | Complex floating-point number
+
+
+Description | Comment
+:-----------|:-------
+Lists       | Homogeneous singly-linked list, conceptually equivalent to `data [a] = [] | a : [a]`
+Tuples      | Conceptually equivalent to a family of types of the form `data (a, b) = (a, b)`
+Unit        | Conceptually equivalent to `data () = ()`
+
+These are not primitive types given that all three are algebraic data types and can be constructed from other
+
+> ***TODO:***
+> Do it!
 
 ## Pattern matching
 
@@ -528,6 +526,7 @@ main =
     in print translatedP
 ```
 
+[adts]: https://en.wikipedia.org/wiki/Algebraic_data_type
 [cabaluserguide]: https://www.haskell.org/cabal/users-guide/
 [cardinalityproof]: https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product
 [cmytorgb]: http://www.easyrgb.com/index.php?X=MATH&H=12#text12
