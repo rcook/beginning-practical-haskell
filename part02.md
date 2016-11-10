@@ -148,6 +148,53 @@ squareSum :: Num a => a -> a -> a
 25
 ```
 
+## Function composition
+
+So far we've applied only single functions to single values. In practice, we're likely to want to do much more than this. Consider computing the hypotenuse of a right-angled triangle. We already have our `squareSum` function which we can reuse. We also happen to know that there is a standard `sqrt` function that we can reuse. Let's see what we can do with our (contrived) example:
+
+```ghci
+λ> squareSum x y = x ^ 2 + y ^ 2
+λ> squareSumWith3 = squareSum 3
+λ> sqrt (squareSumWith3 4)
+5.0
+```
+
+We're apply a function `squareSumWith3` to value `4` and then feeding its value into the input of the function `sqrt`. This kind of chaining or _composition_ of functions is so common that it gets the second most unassuming operator in the language after whitespace, e.g. `.`. We can rewrite this last line as follows:
+
+```ghci
+λ> (sqrt . squareSumWith3) 4
+5.0
+```
+
+Notionally, `.` is equivalent to the function `compose` of type `(b -> c) -> (a -> b) -> (a -> c)`: i.e. a function taking two functions and yielding a third function:
+
+```ghci
+λ> compose f g x = f (g x)
+λ> :t compose
+compose :: (t -> t1) -> (t2 -> t) -> t2 -> t1
+λ> f = compose sqrt squareSumWith3
+λ> :t sqrt
+sqrt :: Floating a => a -> a
+λ> :t squareSumWith3
+squareSumWith3 :: Num a => a -> a
+λ> :t f
+f :: Floating t1 => t1 -> t1
+λ> f 4
+5.0
+```
+
+Of course, we can assign our silly `sqrt . squareSumWith3` expression to a name too:
+
+```ghci
+λ> f = sqrt . squareSumWith3
+λ> f 4
+5.0
+```
+
+Again, this example is totally contrived and we'll build up to more realistic uses soon.
+
+## More function application
+
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [mosesschoenfinkel]: https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel
