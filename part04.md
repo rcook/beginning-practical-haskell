@@ -100,7 +100,7 @@ print "hello" :: IO ()
 
 Note that `print 5` and `print "hello"` are two separate statements in GHCI. In "full" Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using `>>=`.
 
-Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function using `print "hello"` as the return value and call it `f` for now:
+Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function that evalutes to `print "hello"` and call it `f` for now:
 
 ```ghci
 λ> f :: () -> IO (); f x = print "hello"
@@ -108,7 +108,7 @@ Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b
 f :: () -> IO ()
 ```
 
-* Now, we'll combine it with `print 5`:
+We can then combine it with `print 5`:
 
 ```ghci
 λ> print 5 >>= f
@@ -116,14 +116,11 @@ f :: () -> IO ()
 "hello"
 ```
 
-### Anonymous functions a.k.a. lambdas
+Our function `f` is great. However, we use it exactly once so it might make most sense to use a lambda
 
 > ***TODO:***
-> We can now assume the user is familiar with lambdas!
+> Continue here
 
-* Our function `f` is great
-* We use it exactly once
-* So do we really have to give it a name?
 * Absolutely not!
 * This is known as a "lambda" and we can assign them since they are values just like `5` or `"hello"`:
 
