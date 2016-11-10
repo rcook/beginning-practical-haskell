@@ -186,4 +186,4 @@ TODO
 
 TODO
 
-[syntactisugar]: https://en.wikipedia.org/wiki/Syntactic_sugar
+[syntacticsugar]: https://en.wikipedia.org/wiki/Syntactic_sugar
