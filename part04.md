@@ -21,7 +21,7 @@ Our mission is to read a number in from the user, do something to it and then ou
 
 ### The `print` function
 
-We've already seen this function, but now we'll look at in a little more depth:
+We've already seen this function, but now we'll look at in a little more detail:
 
 ```ghci
 λ> :t print
