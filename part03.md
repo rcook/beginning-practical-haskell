@@ -73,7 +73,9 @@ data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 
 Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
-Similarly, we might define a "pair" as follows:
+## Parametric polymorphism
+
+Similarly, we might define a "pair" type as follows:
 
 Input                                              | Output                                  |
 :--------------------------------------------------|:----------------------------------------|
@@ -87,11 +89,7 @@ Input                                              | Output                     
 `λ> second indianaPi`                              | `3.2`                                   |
 `λ> :t second indianaPi`                           | `second indianaPi :: Fractional b => b` |
 
-* `a` and `b` are type arguments/variables and demonstrate the definition of a _polymorphic type_
-* `Pair` is the type constructor in two type arguments
-* `P` is a data constructor
-
-## Parametric polymorphism
+This is our first experience of _parametric polymorphism_. In this case, `a` and `b` are type arguments/variables and define the _polymorphic type_ `Pair a b`. `Pair` is the type constructor in two type arguments, so-called because each distinct pair of concrete types substituted for `a` and `b` _construct_ a new type. As with previous `data` definitions, `P` is a data constructor and construct specific _values_ belonging to a concrete instantiation of `Pair a b`.
 
 > ***TODO:***
 > Do it
