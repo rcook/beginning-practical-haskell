@@ -60,6 +60,7 @@
 > * Punctuation such as `'` allowed
 > * Some special suffixes such as `M` and `M_` etc.
 > * Mention infix operators, backticks etc.
+> * Type and data constructors can have same names
 
 ## What else?
 

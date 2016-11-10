@@ -93,35 +93,20 @@ This is our first experience of _parametric polymorphism_. In this case, `a` and
 
 The type of `first indianaPi` is is also our first experience of a _list_ in Haskell which we'll discuss in more detail soon and are ubiquitous in Haskell.
 
-> ***TODO:***
-> Do it
-
 ## Predefined algebraic data types
 
-> ***TODO:***
-> Do it
+We now have enough knowledge to look into some other _predefined_ Haskell types and polymorphic types that you'll run into a lot. These types are algebraic data types and can, therefore, be expressed using `data` definitions and derived from Haskell's primitive types. The "definition" is some cases is really an instructive approximation of the real definition and elide detail that is superfluous for our immediate purposes:
 
-We will also run into the following predefined _algebraic data types_:
+Name                       | Definition                  | Description
+:--------------------------|:----------------------------|:-----------
+`String`                   | `type String = [Char]`      | A list of Unicode characters
+`Ratio a`                  | _n/a_                       | A rational number represented as a pair of primitive numeric values
+`Complex a`                | _n/a_                       | A complex floating-point number represented as a pair of primitive numeric values
+`[a]`                      | `data [a] = [] | a : [a]`   | A homogeneous singly-linked list represented as a pair of head element and tail list
+`(a, b)`, `(a, b, c)` etc. | `data (a, b) = (a, b)` etc. | A heterogeneous $n$-tuple
+`()` ("unit")              | `data () = ()`              | A type with the single nullary member `()`
 
-There are some additional predefined types which are derived from these. These can, at least conceptually, be defined as _algebraic data types_.
-
-Name        | Description
-:-----------|:-----------
-`String`    | A list of Unicode characters
-`Ratio a`   | Rational numbers
-`Complex a` | Complex floating-point number
-
-
-Description | Comment
-:-----------|:-------
-Lists       | Homogeneous singly-linked list, conceptually equivalent to `data [a] = [] | a : [a]`
-Tuples      | Conceptually equivalent to a family of types of the form `data (a, b) = (a, b)`
-Unit        | Conceptually equivalent to `data () = ()`
-
-These are not primitive types given that all three are algebraic data types and can be constructed from other
-
-> ***TODO:***
-> Do it!
+We'll describe `type` definitions in more detail later, but suffice it to say that `type` defines simple type aliases for other types.
 
 ## Pattern matching
 
