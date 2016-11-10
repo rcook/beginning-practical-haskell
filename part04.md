@@ -41,8 +41,7 @@ So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()`
 
 ### `>>=` a.k.a. "bind"
 
-* Let's look at the `IO` type class some more
-* It's not a type, so let's use `:i` in GHCI
+Here are more details of `IO` in GHCI:
 
 ```ghci
 λ> :i IO
