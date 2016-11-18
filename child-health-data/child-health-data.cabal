@@ -1,8 +1,8 @@
 name:                 child-health-data
 version:              0.1.0.0
-synopsis:             Simple, clean project template using MIT License by default
+synopsis:             Web scraping demo project for Beginning Practical Haskell course
 description:          Please see README.md
-homepage:             https://github.com/rcook/child-health-data#readme
+homepage:             https://github.com/rcook/beginning-practical-haskell/tree/master/child-health-data#readme
 license:              MIT
 license-file:         LICENSE
 author:               Richard Cook
@@ -16,7 +16,7 @@ data-files:           ggs.txt qqs.txt
 
 source-repository head
   type:               git
-  location:           https://github.com/rcook/child-health-data.git
+  location:           https://github.com/rcook/beginning-practical-haskell.git
 
 library
   hs-source-dirs:     lib

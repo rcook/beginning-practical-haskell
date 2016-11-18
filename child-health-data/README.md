@@ -1,7 +1,8 @@
 # Child Health Data Scraping Tool
 
 * A simple web-scraping tool written in [Haskell][haskell]
-* Written [Richard Cook][rcookdotorg]
+* Written by [Richard Cook][rcookdotorg]
+* See [Beginning Practical Haskell][bph] course for more information
 
 ## Prerequisites
 
@@ -95,12 +96,14 @@ stack build --file-watch --exec child-health-data-app
 
 ## Licence
 
-Released under MIT License
+Released under [MIT License][mitlicense]
 
 Copyright &copy; 2016 Richard Cook
 
+[bph]: https://github.com/rcook/beginning-practical-haskell
 [haskell]: https://www.haskell.org/
 [homebrew]: http://brew.sh/
+[mitlicense]: https://opensource.org/licenses/MIT
 [pacman]: https://wiki.archlinux.org/index.php/pacman
 [rcookdotorg]: http://rcook.org/
 [stack]: https://haskellstack.org/
