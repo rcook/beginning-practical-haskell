@@ -193,6 +193,9 @@ Here's `getline` in all its glory:
 getLine :: IO String
 ```
 
+> ***TODO:***
+> Mention `hFlush` function otherwise resulting program will be useless!
+
 ### The `putStr` function
 
 This one is straightforward:
