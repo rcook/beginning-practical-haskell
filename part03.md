@@ -64,7 +64,7 @@ This version of `Colour` is a [_product type_][producttype]. It is isometric to 
 
 ### <a name="recordsyntax"></a> Records
 
-Another way of defining a product type with the convenience of automatically-generated accessor functions, Haskell has _record_ syntax:
+There is another way of defining a product type with the added convenience of automatically-generated accessor functions. This is Haskell's _record_ syntax:
 
 ```haskell
 data Colour = RGB { red :: Int, green :: Int, blue :: Int }
