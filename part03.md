@@ -199,7 +199,7 @@ This will output `255`.
 
 ### Exhaustiveness of pattern matches
 
-This example illustrates another important aspect of pattern matching, namely _exhaustiveness_ of our pattern matching. Let's change our `main` function to the following to illustrate this:
+This example illustrates another important aspect of pattern matching, namely _exhaustiveness_. Let's change our `main` function to the following to illustrate this:
 
 ```haskell
 main :: IO ()
