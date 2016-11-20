@@ -285,7 +285,7 @@ Well, it turns out that this can be detected at compile time by enabling the `in
             Blue
 ```
 
-When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line, setting `ghc-options` in your project's [.cabal][cabaluserguide] or by inserting a "pragma" into the top of a source file as follows:
+When compiling source files, the same can be achieved by passing `-fwarn-incomplete-patterns` on the GHC command line, setting `ghc-options` in your project's [.cabal][cabaluserguide] file or by inserting a "pragma" into the top of a source file as follows:
 
 ```haskell
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
