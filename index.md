@@ -4,6 +4,8 @@ An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
 This course will build up enough knowledge and understanding of the Haskell programming language to tackle a real-world problem&mdash;something not difficult but not completely trivial. The problem I've chosen is one that I've often tackled, specifically web scraping: pulling web pages off the Internet and extract and manipulating numerical and textual data.
 
+I wrote the original web scraper in Python in about two hours. The Haskell version took a wee while longer, clocking it at around eight, but is superior in nearly every respect.
+
 ## Overview
 
 * Will teach the essentials required to write real programs in Haskell
