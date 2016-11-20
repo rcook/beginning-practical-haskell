@@ -70,7 +70,7 @@ There is another way of defining a product type with the added convenience of au
 data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 ```
 
-Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCI and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
+Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCi and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
 ## Parametric polymorphism
 
@@ -270,7 +270,7 @@ We'll definitely talk more about `Maybe` later. Suffice it to say for now that i
 
 Something about this may irk you. Given that the compiler has full information about a given type's data constructor (at least in code defined in the same module as the type), surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.
 
-Well, it turns out that this can be detected at compile time by enabling the `incomplete-patterns` warning. From GHCI, this can be done using the `:set` command:
+Well, it turns out that this can be detected at compile time by enabling the `incomplete-patterns` warning. From GHCi, this can be done using the `:set` command:
 
 ```ghci
 λ> :set -Wincomplete-patterns

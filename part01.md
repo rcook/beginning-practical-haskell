@@ -89,14 +89,14 @@ stack new hello-world --resolver=lts-7.8
 cd hello-world
 ```
 
-Next we'll start up GHCI, the interactive Haskell interpreter:
+Next we'll start up GHCi, the interactive Haskell interpreter:
 
 ```bash
 stack ghci
 ```
 
 * GHC is the Glasgow Haskell Compiler
-* GHCI is GHC _Interactive_
+* GHCi is GHC _Interactive_
 * It's GHC's read-evaluate-print-loop (REPL)
 * I've configured my prompt to display `λ>` but the default is likely to be `Prelude>` or `Main>`
 * Let's assign some values and evaluate some _expressions_
@@ -112,15 +112,15 @@ Input                           | Output            | Comment
 `λ> z = "hello"`                |                   | Assigns name `z` to value `"hello"`
 `λ> z`                          | `"hello"`         | Evaluates `z` and displays value
 `λ> :t z`                       | `z :: [Char]`     | Shows type of `z`
-`λ> :q`                         |                   | Quits GHCI session
+`λ> :q`                         |                   | Quits GHCi session
 
 Notes:
 
 * We say "assigns name `foo` to `bar`" as opposed to "assigns value `bar` to `foo`"
     * In imperative programming languages `=` or equivalent operators typically perform _assignment_ and the different values can be assigned to existing names from time to time
     * In Haskell, the name `foo` is _defined to be_ the `value` in the equational sense of `=`: it's a definition and this is at the root of [equational reasoning][equationalreasoning]
-* In the absence of type annotations&mdash;which we'll cover later&mdash;GHCI will typically assign the most general type possible to an expression, subject to certain rules
-* GHCI will assign exactly one type to a given expression
+* In the absence of type annotations&mdash;which we'll cover later&mdash;GHCi will typically assign the most general type possible to an expression, subject to certain rules
+* GHCi will assign exactly one type to a given expression
 * Despite the absence of explicit type annotations in this example, the expressions are still strongly and statically typed
 * Type signatures consist of:
     * Optional: one or more constraints to the left of `=>` ([pronounced][pronunciation] "implies")
@@ -142,7 +142,7 @@ z = x + y
 main = print z
 ```
 
-* Most things you type into GHCI are valid lines of code in a Haskell source file
+* Most things you type into GHCi are valid lines of code in a Haskell source file
 * In order to be able to run a program, a Haskell program must have exactly one function named `main` in the `Main` module (or unnamed module) and must have an `IO` type
 * `print` is a function that takes as an argument any value that has an instance of the `Show` type class: we'll talk about type classes more later
 
@@ -152,7 +152,7 @@ Now we can run the program as follows:
 stack runhaskell Hello.hs
 ```
 
-Now we'll change `Hello.hs` to the following to mimic our GHCI example:
+Now we'll change `Hello.hs` to the following to mimic our GHCi example:
 
 ```haskell
 x = 5
@@ -174,21 +174,21 @@ Hello.hs:4:1: error:
                  Hello.hs:4:1
 ```
 
-## Differences between GHC and GHCI
+## Differences between GHC and GHCi
 
 There are naturally many differences between the interactive and non-interactive Haskell environments. The most important ones for our immediate purposes are:
 
-* Names can be _shadowed_ in GHCI: i.e. we can introduce a new `z` that _hides_ the previous definition with name `z`
+* Names can be _shadowed_ in GHCi: i.e. we can introduce a new `z` that _hides_ the previous definition with name `z`
 * In Haskell source files, a top-level name can be used exactly once
 * Shadowing is allowed within Haskell source files, specifically within nested lexical scopes
-* In fact, that is exactly what's happening in GHCI: each line entered at the prompt is effectively a new lexical scope nested within the previous lexical scope
+* In fact, that is exactly what's happening in GHCi: each line entered at the prompt is effectively a new lexical scope nested within the previous lexical scope
 
 # A more realistic example
 
 *[Sources: [1][haskellnumbers]]*
 
 * Let's add some type annotations
-* Start up GHCI again
+* Start up GHCi again
 
 ```ghci
 λ> x :: Integer; x = 5

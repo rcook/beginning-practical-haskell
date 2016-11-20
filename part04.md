@@ -41,7 +41,7 @@ So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()`
 
 ### `>>=` a.k.a. "bind"
 
-Here are more details of `IO` in GHCI:
+Here are more details of `IO` in GHCi:
 
 ```ghci
 λ> :i IO
@@ -83,7 +83,7 @@ Since `IO` has an instance for `Monad`, it provides an implementation of method 
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
-Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCI and Haskell source code.
+Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCi and Haskell source code.
 
 Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`. We can try out `print` by itself:
 
@@ -98,7 +98,7 @@ print 5 :: IO ()
 print "hello" :: IO ()
 ```
 
-Note that `print 5` and `print "hello"` are two separate statements in GHCI. In "full" Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using `>>=`.
+Note that `print 5` and `print "hello"` are two separate statements in GHCi. In "full" Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using `>>=`.
 
 Given an `IO ()`, we need a function that takes unit and returns `IO b` where `b` can be unit too. We can build such a function that ignores its first argument and evaluates to `print "hello"`. We'll call it `f` for now:
 
@@ -160,7 +160,7 @@ We have successfully demonstrated several functionally equivalent ways of using 
 
 ### The `read` function
 
-Let's do some more exploring using GHCI:
+Let's do some more exploring using GHCi:
 
 ```ghci
 λ> :t read
