@@ -121,7 +121,7 @@ Notes:
     * In Haskell, the name `foo` is _defined to be_ the `value` in the equational sense of `=`: it's a definition and this is at the root of [equational reasoning][equationalreasoning]
 * In the absence of type annotations&mdash;which we'll cover later&mdash;GHCI will typically assign the most general type possible to an expression, subject to certain rules
 * GHCI will assign exactly one type to a given expression
-* Despite the absence of explicit type annotations in this example, the expressions are strongly statically typed
+* Despite the absence of explicit type annotations in this example, the expressions are still strongly and statically typed
 * Type signatures consist of:
     * Optional: one or more constraints to the left of `=>` ([pronounced][pronunciation] "implies")
     * Types and [_type classes_][typeclasses] always spelt with initial upper-case letter
