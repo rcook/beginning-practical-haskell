@@ -8,7 +8,6 @@ Below are Haskell's primitive data types. These cannot be defined in Haskell its
 
 Name        | Description
 :-----------|:-----------
-`Bool`      | [Nullary type constructor][nullaryconstructor] with two nullary data constructors `True` and `False` representing Boolean truth values
 `Char`      | An enumeration whose values represent Unicode characters
 `Integer`   | Arbitrary-precision integer
 `Int`       | Fixed-precision integer, typically 64-bit signed integer on 64-bit platforms
@@ -99,6 +98,7 @@ We now have enough knowledge to look into some other _predefined_ Haskell types 
 
 Name                       | Definition                  | Description
 :--------------------------|:----------------------------|:-----------
+`Bool`                     | `data Bool = True | False`  | A [nullary type constructor][nullaryconstructor] with two nullary data constructors `True` and `False` representing Boolean truth values
 `String`                   | `type String = [Char]`      | A list of Unicode characters
 `Ratio a`                  | _n/a_                       | A rational number represented as a pair of primitive numeric values
 `Complex a`                | _n/a_                       | A complex floating-point number represented as a pair of primitive numeric values
