@@ -83,7 +83,7 @@ Since `IO` has an instance for `Monad`, it provides an implementation of method 
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
-Note that functions incorporating symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCi and Haskell source code.
+Note that functions with special symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCi and Haskell source code.
 
 Specializing from `Monad` to `IO`, `>>=` is a function that takes `IO a`, where `a` is a type variable, a function from `a` to `IO b` and evaluates to an `IO b`. We can try out `print` by itself:
 
