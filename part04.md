@@ -114,7 +114,7 @@ We can then combine it with `print 5` by passing it as the second operand to `>>
 "hello"
 ```
 
-Our function `f` is great. However, we use it exactly once and never need to refer to it by name. So, let's use a lambda instead. Let's start by defining a alternative version of `f`, named `f'`, which we assign to such an anonymous function:
+Our function `f` is great. However, we use it exactly once and should, therefore, never need to refer to it by name. So, let's use a lambda instead. Let's start by defining a alternative version of `f`, named `f'`, to which we'll assign the equivalent anonymous function:
 
 ```ghci
 λ> f' :: () -> IO (); f' = \_ -> print "hello"
