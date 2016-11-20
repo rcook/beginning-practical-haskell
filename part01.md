@@ -5,7 +5,7 @@
 * Purely functional programming language
 * Non-strict
 * Statically typed
-* Call-by-value
+* Call-by-need
 * Whitespace-sensitive syntax
 * Memory managed using garbage collector
 * Naming conventions
@@ -33,11 +33,11 @@
 
 ![Simon Peyton Jones Region of Abysmal Pain Venn diagram][spjvenn]
 
-## Call by value
+## Call-by-need
 
 > ***TODO:***
 >
-> * Describe call by value etc.
+> * Describe call-by-need etc.
 
 ## Whitespace-sensitive syntax
 
