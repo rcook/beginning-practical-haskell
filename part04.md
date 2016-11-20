@@ -167,7 +167,7 @@ Let's do some more exploring using GHCi:
 read :: Read a => String -> a
 ```
 
-This takes `String` and returns `a` which is subject to the `Read a` constraint. [`Read`][readdoc] is a type class that supports reading a value from a `String`. Haskell's primitive types have instances of `Read`. Since this is a polymorphic function, we need a type annotation to choose a specific instance of it:
+This takes `String` and returns `a` which is subject to the `Read a` constraint. [`Read`][readdoc] is a type class that supports reading a value from a `String`. Haskell's primitive types have instances of `Read`. Since this is function is polymorphic in its return type, we'll need a type annotation to choose a specific instance of it:
 
 ```ghci
 λ> :t read :: String -> Integer
