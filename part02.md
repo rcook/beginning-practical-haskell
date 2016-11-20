@@ -111,7 +111,7 @@ $= (y \mapsto 5 ^ 2 + y ^ 2)(2)$<br>
 $= 5 ^ 2 + 2 ^ 2$<br>
 $= 29$
 
-It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical.
+It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical. Furthermore, the additional steps required to evaluate curried functions can be trivially optimized away by the compiler.
 
 Finally, these anonymous functions can be rewritten as _lambda forms_:
 
