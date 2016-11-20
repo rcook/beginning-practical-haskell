@@ -204,7 +204,7 @@ We've already discussed function application. At this point it's worth mentionin
 5.0
 ```
 
-This doesn't look like much, but when dealing with multiple levels of nested parentheses, `$` can eliminate a lot of this line noise and go a long towards making the code look less [Lisp-like][seaofparentheses]. When you use parentheses, `$` or a combination of the two is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.
+This doesn't look like much, but when dealing with multiple levels of nested parentheses, `$` can eliminate much of this line noise and go a long towards making the code look less [Lisp-like][seaofparentheses]. When you use parentheses, `$` or a combination of the two is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.
 
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
