@@ -31,6 +31,8 @@
 * Catch many kinds of programmer error at _compile time_
 * Expressive type system allows programmer lots of power and flexibility
 
+![Simon Peyton Jones Region of Abysmal Pain Venn diagram][spjvenn]
+
 ## Call by value
 
 > ***TODO:***
@@ -245,5 +247,6 @@ main = print z
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
 [pronunciation]: https://wiki.haskell.org/Pronunciation
+[spjvenn]: images/region-of-abysmal-pain.png
 [typeclasses]: https://www.haskell.org/tutorial/classes.html
 [wikipediahaskell]: https://en.wikipedia.org/wiki/Haskell_(programming_language)
