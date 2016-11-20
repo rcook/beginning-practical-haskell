@@ -220,7 +220,7 @@ scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness
 
 Well, that's interesting but makes sense. The pattern in the definition of `lineRedness` cannot match the value `CMYK 0.5 0.5 0.5 0.0` since it was not constructed using the `RGB` data constructor.
 
-Such a problem can be addressed in one of [several ways][haskellerrorreporting]:
+This class of issue can be addressed in one of [several ways][haskellerrorreporting]:
 
 * Provide a pattern match on the `CMYK` data constructor: this would require a valid conversion from the `CMYK` representation of a colour to `RGB` in order to provide a red component
 * Provide a fall-through case using `_` to match any `Colour` value after the `RGB` match: this would require the existence of some "default" notion of line redness
