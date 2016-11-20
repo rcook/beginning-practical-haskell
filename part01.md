@@ -83,7 +83,7 @@ control constructs where other languages require language-level syntax
 First you'll need to start your terminal or command prompt. Once you've done that, we'll create a brand-new Stack project named `hello-world`:
 
 ```bash
-stack new hello-world --resolver=lts-7.5
+stack new hello-world --resolver=lts-7.8
 cd hello-world
 ```
 
