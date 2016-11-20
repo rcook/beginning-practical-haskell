@@ -143,7 +143,7 @@ main = print z
 ```
 
 * Most things you type into GHCI are valid lines of code in a Haskell source file
-* In order to be able to run a program, a Haskell program must have exactly one function named `main`
+* In order to be able to run a program, a Haskell program must have exactly one function named `main` in the `Main` module (or unnamed module) and must have an `IO` type
 * `print` is a function that takes as an argument any value that has an instance of the `Show` type class: we'll talk about type classes more later
 
 Now we can run the program as follows:
