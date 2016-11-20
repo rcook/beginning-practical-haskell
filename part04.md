@@ -10,7 +10,7 @@ Mathematical functions:
 * Cannot read or mutate global state
 * Can only return values that are functions of their arguments or other pure functions
 
-Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract `IO` type. The model is functionally equivalent to the continuation-passing style, though few people actually explicitly this out as such. We'll build up step-by-step to full-blown I/O.
+Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract `IO` type. The model is functionally equivalent to the continuation-passing style, though few people actually explicitly use this particular terminology. We'll build up step-by-step to full-blown I/O.
 
 ## The Prelude
 
