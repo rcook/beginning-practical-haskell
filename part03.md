@@ -176,11 +176,11 @@ Patterns can be matched both in function argument position and in `case` express
 data Point = Point { x :: Int, y :: Int }
 
 data Line = Line
-  { start :: Point
-  , end :: Point
-  , thickness :: Int
-  , colour :: Colour
-  }
+    { start :: Point
+    , end :: Point
+    , thickness :: Int
+    , colour :: Colour
+    }
 
 lineRedness :: Line -> Int
 lineRedness (Line _ _ _ (RGB r _ _)) = r
