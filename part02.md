@@ -159,7 +159,7 @@ So far we've applied only single functions to single values. In practice, we're 
 5.0
 ```
 
-We're apply a function `squareSumWith3` to value `4` and then feeding its value into the input of the function `sqrt`. This kind of chaining or _composition_ of functions is so common that it gets the second most unassuming operator in the language after whitespace, e.g. `.`. We can rewrite this last line as follows:
+We're applying a function `squareSumWith3` to value `4` and then feeding its value into the input of the function `sqrt`. This kind of chaining or _composition_ of functions is so common that it gets the second most unassuming operator in the language after whitespace, e.g. `.`. We can rewrite this last line as follows:
 
 ```ghci
 λ> (sqrt . squareSumWith3) 4
@@ -195,7 +195,7 @@ Again, this example is totally contrived and we'll build up to more realistic us
 
 ## More function application
 
-We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: `$`. This is semantically identical to our existing function application model, using whitespace, but we different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:
+We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: `$`. This is semantically identical to our existing function application model, using whitespace, but with different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:
 
 ```ghci
 λ> (sqrt . squareSumWith3) 4
