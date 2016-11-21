@@ -9,7 +9,9 @@ instructions to get a working Haskell development environment
 
 ## Generating the course notes
 
-You'll need [Stack][stack] and [Pandoc][pandoc]:
+You'll only care about this section if you want to regenerate the course notes
+in HTML, PDF, LaTeX or Microsoft Word format. For this you'll need
+[Stack][stack] and [Pandoc][pandoc]:
 
 ```bash
 stack install pandoc
