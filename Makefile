@@ -4,8 +4,8 @@ PANDOCOPTS := \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo \
-	-c buttondown.css \
-	--self-contained
+  -c buttondown.css \
+  --self-contained
 BASENAME := notes
 INPUTFILES := \
   index.md \
