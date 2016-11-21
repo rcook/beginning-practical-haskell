@@ -4,7 +4,8 @@ An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
 ## Course contents
 
-[Start here](index.md)
+[Start here](index.md): this links to the course material as well as the setup
+instructions to get a working Haskell development environment
 
 ## Generating the course notes
 

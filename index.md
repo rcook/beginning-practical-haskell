@@ -17,15 +17,18 @@ I wrote the original web scraper in Python in about two hours. The Haskell versi
 
 * This course will use [Stack][stack]
 * Please follow [setup instructions][stackhowto] to install Stack
-* Make sure the example in the setup guide works:
+* Make sure the following example based on the setup guide works:
 
 ```bash
-stack new my-project
+stack new my-project --resolver=lts-7.8
 cd my-project
 stack setup
 stack build
 stack exec my-project-exe
 ```
+
+If everything is working as expected, the last line should yield the output
+`someFunc`.
 
 * This course will use the [LTS 7.8][lts78] snapshot of Stack which uses [GHC 8.0.1][ghc801]
 
