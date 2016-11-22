@@ -193,9 +193,6 @@ Here's `getline` in all its glory:
 getLine :: IO String
 ```
 
-> ***TODO:***
-> Mention `hFlush` function otherwise resulting program will be useless!
-
 ### The `putStr` function
 
 This one is straightforward:
@@ -207,23 +204,56 @@ putStr :: String -> IO ()
 
 This is simply `putStrLn` without the extra line ending.
 
+### The `hFlush` function
+
+By itself, `putStr` outputs the given characters to the standard output stream
+on the terminal but does not, default, flush the stream. Just like using
+standard output from a C program, we'll need to flush the buffer prior to
+requesting input from the user. In C/C++ we'd have to do the following:
+
+```c
+printf("Buffered output: ");
+fflush(stdout);
+```
+
+Similarly, in Haskell we'll need to use `hFlush`:
+
+
+```ghci
+λ> :t hFlush
+hFlush :: Handle -> IO ()
+```
+
+The handle itself, `stdout`, is in the `System.IO` namespace, so you'll need to
+import this namespace. This is our first use of the `import` keyword in Haskell
+which we'll run into more in the future:
+
+```haskell
+import System.IO
+```
+
 ### Combine them all
 
 This is what we're going to do:
 * Print a prompt to the terminal (using `putStr`)
+* Flush the standard output buffer (using `hFlush`)
 * Get a string from the keyboard (using `getLine`)
 * Convert the string to an integer (using `read`/`readInteger`)
 * Multiply the integer by 2 (using `*`)
 * Print out the result (using `print`)
 
-The resulting program will be a single expression:
+The resulting program will consist of a `main` function itself consisting of a
+single expression:
 
 ```haskell
+import System.IO
+
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
 main = putStr "Enter a number and I'll double it: "
+    >>= \_ -> hFlush stdout
     >>= \_ -> getLine
     >>= \l -> print (2 * readInteger l)
 ```
@@ -260,3 +290,4 @@ Did you mention something about continuation passing?
 
 [cps]: https://en.wikipedia.org/wiki/Continuation-passing_style
 [readdoc]: https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html
+[stdoutbuffering]: http://stackoverflow.com/questions/1716296/why-does-printf-not-flush-after-the-call-unless-a-newline-is-in-the-format-strin

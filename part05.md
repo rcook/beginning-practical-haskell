@@ -3,13 +3,17 @@
 Let's look at a more complicated example:
 
 ```haskell
+import System.IO
+
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
 main = putStr "Enter x: "
+    >>= \_ -> hFlush stdout
     >>= \_ -> getLine
     >>= \xStr -> putStr "Enter y: "
+    >>= \_ -> hFlush stdout
     >>= \_ -> getLine
     >>= \yStr ->
         let x = readInteger xStr
@@ -26,14 +30,18 @@ This program displays a prompt and reads in a line of input twice. It then conve
 I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this does not look pleasant. Let's try to do something about that. First, let's reflow the code:
 
 ```haskell
+import System.IO
+
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
 main =
     putStr "Enter x: " >>= \_ ->
+    hFlush stdout >>= \_ ->
     getLine >>= \xStr ->
     putStr "Enter y: " >>= \_ ->
+    hFlush stdout >>= \_ ->
     getLine >>= \yStr ->
     let x = readInteger xStr
         y = readInteger yStr
@@ -42,7 +50,7 @@ main =
     putStrLn $ "z = " ++ show z
 ```
 
-That's a bit better. There's still a proliferation of `>>=` operators and lambdas. What next? Let's take a look at another method provided by `Monad`, namely `>>` or "then" which is the second "monadic sequencing operator" with the following type signature:
+That's marginally better. There's still a proliferation of `>>=` operators and lambdas. What next? Let's take a look at another method provided by `Monad`, namely `>>`, pronounced "then". This is the second "monadic sequencing operator" with the following type signature:
 
 ```ghci
 λ> :t (>>)
@@ -52,14 +60,18 @@ That's a bit better. There's still a proliferation of `>>=` operators and lambda
 This is a simpler version of `>>=` which can be used when the value returned by the previous action is to be ignored. In this program, we twice use `putStr` followed by `getLine` which ignores the value yielded by `putStr` using `_`. We can, therefore, rewrite the program as follows:
 
 ```haskell
+import System.IO
+
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
 main =
     putStr "Enter x: " >>
+    hFlush stdout >>
     getLine >>= \xStr ->
     putStr "Enter y: " >>
+    hFlush stdout >>
     getLine >>= \yStr ->
     let x = readInteger xStr
         y = readInteger yStr
@@ -68,7 +80,7 @@ main =
     putStrLn $ "z = " ++ show z
 ```
 
-Even better!
+That's another step in the right direction.
 
 This code shape is so common, however, that Haskell introduces special syntax to make it even cleaner. This is known as `do`-notation named after the `do`-keyword used to introduce it.
 
@@ -139,14 +151,18 @@ action3 x1 x2
 Furthermore, these two forms can be combined. With this new knowledge, we can rewrite our original program as follows:
 
 ```haskell
+import System.IO
+
 readInteger :: String -> Integer
 readInteger = read
 
 main :: IO ()
 main = do
     putStr "Enter x: "
+    hFlush stdout
     xStr <- getLine
     putStr "Enter y: "
+    hFlush stdout
     yStr <- getLine
     let x = readInteger xStr
         y = readInteger yStr
