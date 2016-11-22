@@ -172,4 +172,6 @@ main = do
 
 Inside `do`-notation, Haskell also drops the `in` from let-bindings.
 
+What we have left is something that looks suspiciously like a regular, old "imperative" program but with fewer parentheses. Make no mistake, however: this is still program consisting of a `main` function that is the evaluation of a single expression. This all comes down to the guarantees of referential transparency we get from pure functions. Though it looks like a series of statements, this program is desugared to a series of expressions employing the `>>` and `>>=` operators. In the case of `IO`'s implementation of these operators, we have functional dependencies between producers and consumers of `IO`-wrapped values. These subexpressions are, therefore, guaranteed to not be reordered: the resulting code will execute in the expected order. Only subexpressions that do not have such functional dependencies will be amenable to interleaving since the reordering of such evaluation cannot be detected by external observers.
+
 [syntacticsugar]: https://en.wikipedia.org/wiki/Syntactic_sugar
