@@ -57,7 +57,7 @@ That's marginally better. There's still a proliferation of `>>=` operators and l
 (>>) :: Monad m => m a -> m b -> m b
 ```
 
-This is a simpler version of `>>=` which can be used when the value returned by the previous action is to be ignored. In this program, we twice use `putStr` followed by `getLine` which ignores the value yielded by `putStr` using `_`. We can, therefore, rewrite the program as follows:
+This is a simpler version of `>>=` which can be used when the value returned by the previous action is to be ignored. In this program, we twice use `putStr` followed by `hFlush` and `getLine` which both ignore the value yielded by the preceding action using `_`. We can, therefore, rewrite the program as follows:
 
 ```haskell
 import System.IO
