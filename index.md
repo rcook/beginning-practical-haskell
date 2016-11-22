@@ -13,7 +13,7 @@ I wrote the original web scraper in Python in about two hours. The Haskell versi
 * Will enable the student to use the tools needed to build real programs and consume Haskell libraries from third parties
 * Intend to complement other courses offered by [Seattle Area Haskell Users' Group][seahug]
 
-## Prerequisites
+## <a name="prerequisites"></a>Prerequisites
 
 * This course will use [Stack][stack]
 * Please follow [setup instructions][stackhowto] to install Stack
