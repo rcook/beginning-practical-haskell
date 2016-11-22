@@ -207,7 +207,7 @@ This is simply `putStrLn` without the extra line ending.
 ### The `hFlush` function
 
 By itself, `putStr` outputs the given characters to the standard output stream
-on the terminal but does not, default, flush the stream. Just like using
+on the terminal but does not, by default, flush the stream. Just like using
 standard output from a C program, we'll need to flush the buffer prior to
 requesting input from the user. In C/C++ we'd have to do the following:
 
