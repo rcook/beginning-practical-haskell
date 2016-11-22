@@ -16,11 +16,12 @@
 	* Functions are first-class objects
 	* Effectively values that can be passed around
 * Pure
-	* Haskell functions more closely resemble mathematical functions
-	* Given any input value, they return the same output
-	* This is _referential transparency_
-	* Typically operate on immutable data
-	* No side effects
+    * Haskell functions more closely resemble mathematical functions
+    * Given any input value, they return the same output
+    * This is _referential transparency_
+    * Typically operate on immutable data
+    * No side effects
+    * Referential transparency means that the compiler is free to do all kinds of optimization such as interleaving and inlining etc. which typically require additional annotations or data flow analysis in compilers for languages such as C++ and Java
 
 ## Strictness
 
