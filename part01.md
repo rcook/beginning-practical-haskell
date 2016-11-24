@@ -62,7 +62,7 @@
 * Types and type classes start with initial capital letter
 * Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
 * Punctuation such as `'` allowed
-* Some special suffixes such as `M` and `M_` etc.
+* Some common, but not mandatory, suffixes exist including `M` and `M_` etc., e.g. `foldM`, `mapM` and `forM_`
 * Operators are no different from functions except their names are spelt with symbol characters and can be used infix
 * Backticks can be used to use regular functions infix while parentheses can be employed to use operators in function-style prefix position
 * Type and data constructors are separate namespaces and can, therefore, share names
