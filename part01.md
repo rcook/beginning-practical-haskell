@@ -46,7 +46,7 @@
 ## Whitespace-sensitive syntax
 
 * Like Python, Haskell is an [off-side rule language][offsiderule]
-* Most of the time the require indentation is what feels right
+* Most of the time the required indentation is what feels right
 
 ## Garbage collection
 
