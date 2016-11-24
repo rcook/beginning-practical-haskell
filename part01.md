@@ -23,9 +23,13 @@
     * No side effects
     * Referential transparency means that the compiler is free to do all kinds of optimization such as interleaving and inlining etc. which typically require additional annotations or data flow analysis in compilers for languages such as C++ and Java
 
-## Strictness
+## Non-strictness
 
 * Function arguments not evaluated unless they're actually used
+* A strict function is one which always evaluates all of its arguments
+* Non-strictness allows lazy evaluation
+* Haskell has annotations for strict evaluation where necessary
+* Lazy evaluation allows control structures to be built from user-defined functions
 
 ## Static typing
 
@@ -36,41 +40,39 @@
 
 ## Call-by-need
 
-> ***TODO:***
->
-> * Describe call-by-need etc.
+* Effectively call-by-name with memoization
+* _If a function is evaluated_ its value is stored for future uses
 
 ## Whitespace-sensitive syntax
 
-> ***TODO:***
->
-> * Describe whitespace sensitivity etc.
+* Like Python, Haskell is an [off-side rule language][offsiderule]
+* Most of the time the require indentation is what feels right
 
 ## Garbage collection
 
-> ***TODO:***
->
-> Describe garbage collection etc.
+* Haskell computations can produce a lot of memory garbage
+* Partly a consequence of non-strict evaluation which involves accumulation of _thunks_ in memory
+* Also, partly a result of immutability
+* However, the GHC runtime's GC is highly tuned for this behaviour
+* Manual management of external resources such as externally allocated memory or resource handles is possible
 
 ## Naming conventions
 
-> ***TODO:***
->
-> Mandatory naming conventions:
-> * Values and type variables start with initial lower-case letter
-> * Types and type classes start with initial capital letter
-> * Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
-> * Punctuation such as `'` allowed
-> * Some special suffixes such as `M` and `M_` etc.
-> * Mention infix operators, backticks etc.
-> * Type and data constructors can have same names
+* Values and type variables start with initial lower-case letter
+* Types and type classes start with initial capital letter
+* Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
+* Punctuation such as `'` allowed
+* Some special suffixes such as `M` and `M_` etc.
+* Operators are no different from functions except their names are spelt with symbol characters and can be used infix
+* Backticks can be used to use regular functions infix while parentheses can be employed to use operators in function-style prefix position
+* Type and data constructors are separate namespaces and can, therefore, share names
+* It is not uncommon to see type constructors with identically named data constructors, which we'll see later
 
 ## What else?
 
 * Haskell has a clean, minimal syntax
 * Much of this is a consequence of some of these other characteristics
-* Example: non-strict evaluation allows us to _build_ certain flow
-control constructs where other languages require language-level syntax
+* Example: non-strict evaluation allows us to _build_ certain flow control constructs where other languages require language-level syntax
 * To a first approximation, Haskell programs consist of two elements:
     * Definitions
     * Expressions
@@ -247,6 +249,7 @@ main = print z
 [evaluation]: http://dev.stephendiehl.com/fun/005_evaluation.html
 [haskellnumbers]: https://www.haskell.org/tutorial/numbers.html
 [haskellwikifp]: https://wiki.haskell.org/Functional_programming
+[offsiderule]: https://en.wikipedia.org/wiki/Off-side_rule
 [pronunciation]: https://wiki.haskell.org/Pronunciation
 [spjvenn]: images/region-of-abysmal-pain.png
 [typeclasses]: https://www.haskell.org/tutorial/classes.html
