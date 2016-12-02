@@ -48,6 +48,7 @@ If everything is working as expected, the last line should yield the output
     * `do`-notation
 * [Part 6](part06.md)
     * Other
+* [Questions and answers](q-and-a.md)
 
 > ***TODO:***
 >
