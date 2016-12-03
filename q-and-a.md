@@ -9,3 +9,7 @@ My hand-wavy answer to this was "It doesn't matter" since referential transparen
 My claim is that Haskell programming language specification does not go into this and an implementation is free to deal with this however it sees fit.
 
 I will look into the details of this and get back to you when I have a more satisfactory answer.
+
+[Here][mainisusuallyafunction]'s a good source.
+
+[mainisusuallyafunction]: http://mainisusuallyafunction.blogspot.com/2011/10/thunks-and-lazy-blackholes-introduction.html
