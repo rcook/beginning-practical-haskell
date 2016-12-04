@@ -12,7 +12,10 @@ INPUTFILES := \
   part01.md \
   part02.md \
   part03.md \
-  part04.md
+  part04.md \
+  part05.md \
+  part06.md \
+  q-and-a.md
 
 .PHONY: all
 all: clean ${OUTDIR}/${BASENAME}.docx ${OUTDIR}/${BASENAME}.html ${OUTDIR}/${BASENAME}.pdf ${OUTDIR}/${BASENAME}.tex
