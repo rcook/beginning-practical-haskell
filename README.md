@@ -4,14 +4,13 @@ An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
 ## Course contents
 
-[Start here](index.md): this links to the course material as well as the setup
-instructions to get a working Haskell development environment
+The course notes are intended to be rendered into a final output format using [Pandoc][pandoc] as described [below](#generatingcoursenotes). You can also [view the content directly in GitHub](index.md), but note that this is only an approximation to the Pandoc output. GitHub does not, for example, render MathJax/LaTeX markup and so some of the mathematics and other advanced markup features in this course may only be viewable in its intended form in the Pandoc output.
 
-## Generating the course notes
+## <a name="generatingcoursenotes"><a> Generating the course notes
 
-You'll only care about this section if you want to regenerate the course notes
-in HTML, PDF, LaTeX or Microsoft Word format. For this you'll need
-[Stack][stack] and [Pandoc][pandoc]:
+To regenerate the course notes in HTML, PDF, LaTeX or Microsoft Word format, you'll need to [install Pandoc][pandocinstall]. This is probably the easiest method, though I haven't tried it myself.
+
+If you have a working [Stack][stack] installation, you can install Pandoc this way. This is what I do:
 
 ```bash
 stack install pandoc
@@ -19,11 +18,15 @@ stack install pandoc
 
 ### Linux/OS X
 
+To build HTML/PDF/LaTeX/Word output files:
+
 ```bash
 make
 ```
 
 ### Windows
+
+To build HTML/PDF/LaTeX/Word output files:
 
 ```cmd
 .\make.cmd
@@ -33,8 +36,7 @@ make
 
 [![Creative Commons Licence][cclicenceimage]][cclicence]
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Licence][cclicence]. Code projects are separately released under the
-[MIT License][mitlicense].
+This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Licence][cclicence]. Code projects are separately released under the [MIT License][mitlicense].
 
 Copyright &copy; 2016, Richard Cook
 
@@ -42,5 +44,6 @@ Copyright &copy; 2016, Richard Cook
 [cclicenceimage]: https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png
 [mitlicense]: https://opensource.org/licenses/MIT
 [pandoc]: http://pandoc.org/
+[pandocinstall]: http://pandoc.org/installing.html
 [rcookdotorg]: http://rcook.org/
 [stack]: https://docs.haskellstack.org/
