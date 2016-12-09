@@ -123,6 +123,7 @@ Input                           | Output            | Comment
 `λ> z = "hello"`                |                   | Assigns name `z` to value `"hello"`
 `λ> z`                          | `"hello"`         | Evaluates `z` and displays value
 `λ> :t z`                       | `z :: [Char]`     | Shows type of `z`
+`λ> :t (+)`											| `(+) :: Num a => a -> a -> a` | Shows type of `+` operator
 `λ> :q`                         |                   | Quits GHCi session
 
 Notes:
