@@ -129,6 +129,15 @@ Let's convert these to `Integer` and `Int`:
 
 I was somewhat disappointed by some of these behaviours to be honest. However, I expect that this is roughly equivalent to how a C++ compiler would behave. If these special values, and other unrepresentable values, are important to the correct running of the program, the [`RealFloat`][realfloat] type class offers the full array of helper functions such as `isNaN` and `isInfinite` that you'd expect.
 
+## Q. Can I view the history of GHCi commands?
+
+GHCi offers `:back`, `:forward`, `:trace`, `:history` commands. There is also the `~/.ghc/ghci_history` file that retains a log of your GHCi commands.
+
+## TODO
+
+* Shadowing of GHCi bindings
+* Whitespace for scopes etc.
+
 [convertingnumbers]: https://wiki.haskell.org/Converting_numbers
 [ghc]: https://www.haskell.org/ghc/
 [ghcapi]: https://wiki.haskell.org/GHC/As_a_library
