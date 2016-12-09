@@ -88,9 +88,17 @@
 First you'll need to start your terminal or command prompt. Once you've done that, we'll create a brand-new Stack project named `hello-world`:
 
 ```bash
-stack new hello-world --resolver=lts-7.8
+stack new hello-world simple --resolver=lts-7.8
 cd hello-world
 ```
+
+The `simple` template is one of the simplest-possible Haskell projects: a project with a single executable target with the same name as the project itself, i.e. `hello-world` in this case. It consists of the following:
+
+* `LICENSE`: a licence file (BSD-compatible, by default)
+* `Setup.hs`: a Haskell program used to pull in and build external project dependencies such as native libraries etc.
+* `hello-world.cabal`: the Cabal file, which is akin to a project file in Visual Studio etc.: this defines various metadata for the project including an `executable` target
+* `src/Main.hs`: a simple starter source file
+* `stack.yaml`: a Stack-specific configuration file
 
 Next we'll start up GHCi, the interactive Haskell interpreter:
 
