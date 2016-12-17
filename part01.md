@@ -204,7 +204,7 @@ There are naturally many differences between the interactive and non-interactive
 
 ```ghci
 λ> x :: Integer; x = 5
-λ> y :: Integer; x = 6
+λ> y :: Integer; y = 6
 λ> z :: Integer; z = x + y
 λ> z
 11
