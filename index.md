@@ -20,11 +20,11 @@ I wrote the original web scraper in Python in about two hours. The Haskell versi
 * Make sure the following example based on the setup guide works:
 
 ```bash
-stack new my-project simple --resolver=lts-7.8
-cd my-project
+stack new hello-world simple --resolver=lts-7.8
+cd hello-world
 stack setup
 stack build
-stack exec my-project-exe
+stack exec hello-world
 ```
 
 If everything is working as expected, the last line should yield the output
