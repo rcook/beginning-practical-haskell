@@ -2,6 +2,9 @@
 
 An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
+* [View course notes][notes]
+* [View GitHub repo][repo]
+
 This course will build up enough knowledge and understanding of the Haskell programming language to tackle a real-world problem&mdash;something not difficult but not completely trivial. The problem I've chosen is one that I've often tackled, specifically web scraping: pulling web pages off the Internet and extract and manipulating numerical and textual data.
 
 I wrote the original web scraper in Python in about two hours. The Haskell version took a wee while longer, clocking it at around eight, but is superior in nearly every respect.
@@ -88,7 +91,9 @@ If everything is working as expected, the last line should yield the output
 
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts78]: https://www.stackage.org/lts-7.8
+[notes]: https://rcook.github.io/beginning-practical-haskell
 [rcookdotorg]: http://rcook.org/
+[repo]: https://github.com/rcook/beginning-practical-haskell
 [seahug]: http://seattlehaskell.org/
 [stack]: https://docs.haskellstack.org/
 [stackhowto]: https://docs.haskellstack.org/en/stable/README/#how-to-install
