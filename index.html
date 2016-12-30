@@ -4,7 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <meta name="author" content="Richard Cook" />
+  <title>Beginning Practical Haskell</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -46,7 +47,27 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
 </head>
 <body>
-<h1 id="beginning-practical-haskell">Beginning Practical Haskell</h1>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="part01.html">Introduction</a> |
+  <a href="part02.html">Functions</a> |
+  <a href="part03.html">Types</a> |
+  <a href="part04.html">I/O</a> |
+  <a href="part05.html">Ugly code</a> |
+  <a href="part06.html">Other</a> |
+  <a href="q-and-a.html">Q&amp;A</a>
+</nav>
+<div id="header">
+<h1 class="title">Beginning Practical Haskell</h1>
+<h2 class="author">Richard Cook</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#overview"><span class="toc-section-number">1</span> Overview</a></li>
+<li><a href="#prerequisites"><span class="toc-section-number">2</span> <a name="prerequisites"></a> Prerequisites</a></li>
+<li><a href="#contents"><span class="toc-section-number">3</span> Contents</a></li>
+</ul>
+</div>
 <p>An introductory Haskell programming course by <a href="http://rcook.org/">Richard Cook</a></p>
 <ul>
 <li><a href="https://rcook.github.io/beginning-practical-haskell">View course notes</a></li>
@@ -54,14 +75,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>This course will build up enough knowledge and understanding of the Haskell programming language to tackle a real-world problem—something not difficult but not completely trivial. The problem I've chosen is one that I've often tackled, specifically web scraping: pulling web pages off the Internet and extract and manipulating numerical and textual data.</p>
 <p>I wrote the original web scraper in Python in about two hours. The Haskell version took a wee while longer, clocking it at around eight, but is superior in nearly every respect.</p>
-<h2 id="overview">Overview</h2>
+<h1 id="overview"><span class="header-section-number">1</span> Overview</h1>
 <ul>
 <li>Will teach the essentials required to write real programs in Haskell</li>
 <li>Will only dig into mathematical underpinnings as needed to understand real-world programming problems</li>
 <li>Will enable the student to use the tools needed to build real programs and consume Haskell libraries from third parties</li>
 <li>Intend to complement other courses offered by <a href="http://seattlehaskell.org/">Seattle Area Haskell Users' Group</a></li>
 </ul>
-<h2 id="prerequisites"><a name="prerequisites"></a> Prerequisites</h2>
+<h1 id="prerequisites"><span class="header-section-number">2</span> <a name="prerequisites"></a> Prerequisites</h1>
 <ul>
 <li>This course will use <a href="https://docs.haskellstack.org/">Stack</a></li>
 <li>Please follow <a href="https://docs.haskellstack.org/en/stable/README/#how-to-install">setup instructions</a> to install Stack</li>
@@ -76,7 +97,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>This course will use the <a href="https://www.stackage.org/lts-7.8">LTS 7.8</a> snapshot of Stack which uses <a href="https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html">GHC 8.0.1</a></li>
 </ul>
-<h2 id="contents">Contents</h2>
+<h1 id="contents"><span class="header-section-number">3</span> Contents</h1>
 <ul>
 <li><a href="part01.html">Part 1</a>
 <ul>
@@ -108,7 +129,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <blockquote>
 <p><strong><em>TODO:</em></strong></p>
-<h3 id="library-selection">Library selection</h3>
+<h2 id="library-selection"><span class="header-section-number">3</span> Library selection</h2>
 <ul>
 <li>Making web requests (<code>wreq</code>)</li>
 <li>Parsing HTML</li>
@@ -119,7 +140,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li>Generating CSV or Excel files</li>
 <li>File I/O</li>
 </ul>
-<h3 id="packages-youll-learn-about">Packages you'll learn about</h3>
+<h2 id="packages-youll-learn-about"><span class="header-section-number">3</span> Packages you'll learn about</h2>
 <ul>
 <li>Strings and text:</li>
 <li><code>bytestring</code></li>

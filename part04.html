@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <title>Part 4: I/O</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -46,7 +46,33 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
 </head>
 <body>
-<h1 id="io">I/O</h1>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="part01.html">Introduction</a> |
+  <a href="part02.html">Functions</a> |
+  <a href="part03.html">Types</a> |
+  <a href="part04.html">I/O</a> |
+  <a href="part05.html">Ugly code</a> |
+  <a href="part06.html">Other</a> |
+  <a href="q-and-a.html">Q&amp;A</a>
+</nav>
+<div id="header">
+<h1 class="title">Part 4: I/O</h1>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#the-prelude"><span class="toc-section-number">1</span> The Prelude</a><ul>
+<li><a href="#the-print-function"><span class="toc-section-number">1.1</span> The <code>print</code> function</a></li>
+<li><a href="#a.k.a.-bind"><span class="toc-section-number">1.2</span> <code>&gt;&gt;=</code> a.k.a. &quot;bind&quot;</a></li>
+<li><a href="#the-read-function"><span class="toc-section-number">1.3</span> The <code>read</code> function</a></li>
+<li><a href="#the-getline-function"><span class="toc-section-number">1.4</span> The <code>getLine</code> function</a></li>
+<li><a href="#the-putstr-function"><span class="toc-section-number">1.5</span> The <code>putStr</code> function</a></li>
+<li><a href="#the-hflush-function"><span class="toc-section-number">1.6</span> The <code>hFlush</code> function</a></li>
+<li><a href="#combine-them-all"><span class="toc-section-number">1.7</span> Combine them all</a></li>
+<li><a href="#wait-a-minute"><span class="toc-section-number">1.8</span> Wait a minute!</a></li>
+</ul></li>
+</ul>
+</div>
 <p>Given the title of this course, I'll assume you came here to learn how to write useful programs. Practical programs typically need to interact with the outside world. In the absence of input/output, all your programs can do is warm up your CPU.</p>
 <p>Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world. However, this is fundamentally incompatible with a language such as Haskell which maintains a strong correspondence between its functions and mathematical functions.</p>
 <p>Mathematical functions:</p>
@@ -56,10 +82,10 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li>Can only return values that are functions of their arguments or other pure functions</li>
 </ul>
 <p>Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract <code>IO</code> type. The model is functionally equivalent to the continuation-passing style, though few people actually explicitly use this particular terminology. We'll build up step-by-step to full-blown I/O.</p>
-<h2 id="the-prelude">The Prelude</h2>
+<h1 id="the-prelude"><span class="header-section-number">1</span> The Prelude</h1>
 <p>Haskell's prelude is a module provided by the implementation that defines many standard functions. It is implicitly imported into every Haskell source file, unless this is explicitly disabled. We'll use a few functions from <code>Prelude</code> to explore I/O.</p>
 <p>Our mission is to read a number in from the user, do something to it and then output the result to the terminal.</p>
-<h3 id="the-print-function">The <code>print</code> function</h3>
+<h2 id="the-print-function"><span class="header-section-number">1.1</span> The <code>print</code> function</h2>
 <p>We've already seen this function, but now we'll look at in a little more detail:</p>
 <pre class="ghci"><code>λ&gt; :t print
 print :: Show a =&gt; a -&gt; IO ()</code></pre>
@@ -68,7 +94,7 @@ print :: Show a =&gt; a -&gt; IO ()</code></pre>
 show :: Show a =&gt; a -&gt; String</code></pre>
 <p>A function on a type class is commonly referred to as a &quot;method&quot; by analogy with methods on a class or interface in object-oriented languages. Thus, <code>show</code> is a method taking a value of some type <code>a</code> and returning a <code>String</code>. All of Haskell's primitive types implement <code>Show</code> which typically return a human-readable representation of a value. You can provide instances for user-defined types—which we'll discuss eventually—or have them derived automatically for you using <code>deriving Show</code> where possible.</p>
 <p>So, what's <code>IO</code>? Well, it's a type class much like <code>Num</code> and we already saw <code>()</code> or the unit type. Therefore, this is a function that takes something of type <code>a</code> in the type (subject to the <code>Show a</code> constraint) and returns <code>IO ()</code></p>
-<h3 id="a.k.a.-bind"><code>&gt;&gt;=</code> a.k.a. &quot;bind&quot;</h3>
+<h2 id="a.k.a.-bind"><span class="header-section-number">1.2</span> <code>&gt;&gt;=</code> a.k.a. &quot;bind&quot;</h2>
 <p>Here are more details of <code>IO</code> in GHCi:</p>
 <pre class="ghci"><code>λ&gt; :i IO
 newtype IO a
@@ -138,7 +164,7 @@ main <span class="fu">=</span> print <span class="dv">5</span> <span class="fu">
 5
 &quot;hello&quot;</code></pre>
 <p>We have successfully demonstrated several functionally equivalent ways of using a functional dependency to provide an explicit ordering of execution.</p>
-<h3 id="the-read-function">The <code>read</code> function</h3>
+<h2 id="the-read-function"><span class="header-section-number">1.3</span> The <code>read</code> function</h2>
 <p>Let's do some more exploring using GHCi:</p>
 <pre class="ghci"><code>λ&gt; :t read
 read :: Read a =&gt; String -&gt; a</code></pre>
@@ -151,16 +177,16 @@ read :: String -&gt; Integer :: String -&gt; Integer</code></pre>
 readInteger :: String -&gt; Integer
 λ&gt; readInteger &quot;123&quot;
 123</code></pre>
-<h3 id="the-getline-function">The <code>getLine</code> function</h3>
+<h2 id="the-getline-function"><span class="header-section-number">1.4</span> The <code>getLine</code> function</h2>
 <p>Here's <code>getline</code> in all its glory:</p>
 <pre class="ghci"><code>λ&gt; :t getLine
 getLine :: IO String</code></pre>
-<h3 id="the-putstr-function">The <code>putStr</code> function</h3>
+<h2 id="the-putstr-function"><span class="header-section-number">1.5</span> The <code>putStr</code> function</h2>
 <p>This one is straightforward:</p>
 <pre class="ghci"><code>λ&gt; :t putStr
 putStr :: String -&gt; IO ()</code></pre>
 <p>This is simply <code>putStrLn</code> without the extra line ending.</p>
-<h3 id="the-hflush-function">The <code>hFlush</code> function</h3>
+<h2 id="the-hflush-function"><span class="header-section-number">1.6</span> The <code>hFlush</code> function</h2>
 <p>By itself, <code>putStr</code> outputs the given characters to the standard output stream on the terminal but does not, by default, flush the stream. Just like using standard output from a C program, we'll need to flush the buffer prior to requesting input from the user. In C/C++ we'd have to do the following:</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;Buffered output: &quot;</span>);
 fflush(stdout);</code></pre></div>
@@ -169,7 +195,7 @@ fflush(stdout);</code></pre></div>
 hFlush :: Handle -&gt; IO ()</code></pre>
 <p>The handle itself, <code>stdout</code>, is in the <code>System.IO</code> namespace, so you'll need to import this namespace. This is our first use of the <code>import</code> keyword in Haskell which we'll run into more in the future:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">System.IO</span></code></pre></div>
-<h3 id="combine-them-all">Combine them all</h3>
+<h2 id="combine-them-all"><span class="header-section-number">1.7</span> Combine them all</h2>
 <p>This is what we're going to do: * Print a prompt to the terminal (using <code>putStr</code>) * Flush the standard output buffer (using <code>hFlush</code>) * Get a string from the keyboard (using <code>getLine</code>) * Convert the string to an integer (using <code>read</code>/<code>readInteger</code>) * Multiply the integer by 2 (using <code>*</code>) * Print out the result (using <code>print</code>)</p>
 <p>The resulting program will consist of a <code>main</code> function itself consisting of a single expression:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">System.IO</span>
@@ -186,7 +212,7 @@ main <span class="fu">=</span> putStr <span class="st">&quot;Enter a number and 
 <pre class="console"><code>&gt; stack runhaskell Scratch.hs
 Enter a number and I&#39;ll double it: 5
 10</code></pre>
-<h3 id="wait-a-minute">Wait a minute!</h3>
+<h2 id="wait-a-minute"><span class="header-section-number">1.8</span> Wait a minute!</h2>
 <p>But, didn't you say that Haskell was purely functional? Surely, <code>putStr</code>, <code>getLine</code> and <code>print</code> have side effects?</p>
 <p>Well, no, not at all:</p>
 <ul>

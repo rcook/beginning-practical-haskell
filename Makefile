@@ -3,7 +3,10 @@ PANDOCOPTS := \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo \
-  -c css/buttondown.css
+  -c css/buttondown.css \
+	--include-before-body templates/nav.html \
+	--toc \
+	-N
 HTMLFILES := \
   index.html \
   part01.html \

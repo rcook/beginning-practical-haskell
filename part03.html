@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <title>Part 3: Types</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -46,8 +46,41 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
 </head>
 <body>
-<h1 id="types">Types</h1>
-<h2 id="predefined-and-primitive-types">Predefined and primitive types</h2>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="part01.html">Introduction</a> |
+  <a href="part02.html">Functions</a> |
+  <a href="part03.html">Types</a> |
+  <a href="part04.html">I/O</a> |
+  <a href="part05.html">Ugly code</a> |
+  <a href="part06.html">Other</a> |
+  <a href="q-and-a.html">Q&amp;A</a>
+</nav>
+<div id="header">
+<h1 class="title">Part 3: Types</h1>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#predefined-and-primitive-types"><span class="toc-section-number">1</span> Predefined and primitive types</a></li>
+<li><a href="#algebraic-data-types"><span class="toc-section-number">2</span> Algebraic data types</a><ul>
+<li><a href="#sum-types"><span class="toc-section-number">2.1</span> Sum types</a></li>
+<li><a href="#product-types"><span class="toc-section-number">2.2</span> Product types</a></li>
+<li><a href="#records"><span class="toc-section-number">2.3</span> <a name="recordsyntax"></a> Records</a></li>
+</ul></li>
+<li><a href="#parametric-polymorphism"><span class="toc-section-number">3</span> Parametric polymorphism</a></li>
+<li><a href="#predefined-algebraic-data-types"><span class="toc-section-number">4</span> Predefined algebraic data types</a></li>
+<li><a href="#pattern-matching"><span class="toc-section-number">5</span> Pattern matching</a><ul>
+<li><a href="#pattern-matching-in-function-definitions"><span class="toc-section-number">5.1</span> Pattern matching in function definitions</a></li>
+<li><a href="#pattern-matching-using-case"><span class="toc-section-number">5.2</span> Pattern matching using <code>case</code></a></li>
+<li><a href="#exhaustiveness-of-pattern-matches"><span class="toc-section-number">5.3</span> Exhaustiveness of pattern matches</a></li>
+<li><a href="#cant-we-do-better"><span class="toc-section-number">5.4</span> Can't we do better?</a></li>
+</ul></li>
+<li><a href="#type-aliases"><span class="toc-section-number">6</span> Type aliases</a></li>
+<li><a href="#strongly-typed-wrapper-types-using-newtype"><span class="toc-section-number">7</span> Strongly-typed wrapper types using <code>newtype</code></a></li>
+<li><a href="#miscellaneous"><span class="toc-section-number">8</span> Miscellaneous</a></li>
+</ul>
+</div>
+<h1 id="predefined-and-primitive-types"><span class="header-section-number">1</span> Predefined and primitive types</h1>
 <p><em>[Sources: <a href="https://downloads.haskell.org/~ghc/7.0.1/docs/html/users_guide/primitives.html">1</a>]</em></p>
 <p>Below are Haskell's primitive data types. These cannot be defined in Haskell itself and must, therefore, be provided by the implementation.</p>
 <table style="width:36%;">
@@ -84,7 +117,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<h2 id="algebraic-data-types">Algebraic data types</h2>
+<h1 id="algebraic-data-types"><span class="header-section-number">2</span> Algebraic data types</h1>
 <p><em>[Sources: <a href="http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor">1</a>, <a href="https://en.wikipedia.org/wiki/Algebraic_data_type">2</a>]</em></p>
 <p>Additional user-defined types can be defined as composites of other types using Haskell's support for <em>algebraic data types</em>.</p>
 <p>Consider the following <code>data</code> declaration:</p>
@@ -145,11 +178,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </tbody>
 </table>
 <p>This version of <code>Colour</code> is a <a href="https://en.wikipedia.org/wiki/Product_type"><em>product type</em></a>. It is isometric to a 3-tuple, or triple, of <code>Int</code>s.</p>
-<h3 id="sum-types">Sum types</h3>
+<h2 id="sum-types"><span class="header-section-number">2.1</span> Sum types</h2>
 <ul>
 <li>Equivalent to tagged union, variant, discriminated union etc. in other languages</li>
 </ul>
-<h3 id="product-types">Product types</h3>
+<h2 id="product-types"><span class="header-section-number">2.2</span> Product types</h2>
 <p><em>[Sources: <a href="https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product">1</a>]</em></p>
 <ul>
 <li>Isomorphic to strongly-typed tuples</li>
@@ -158,11 +191,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li>For the Cartesian product <span class="math inline"><em>S</em> × <em>T</em></span> of two finite sets <span class="math inline"><em>S</em></span> and <span class="math inline"><em>T</em></span>, <span class="math inline">|<em>S</em>×<em>T</em>| = |<em>S</em>| × |<em>T</em>|</span> where <span class="math inline">|<em>S</em>|</span> denotes cardinality</li>
 <li>Equivalent to records and structures in other languages</li>
 </ul>
-<h3 id="records"><a name="recordsyntax"></a> Records</h3>
+<h2 id="records"><span class="header-section-number">2.3</span> <a name="recordsyntax"></a> Records</h2>
 <p>There is another way of defining a product type with the added convenience of automatically-generated accessor functions. This is Haskell's <em>record</em> syntax:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">RGB</span> {<span class="ot"> red ::</span> <span class="dt">Int</span>,<span class="ot"> green ::</span> <span class="dt">Int</span>,<span class="ot"> blue ::</span> <span class="dt">Int</span> }</code></pre></div>
 <p>Just like the previous product type definition of <code>Colour</code>, this definition consists of a triple of <code>Int</code>s. Similarly, <code>RGB</code> is a data constructor of type <code>Int -&gt; Int -&gt; Int -&gt; Colour</code>. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining <code>Colour</code> in GHCi and using <code>:t</code> on <code>red</code>, <code>green</code>, <code>blue</code>. Each has type <code>Colour -&gt; Int</code>: i.e. each is a function taking a <code>Colour</code> and returning an <code>Int</code>.</p>
-<h2 id="parametric-polymorphism">Parametric polymorphism</h2>
+<h1 id="parametric-polymorphism"><span class="header-section-number">3</span> Parametric polymorphism</h1>
 <p>Similarly, we might define a &quot;pair&quot; type as follows:</p>
 <table>
 <thead>
@@ -212,7 +245,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </table>
 <p>This is our first experience of <em>parametric polymorphism</em>. In this case, <code>a</code> and <code>b</code> are type arguments/variables and define the <em>polymorphic type</em> <code>Pair a b</code>. <code>Pair</code> is the type constructor in two type arguments, so-called because each distinct pair of concrete types substituted for <code>a</code> and <code>b</code> <em>construct</em> a new type. As with previous <code>data</code> definitions, <code>P</code> is a data constructor and construct specific <em>values</em> belonging to a concrete instantiation of <code>Pair a b</code>.</p>
 <p>The type of <code>first indianaPi</code> is is also our first experience of a <em>list</em> in Haskell which we'll discuss in more detail soon and are ubiquitous in Haskell.</p>
-<h2 id="predefined-algebraic-data-types">Predefined algebraic data types</h2>
+<h1 id="predefined-algebraic-data-types"><span class="header-section-number">4</span> Predefined algebraic data types</h1>
 <p>We now have enough knowledge to look into some other <em>predefined</em> Haskell types and polymorphic types that you'll run into a lot. These types are algebraic data types and can, therefore, be expressed using <code>data</code> definitions and derived from Haskell's primitive types. The &quot;definition&quot; is some cases is really an instructive approximation of the real definition and elide detail that is superfluous for our immediate purposes:</p>
 <table>
 <colgroup>
@@ -266,7 +299,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </tbody>
 </table>
 <p>We'll describe <code>type</code> definitions in more detail later, but suffice it to say that <code>type</code> defines simple type aliases for other types.</p>
-<h2 id="pattern-matching">Pattern matching</h2>
+<h1 id="pattern-matching"><span class="header-section-number">5</span> Pattern matching</h1>
 <p>Given our previous definition of <code>Colour</code> as a product type without record syntax, how do we extract the component values? This is where &quot;pattern matching&quot; comes in. Pattern matching is a mechanism for <em>deconstructing</em> Haskell values, so-called because the patterns mimic the <em>data constructor</em> invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine <em>how</em> a value was constructed at runtime.</p>
 <p>There are two-and-a-half distinct places where you'll see pattern matching:</p>
 <ul>
@@ -274,7 +307,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li>In <code>case</code> expressions, used to deconstruct arbitrary values</li>
 <li>Similar to function definitions, lambdas can also perform pattern matching on their argument</li>
 </ul>
-<h3 id="pattern-matching-in-function-definitions">Pattern matching in function definitions</h3>
+<h2 id="pattern-matching-in-function-definitions"><span class="header-section-number">5.1</span> Pattern matching in function definitions</h2>
 <p>This is equivalent to the code that the Haskell compiler generates for record accessor functions described <a href="#recordsyntax">previously</a>. Here's an example using our trusty <code>Colour</code> data type:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">RGB</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span>
 
@@ -293,7 +326,7 @@ blue (<span class="dt">RGB</span> _ _ b) <span class="fu">=</span> b</code></pre
 <li><code>RGB r _ _</code> matches the value of type <code>Colour</code> on its <code>RGB</code> data constructor of type <code>Int -&gt; Int -&gt; Int -&gt; Colour</code>, matching <code>r</code> to the first value of the triple and ignoring the second and third values</li>
 <li>Interestingly, &quot;regular&quot; function argument names are really just a degenerate case of pattern matching</li>
 </ul>
-<h3 id="pattern-matching-using-case">Pattern matching using <code>case</code></h3>
+<h2 id="pattern-matching-using-case"><span class="header-section-number">5.2</span> Pattern matching using <code>case</code></h2>
 <p>An alternative implementation can make use of a <code>case</code> expression:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span>
     <span class="dt">RGB</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="fu">|</span>
@@ -338,7 +371,7 @@ main <span class="fu">=</span>
                 (<span class="dt">RGB</span> <span class="dv">255</span> <span class="dv">0</span> <span class="dv">0</span>)
     <span class="kw">in</span> print (lineRedness l)</code></pre></div>
 <p>This will output <code>255</code>.</p>
-<h3 id="exhaustiveness-of-pattern-matches">Exhaustiveness of pattern matches</h3>
+<h2 id="exhaustiveness-of-pattern-matches"><span class="header-section-number">5.3</span> Exhaustiveness of pattern matches</h2>
 <p>This example illustrates another important aspect of pattern matching, namely <em>exhaustiveness</em>. Let's change our <code>main</code> function to the following to illustrate this:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>
@@ -380,7 +413,7 @@ lineRedness _ <span class="fu">=</span> defaultRed</code></pre></div>
 lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">RGB</span> r _ _)) <span class="fu">=</span> <span class="dt">Just</span> r
 lineRedness _ <span class="fu">=</span> <span class="dt">Nothing</span></code></pre></div>
 <p>We'll definitely talk more about <code>Maybe</code> later. Suffice it to say for now that it's a type constructor taking one type variable and is analogous to <a href="https://en.wikipedia.org/wiki/Option_type">option types</a> and <a href="https://en.wikipedia.org/wiki/Nullable_type">nullable types</a> in other languages.</p>
-<h3 id="cant-we-do-better">Can't we do better?</h3>
+<h2 id="cant-we-do-better"><span class="header-section-number">5.4</span> Can't we do better?</h2>
 <p><em>[Sources: <a href="http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors">1</a>, <a href="https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/">2</a>, <a href="http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell">3</a>, <a href="https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html">4</a>]</em></p>
 <p>Something about this may irk you. Given that the compiler has full information about a given type's data constructor (at least in code defined in the same module as the type), surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.</p>
 <p>Well, it turns out that this can be detected at compile time by enabling the <code>incomplete-patterns</code> warning. From GHCi, this can be done using the <code>:set</code> command:</p>
@@ -417,7 +450,7 @@ main <span class="fu">=</span> putStrLn (render <span class="dt">Green</span>)</
 <p>This will generate a similar warning as above and will abort the build.</p>
 <p>So, why? The general consensus, among GHC developers at least, seems to be that the exhaustiveness checker <a href="https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017225.html">&quot;is not very good&quot;</a>: it tends to report false positives and counterintuitive error messages given in terms of desugared forms instead of the original source code—we'll look at desugaring a little more later.</p>
 <p>Personally, I think that this is a bit of a wart on Haskell in principle, but—in practice—I've never run into a false positive and so would recommend enabling the warning and promoting warnings to errors.</p>
-<h2 id="type-aliases">Type aliases</h2>
+<h1 id="type-aliases"><span class="header-section-number">6</span> Type aliases</h1>
 <p>Haskell provides <code>type</code> definitions used to create aliases, or alternative names, for existing types:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Int</span>
 
@@ -432,7 +465,7 @@ doubleX (<span class="dt">Point</span> x _) <span class="fu">=</span> doubleInt 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> print (doubleX (<span class="dt">Point</span> <span class="dv">100</span> <span class="dv">200</span>))</code></pre></div>
 <p>You'll see <code>type</code> used a lot in Haskell code even though it doesn't give you any type safety—as shown in the sample above, <code>Ordinate</code> is completely indistinguishable from a regular <code>Int</code>.</p>
-<h2 id="strongly-typed-wrapper-types-using-newtype">Strongly-typed wrapper types using <code>newtype</code></h2>
+<h1 id="strongly-typed-wrapper-types-using-newtype"><span class="header-section-number">7</span> Strongly-typed wrapper types using <code>newtype</code></h1>
 <p><code>newtype</code>, on the other hand, is an altogether different beast:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Ordinate</span> {<span class="ot"> unOrdinate ::</span> <span class="dt">Int</span> }
 
@@ -468,7 +501,7 @@ main <span class="fu">=</span>
         translatedY <span class="fu">=</span> unOrdinate (y translatedP)
     <span class="kw">in</span> putStrLn (<span class="st">&quot;x=&quot;</span> <span class="fu">++</span> show translatedX <span class="fu">++</span> <span class="st">&quot;, y=&quot;</span> <span class="fu">++</span> show translatedY)</code></pre></div>
 <p>We will return to this example shortly to explain some new things you may have spotted as well as some ways to make this less ugly while retaining type safety.</p>
-<h1 id="miscellaneous">Miscellaneous</h1>
+<h1 id="miscellaneous"><span class="header-section-number">8</span> Miscellaneous</h1>
 <p><em>[Sources: <a href="https://wiki.haskell.org/Section_of_an_infix_operator">1</a>]</em></p>
 <p>This last example is ugly. Can we make it more pleasing to the eye?</p>
 <p>Recall <code>Ordinate (translate (unOrdinate someExpression))</code>. What we're really doing here is applying three functions in turn: we apply <code>unOrdinate</code> to <code>someExpression</code>, <code>translate</code> to the result of that and <code>Ordinate</code> to the result of that. This should leap out at you: it's simply the composition of three functions. This can, therefore, be rewritten as <code>(Ordinate . translate . unOrdinate) someExpression</code>. This doesn't save many characters of typing, but it does reveal a nice structure to the code by emphasizing the &quot;valueness&quot; of functions, since <code>Ordinate . translate . unOrdinate</code> is a value just like any other. This is core to a functional programming language.</p>

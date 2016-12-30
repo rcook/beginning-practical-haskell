@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <title>Part 2: Functions</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -46,8 +46,28 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
 </head>
 <body>
-<h1 id="functions">Functions</h1>
-<h2 id="where-are-the-functions">Where are the functions?</h2>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="part01.html">Introduction</a> |
+  <a href="part02.html">Functions</a> |
+  <a href="part03.html">Types</a> |
+  <a href="part04.html">I/O</a> |
+  <a href="part05.html">Ugly code</a> |
+  <a href="part06.html">Other</a> |
+  <a href="q-and-a.html">Q&amp;A</a>
+</nav>
+<div id="header">
+<h1 class="title">Part 2: Functions</h1>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#where-are-the-functions"><span class="toc-section-number">1</span> Where are the functions?</a></li>
+<li><a href="#anonymous-functions-and-lambda-abstraction"><span class="toc-section-number">2</span> Anonymous functions and lambda abstraction</a></li>
+<li><a href="#function-composition"><span class="toc-section-number">3</span> Function composition</a></li>
+<li><a href="#more-function-application"><span class="toc-section-number">4</span> More function application</a></li>
+</ul>
+</div>
+<h1 id="where-are-the-functions"><span class="header-section-number">1</span> Where are the functions?</h1>
 <p>But, wait, isn't Haskell supposed to be a functional programming language? It's already part 2 of the course and we haven't encountered any functions yet.</p>
 <p>Since Haskell is a functional programming language, functions are first-class values. You will recall an earlier example with a value named <code>z</code> which was the result of applying the <code>+</code> operator to <code>x</code> and <code>y</code>. Let's generalize this to a function that adds its two arguments together:</p>
 <pre class="ghci"><code>λ&gt; addIntegers :: Integer -&gt; Integer -&gt; Integer; addIntegers x y = x + y
@@ -84,7 +104,7 @@ functionTakingAFunction f a b <span class="fu">=</span> f a b
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> print (functionTakingAFunction addIntegers <span class="dv">5</span> <span class="dv">6</span>)</code></pre></div>
-<h2 id="anonymous-functions-and-lambda-abstraction">Anonymous functions and lambda abstraction</h2>
+<h1 id="anonymous-functions-and-lambda-abstraction"><span class="header-section-number">2</span> Anonymous functions and lambda abstraction</h1>
 <p>Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of <a href="https://en.wikipedia.org/wiki/Lambda_calculus">the lambda calculus</a>. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.</p>
 <p>Consider the named (mathematical) function <span class="math inline">square_sum</span>:</p>
 <p><span class="math inline">square_sum(<em>x</em>, <em>y</em>)=<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
@@ -122,7 +142,7 @@ main <span class="fu">=</span> print (functionTakingAFunction addIntegers <span 
 squareSum :: Num a =&gt; a -&gt; a -&gt; a
 λ&gt; squareSum 3 4
 25</code></pre>
-<h2 id="function-composition">Function composition</h2>
+<h1 id="function-composition"><span class="header-section-number">3</span> Function composition</h1>
 <p>So far we've applied only single functions to single values. In practice, we're likely to want to do much more than this. Consider computing the hypotenuse of a right-angled triangle. We already have our <code>squareSum</code> function which we can reuse. We also happen to know that there is a standard <code>sqrt</code> function that we can reuse. Let's see what we can do with our (contrived) example:</p>
 <pre class="ghci"><code>λ&gt; squareSum x y = x ^ 2 + y ^ 2
 λ&gt; squareSumWith3 = squareSum 3
@@ -149,7 +169,7 @@ f :: Floating t1 =&gt; t1 -&gt; t1
 λ&gt; f 4
 5.0</code></pre>
 <p>Again, this example is totally contrived and we'll build up to more realistic uses soon.</p>
-<h2 id="more-function-application">More function application</h2>
+<h1 id="more-function-application"><span class="header-section-number">4</span> More function application</h1>
 <p>We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: <code>$</code>. This is semantically identical to our existing function application model, using whitespace, but with different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:</p>
 <pre class="ghci"><code>λ&gt; (sqrt . squareSumWith3) 4
 5.0

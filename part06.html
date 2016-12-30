@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <title>Part 6: Other concepts and syntax</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -46,8 +46,26 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
 </head>
 <body>
-<h1 id="other-concepts-and-syntax">Other concepts and syntax</h1>
-<h2 id="recursion-and-higher-order-function-abstractions">Recursion and higher-order function abstractions</h2>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="part01.html">Introduction</a> |
+  <a href="part02.html">Functions</a> |
+  <a href="part03.html">Types</a> |
+  <a href="part04.html">I/O</a> |
+  <a href="part05.html">Ugly code</a> |
+  <a href="part06.html">Other</a> |
+  <a href="q-and-a.html">Q&amp;A</a>
+</nav>
+<div id="header">
+<h1 class="title">Part 6: Other concepts and syntax</h1>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#recursion-and-higher-order-function-abstractions"><span class="toc-section-number">1</span> Recursion and higher-order function abstractions</a></li>
+<li><a href="#if-then-else"><span class="toc-section-number">2</span> <code>if</code>, <code>then</code>, <code>else</code></a></li>
+</ul>
+</div>
+<h1 id="recursion-and-higher-order-function-abstractions"><span class="header-section-number">1</span> Recursion and higher-order function abstractions</h1>
 <p>In Haskell, we will typically use recursion instead of loops since mutating loop variables are not allowed in most cases. We will not go into laborious detail on recursion and, instead, will consider a couple of basic examples and look quickly at how we can use higher-level abstractions with higher-order functions.</p>
 <p>Consider <code>Main.hs</code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sumElements ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
@@ -99,7 +117,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 </tbody>
 </table>
 <p>There are many others, of course. In general, we should prefer the higher-order functions to explicit recursion.</p>
-<h2 id="if-then-else"><code>if</code>, <code>then</code>, <code>else</code></h2>
+<h1 id="if-then-else"><span class="header-section-number">2</span> <code>if</code>, <code>then</code>, <code>else</code></h1>
 <blockquote>
 <p><strong><em>TODO:</em></strong> Do it!</p>
 </blockquote>
