@@ -3,8 +3,7 @@ PANDOCOPTS := \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo \
-  -c src/buttondown.css \
-  --self-contained
+  -c css/buttondown.css
 HTMLFILES := \
   index.html \
   part01.html \
@@ -14,15 +13,17 @@ HTMLFILES := \
   part05.html \
   part06.html \
   q-and-a.html
+SOURCEDIR := src
 STRICTMODE := set -euo pipefail; IFS=$$'\n\t';
-RESOURCES := images/region-of-abysmal-pain.png
+RESOURCES := css/buttondown.css images/region-of-abysmal-pain.png
 
 .PHONY: all
 all: clean ${HTMLFILES}
 
-#	pandoc ${PANDOCOPTS} -s $^ | sed 's/href="\([^.]*\)\.md"/href="\1.html"/g' > $@
+css/buttondown.css: ${SOURCEDIR}/css/buttondown.css
+	@${STRICTMODE} cp $< $@
 
-images/region-of-abysmal-pain.png: src/images/region-of-abysmal-pain.png
+images/region-of-abysmal-pain.png: ${SOURCEDIR}/images/region-of-abysmal-pain.png
 	@${STRICTMODE} cp $< $@
 
 %.html: src/%.md ${RESOURCES}
