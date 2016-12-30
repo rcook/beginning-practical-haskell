@@ -20,6 +20,11 @@
     gotten around to testing that yet.
 */
 
+body {
+  font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+  font-size: 120%;
+}
+
 /* NOTES:
 
     Stuff tried and failed:
@@ -217,6 +222,7 @@ p.caption /* Pandoc figure-style caption within div.figure */
 
 pre, code
     {
+    font-size: 110%;
     background-color: #fdf7ee;
     /* BEGIN word wrap */
     /* Need all the following to word wrap instead of scroll box */
