@@ -1,4 +1,3 @@
-OUTDIR := doc
 PANDOCOPTS := \
   --highlight-style=tango \
   --latex-engine=xelatex \
@@ -6,7 +5,6 @@ PANDOCOPTS := \
   --variable monofont=Menlo \
   -c buttondown.css \
   --self-contained
-BASENAME := notes
 HTMLFILES := \
   index.html \
   part01.html \
