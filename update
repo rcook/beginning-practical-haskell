@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+script_dir=$(cd $(dirname $0); pwd -P)
+
+cd $script_dir
+
+pushd src/ > /dev/null
+git checkout master > /dev/null 2>&1
+git pull > /dev/null
+popd > /dev/null
+
+git add .
+make clean
+make
