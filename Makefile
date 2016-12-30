@@ -4,7 +4,7 @@ PANDOCOPTS := \
   --latex-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo \
-  -c buttondown.css \
+  -c css/buttondown.css \
   --self-contained
 BASENAME := notes
 INPUTFILES := \
