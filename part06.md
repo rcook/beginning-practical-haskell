@@ -1,6 +1,8 @@
-# Other concepts and syntax
+---
+title: "Part 6: Other concepts and syntax"
+...
 
-## Recursion and higher-order function abstractions
+# Recursion and higher-order function abstractions
 
 In Haskell, we will typically use recursion instead of loops since mutating loop variables are not allowed in most cases. We will not go into laborious detail on recursion and, instead, will consider a couple of basic examples and look quickly at how we can use higher-level abstractions with higher-order functions.
 
@@ -39,7 +41,7 @@ Map         | `map ::`<br>`(a -> b) -> [a] -> [b]`           | `λ> map length [
 
 There are many others, of course. In general, we should prefer the higher-order functions to explicit recursion.
 
-## `if`, `then`, `else`
+# `if`, `then`, `else`
 
 > ***TODO:***
 > Do it!

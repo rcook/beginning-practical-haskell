@@ -1,4 +1,6 @@
-# Ugly code
+---
+title: "Part 6: Ugly code"
+...
 
 Let's look at a more complicated example:
 

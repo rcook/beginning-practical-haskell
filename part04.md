@@ -1,4 +1,6 @@
-# I/O
+---
+title: "Part 4: I/O"
+...
 
 Given the title of this course, I'll assume you came here to learn how to write useful programs. Practical programs typically need to interact with the outside world. In the absence of input/output, all your programs can do is warm up your CPU.
 
@@ -12,14 +14,14 @@ Mathematical functions:
 
 Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract `IO` type. The model is functionally equivalent to the continuation-passing style, though few people actually explicitly use this particular terminology. We'll build up step-by-step to full-blown I/O.
 
-## The Prelude
+# The Prelude
 
 Haskell's prelude is a module provided by the implementation that defines many standard functions.
 It is implicitly imported into every Haskell source file, unless this is explicitly disabled. We'll use a few functions from `Prelude` to explore I/O.
 
 Our mission is to read a number in from the user, do something to it and then output the result to the terminal.
 
-### The `print` function
+## The `print` function
 
 We've already seen this function, but now we'll look at in a little more detail:
 
@@ -39,7 +41,7 @@ A function on a type class is commonly referred to as a "method" by analogy with
 
 So, what's `IO`? Well, it's a type class much like `Num` and we already saw `()` or the unit type. Therefore, this is a function that takes something of type `a` in the type (subject to the `Show a` constraint) and returns `IO ()`
 
-### `>>=` a.k.a. "bind"
+## `>>=` a.k.a. "bind"
 
 Here are more details of `IO` in GHCi:
 
@@ -158,7 +160,7 @@ And compile and run as follows:
 
 We have successfully demonstrated several functionally equivalent ways of using a functional dependency to provide an explicit ordering of execution.
 
-### The `read` function
+## The `read` function
 
 Let's do some more exploring using GHCi:
 
@@ -184,7 +186,7 @@ readInteger :: String -> Integer
 123
 ```
 
-### The `getLine` function
+## The `getLine` function
 
 Here's `getline` in all its glory:
 
@@ -193,7 +195,7 @@ Here's `getline` in all its glory:
 getLine :: IO String
 ```
 
-### The `putStr` function
+## The `putStr` function
 
 This one is straightforward:
 
@@ -204,7 +206,7 @@ putStr :: String -> IO ()
 
 This is simply `putStrLn` without the extra line ending.
 
-### The `hFlush` function
+## The `hFlush` function
 
 By itself, `putStr` outputs the given characters to the standard output stream on the terminal but does not, by default, flush the stream. Just like using standard output from a C program, we'll need to flush the buffer prior to requesting input from the user. In C/C++ we'd have to do the following:
 
@@ -229,7 +231,7 @@ which we'll run into more in the future:
 import System.IO
 ```
 
-### Combine them all
+## Combine them all
 
 This is what we're going to do:
 * Print a prompt to the terminal (using `putStr`)
@@ -263,7 +265,7 @@ Enter a number and I'll double it: 5
 10
 ```
 
-### Wait a minute!
+## Wait a minute!
 
 But, didn't you say that Haskell was purely functional? Surely, `putStr`, `getLine` and `print` have side effects?
 

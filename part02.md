@@ -1,6 +1,8 @@
-# Functions
+---
+title: "Part 2: Functions"
+...
 
-## Where are the functions?
+# Where are the functions?
 
 But, wait, isn't Haskell supposed to be a functional programming language? It's already part 2 of the course and we haven't encountered any functions yet.
 
@@ -66,7 +68,7 @@ main :: IO ()
 main = print (functionTakingAFunction addIntegers 5 6)
 ```
 
-## Anonymous functions and lambda abstraction
+# Anonymous functions and lambda abstraction
 
 Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of [the lambda calculus][lambdacalculus]. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.
 
@@ -152,7 +154,7 @@ squareSum :: Num a => a -> a -> a
 25
 ```
 
-## Function composition
+# Function composition
 
 So far we've applied only single functions to single values. In practice, we're likely to want to do much more than this. Consider computing the hypotenuse of a right-angled triangle. We already have our `squareSum` function which we can reuse. We also happen to know that there is a standard `sqrt` function that we can reuse. Let's see what we can do with our (contrived) example:
 
@@ -197,7 +199,7 @@ Of course, we can assign our silly `sqrt . squareSumWith3` expression to a name 
 
 Again, this example is totally contrived and we'll build up to more realistic uses soon.
 
-## More function application
+# More function application
 
 We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: `$`. This is semantically identical to our existing function application model, using whitespace, but with different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:
 

@@ -1,3 +1,7 @@
+---
+title: "Part 1: Introduction"
+...
+
 # What is Haskell?
 
 *[Sources: [1][haskellwikifp], [2][wikipediahaskell], [3][evaluation]]*

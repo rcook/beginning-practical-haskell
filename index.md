@@ -1,4 +1,7 @@
-# Beginning Practical Haskell
+---
+title: Beginning Practical Haskell
+author: Richard Cook
+...
 
 An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
@@ -9,14 +12,14 @@ This course will build up enough knowledge and understanding of the Haskell prog
 
 I wrote the original web scraper in Python in about two hours. The Haskell version took a wee while longer, clocking it at around eight, but is superior in nearly every respect.
 
-## Overview
+# Overview
 
 * Will teach the essentials required to write real programs in Haskell
 * Will only dig into mathematical underpinnings as needed to understand real-world programming problems
 * Will enable the student to use the tools needed to build real programs and consume Haskell libraries from third parties
 * Intend to complement other courses offered by [Seattle Area Haskell Users' Group][seahug]
 
-## <a name="prerequisites"></a> Prerequisites
+# <a name="prerequisites"></a> Prerequisites
 
 * This course will use [Stack][stack]
 * Please follow [setup instructions][stackhowto] to install Stack
@@ -35,7 +38,7 @@ If everything is working as expected, the last line should yield the output
 
 * This course will use the [LTS 7.8][lts78] snapshot of Stack which uses [GHC 8.0.1][ghc801]
 
-## Contents
+# Contents
 
 * [Part 1](part01.md)
     * What is Haskell?
@@ -55,7 +58,7 @@ If everything is working as expected, the last line should yield the output
 
 > ***TODO:***
 >
-> ### Library selection
+> ## Library selection
 >
 > * Making web requests (`wreq`)
 > * Parsing HTML
@@ -66,7 +69,7 @@ If everything is working as expected, the last line should yield the output
 > * Generating CSV or Excel files
 > * File I/O
 >
-> ### Packages you'll learn about
+> ## Packages you'll learn about
 >
 > * Strings and text:
 >   * `bytestring`

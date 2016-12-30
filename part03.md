@@ -1,6 +1,8 @@
-# Types
+---
+title: "Part 3: Types"
+...
 
-## Predefined and primitive types
+# Predefined and primitive types
 
 *[Sources: [1][primitivetypes]]*
 
@@ -14,7 +16,7 @@ Name        | Description
 `Float`     | Single-precision floating-point real number
 `Double`    | Double-precision floating-point real number
 
-## Algebraic data types
+# Algebraic data types
 
 *[Sources: [1][datadecl], [2][adts]]*
 
@@ -48,11 +50,11 @@ Input                                     | Output                              
 
 This version of `Colour` is a [_product type_][producttype]. It is isometric to a 3-tuple, or triple, of `Int`s.
 
-### Sum types
+## Sum types
 
 * Equivalent to tagged union, variant, discriminated union etc. in other languages
 
-### Product types
+## Product types
 
 *[Sources: [1][cardinalityproof]]*
 
@@ -62,7 +64,7 @@ This version of `Colour` is a [_product type_][producttype]. It is isometric to 
 * For the Cartesian product $S \times T$ of two finite sets $S$ and $T$, $\left|{S \times T}\right| = \left|{S}\right| \times \left|{T}\right|$ where $\left|{S}\right|$ denotes cardinality
 * Equivalent to records and structures in other languages
 
-### <a name="recordsyntax"></a> Records
+## <a name="recordsyntax"></a> Records
 
 There is another way of defining a product type with the added convenience of automatically-generated accessor functions. This is Haskell's _record_ syntax:
 
@@ -72,7 +74,7 @@ data Colour = RGB { red :: Int, green :: Int, blue :: Int }
 
 Just like the previous product type definition of `Colour`, this definition consists of a triple of `Int`s. Similarly, `RGB` is a data constructor of type `Int -> Int -> Int -> Colour`. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining `Colour` in GHCi and using `:t` on `red`, `green`, `blue`. Each has type `Colour -> Int`: i.e. each is a function taking a `Colour` and returning an `Int`.
 
-## Parametric polymorphism
+# Parametric polymorphism
 
 Similarly, we might define a "pair" type as follows:
 
@@ -92,7 +94,7 @@ This is our first experience of _parametric polymorphism_. In this case, `a` and
 
 The type of `first indianaPi` is is also our first experience of a _list_ in Haskell which we'll discuss in more detail soon and are ubiquitous in Haskell.
 
-## Predefined algebraic data types
+# Predefined algebraic data types
 
 We now have enough knowledge to look into some other _predefined_ Haskell types and polymorphic types that you'll run into a lot. These types are algebraic data types and can, therefore, be expressed using `data` definitions and derived from Haskell's primitive types. The "definition" is some cases is really an instructive approximation of the real definition and elide detail that is superfluous for our immediate purposes:
 
@@ -108,7 +110,7 @@ Name                       | Definition                  | Description
 
 We'll describe `type` definitions in more detail later, but suffice it to say that `type` defines simple type aliases for other types.
 
-## Pattern matching
+# Pattern matching
 
 Given our previous definition of `Colour` as a product type without record syntax, how do we extract the component values? This is where "pattern matching" comes in. Pattern matching is a mechanism for _deconstructing_ Haskell values, so-called because the patterns mimic the _data constructor_ invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine _how_ a value was constructed at runtime.
 
@@ -118,7 +120,7 @@ There are two-and-a-half distinct places where you'll see pattern matching:
 * In `case` expressions, used to deconstruct arbitrary values
 * Similar to function definitions, lambdas can also perform pattern matching on their argument
 
-### Pattern matching in function definitions
+## Pattern matching in function definitions
 
 This is equivalent to the code that the Haskell compiler generates for record accessor functions described [previously](#recordsyntax). Here's an example using our trusty `Colour` data type:
 
@@ -141,7 +143,7 @@ blue (RGB _ _ b) = b
 * `RGB r _ _` matches the value of type `Colour` on its `RGB` data constructor of type `Int -> Int -> Int -> Colour`, matching `r` to the first value of the triple and ignoring the second and third values
 * Interestingly, "regular" function argument names are really just a degenerate case of pattern matching
 
-### Pattern matching using `case`
+## Pattern matching using `case`
 
 An alternative implementation can make use of a `case` expression:
 
@@ -197,7 +199,7 @@ main =
 
 This will output `255`.
 
-### Exhaustiveness of pattern matches
+## Exhaustiveness of pattern matches
 
 This example illustrates another important aspect of pattern matching, namely _exhaustiveness_. Let's change our `main` function to the following to illustrate this:
 
@@ -264,7 +266,7 @@ lineRedness _ = Nothing
 
 We'll definitely talk more about `Maybe` later. Suffice it to say for now that it's a type constructor taking one type variable and is analogous to [option types][optiontypes] and [nullable types][nullabletypes] in other languages.
 
-### Can't we do better?
+## Can't we do better?
 
 *[Sources: [1][nonexhaustive1], [2][nonexhaustive2], [3][nonexhaustive3], [4][nonexhaustive4]]*
 
@@ -319,7 +321,7 @@ So, why? The general consensus, among GHC developers at least, seems to be that 
 
 Personally, I think that this is a bit of a wart on Haskell in principle, but&mdash;in practice&mdash;I've never run into a false positive and so would recommend enabling the warning and promoting warnings to errors.
 
-## Type aliases
+# Type aliases
 
 Haskell provides `type` definitions used to create aliases, or alternative names, for existing types:
 
@@ -340,7 +342,7 @@ main = print (doubleX (Point 100 200))
 
 You'll see `type` used a lot in Haskell code even though it doesn't give you any type safety&mdash;as shown in the sample above, `Ordinate` is completely indistinguishable from a regular `Int`.
 
-## Strongly-typed wrapper types using `newtype`
+# Strongly-typed wrapper types using `newtype`
 
 `newtype`, on the other hand, is an altogether different beast:
 
