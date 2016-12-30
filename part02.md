@@ -49,6 +49,8 @@ main :: IO ()
 main = print (addIntegers 5 6)
 ```
 
+To reiterate, this defines a function `addIntegers` that takes an `Integer`, a second `Integer` and evaluates to an `Integer` (analogous to "returning" an `Integer` in imperative programming languages).
+
 Since `addIntegers` is a value much like `z`, albeit one with arguments, it can be passed as an argument to other functions. In this respect, `addIntegers` is much like `z` or  `5`, `"hello"` or any other value:
 
 ```haskell
