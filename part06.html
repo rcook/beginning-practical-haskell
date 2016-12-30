@@ -6,10 +6,99 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link href="data:text/css;charset=utf-8,%0A%0A%0A%0Adiv%23header%2C%20header%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%2Etitle%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eauthor%2C%20%2Edate%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%40media%20print%0A%7B%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%0A%7B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Liberation%20Sans%22%2C%20Calibri%2C%20Arial%2C%20sans%2Dserif%3B%20%0A%0Apage%2Dbreak%2Dafter%3A%20avoid%3B%20%0A%7D%0A%0Adiv%20div%2C%20section%20section%20%0A%7B%0Amargin%2Dleft%3A%202em%3B%20%0A%7D%0Ap%20%7B%7D%0Ablockquote%0A%7B%20font%2Dstyle%3A%20italic%3B%0A%7D%0Ali%20%0A%7B%0A%7D%0Ali%20%3E%20p%20%0A%7B%0Amargin%2Dtop%3A%201em%3B%20%0A%7D%0Aul%20%0A%7B%0A%7D%0Aul%20li%20%0A%7B%0A%7D%0Aol%20%0A%7B%0A%7D%0Aol%20li%20%0A%7B%0A%7D%0Ahr%20%7B%7D%0A%0Asub%20%0A%7B%0A%7D%0Asup%20%0A%7B%0A%7D%0Aem%20%0A%7B%0A%7D%0Aem%20%3E%20em%20%0A%7B%0Afont%2Dstyle%3A%20normal%3B%0A%7D%0Astrong%20%0A%7B%0A%7D%0A%0Aa%20%0A%7B%0A%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%40media%20screen%0A%7B%0Aa%3Ahover%0A%7B%0A%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%7D%0A%40media%20print%0A%7B%0Aa%20%7B%0A%0Acolor%3A%20black%3B%0Abackground%3A%20transparent%3B%0A%7D%0Aa%5Bhref%5E%3D%22http%3A%2F%2F%22%5D%3Aafter%2C%20a%5Bhref%5E%3D%22https%3A%2F%2F%22%5D%3Aafter%0A%7B%0A%0Acontent%3A%20%22%20%28%22%20attr%28href%29%20%22%29%20%22%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%7D%0A%0Aimg%0A%7B%0A%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0Adiv%2Efigure%20%0A%7B%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Atext%2Dalign%3A%20center%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Ap%2Ecaption%20%0A%7B%0A%0A%7D%0A%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23fdf7ee%3B%0A%0A%0A%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Dmoz%2Dpre%2Dwrap%20%21important%3B%20%0Awhite%2Dspace%3A%20%2Dpre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Do%2Dpre%2Dwrap%3B%20%0Aword%2Dwrap%3A%20break%2Dword%3B%20%0A%0A%7D%0Apre%20%0A%7B%0A%0Apadding%3A%200%2E5em%3B%20%0Aborder%2Dradius%3A%205px%3B%20%0A%0Aborder%3A%201px%20solid%20%23aaa%3B%0A%0Amargin%2Dleft%3A%200%2E5em%3B%0Amargin%2Dright%3A%200%2E5em%3B%0A%7D%0A%40media%20screen%0A%7B%0Apre%0A%7B%0A%0Awhite%2Dspace%3A%20pre%3B%0Aoverflow%3A%20auto%3B%0A%0Aborder%3A%201px%20dotted%20%23777%3B%0A%7D%0A%7D%0Acode%20%0A%7B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%0A%7B%0A%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%202px%3B%0A%7D%0Ali%20%3E%20p%20code%20%0A%7B%0A%0Apadding%3A%202px%3B%0A%7D%0A%0Aspan%2Emath%20%0A%7B%0A%0A%7D%0Adiv%2Emath%20%0A%7B%0A%7D%0Aspan%2ELaTeX%20%0A%7B%0A%7D%20eq%20%0A%7B%0A%7D%20%0A%0Atable%0A%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%20%0Aborder%2Dbottom%3A%202pt%20solid%20%23000%3B%0Aborder%2Dtop%3A%202pt%20solid%20%23000%3B%20%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0A%7D%0Athead%20%0A%7B%0Aborder%2Dbottom%3A%201pt%20solid%20%23000%3B%0Abackground%2Dcolor%3A%20%23eee%3B%20%0A%7D%0Atr%2Eheader%20%0A%7B%0A%7D%20tbody%20%0A%7B%0A%7D%0A%0Atr%20%7B%0A%7D%0Atr%2Eodd%3Ahover%2C%20tr%2Eeven%3Ahover%20%0A%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atr%2Eodd%20%7B%7D%0Atr%2Eeven%20%7B%7D%0Atd%2C%20th%20%0A%7B%20vertical%2Dalign%3A%20top%3B%20%0Avertical%2Dalign%3A%20baseline%3B%20%0Apadding%2Dleft%3A%200%2E5em%3B%0Apadding%2Dright%3A%200%2E5em%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0A%0Ath%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%20%7D%0Atfoot%20%0A%7B%0A%7D%0Acaption%20%0A%7B%0Acaption%2Dside%3A%20top%3B%0Aborder%3A%20none%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dstyle%3A%20italic%3B%0Atext%2Dalign%3A%20center%3B%0Amargin%2Dbottom%3A%200%2E3em%3B%20%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0Adl%20%0A%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0Adt%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Add%2Bdt%20%0A%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0Add%20%0A%7B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0Add%2Bdd%20%0A%7B%0Aborder%2Dtop%3A%201px%20solid%20black%3B%20%0A%7D%0A%0Aa%2Efootnote%2C%20a%2EfootnoteRef%20%7B%20%0Afont%2Dsize%3A%20small%3B%20vertical%2Dalign%3A%20text%2Dtop%3B%0A%7D%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%7D%0A%40media%20print%0A%7B%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0Adiv%2Efootnotes%20%0A%7B%0A%7D%0Adiv%2Efootnotes%20li%5Bid%5E%3D%22fn%22%5D%20%0A%7B%0A%7D%0A%0A%40media%20print%0A%7B%0A%2Enoprint%0A%7B%0Adisplay%3Anone%3B%0A%7D%0A%7D%0A" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1 id="other-concepts-and-syntax">Other concepts and syntax</h1>
+<h2 id="recursion-and-higher-order-function-abstractions">Recursion and higher-order function abstractions</h2>
+<p>In Haskell, we will typically use recursion instead of loops since mutating loop variables are not allowed in most cases. We will not go into laborious detail on recursion and, instead, will consider a couple of basic examples and look quickly at how we can use higher-level abstractions with higher-order functions.</p>
+<p>Consider <code>Main.hs</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sumElements ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+sumElements [] <span class="fu">=</span> <span class="dv">0</span>
+sumElements (h <span class="fu">:</span> t) <span class="fu">=</span> h <span class="fu">+</span> sumElements t
+
+<span class="ot">lengthElements ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]
+lengthElements [] <span class="fu">=</span> []
+lengthElements (h <span class="fu">:</span> t) <span class="fu">=</span> length h <span class="fu">:</span> lengthElements t
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    print <span class="fu">$</span> sumElements [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>]
+    print <span class="fu">$</span> lengthElements [<span class="st">&quot;aaa&quot;</span>, <span class="st">&quot;aa&quot;</span>, <span class="st">&quot;a]</span></code></pre></div>
+<p>Which can run as follows:</p>
+<pre class="console"><code>&gt; stack runhaskell Hello.hs
+60
+[3,2,1]</code></pre>
+<p>This example illustrates two of the most basic types of recursion patterns, namely folding and mapping. Since these patterns are so common, we will typically use higher-order functions instead:</p>
+<table style="width:85%;">
+<colgroup>
+<col width="9%"></col>
+<col width="37%"></col>
+<col width="37%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Abstraction</th>
+<th align="left">Function</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Left-fold</td>
+<td align="left"><code>foldl ::</code><br><code>(a -&gt; b -&gt; a) -&gt; a -&gt; [b] -&gt; a</code></td>
+<td align="left"><code>λ&gt; foldl (+) 0 [10, 20, 30]</code><br><code>60</code></td>
+</tr>
+<tr class="even">
+<td align="left">Right-fold</td>
+<td align="left"><code>foldr ::</code><br><code>(a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b</code></td>
+<td align="left"><code>λ&gt; foldr (+) 0 [10, 20, 30]</code><br><code>60</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Map</td>
+<td align="left"><code>map ::</code><br><code>(a -&gt; b) -&gt; [a] -&gt; [b]</code></td>
+<td align="left"><code>λ&gt; map length [&quot;aaa&quot;, &quot;aa&quot;, &quot;a&quot;]</code><br><code>[3,2,1]</code></td>
+</tr>
+</tbody>
+</table>
+<p>There are many others, of course. In general, we should prefer the higher-order functions to explicit recursion.</p>
 <h2 id="if-then-else"><code>if</code>, <code>then</code>, <code>else</code></h2>
 <blockquote>
 <p><strong><em>TODO:</em></strong> Do it!</p>
