@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link href="data:text/css;charset=utf-8,%0A%0A%0A%0Adiv%23header%2C%20header%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%2Etitle%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eauthor%2C%20%2Edate%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%40media%20print%0A%7B%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%0A%7B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Liberation%20Sans%22%2C%20Calibri%2C%20Arial%2C%20sans%2Dserif%3B%20%0A%0Apage%2Dbreak%2Dafter%3A%20avoid%3B%20%0A%7D%0A%0Adiv%20div%2C%20section%20section%20%0A%7B%0Amargin%2Dleft%3A%202em%3B%20%0A%7D%0Ap%20%7B%7D%0Ablockquote%0A%7B%20font%2Dstyle%3A%20italic%3B%0A%7D%0Ali%20%0A%7B%0A%7D%0Ali%20%3E%20p%20%0A%7B%0Amargin%2Dtop%3A%201em%3B%20%0A%7D%0Aul%20%0A%7B%0A%7D%0Aul%20li%20%0A%7B%0A%7D%0Aol%20%0A%7B%0A%7D%0Aol%20li%20%0A%7B%0A%7D%0Ahr%20%7B%7D%0A%0Asub%20%0A%7B%0A%7D%0Asup%20%0A%7B%0A%7D%0Aem%20%0A%7B%0A%7D%0Aem%20%3E%20em%20%0A%7B%0Afont%2Dstyle%3A%20normal%3B%0A%7D%0Astrong%20%0A%7B%0A%7D%0A%0Aa%20%0A%7B%0A%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%40media%20screen%0A%7B%0Aa%3Ahover%0A%7B%0A%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%7D%0A%40media%20print%0A%7B%0Aa%20%7B%0A%0Acolor%3A%20black%3B%0Abackground%3A%20transparent%3B%0A%7D%0Aa%5Bhref%5E%3D%22http%3A%2F%2F%22%5D%3Aafter%2C%20a%5Bhref%5E%3D%22https%3A%2F%2F%22%5D%3Aafter%0A%7B%0A%0Acontent%3A%20%22%20%28%22%20attr%28href%29%20%22%29%20%22%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%7D%0A%0Aimg%0A%7B%0A%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0Adiv%2Efigure%20%0A%7B%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Atext%2Dalign%3A%20center%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Ap%2Ecaption%20%0A%7B%0A%0A%7D%0A%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23fdf7ee%3B%0A%0A%0A%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Dmoz%2Dpre%2Dwrap%20%21important%3B%20%0Awhite%2Dspace%3A%20%2Dpre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Do%2Dpre%2Dwrap%3B%20%0Aword%2Dwrap%3A%20break%2Dword%3B%20%0A%0A%7D%0Apre%20%0A%7B%0A%0Apadding%3A%200%2E5em%3B%20%0Aborder%2Dradius%3A%205px%3B%20%0A%0Aborder%3A%201px%20solid%20%23aaa%3B%0A%0Amargin%2Dleft%3A%200%2E5em%3B%0Amargin%2Dright%3A%200%2E5em%3B%0A%7D%0A%40media%20screen%0A%7B%0Apre%0A%7B%0A%0Awhite%2Dspace%3A%20pre%3B%0Aoverflow%3A%20auto%3B%0A%0Aborder%3A%201px%20dotted%20%23777%3B%0A%7D%0A%7D%0Acode%20%0A%7B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%0A%7B%0A%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%202px%3B%0A%7D%0Ali%20%3E%20p%20code%20%0A%7B%0A%0Apadding%3A%202px%3B%0A%7D%0A%0Aspan%2Emath%20%0A%7B%0A%0A%7D%0Adiv%2Emath%20%0A%7B%0A%7D%0Aspan%2ELaTeX%20%0A%7B%0A%7D%20eq%20%0A%7B%0A%7D%20%0A%0Atable%0A%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%20%0Aborder%2Dbottom%3A%202pt%20solid%20%23000%3B%0Aborder%2Dtop%3A%202pt%20solid%20%23000%3B%20%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0A%7D%0Athead%20%0A%7B%0Aborder%2Dbottom%3A%201pt%20solid%20%23000%3B%0Abackground%2Dcolor%3A%20%23eee%3B%20%0A%7D%0Atr%2Eheader%20%0A%7B%0A%7D%20tbody%20%0A%7B%0A%7D%0A%0Atr%20%7B%0A%7D%0Atr%2Eodd%3Ahover%2C%20tr%2Eeven%3Ahover%20%0A%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atr%2Eodd%20%7B%7D%0Atr%2Eeven%20%7B%7D%0Atd%2C%20th%20%0A%7B%20vertical%2Dalign%3A%20top%3B%20%0Avertical%2Dalign%3A%20baseline%3B%20%0Apadding%2Dleft%3A%200%2E5em%3B%0Apadding%2Dright%3A%200%2E5em%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0A%0Ath%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%20%7D%0Atfoot%20%0A%7B%0A%7D%0Acaption%20%0A%7B%0Acaption%2Dside%3A%20top%3B%0Aborder%3A%20none%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dstyle%3A%20italic%3B%0Atext%2Dalign%3A%20center%3B%0Amargin%2Dbottom%3A%200%2E3em%3B%20%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0Adl%20%0A%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0Adt%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Add%2Bdt%20%0A%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0Add%20%0A%7B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0Add%2Bdd%20%0A%7B%0Aborder%2Dtop%3A%201px%20solid%20black%3B%20%0A%7D%0A%0Aa%2Efootnote%2C%20a%2EfootnoteRef%20%7B%20%0Afont%2Dsize%3A%20small%3B%20vertical%2Dalign%3A%20text%2Dtop%3B%0A%7D%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%7D%0A%40media%20print%0A%7B%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0Adiv%2Efootnotes%20%0A%7B%0A%7D%0Adiv%2Efootnotes%20li%5Bid%5E%3D%22fn%22%5D%20%0A%7B%0A%7D%0A%0A%40media%20print%0A%7B%0A%2Enoprint%0A%7B%0Adisplay%3Anone%3B%0A%7D%0A%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="functions">Functions</h1>
+<h2 id="where-are-the-functions">Where are the functions?</h2>
+<p>But, wait, isn't Haskell supposed to be a functional programming language? It's already part 2 of the course and we haven't encountered any functions yet.</p>
+<p>Since Haskell is a functional programming language, functions are first-class values. You will recall an earlier example with a value named <code>z</code> which was the result of applying the <code>+</code> operator to <code>x</code> and <code>y</code>. Let's generalize this to a function that adds its two arguments together:</p>
+<pre class="ghci"><code>λ&gt; addIntegers :: Integer -&gt; Integer -&gt; Integer; addIntegers x y = x + y
+λ&gt; :t addIntegers
+addIntegers :: Integer -&gt; Integer -&gt; Integer</code></pre>
+<p>The <code>:t</code> command yields the type signature for <code>addIntegers</code>: in this case a function taking two <code>Integer</code>s and evaluating to a third <code>Integer</code>. The function's &quot;return&quot; type is the rightmost type in the signature. The <code>-&gt;</code> operator is read as &quot;to&quot; or &quot;maps to&quot;.</p>
+<p>We can use this function as follows:</p>
+<pre class="ghci"><code>λ&gt; addIntegers 5 6
+11
+λ&gt; addIntegers 10 11
+21</code></pre>
+<p>Many languages use parentheses, <code>(</code> and <code>)</code>, to delimit the arguments of a function application or call. Functions are so central to the Haskell Way that the language designers intentionally chose the tersest syntax possible for function definitions and function application. Thus, instead of:</p>
+<p><span class="math inline">f(<em>x</em>, <em>y</em>)=<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p><span class="math inline">g(<em>x</em>, <em>y</em>)=<em>x</em><sup>3</sup> + <em>y</em><sup>3</sup></span></p>
+<p><span class="math inline">h(<em>x</em>, <em>y</em>)=f(<em>x</em>, <em>y</em>)+g(<em>x</em>, <em>y</em>)</span></p>
+<p>Haskell uses:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f x y <span class="fu">=</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span>
+g x y <span class="fu">=</span> x <span class="fu">^</span> <span class="dv">3</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">3</span>
+h x y <span class="fu">=</span> f x y <span class="fu">+</span> g x y</code></pre></div>
+<p>To further reduce the use of parentheses, Haskell also assigns the highest precedence of all infix operators to function application.</p>
+<p>Moving our <code>addIntegers</code> function to a source file and adding its type signature, we get:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addIntegers ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+addIntegers x y <span class="fu">=</span> x <span class="fu">+</span> y
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> print (addIntegers <span class="dv">5</span> <span class="dv">6</span>)</code></pre></div>
+<p>To reiterate, this defines a function <code>addIntegers</code> that takes an <code>Integer</code>, a second <code>Integer</code> and evaluates to an <code>Integer</code> (analogous to &quot;returning&quot; an <code>Integer</code> in imperative programming languages).</p>
+<p>Since <code>addIntegers</code> is a value much like <code>z</code>, albeit one with arguments, it can be passed as an argument to other functions. In this respect, <code>addIntegers</code> is much like <code>z</code> or <code>5</code>, <code>&quot;hello&quot;</code> or any other value:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addIntegers ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+addIntegers x y <span class="fu">=</span> x <span class="fu">+</span> y
+
+<span class="ot">functionTakingAFunction ::</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>) <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+functionTakingAFunction f a b <span class="fu">=</span> f a b
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> print (functionTakingAFunction addIntegers <span class="dv">5</span> <span class="dv">6</span>)</code></pre></div>
+<h2 id="anonymous-functions-and-lambda-abstraction">Anonymous functions and lambda abstraction</h2>
+<p>Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of <a href="https://en.wikipedia.org/wiki/Lambda_calculus">the lambda calculus</a>. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.</p>
+<p>Consider the named (mathematical) function <span class="math inline">square_sum</span>:</p>
+<p><span class="math inline">square_sum(<em>x</em>, <em>y</em>)=<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p>Based on an initial simplification, rewriting in <em>anonymous form</em>, we obtain:</p>
+<p><span class="math inline">(<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p>i.e. the pair of <span class="math inline"><em>x</em></span> and <span class="math inline"><em>y</em></span> maps to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>. In essence, this is a definition of a &quot;thing&quot; that maps <span class="math inline"><em>x</em></span> and <span class="math inline"><em>y</em></span> to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>.</p>
+<p>Similarly, the identity function, <span class="math inline">id</span>, is given by:</p>
+<p><span class="math inline">id(<em>x</em>)=<em>x</em></span></p>
+<p>or</p>
+<p><span class="math inline"><em>x</em> ↦ <em>x</em></span></p>
+<p>in anonymous form. This anonymous form is a another &quot;thing&quot;: this time it's something that maps <span class="math inline"><em>x</em></span> to itself, i.e. <span class="math inline"><em>x</em></span>.</p>
+<p>Under the notion of <em>alpha-equivalence</em>, the exact name of the <em>bound variable</em>, in this case <span class="math inline"><em>x</em></span>, does not matter as long as there are no name collisions since the name <span class="math inline"><em>x</em></span> does not &quot;leak&quot; out of the anonymous function's body. With this intuition, it's straightforward to see that the anonymous form of <span class="math inline">id</span> is a &quot;thing&quot; that maps something to itself.</p>
+<p>A second simplification is to transform multiple-argument functions, such as <span class="math inline">square_sum</span>, into equivalent functions in a single argument, known as <a href="https://en.wikipedia.org/wiki/Haskell_Curry"><em>currying</em></a> (or <a href="https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel"><em>schönfinkelization</em></a>):</p>
+<p><span class="math inline">(<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p>is equivalent to</p>
+<p><span class="math inline"><em>x</em> ↦ (<em>y</em> ↦ <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>)</span></p>
+<p>i.e. a function that maps <span class="math inline"><em>x</em></span> to another function in <span class="math inline"><em>y</em></span> that evaluates to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>.</p>
+<p>Application of the function <span class="math inline">square_sum</span> to the arguments <span class="math inline">(5, 2)</span> yields:</p>
+<p><span class="math inline">((<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>)(5, 2)</span><br> <span class="math inline">=5<sup>2</sup> + 2<sup>2</sup></span><br> <span class="math inline">=29</span></p>
+<p>while applying our curried version looks like:</p>
+<p><span class="math inline">((<em>x</em> ↦ (<em>y</em> ↦ <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>))(5))(2)</span><br> <span class="math inline">=(<em>y</em> ↦ 5<sup>2</sup> + <em>y</em><sup>2</sup>)(2)</span><br> <span class="math inline">=5<sup>2</sup> + 2<sup>2</sup></span><br> <span class="math inline">=29</span></p>
+<p>It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical. Furthermore, the additional steps required to evaluate curried functions can be trivially optimized away by the compiler.</p>
+<p>Finally, these anonymous functions can be rewritten as <em>lambda forms</em>:</p>
+<p><span class="math inline"><em>x</em> ↦ <em>x</em><sup>2</sup></span> is identical to <span class="math inline"><em>λ</em><em>x</em>.<em>x</em><sup>2</sup></span></p>
+<p>In Haskell this becomes:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
+<p>The backslash is chosen due its (questionable) resemblance to the lambda character.</p>
+<p>Similarly, the anonymous form of our <span class="math inline">square_sum</span> function becomes:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x y <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
+<p>or, in curried form:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
+<p>At this point, it should not surprise you that these anonymous functions are values in their own right. Thus, names can be assigned to them. This brings us full circle and illustrate the equivalence of functions and anonymous functions modulo the name itself:</p>
+<pre class="ghci"><code>λ&gt; squareSum = \x -&gt; \y -&gt; x ^ 2 + y ^ 2
+λ&gt; :t squareSum
+squareSum :: Num a =&gt; a -&gt; a -&gt; a
+λ&gt; squareSum 3 4
+25</code></pre>
+<h2 id="function-composition">Function composition</h2>
+<p>So far we've applied only single functions to single values. In practice, we're likely to want to do much more than this. Consider computing the hypotenuse of a right-angled triangle. We already have our <code>squareSum</code> function which we can reuse. We also happen to know that there is a standard <code>sqrt</code> function that we can reuse. Let's see what we can do with our (contrived) example:</p>
+<pre class="ghci"><code>λ&gt; squareSum x y = x ^ 2 + y ^ 2
+λ&gt; squareSumWith3 = squareSum 3
+λ&gt; sqrt (squareSumWith3 4)
+5.0</code></pre>
+<p>We're applying a function <code>squareSumWith3</code> to value <code>4</code> and then feeding its value into the input of the function <code>sqrt</code>. This kind of chaining or <em>composition</em> of functions is so common that it gets the second most unassuming operator in the language after whitespace, e.g. <code>.</code>. We can rewrite this last line as follows:</p>
+<pre class="ghci"><code>λ&gt; (sqrt . squareSumWith3) 4
+5.0</code></pre>
+<p>Notionally, <code>.</code> is equivalent to the function <code>compose</code> of type <code>(b -&gt; c) -&gt; (a -&gt; b) -&gt; (a -&gt; c)</code>: i.e. a function taking two functions and yielding a third function:</p>
+<pre class="ghci"><code>λ&gt; compose f g x = f (g x)
+λ&gt; :t compose
+compose :: (t -&gt; t1) -&gt; (t2 -&gt; t) -&gt; t2 -&gt; t1
+λ&gt; f = compose sqrt squareSumWith3
+λ&gt; :t sqrt
+sqrt :: Floating a =&gt; a -&gt; a
+λ&gt; :t squareSumWith3
+squareSumWith3 :: Num a =&gt; a -&gt; a
+λ&gt; :t f
+f :: Floating t1 =&gt; t1 -&gt; t1
+λ&gt; f 4
+5.0</code></pre>
+<p>Of course, we can assign our silly <code>sqrt . squareSumWith3</code> expression to a name too:</p>
+<pre class="ghci"><code>λ&gt; f = sqrt . squareSumWith3
+λ&gt; f 4
+5.0</code></pre>
+<p>Again, this example is totally contrived and we'll build up to more realistic uses soon.</p>
+<h2 id="more-function-application">More function application</h2>
+<p>We've already discussed function application. At this point it's worth mentioning Haskell's other function application operator: <code>$</code>. This is semantically identical to our existing function application model, using whitespace, but with different, much lower, precedence. It is used to reduce the need for parentheses and is commonly used to reduce code's visual clutter. Consider our toy functions again:</p>
+<pre class="ghci"><code>λ&gt; (sqrt . squareSumWith3) 4
+5.0
+λ&gt; sqrt . squareSumWith3 $ 4
+5.0</code></pre>
+<p>This doesn't look like much, but when dealing with multiple levels of nested parentheses, <code>$</code> can eliminate much of this line noise and go a long towards making the code look less <a href="http://wiki.c2.com/?LostInaSeaofParentheses">Lisp-like</a>. When you use parentheses, <code>$</code> or a combination of the two, is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.</p>
+</body>
+</html>

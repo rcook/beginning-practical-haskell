@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link href="data:text/css;charset=utf-8,%0A%0A%0A%0Adiv%23header%2C%20header%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%2Etitle%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eauthor%2C%20%2Edate%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%40media%20print%0A%7B%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%0A%7B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Liberation%20Sans%22%2C%20Calibri%2C%20Arial%2C%20sans%2Dserif%3B%20%0A%0Apage%2Dbreak%2Dafter%3A%20avoid%3B%20%0A%7D%0A%0Adiv%20div%2C%20section%20section%20%0A%7B%0Amargin%2Dleft%3A%202em%3B%20%0A%7D%0Ap%20%7B%7D%0Ablockquote%0A%7B%20font%2Dstyle%3A%20italic%3B%0A%7D%0Ali%20%0A%7B%0A%7D%0Ali%20%3E%20p%20%0A%7B%0Amargin%2Dtop%3A%201em%3B%20%0A%7D%0Aul%20%0A%7B%0A%7D%0Aul%20li%20%0A%7B%0A%7D%0Aol%20%0A%7B%0A%7D%0Aol%20li%20%0A%7B%0A%7D%0Ahr%20%7B%7D%0A%0Asub%20%0A%7B%0A%7D%0Asup%20%0A%7B%0A%7D%0Aem%20%0A%7B%0A%7D%0Aem%20%3E%20em%20%0A%7B%0Afont%2Dstyle%3A%20normal%3B%0A%7D%0Astrong%20%0A%7B%0A%7D%0A%0Aa%20%0A%7B%0A%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%40media%20screen%0A%7B%0Aa%3Ahover%0A%7B%0A%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%7D%0A%40media%20print%0A%7B%0Aa%20%7B%0A%0Acolor%3A%20black%3B%0Abackground%3A%20transparent%3B%0A%7D%0Aa%5Bhref%5E%3D%22http%3A%2F%2F%22%5D%3Aafter%2C%20a%5Bhref%5E%3D%22https%3A%2F%2F%22%5D%3Aafter%0A%7B%0A%0Acontent%3A%20%22%20%28%22%20attr%28href%29%20%22%29%20%22%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%7D%0A%0Aimg%0A%7B%0A%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0Adiv%2Efigure%20%0A%7B%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Atext%2Dalign%3A%20center%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Ap%2Ecaption%20%0A%7B%0A%0A%7D%0A%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23fdf7ee%3B%0A%0A%0A%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Dmoz%2Dpre%2Dwrap%20%21important%3B%20%0Awhite%2Dspace%3A%20%2Dpre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Do%2Dpre%2Dwrap%3B%20%0Aword%2Dwrap%3A%20break%2Dword%3B%20%0A%0A%7D%0Apre%20%0A%7B%0A%0Apadding%3A%200%2E5em%3B%20%0Aborder%2Dradius%3A%205px%3B%20%0A%0Aborder%3A%201px%20solid%20%23aaa%3B%0A%0Amargin%2Dleft%3A%200%2E5em%3B%0Amargin%2Dright%3A%200%2E5em%3B%0A%7D%0A%40media%20screen%0A%7B%0Apre%0A%7B%0A%0Awhite%2Dspace%3A%20pre%3B%0Aoverflow%3A%20auto%3B%0A%0Aborder%3A%201px%20dotted%20%23777%3B%0A%7D%0A%7D%0Acode%20%0A%7B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%0A%7B%0A%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%202px%3B%0A%7D%0Ali%20%3E%20p%20code%20%0A%7B%0A%0Apadding%3A%202px%3B%0A%7D%0A%0Aspan%2Emath%20%0A%7B%0A%0A%7D%0Adiv%2Emath%20%0A%7B%0A%7D%0Aspan%2ELaTeX%20%0A%7B%0A%7D%20eq%20%0A%7B%0A%7D%20%0A%0Atable%0A%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%20%0Aborder%2Dbottom%3A%202pt%20solid%20%23000%3B%0Aborder%2Dtop%3A%202pt%20solid%20%23000%3B%20%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0A%7D%0Athead%20%0A%7B%0Aborder%2Dbottom%3A%201pt%20solid%20%23000%3B%0Abackground%2Dcolor%3A%20%23eee%3B%20%0A%7D%0Atr%2Eheader%20%0A%7B%0A%7D%20tbody%20%0A%7B%0A%7D%0A%0Atr%20%7B%0A%7D%0Atr%2Eodd%3Ahover%2C%20tr%2Eeven%3Ahover%20%0A%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atr%2Eodd%20%7B%7D%0Atr%2Eeven%20%7B%7D%0Atd%2C%20th%20%0A%7B%20vertical%2Dalign%3A%20top%3B%20%0Avertical%2Dalign%3A%20baseline%3B%20%0Apadding%2Dleft%3A%200%2E5em%3B%0Apadding%2Dright%3A%200%2E5em%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0A%0Ath%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%20%7D%0Atfoot%20%0A%7B%0A%7D%0Acaption%20%0A%7B%0Acaption%2Dside%3A%20top%3B%0Aborder%3A%20none%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dstyle%3A%20italic%3B%0Atext%2Dalign%3A%20center%3B%0Amargin%2Dbottom%3A%200%2E3em%3B%20%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0Adl%20%0A%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0Adt%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Add%2Bdt%20%0A%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0Add%20%0A%7B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0Add%2Bdd%20%0A%7B%0Aborder%2Dtop%3A%201px%20solid%20black%3B%20%0A%7D%0A%0Aa%2Efootnote%2C%20a%2EfootnoteRef%20%7B%20%0Afont%2Dsize%3A%20small%3B%20vertical%2Dalign%3A%20text%2Dtop%3B%0A%7D%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%7D%0A%40media%20print%0A%7B%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0Adiv%2Efootnotes%20%0A%7B%0A%7D%0Adiv%2Efootnotes%20li%5Bid%5E%3D%22fn%22%5D%20%0A%7B%0A%7D%0A%0A%40media%20print%0A%7B%0A%2Enoprint%0A%7B%0Adisplay%3Anone%3B%0A%7D%0A%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="io">I/O</h1>
+<p>Given the title of this course, I'll assume you came here to learn how to write useful programs. Practical programs typically need to interact with the outside world. In the absence of input/output, all your programs can do is warm up your CPU.</p>
+<p>Most other programming languages allow subroutines to directly perform arbitrary input and output or interaction with the outside world. However, this is fundamentally incompatible with a language such as Haskell which maintains a strong correspondence between its functions and mathematical functions.</p>
+<p>Mathematical functions:</p>
+<ul>
+<li>Cannot read files from disc or write to the screen</li>
+<li>Cannot read or mutate global state</li>
+<li>Can only return values that are functions of their arguments or other pure functions</li>
+</ul>
+<p>Fortunately, there are several different solutions to this problem. Modern Haskell's approach makes use of an abstract <code>IO</code> type. The model is functionally equivalent to the continuation-passing style, though few people actually explicitly use this particular terminology. We'll build up step-by-step to full-blown I/O.</p>
+<h2 id="the-prelude">The Prelude</h2>
+<p>Haskell's prelude is a module provided by the implementation that defines many standard functions. It is implicitly imported into every Haskell source file, unless this is explicitly disabled. We'll use a few functions from <code>Prelude</code> to explore I/O.</p>
+<p>Our mission is to read a number in from the user, do something to it and then output the result to the terminal.</p>
+<h3 id="the-print-function">The <code>print</code> function</h3>
+<p>We've already seen this function, but now we'll look at in a little more detail:</p>
+<pre class="ghci"><code>λ&gt; :t print
+print :: Show a =&gt; a -&gt; IO ()</code></pre>
+<p>The type signature has a type constraint of <code>Show a</code> where <code>a</code> is a type variable again. For the sake of this discussion, <code>Show</code> is a type class with a single &quot;method&quot; <code>show</code> (it's not quite this simple but, whatever!):</p>
+<pre class="ghci"><code>λ&gt; :t show
+show :: Show a =&gt; a -&gt; String</code></pre>
+<p>A function on a type class is commonly referred to as a &quot;method&quot; by analogy with methods on a class or interface in object-oriented languages. Thus, <code>show</code> is a method taking a value of some type <code>a</code> and returning a <code>String</code>. All of Haskell's primitive types implement <code>Show</code> which typically return a human-readable representation of a value. You can provide instances for user-defined types—which we'll discuss eventually—or have them derived automatically for you using <code>deriving Show</code> where possible.</p>
+<p>So, what's <code>IO</code>? Well, it's a type class much like <code>Num</code> and we already saw <code>()</code> or the unit type. Therefore, this is a function that takes something of type <code>a</code> in the type (subject to the <code>Show a</code> constraint) and returns <code>IO ()</code></p>
+<h3 id="a.k.a.-bind"><code>&gt;&gt;=</code> a.k.a. &quot;bind&quot;</h3>
+<p>Here are more details of <code>IO</code> in GHCi:</p>
+<pre class="ghci"><code>λ&gt; :i IO
+newtype IO a
+  = ghc-prim-0.5.0.0:GHC.Types.IO (ghc-prim-0.5.0.0:GHC.Prim.State#
+                                     ghc-prim-0.5.0.0:GHC.Prim.RealWorld
+                                   -&gt; (# ghc-prim-0.5.0.0:GHC.Prim.State#
+                                           ghc-prim-0.5.0.0:GHC.Prim.RealWorld,
+                                         a #))
+    -- Defined in ‘ghc-prim-0.5.0.0:GHC.Types’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Functor IO -- Defined in ‘GHC.Base’
+instance Applicative IO -- Defined in ‘GHC.Base’
+instance Monoid a =&gt; Monoid (IO a) -- Defined in ‘GHC.Base’</code></pre>
+<p>This tells us that <code>IO</code> has instances for four other type classes, namely <code>Monad</code>, <code>Functor</code>, <code>Applicative</code> and <code>Monoid</code>. Let's look at <code>Monad</code>:</p>
+<pre class="ghci"><code>λ&gt; :i Monad
+class Applicative m =&gt; Monad (m :: * -&gt; *) where
+  (&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b
+  (&gt;&gt;) :: m a -&gt; m b -&gt; m b
+  return :: a -&gt; m a
+  fail :: String -&gt; m a
+  {-# MINIMAL (&gt;&gt;=) #-}
+    -- Defined in ‘GHC.Base’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Monad ((-&gt;) r) -- Defined in ‘GHC.Base’</code></pre>
+<p>Since <code>IO</code> has an instance for <code>Monad</code>, it provides an implementation of method <code>&gt;&gt;=</code>, pronounced &quot;bind&quot;:</p>
+<pre class="ghci"><code>λ&gt; :t (&gt;&gt;=)
+(&gt;&gt;=) :: Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b</code></pre>
+<p>Note that functions with special symbols in their names will, under certain circumstances, require surrounding parentheses both in GHCi and Haskell source code.</p>
+<p>Specializing from <code>Monad</code> to <code>IO</code>, <code>&gt;&gt;=</code> is a function that takes <code>IO a</code>, where <code>a</code> is a type variable, a function from <code>a</code> to <code>IO b</code> and evaluates to an <code>IO b</code>. We can try out <code>print</code> by itself:</p>
+<pre class="ghci"><code>λ&gt; print 5
+5
+λ&gt; :t print 5
+print 5 :: IO ()
+λ&gt; print &quot;hello&quot;
+&quot;hello&quot;
+λ&gt; :t print &quot;hello&quot;
+print &quot;hello&quot; :: IO ()</code></pre>
+<p>Note that <code>print 5</code> and <code>print &quot;hello&quot;</code> are two separate statements in GHCi. In &quot;full&quot; Haskell in a source file, programs must consist of a single expression. Let's see if we can combine them into a single expression using <code>&gt;&gt;=</code>.</p>
+<p>Given an <code>IO ()</code>, we need a function that takes unit and returns <code>IO b</code> where <code>b</code> can be unit too. We can build such a function that ignores its first argument and evaluates to <code>print &quot;hello&quot;</code>. We'll call it <code>f</code> for now:</p>
+<pre class="ghci"><code>λ&gt; f :: () -&gt; IO (); f _ = print &quot;hello&quot;</code></pre>
+<p>We can then combine it with <code>print 5</code> by passing it as the second operand to <code>&gt;&gt;=</code>:</p>
+<pre class="ghci"><code>λ&gt; print 5 &gt;&gt;= f
+5
+&quot;hello&quot;</code></pre>
+<p>Our function <code>f</code> is great. However, we use it exactly once and should, therefore, never need to refer to it by name. So, let's use a lambda instead. Let's start by defining a alternative version of <code>f</code>, named <code>f'</code>, to which we'll assign the equivalent anonymous function:</p>
+<pre class="ghci"><code>λ&gt; f' :: () -&gt; IO (); f' = \_ -&gt; print &quot;hello&quot;</code></pre>
+<p>Function <code>f'</code> is semantically identical to <code>f</code> and, so, we can write:</p>
+<pre class="ghci"><code>λ&gt; print 5 &gt;&gt;= f'
+5
+&quot;hello&quot;</code></pre>
+<p>Since <code>f'</code> is referentially transparent, we can replace it with its value instead:</p>
+<pre class="ghci"><code>λ&gt; print 5 &gt;&gt;= \_ -&gt; print &quot;hello&quot;
+5
+&quot;hello&quot;
+λ&gt; :t print 5 &gt;&gt;= \_ -&gt; print &quot;hello&quot;
+print 5 &gt;&gt;= \_ -&gt; print &quot;hello&quot; :: IO ()</code></pre>
+<p>Now we have single expression whose type is <code>IO ()</code> with no unnecessary names. We can then put this in a source file:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> print <span class="dv">5</span> <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> print <span class="st">&quot;hello&quot;</span></code></pre></div>
+<p>And compile and run as follows:</p>
+<pre class="console"><code>&gt; stack runhaskell Scratch.hs
+5
+&quot;hello&quot;</code></pre>
+<p>We have successfully demonstrated several functionally equivalent ways of using a functional dependency to provide an explicit ordering of execution.</p>
+<h3 id="the-read-function">The <code>read</code> function</h3>
+<p>Let's do some more exploring using GHCi:</p>
+<pre class="ghci"><code>λ&gt; :t read
+read :: Read a =&gt; String -&gt; a</code></pre>
+<p>This takes <code>String</code> and returns <code>a</code> which is subject to the <code>Read a</code> constraint. <a href="https://hackage.haskell.org/package/base-4.9.0.0/docs/Text-Read.html"><code>Read</code></a> is a type class that supports reading a value from a <code>String</code>. Haskell's primitive types have instances of <code>Read</code>. Since this is function is polymorphic in its return type, we'll need a type annotation to choose a specific instance of it:</p>
+<pre class="ghci"><code>λ&gt; :t read :: String -&gt; Integer
+read :: String -&gt; Integer :: String -&gt; Integer</code></pre>
+<p>This is a function that takes <code>String</code> and returns an <code>Integer</code>. We can assign a (monomorphic) name to this specific instance of <code>read</code> and test it out:</p>
+<pre class="ghci"><code>λ&gt; readInteger :: String -&gt; Integer; readInteger = read
+λ&gt; :t readInteger
+readInteger :: String -&gt; Integer
+λ&gt; readInteger &quot;123&quot;
+123</code></pre>
+<h3 id="the-getline-function">The <code>getLine</code> function</h3>
+<p>Here's <code>getline</code> in all its glory:</p>
+<pre class="ghci"><code>λ&gt; :t getLine
+getLine :: IO String</code></pre>
+<h3 id="the-putstr-function">The <code>putStr</code> function</h3>
+<p>This one is straightforward:</p>
+<pre class="ghci"><code>λ&gt; :t putStr
+putStr :: String -&gt; IO ()</code></pre>
+<p>This is simply <code>putStrLn</code> without the extra line ending.</p>
+<h3 id="the-hflush-function">The <code>hFlush</code> function</h3>
+<p>By itself, <code>putStr</code> outputs the given characters to the standard output stream on the terminal but does not, by default, flush the stream. Just like using standard output from a C program, we'll need to flush the buffer prior to requesting input from the user. In C/C++ we'd have to do the following:</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;Buffered output: &quot;</span>);
+fflush(stdout);</code></pre></div>
+<p>Similarly, in Haskell we'll need to use <code>hFlush</code>:</p>
+<pre class="ghci"><code>λ&gt; :t hFlush
+hFlush :: Handle -&gt; IO ()</code></pre>
+<p>The handle itself, <code>stdout</code>, is in the <code>System.IO</code> namespace, so you'll need to import this namespace. This is our first use of the <code>import</code> keyword in Haskell which we'll run into more in the future:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">System.IO</span></code></pre></div>
+<h3 id="combine-them-all">Combine them all</h3>
+<p>This is what we're going to do: * Print a prompt to the terminal (using <code>putStr</code>) * Flush the standard output buffer (using <code>hFlush</code>) * Get a string from the keyboard (using <code>getLine</code>) * Convert the string to an integer (using <code>read</code>/<code>readInteger</code>) * Multiply the integer by 2 (using <code>*</code>) * Print out the result (using <code>print</code>)</p>
+<p>The resulting program will consist of a <code>main</code> function itself consisting of a single expression:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">System.IO</span>
+
+<span class="ot">readInteger ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+readInteger <span class="fu">=</span> read
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> putStr <span class="st">&quot;Enter a number and I'll double it: &quot;</span>
+    <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> hFlush stdout
+    <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> getLine
+    <span class="fu">&gt;&gt;=</span> \l <span class="ot">-&gt;</span> print (<span class="dv">2</span> <span class="fu">*</span> readInteger l)</code></pre></div>
+<p>Let's run it:</p>
+<pre class="console"><code>&gt; stack runhaskell Scratch.hs
+Enter a number and I'll double it: 5
+10</code></pre>
+<h3 id="wait-a-minute">Wait a minute!</h3>
+<p>But, didn't you say that Haskell was purely functional? Surely, <code>putStr</code>, <code>getLine</code> and <code>print</code> have side effects?</p>
+<p>Well, no, not at all:</p>
+<ul>
+<li>They're &quot;actions&quot;</li>
+<li>They're strung together using <code>&gt;&gt;=</code></li>
+<li>At no point do they mutate global state or interact with the outside world</li>
+<li>We build up an expression tree or graph of these actions</li>
+<li>They are &quot;executed&quot; when the program is run</li>
+</ul>
+<p>Did you mention something about continuation passing?</p>
+<ul>
+<li>Why, yes, I did!</li>
+<li>That's what <code>&gt;&gt;=</code> is doing</li>
+<li>You provide an action as its first argument</li>
+<li>And the continuation as the second argument</li>
+<li>This second argument is the thing that is to be evaluated after the first action has run at program execution time: the value generated by the first action is passed as an argument to the continuation</li>
+</ul>
+<p><code>&gt;&gt;=</code> is great as it provides the ability to sequence actions (at least when it's used with <code>IO</code>). However, all of these <code>&gt;&gt;=</code>s will become ugly as we sequence more and more subexpressions in our program. We will talk about how to clean this up soon.</p>
+</body>
+</html>

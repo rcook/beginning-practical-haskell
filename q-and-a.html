@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link href="data:text/css;charset=utf-8,%0A%0A%0A%0Adiv%23header%2C%20header%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%2Etitle%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eauthor%2C%20%2Edate%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%40media%20print%0A%7B%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%0A%7B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Liberation%20Sans%22%2C%20Calibri%2C%20Arial%2C%20sans%2Dserif%3B%20%0A%0Apage%2Dbreak%2Dafter%3A%20avoid%3B%20%0A%7D%0A%0Adiv%20div%2C%20section%20section%20%0A%7B%0Amargin%2Dleft%3A%202em%3B%20%0A%7D%0Ap%20%7B%7D%0Ablockquote%0A%7B%20font%2Dstyle%3A%20italic%3B%0A%7D%0Ali%20%0A%7B%0A%7D%0Ali%20%3E%20p%20%0A%7B%0Amargin%2Dtop%3A%201em%3B%20%0A%7D%0Aul%20%0A%7B%0A%7D%0Aul%20li%20%0A%7B%0A%7D%0Aol%20%0A%7B%0A%7D%0Aol%20li%20%0A%7B%0A%7D%0Ahr%20%7B%7D%0A%0Asub%20%0A%7B%0A%7D%0Asup%20%0A%7B%0A%7D%0Aem%20%0A%7B%0A%7D%0Aem%20%3E%20em%20%0A%7B%0Afont%2Dstyle%3A%20normal%3B%0A%7D%0Astrong%20%0A%7B%0A%7D%0A%0Aa%20%0A%7B%0A%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%40media%20screen%0A%7B%0Aa%3Ahover%0A%7B%0A%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%7D%0A%40media%20print%0A%7B%0Aa%20%7B%0A%0Acolor%3A%20black%3B%0Abackground%3A%20transparent%3B%0A%7D%0Aa%5Bhref%5E%3D%22http%3A%2F%2F%22%5D%3Aafter%2C%20a%5Bhref%5E%3D%22https%3A%2F%2F%22%5D%3Aafter%0A%7B%0A%0Acontent%3A%20%22%20%28%22%20attr%28href%29%20%22%29%20%22%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%7D%0A%0Aimg%0A%7B%0A%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0Adiv%2Efigure%20%0A%7B%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Atext%2Dalign%3A%20center%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Ap%2Ecaption%20%0A%7B%0A%0A%7D%0A%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23fdf7ee%3B%0A%0A%0A%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Dmoz%2Dpre%2Dwrap%20%21important%3B%20%0Awhite%2Dspace%3A%20%2Dpre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Do%2Dpre%2Dwrap%3B%20%0Aword%2Dwrap%3A%20break%2Dword%3B%20%0A%0A%7D%0Apre%20%0A%7B%0A%0Apadding%3A%200%2E5em%3B%20%0Aborder%2Dradius%3A%205px%3B%20%0A%0Aborder%3A%201px%20solid%20%23aaa%3B%0A%0Amargin%2Dleft%3A%200%2E5em%3B%0Amargin%2Dright%3A%200%2E5em%3B%0A%7D%0A%40media%20screen%0A%7B%0Apre%0A%7B%0A%0Awhite%2Dspace%3A%20pre%3B%0Aoverflow%3A%20auto%3B%0A%0Aborder%3A%201px%20dotted%20%23777%3B%0A%7D%0A%7D%0Acode%20%0A%7B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%0A%7B%0A%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%202px%3B%0A%7D%0Ali%20%3E%20p%20code%20%0A%7B%0A%0Apadding%3A%202px%3B%0A%7D%0A%0Aspan%2Emath%20%0A%7B%0A%0A%7D%0Adiv%2Emath%20%0A%7B%0A%7D%0Aspan%2ELaTeX%20%0A%7B%0A%7D%20eq%20%0A%7B%0A%7D%20%0A%0Atable%0A%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%20%0Aborder%2Dbottom%3A%202pt%20solid%20%23000%3B%0Aborder%2Dtop%3A%202pt%20solid%20%23000%3B%20%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0A%7D%0Athead%20%0A%7B%0Aborder%2Dbottom%3A%201pt%20solid%20%23000%3B%0Abackground%2Dcolor%3A%20%23eee%3B%20%0A%7D%0Atr%2Eheader%20%0A%7B%0A%7D%20tbody%20%0A%7B%0A%7D%0A%0Atr%20%7B%0A%7D%0Atr%2Eodd%3Ahover%2C%20tr%2Eeven%3Ahover%20%0A%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atr%2Eodd%20%7B%7D%0Atr%2Eeven%20%7B%7D%0Atd%2C%20th%20%0A%7B%20vertical%2Dalign%3A%20top%3B%20%0Avertical%2Dalign%3A%20baseline%3B%20%0Apadding%2Dleft%3A%200%2E5em%3B%0Apadding%2Dright%3A%200%2E5em%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0A%0Ath%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%20%7D%0Atfoot%20%0A%7B%0A%7D%0Acaption%20%0A%7B%0Acaption%2Dside%3A%20top%3B%0Aborder%3A%20none%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dstyle%3A%20italic%3B%0Atext%2Dalign%3A%20center%3B%0Amargin%2Dbottom%3A%200%2E3em%3B%20%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0Adl%20%0A%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0Adt%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Add%2Bdt%20%0A%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0Add%20%0A%7B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0Add%2Bdd%20%0A%7B%0Aborder%2Dtop%3A%201px%20solid%20black%3B%20%0A%7D%0A%0Aa%2Efootnote%2C%20a%2EfootnoteRef%20%7B%20%0Afont%2Dsize%3A%20small%3B%20vertical%2Dalign%3A%20text%2Dtop%3B%0A%7D%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%7D%0A%40media%20print%0A%7B%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0Adiv%2Efootnotes%20%0A%7B%0A%7D%0Adiv%2Efootnotes%20li%5Bid%5E%3D%22fn%22%5D%20%0A%7B%0A%7D%0A%0A%40media%20print%0A%7B%0A%2Enoprint%0A%7B%0Adisplay%3Anone%3B%0A%7D%0A%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="questions-and-answers">Questions and answers</h1>
+<p>This will eventually become Frequently Asked Questions once the questions have been asked more than once each!</p>
+<h2 id="q.-if-a-thunk-is-forced-from-more-than-one-thread-are-there-any-guarantees-that-a-value-will-not-be-evaluated-more-than-once">Q. If a thunk is forced from more than one thread, are there any guarantees that a value will not be evaluated more than once?</h2>
+<p>My hand-wavy answer to this was &quot;It doesn't matter&quot; since referential transparency guarantees that whether the inner computation was performed more than once cannot be observed by outside users. But, of course, this is not really true since more than one computation could incur a time or performance overhead that could be observed by the end user.</p>
+<p>My claim is that Haskell programming language specification does not go into this and an implementation is free to deal with this however it sees fit.</p>
+<p>I will look into the details of this and get back to you when I have a more satisfactory answer.</p>
+<p><a href="http://mainisusuallyafunction.blogspot.com/2011/10/thunks-and-lazy-blackholes-introduction.html">Here</a>'s a good source.</p>
+<h2 id="q.-why-does-the-build-depends-section-place-an-upper-bound-on-base">Q. Why does the <code>build-depends</code> section place an upper bound on <code>base</code>?</h2>
+<p><a href="http://hackage.haskell.org/">Hackage</a> (the Haskell package repository) prefers to use <a href="http://semver.org/">semantic versioning</a> for packages, but does not attempt to enforce. Anyway, the gist of this policy is that versions of packages, including <code>base</code>, should be compatible if they have the same major version number. Moving forward to <code>base</code> with a newer major version is likely to require nontrivial changes to a project's dependencies and/or source code.</p>
+<h2 id="q.-is-haskell-a-compiled-or-interpreted-language-what-about-ghci">Q. Is Haskell a compiled or interpreted language? What about GHCi?</h2>
+<p>I believe that the Haskell <a href="https://www.haskell.org/onlinereport/haskell2010/">specification</a> doesn't, to the best of my knowledge, mandate whether a conformant Haskell implementation should compile or interpret code. Neither does mandate whether the implementation should generate native code or an intermediate language. We'll be using <a href="https://www.haskell.org/ghc/">GHC</a>—the Glasgow Haskell Compiler—which is a compiler and emits native code (and other kinds of output with different backends). This is true even of GHCi, the REPL, which compiles code incrementally using the <a href="https://wiki.haskell.org/GHC/As_a_library">GHC API</a>.</p>
+<h2 id="q.-line-continuation-in-ghci">Q. Line continuation in GHCi</h2>
+<p>While performing <a href="https://downloads.haskell.org/~ghc/7.8.4/docs/html/users_guide/interactive-evaluation.html">interactive evaluation</a>, input can split across multiple lines using the <code>:{</code> and <code>:}</code> delimiters:</p>
+<pre class="ghci"><code>λ&gt; :{
+λ| let { g op n [] = n
+λ|     ; g op n (h:t) = h `op` g op n t
+λ|     }
+λ| :}
+λ&gt; g (*) 1 [1..3]
+6</code></pre>
+<h2 id="q.-can-i-tell-within-ghci-if-a-thunk-has-been-evaluated-etc.">Q. Can I tell within GHCi if a thunk has been evaluated etc.?</h2>
+<p>This can be done using the <code>:sprint</code> command:</p>
+<pre class="ghci"><code>λ&gt; a = 5 + 6
+λ&gt; :t a
+a :: Num a =&gt; a
+λ&gt; :sprint a
+a = _
+λ&gt; a
+11
+λ&gt; :sprint a
+a = _
+λ&gt; b = (5 + 6) :: Int
+λ&gt; :t b
+b :: Int
+λ&gt; :sprint b
+b = _
+λ&gt; b
+11
+λ&gt; :sprint b
+b = 11
+λ&gt; xs = [0 ..]
+λ&gt; :t xs
+xs :: (Num t, Enum t) =&gt; [t]
+λ&gt; :sprint xs
+xs = _
+λ&gt; head xs
+0
+λ&gt; :sprint xs
+xs = _
+λ&gt; ys = [0 ..] :: [Int]
+λ&gt; :t ys
+ys :: [Int]
+λ&gt; :sprint ys
+ys = _
+λ&gt; head ys
+0
+λ&gt; :sprint ys
+ys = 0 : _</code></pre>
+<p>Notes:</p>
+<ul>
+<li>Unevaluated terms or subterms are indicated by <code>_</code></li>
+<li>Both <code>a</code> and <code>xs</code> are polymorphic types and will always show up as <code>_</code></li>
+<li>Only concrete instantiations of <code>a</code> and <code>xs</code> will demonstrate partial or full evaluation using <code>:sprint</code></li>
+<li>Both <code>b</code> and <code>ys</code> are monomorphic (i.e. concrete) types and demonstrate partial and full evaluation</li>
+</ul>
+<h2 id="q.-what-is-int-and-what-is-integer">Q. What is <code>Int</code> and what is <code>Integer</code>?</h2>
+<p>We'll talk about this in later session. For now, all you need to know is that <code>Int</code> is a machine integer (akin to <code>int</code> in C++) while <code>Integer</code> is an arbitrary precision or &quot;mathematical&quot; integer. Both provide instances of the <code>Num</code> type class.</p>
+<h2 id="q.-what-happens-if-a-valid-float-value-cannot-be-represented-by-int">Q. What happens if a valid <code>Float</code> value cannot be represented by <code>Int</code>?</h2>
+<p>Automatic conversions between numeric types <a href="https://wiki.haskell.org/Converting_numbers">is unsupported</a>. This is likely to remain the case forever. Here's what happens when we try to convert floating-point values that are unrepresentable as integers:</p>
+<p>Let's define <code>infinity</code> be reading its string represention:</p>
+<pre class="ghci"><code>λ&gt; infinity = read &quot;Infinity&quot; :: Float
+λ&gt; infinity
+Infinity
+λ&gt; :t infinity
+infinity :: Float</code></pre>
+<p>And, similarly, <code>nan</code>:</p>
+<pre class="ghci"><code>λ&gt; nan = read &quot;NaN&quot; :: Float
+λ&gt; nan
+NaN
+&gt; :t nan
+nan :: Float</code></pre>
+<p>Let's convert these to <code>Integer</code> and <code>Int</code>:</p>
+<pre class="ghci"><code>&gt; round infinity :: Integer
+340282366920938463463374607431768211456
+λ&gt; round nan :: Integer
+-510423550381407695195061911147652317184
+λ&gt; round infinity :: Int
+0
+λ&gt; round nan :: Int
+0</code></pre>
+<p>I was somewhat disappointed by some of these behaviours to be honest. However, I expect that this is roughly equivalent to how a C++ compiler would behave. If these special values, and other unrepresentable values, are important to the correct running of the program, the <a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Num"><code>RealFloat</code></a> type class offers the full array of helper functions such as <code>isNaN</code> and <code>isInfinite</code> that you'd expect.</p>
+<h2 id="q.-can-i-view-the-history-of-ghci-commands">Q. Can I view the history of GHCi commands?</h2>
+<p>GHCi offers <code>:back</code>, <code>:forward</code>, <code>:trace</code>, <code>:history</code> commands. There is also the <code>~/.ghc/ghci_history</code> file that retains a log of your GHCi commands.</p>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Shadowing of GHCi bindings</li>
+<li>Whitespace for scopes etc.</li>
+</ul>
+</body>
+</html>

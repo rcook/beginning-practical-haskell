@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link href="data:text/css;charset=utf-8,%0A%0A%0A%0Adiv%23header%2C%20header%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%2Etitle%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eauthor%2C%20%2Edate%20%0A%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Aborder%2Dbottom%3A%201px%20solid%20%23aaa%3B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0A%40media%20print%0A%7B%0Adiv%23TOC%2C%20nav%23TOC%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%0A%7B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Liberation%20Sans%22%2C%20Calibri%2C%20Arial%2C%20sans%2Dserif%3B%20%0A%0Apage%2Dbreak%2Dafter%3A%20avoid%3B%20%0A%7D%0A%0Adiv%20div%2C%20section%20section%20%0A%7B%0Amargin%2Dleft%3A%202em%3B%20%0A%7D%0Ap%20%7B%7D%0Ablockquote%0A%7B%20font%2Dstyle%3A%20italic%3B%0A%7D%0Ali%20%0A%7B%0A%7D%0Ali%20%3E%20p%20%0A%7B%0Amargin%2Dtop%3A%201em%3B%20%0A%7D%0Aul%20%0A%7B%0A%7D%0Aul%20li%20%0A%7B%0A%7D%0Aol%20%0A%7B%0A%7D%0Aol%20li%20%0A%7B%0A%7D%0Ahr%20%7B%7D%0A%0Asub%20%0A%7B%0A%7D%0Asup%20%0A%7B%0A%7D%0Aem%20%0A%7B%0A%7D%0Aem%20%3E%20em%20%0A%7B%0Afont%2Dstyle%3A%20normal%3B%0A%7D%0Astrong%20%0A%7B%0A%7D%0A%0Aa%20%0A%7B%0A%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%40media%20screen%0A%7B%0Aa%3Ahover%0A%7B%0A%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%7D%0A%40media%20print%0A%7B%0Aa%20%7B%0A%0Acolor%3A%20black%3B%0Abackground%3A%20transparent%3B%0A%7D%0Aa%5Bhref%5E%3D%22http%3A%2F%2F%22%5D%3Aafter%2C%20a%5Bhref%5E%3D%22https%3A%2F%2F%22%5D%3Aafter%0A%7B%0A%0Acontent%3A%20%22%20%28%22%20attr%28href%29%20%22%29%20%22%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%7D%0A%0Aimg%0A%7B%0A%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0Adiv%2Efigure%20%0A%7B%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Atext%2Dalign%3A%20center%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Ap%2Ecaption%20%0A%7B%0A%0A%7D%0A%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23fdf7ee%3B%0A%0A%0A%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Dmoz%2Dpre%2Dwrap%20%21important%3B%20%0Awhite%2Dspace%3A%20%2Dpre%2Dwrap%3B%20%0Awhite%2Dspace%3A%20%2Do%2Dpre%2Dwrap%3B%20%0Aword%2Dwrap%3A%20break%2Dword%3B%20%0A%0A%7D%0Apre%20%0A%7B%0A%0Apadding%3A%200%2E5em%3B%20%0Aborder%2Dradius%3A%205px%3B%20%0A%0Aborder%3A%201px%20solid%20%23aaa%3B%0A%0Amargin%2Dleft%3A%200%2E5em%3B%0Amargin%2Dright%3A%200%2E5em%3B%0A%7D%0A%40media%20screen%0A%7B%0Apre%0A%7B%0A%0Awhite%2Dspace%3A%20pre%3B%0Aoverflow%3A%20auto%3B%0A%0Aborder%3A%201px%20dotted%20%23777%3B%0A%7D%0A%7D%0Acode%20%0A%7B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%0A%7B%0A%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%202px%3B%0A%7D%0Ali%20%3E%20p%20code%20%0A%7B%0A%0Apadding%3A%202px%3B%0A%7D%0A%0Aspan%2Emath%20%0A%7B%0A%0A%7D%0Adiv%2Emath%20%0A%7B%0A%7D%0Aspan%2ELaTeX%20%0A%7B%0A%7D%20eq%20%0A%7B%0A%7D%20%0A%0Atable%0A%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%20%0Aborder%2Dbottom%3A%202pt%20solid%20%23000%3B%0Aborder%2Dtop%3A%202pt%20solid%20%23000%3B%20%0A%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0A%7D%0Athead%20%0A%7B%0Aborder%2Dbottom%3A%201pt%20solid%20%23000%3B%0Abackground%2Dcolor%3A%20%23eee%3B%20%0A%7D%0Atr%2Eheader%20%0A%7B%0A%7D%20tbody%20%0A%7B%0A%7D%0A%0Atr%20%7B%0A%7D%0Atr%2Eodd%3Ahover%2C%20tr%2Eeven%3Ahover%20%0A%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atr%2Eodd%20%7B%7D%0Atr%2Eeven%20%7B%7D%0Atd%2C%20th%20%0A%7B%20vertical%2Dalign%3A%20top%3B%20%0Avertical%2Dalign%3A%20baseline%3B%20%0Apadding%2Dleft%3A%200%2E5em%3B%0Apadding%2Dright%3A%200%2E5em%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0A%0Ath%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%20%7D%0Atfoot%20%0A%7B%0A%7D%0Acaption%20%0A%7B%0Acaption%2Dside%3A%20top%3B%0Aborder%3A%20none%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dstyle%3A%20italic%3B%0Atext%2Dalign%3A%20center%3B%0Amargin%2Dbottom%3A%200%2E3em%3B%20%0Apadding%2Dbottom%3A%200%2E2em%3B%0A%7D%0A%0Adl%20%0A%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0Adt%20%0A%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Add%2Bdt%20%0A%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0Add%20%0A%7B%0Amargin%2Dbottom%3A%200%2E5em%3B%0A%7D%0Add%2Bdd%20%0A%7B%0Aborder%2Dtop%3A%201px%20solid%20black%3B%20%0A%7D%0A%0Aa%2Efootnote%2C%20a%2EfootnoteRef%20%7B%20%0Afont%2Dsize%3A%20small%3B%20vertical%2Dalign%3A%20text%2Dtop%3B%0A%7D%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%7D%0A%40media%20print%0A%7B%0Aa%5Bhref%5E%3D%22%23fnref%22%5D%2C%20a%2Ereversefootnote%20%0A%7B%0A%0Adisplay%3A%20none%3B%0A%7D%0A%7D%0Adiv%2Efootnotes%20%0A%7B%0A%7D%0Adiv%2Efootnotes%20li%5Bid%5E%3D%22fn%22%5D%20%0A%7B%0A%7D%0A%0A%40media%20print%0A%7B%0A%2Enoprint%0A%7B%0Adisplay%3Anone%3B%0A%7D%0A%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="types">Types</h1>
+<h2 id="predefined-and-primitive-types">Predefined and primitive types</h2>
+<p><em>[Sources: <a href="https://downloads.haskell.org/~ghc/7.0.1/docs/html/users_guide/primitives.html">1</a>]</em></p>
+<p>Below are Haskell's primitive data types. These cannot be defined in Haskell itself and must, therefore, be provided by the implementation.</p>
+<table style="width:36%;">
+<colgroup>
+<col width="18%"></col>
+<col width="18%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Char</code></td>
+<td align="left">An enumeration whose values represent Unicode characters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Integer</code></td>
+<td align="left">Arbitrary-precision integer</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Int</code></td>
+<td align="left">Fixed-precision integer, typically 64-bit signed integer on 64-bit platforms</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Float</code></td>
+<td align="left">Single-precision floating-point real number</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Double</code></td>
+<td align="left">Double-precision floating-point real number</td>
+</tr>
+</tbody>
+</table>
+<h2 id="algebraic-data-types">Algebraic data types</h2>
+<p><em>[Sources: <a href="http://stackoverflow.com/questions/18204308/haskell-type-vs-data-constructor">1</a>, <a href="https://en.wikipedia.org/wiki/Algebraic_data_type">2</a>]</em></p>
+<p>Additional user-defined types can be defined as composites of other types using Haskell's support for <em>algebraic data types</em>.</p>
+<p>Consider the following <code>data</code> declaration:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> <span class="fu">|</span> <span class="dt">Blue</span></code></pre></div>
+<p><code>Colour</code> is the <em>type constructor</em> and appears on the left-hand side of the <code>=</code> sign. This type has three <em>data constructors</em>, named <code>Red</code>, <code>Green</code> and <code>Blue</code> which appear on the right-hand side of the <code>=</code> sign. You use type constructors where you'd expect a type (e.g. in type annotations) and data constructors where you'd expect a value. <code>Colour</code> is a type while <code>Red</code>, <code>Green</code> and <code>Blue</code> contain values of type <code>Colour</code>. This is known as a <a href="https://en.wikipedia.org/wiki/Tagged_union"><em>sum type</em></a>.</p>
+<p>Let's try a more interesting version of this type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">RGB</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span></code></pre></div>
+<p><code>Colour</code> is still a type. However, <code>RGB</code> is not a value. It is a function taking three <code>Int</code>s and returning a value of type <code>Colour</code>:</p>
+<table>
+<colgroup>
+<col width="35%"></col>
+<col width="56%"></col>
+<col width="7%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Input</th>
+<th align="left">Output</th>
+<th align="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>λ&gt; data Colour = RGB Int Int Int</code></td>
+<td align="left"></td>
+<td align="left">Defines type <code>Colour</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; :info Colour</code><br>or<br><code>λ&gt; :i Colour</code></td>
+<td align="left"><code>data Colour = RGB Int Int Int   -- Defined at &lt;interactive&gt;:2:1</code></td>
+<td align="left">Shows information about type <code>Colour</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; :t RGB</code></td>
+<td align="left"><code>RGB :: Int -&gt; Int -&gt; Int -&gt; Colour</code></td>
+<td align="left">Shows type of <code>RGB</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; let c = RGB 10 20 30</code></td>
+<td align="left"></td>
+<td align="left">Assigns name <code>c</code> to a <code>Colour</code> value</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; :t c</code></td>
+<td align="left"><code>c :: Colour</code></td>
+<td align="left">Shows type of <code>c</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; c</code></td>
+<td align="left"><code>&lt;interactive&gt;:13:1:</code><br><code>    No instance for (Show Colour) arising from a use of `print'</code><br><code>    In a stmt of an interactive GHCi command: print it</code></td>
+<td align="left">What?</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; data Colour = RGB Int Int Int deriving Show</code><br><code>λ&gt; let c = RGB 10 20 30</code><br><code>λ&gt; c</code></td>
+<td align="left"><code>RGB 10 20 30</code></td>
+<td align="left">That's better!</td>
+</tr>
+</tbody>
+</table>
+<p>This version of <code>Colour</code> is a <a href="https://en.wikipedia.org/wiki/Product_type"><em>product type</em></a>. It is isometric to a 3-tuple, or triple, of <code>Int</code>s.</p>
+<h3 id="sum-types">Sum types</h3>
+<ul>
+<li>Equivalent to tagged union, variant, discriminated union etc. in other languages</li>
+</ul>
+<h3 id="product-types">Product types</h3>
+<p><em>[Sources: <a href="https://proofwiki.org/wiki/Cardinality_of_Cartesian_Product">1</a>]</em></p>
+<ul>
+<li>Isomorphic to strongly-typed tuples</li>
+<li>So-called because the <em>cardinality</em> (i.e. size or number of inhabitants) of a type is equal to the product of the cardinality of each of its component types</li>
+<li>Thus equivalent to a Cartesian product of finite sets</li>
+<li>For the Cartesian product <span class="math inline"><em>S</em> × <em>T</em></span> of two finite sets <span class="math inline"><em>S</em></span> and <span class="math inline"><em>T</em></span>, <span class="math inline">|<em>S</em>×<em>T</em>| = |<em>S</em>| × |<em>T</em>|</span> where <span class="math inline">|<em>S</em>|</span> denotes cardinality</li>
+<li>Equivalent to records and structures in other languages</li>
+</ul>
+<h3 id="records"><a name="recordsyntax"></a> Records</h3>
+<p>There is another way of defining a product type with the added convenience of automatically-generated accessor functions. This is Haskell's <em>record</em> syntax:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">RGB</span> {<span class="ot"> red ::</span> <span class="dt">Int</span>,<span class="ot"> green ::</span> <span class="dt">Int</span>,<span class="ot"> blue ::</span> <span class="dt">Int</span> }</code></pre></div>
+<p>Just like the previous product type definition of <code>Colour</code>, this definition consists of a triple of <code>Int</code>s. Similarly, <code>RGB</code> is a data constructor of type <code>Int -&gt; Int -&gt; Int -&gt; Colour</code>. However, this definition also names the three components and generates accessor functions for them, as you can convince yourself by defining <code>Colour</code> in GHCi and using <code>:t</code> on <code>red</code>, <code>green</code>, <code>blue</code>. Each has type <code>Colour -&gt; Int</code>: i.e. each is a function taking a <code>Colour</code> and returning an <code>Int</code>.</p>
+<h2 id="parametric-polymorphism">Parametric polymorphism</h2>
+<p>Similarly, we might define a &quot;pair&quot; type as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Input</th>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>λ&gt; data Pair a b = P { first :: a, second :: b }</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; :t P</code></td>
+<td align="left"><code>P :: a -&gt; b -&gt; Pair a b</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; :t first</code></td>
+<td align="left"><code>first :: Pair a b -&gt; a</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; :t second</code></td>
+<td align="left"><code>second :: Pair a b -&gt; b</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; indianaPi = P &quot;pi&quot; (4 / 1.25)</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; first indianaPi</code></td>
+<td align="left"><code>&quot;pi&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; :t first indianaPi</code></td>
+<td align="left"><code>first indianaPi :: [Char]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>λ&gt; second indianaPi</code></td>
+<td align="left"><code>3.2</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>λ&gt; :t second indianaPi</code></td>
+<td align="left"><code>second indianaPi :: Fractional b =&gt; b</code></td>
+</tr>
+</tbody>
+</table>
+<p>This is our first experience of <em>parametric polymorphism</em>. In this case, <code>a</code> and <code>b</code> are type arguments/variables and define the <em>polymorphic type</em> <code>Pair a b</code>. <code>Pair</code> is the type constructor in two type arguments, so-called because each distinct pair of concrete types substituted for <code>a</code> and <code>b</code> <em>construct</em> a new type. As with previous <code>data</code> definitions, <code>P</code> is a data constructor and construct specific <em>values</em> belonging to a concrete instantiation of <code>Pair a b</code>.</p>
+<p>The type of <code>first indianaPi</code> is is also our first experience of a <em>list</em> in Haskell which we'll discuss in more detail soon and are ubiquitous in Haskell.</p>
+<h2 id="predefined-algebraic-data-types">Predefined algebraic data types</h2>
+<p>We now have enough knowledge to look into some other <em>predefined</em> Haskell types and polymorphic types that you'll run into a lot. These types are algebraic data types and can, therefore, be expressed using <code>data</code> definitions and derived from Haskell's primitive types. The &quot;definition&quot; is some cases is really an instructive approximation of the real definition and elide detail that is superfluous for our immediate purposes:</p>
+<table style="width:99%;">
+<colgroup>
+<col width="38%"></col>
+<col width="41%"></col>
+<col width="18%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Definition</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Bool</code></td>
+<td align="left"><code>data Bool = True | False</code></td>
+<td align="left">A <a href="https://en.wikipedia.org/wiki/Nullary_constructor">nullary type constructor</a> with two nullary data constructors <code>True</code> and <code>False</code> representing Boolean truth values</td>
+</tr>
+<tr class="even">
+<td align="left"><code>String</code></td>
+<td align="left"><code>type String = [Char]</code></td>
+<td align="left">A list of Unicode characters</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Ratio a</code></td>
+<td align="left"><em>n/a</em></td>
+<td align="left">A rational number represented as a pair of primitive numeric values</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Complex a</code></td>
+<td align="left"><em>n/a</em></td>
+<td align="left">A complex floating-point number represented as a pair of primitive numeric values</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[a]</code></td>
+<td align="left"><code>data [a] = [] | a : [a]</code></td>
+<td align="left">A homogeneous singly-linked list represented as a pair of head element and tail list</td>
+</tr>
+<tr class="even">
+<td align="left"><code>(a, b)</code>, <code>(a, b, c)</code> etc.</td>
+<td align="left"><code>data (a, b) = (a, b)</code> etc.</td>
+<td align="left">A heterogeneous <span class="math inline"><em>n</em></span>-tuple</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>()</code> (&quot;unit&quot;)</td>
+<td align="left"><code>data () = ()</code></td>
+<td align="left"><a href="https://en.wikipedia.org/wiki/Unit_type">A type with the single nullary member <code>()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>We'll describe <code>type</code> definitions in more detail later, but suffice it to say that <code>type</code> defines simple type aliases for other types.</p>
+<h2 id="pattern-matching">Pattern matching</h2>
+<p>Given our previous definition of <code>Colour</code> as a product type without record syntax, how do we extract the component values? This is where &quot;pattern matching&quot; comes in. Pattern matching is a mechanism for <em>deconstructing</em> Haskell values, so-called because the patterns mimic the <em>data constructor</em> invocation used to construct the value initially. Consequently, the runtime representation of values of product types retain sufficient information to allow code to determine <em>how</em> a value was constructed at runtime.</p>
+<p>There are two-and-a-half distinct places where you'll see pattern matching:</p>
+<ul>
+<li>In function definitions, used to deconstruct function arguments</li>
+<li>In <code>case</code> expressions, used to deconstruct arbitrary values</li>
+<li>Similar to function definitions, lambdas can also perform pattern matching on their argument</li>
+</ul>
+<h3 id="pattern-matching-in-function-definitions">Pattern matching in function definitions</h3>
+<p>This is equivalent to the code that the Haskell compiler generates for record accessor functions described <a href="#recordsyntax">previously</a>. Here's an example using our trusty <code>Colour</code> data type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">RGB</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span>
+
+<span class="ot">red ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+red (<span class="dt">RGB</span> r _ _) <span class="fu">=</span> r
+
+<span class="ot">green ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+green (<span class="dt">RGB</span> _ g _) <span class="fu">=</span> g
+
+<span class="ot">blue ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+blue (<span class="dt">RGB</span> _ _ b) <span class="fu">=</span> b</code></pre></div>
+<ul>
+<li><code>_</code> (&quot;unknown&quot;) is a &quot;throwaway&quot; name: it matches a value but does not assign a name to it which is useful when we don't care about that specific value</li>
+<li>You'll see it used a lot</li>
+<li>It can also be used to represent a <a href="https://wiki.haskell.org/GHC/Typed_holes">typed hole</a></li>
+<li><code>RGB r _ _</code> matches the value of type <code>Colour</code> on its <code>RGB</code> data constructor of type <code>Int -&gt; Int -&gt; Int -&gt; Colour</code>, matching <code>r</code> to the first value of the triple and ignoring the second and third values</li>
+<li>Interestingly, &quot;regular&quot; function argument names are really just a degenerate case of pattern matching</li>
+</ul>
+<h3 id="pattern-matching-using-case">Pattern matching using <code>case</code></h3>
+<p>An alternative implementation can make use of a <code>case</code> expression:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span>
+    <span class="dt">RGB</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="fu">|</span>
+    <span class="dt">CMYK</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span>
+
+<span class="ot">colourModelV1 ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+colourModelV1 (<span class="dt">RGB</span> _ _ _) <span class="fu">=</span> <span class="st">&quot;RGB&quot;</span>
+colourModelV1 (<span class="dt">CMYK</span> _ _ _ _) <span class="fu">=</span> <span class="st">&quot;CMYK&quot;</span>
+
+<span class="ot">colourModelV2 ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+colourModelV2 c <span class="fu">=</span>
+    <span class="kw">case</span> c <span class="kw">of</span> <span class="dt">RGB</span> _ _ _ <span class="ot">-&gt;</span> <span class="st">&quot;RGB&quot;</span>
+              <span class="dt">CMYK</span> _ _ _ _ <span class="ot">-&gt;</span> <span class="st">&quot;CMYK&quot;</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> c1 <span class="fu">=</span> <span class="dt">CMYK</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.0</span>
+        cm1 <span class="fu">=</span> colourModelV1 c1
+        c2 <span class="fu">=</span> <span class="dt">RGB</span> <span class="dv">50</span> <span class="dv">100</span> <span class="dv">150</span>
+        cm2 <span class="fu">=</span> colourModelV2 c2
+    <span class="kw">in</span> putStrLn (<span class="st">&quot;cm1=&quot;</span> <span class="fu">++</span> cm1 <span class="fu">++</span> <span class="st">&quot;, cm2=&quot;</span> <span class="fu">++</span> cm2)</code></pre></div>
+<p>This will yield <code>cm1=CMYK, cm2=RGB</code>.</p>
+<p>Patterns can be matched both in function argument position and in <code>case</code> expressions. Here's a contrived example using our <code>RGB</code>/<code>CMYK</code> definition of <code>Colour</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> {<span class="ot"> x ::</span> <span class="dt">Int</span>,<span class="ot"> y ::</span> <span class="dt">Int</span> }
+
+<span class="kw">data</span> <span class="dt">Line</span> <span class="fu">=</span> <span class="dt">Line</span>
+    {<span class="ot"> start ::</span> <span class="dt">Point</span>
+    ,<span class="ot"> end ::</span> <span class="dt">Point</span>
+    ,<span class="ot"> thickness ::</span> <span class="dt">Int</span>
+    ,<span class="ot"> colour ::</span> <span class="dt">Colour</span>
+    }
+
+<span class="ot">lineRedness ::</span> <span class="dt">Line</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">RGB</span> r _ _)) <span class="fu">=</span> r
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> l <span class="fu">=</span> <span class="dt">Line</span>
+                (<span class="dt">Point</span> <span class="dv">10</span> <span class="dv">10</span>)
+                (<span class="dt">Point</span> <span class="dv">50</span> <span class="dv">50</span>)
+                <span class="dv">1</span>
+                (<span class="dt">RGB</span> <span class="dv">255</span> <span class="dv">0</span> <span class="dv">0</span>)
+    <span class="kw">in</span> print (lineRedness l)</code></pre></div>
+<p>This will output <code>255</code>.</p>
+<h3 id="exhaustiveness-of-pattern-matches">Exhaustiveness of pattern matches</h3>
+<p>This example illustrates another important aspect of pattern matching, namely <em>exhaustiveness</em>. Let's change our <code>main</code> function to the following to illustrate this:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> l <span class="fu">=</span> <span class="dt">Line</span>
+                (<span class="dt">Point</span> <span class="dv">10</span> <span class="dv">10</span>)
+                (<span class="dt">Point</span> <span class="dv">50</span> <span class="dv">50</span>)
+                <span class="dv">1</span>
+                (<span class="dt">CMYK</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.0</span>)
+    <span class="kw">in</span> print (lineRedness l)</code></pre></div>
+<p>Let's compile and run this. Here's the output:</p>
+<pre class="console"><code>scratch: src/Main.hs:15:1-40: Non-exhaustive patterns in function lineRedness</code></pre>
+<p>Well, that's interesting but makes sense. The pattern in the definition of <code>lineRedness</code> cannot match the value <code>CMYK 0.5 0.5 0.5 0.0</code> since it was not constructed using the <code>RGB</code> data constructor.</p>
+<p>This class of issue can be addressed in one of <a href="http://www.randomhacks.net/2007/03/10/haskell-8-ways-to-report-errors/">several ways</a>:</p>
+<ul>
+<li>Provide a pattern match on the <code>CMYK</code> data constructor: this would require a valid conversion from the <code>CMYK</code> representation of a colour to <code>RGB</code> in order to provide a red component</li>
+<li>Provide a fall-through case using <code>_</code> to match any <code>Colour</code> value after the <code>RGB</code> match: this would require the existence of some &quot;default&quot; notion of line redness</li>
+<li>Augment the return type to include the notion of failure</li>
+</ul>
+<p>The option you will choose will depend primarily on the semantics of the function. To make this determination, you'd need to ask questions such as:</p>
+<ul>
+<li>Is there a valid &quot;conversion&quot; from the other data constructors?</li>
+<li>Is there a semantically reasonable default value?</li>
+</ul>
+<p>I'll illustrate these three alternatives to the existing behaviour. Note that there are also other ways to provide different runtime error messages through Haskell's various <a href="https://existentialtype.wordpress.com/2012/08/14/haskell-is-exceptionally-unsafe/">exception mechanisms</a> etc. We will discuss these more when we get to I/O.</p>
+<p>Here we pattern-match on <code>CMYK</code> and apply a <a href="http://www.easyrgb.com/index.php?X=MATH&amp;H=12#text12">formula</a>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">lineRedness ::</span> <span class="dt">Line</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">RGB</span> r _ _)) <span class="fu">=</span> r
+lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">CMYK</span> c _ _ _)) <span class="fu">=</span> round ((<span class="fl">1.0</span> <span class="fu">-</span> c) <span class="fu">*</span> <span class="fl">255.0</span>)</code></pre></div>
+<p>Look sideways and ignore the fact that we're ignoring the K-component!</p>
+<p>Here we provide a catch-all or fall-through case:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">defaultRed ::</span> <span class="dt">Int</span>
+defaultRed <span class="fu">=</span> <span class="dv">0</span>
+
+<span class="ot">lineRedness ::</span> <span class="dt">Line</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">RGB</span> r _ _)) <span class="fu">=</span> r
+lineRedness _ <span class="fu">=</span> defaultRed</code></pre></div>
+<p>Here we augment the return type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">lineRedness ::</span> <span class="dt">Line</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span>
+lineRedness (<span class="dt">Line</span> _ _ _ (<span class="dt">RGB</span> r _ _)) <span class="fu">=</span> <span class="dt">Just</span> r
+lineRedness _ <span class="fu">=</span> <span class="dt">Nothing</span></code></pre></div>
+<p>We'll definitely talk more about <code>Maybe</code> later. Suffice it to say for now that it's a type constructor taking one type variable and is analogous to <a href="https://en.wikipedia.org/wiki/Option_type">option types</a> and <a href="https://en.wikipedia.org/wiki/Nullable_type">nullable types</a> in other languages.</p>
+<h3 id="cant-we-do-better">Can't we do better?</h3>
+<p><em>[Sources: <a href="http://stackoverflow.com/questions/3804484/in-haskell-why-non-exhaustive-patterns-are-not-compile-time-errors">1</a>, <a href="https://blogs.janestreet.com/what-do-haskellers-have-against-exhaustiveness/">2</a>, <a href="http://stackoverflow.com/questions/31866379/haskell-non-exhaustive-pattern-matching-in-haskell">3</a>, <a href="https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017272.html">4</a>]</em></p>
+<p>Something about this may irk you. Given that the compiler has full information about a given type's data constructor (at least in code defined in the same module as the type), surely it must be possible to detect when a pattern match misses one or more cases at compile time instead of at runtime. In fact, you should be demanding an explanation of this, given Haskell's much-vaunted strong static type system and supposed type safety.</p>
+<p>Well, it turns out that this can be detected at compile time by enabling the <code>incomplete-patterns</code> warning. From GHCi, this can be done using the <code>:set</code> command:</p>
+<pre class="ghci"><code>λ&gt; :set -Wincomplete-patterns
+λ&gt; data Colour = Red | Green | Blue
+λ&gt; render :: Colour -&gt; String; render Red = &quot;red&quot;
+
+&lt;interactive&gt;:5:29: warning: [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘render’:
+        Patterns not matched:
+            Green
+            Blue</code></pre>
+<p>When compiling source files, the same can be achieved by passing <code>-fwarn-incomplete-patterns</code> on the GHC command line, setting <code>ghc-options</code> in your project's <a href="https://www.haskell.org/cabal/users-guide/">.cabal</a> file or by inserting a &quot;pragma&quot; into the top of a source file as follows:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}</span>
+
+<span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> <span class="fu">|</span> <span class="dt">Blue</span>
+
+<span class="ot">render ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+render <span class="dt">Red</span> <span class="fu">=</span> <span class="st">&quot;red&quot;</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> putStrLn (render <span class="dt">Green</span>)</code></pre></div>
+<p>However, this is still just a warning: therefore, the build still succeeds and the program still runs and fails at runtime. Therefore, we need to promote warnings to errors.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# OPTIONS_GHC -fwarn-incomplete-patterns -Werror #-}</span>
+
+<span class="kw">data</span> <span class="dt">Colour</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> <span class="fu">|</span> <span class="dt">Blue</span>
+
+<span class="ot">render ::</span> <span class="dt">Colour</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+render <span class="dt">Red</span> <span class="fu">=</span> <span class="st">&quot;red&quot;</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> putStrLn (render <span class="dt">Green</span>)</code></pre></div>
+<p>This will generate a similar warning as above and will abort the build.</p>
+<p>So, why? The general consensus, among GHC developers at least, seems to be that the exhaustiveness checker <a href="https://mail.haskell.org/pipermail/glasgow-haskell-users/2009-May/017225.html">&quot;is not very good&quot;</a>: it tends to report false positives and counterintuitive error messages given in terms of desugared forms instead of the original source code—we'll look at desugaring a little more later.</p>
+<p>Personally, I think that this is a bit of a wart on Haskell in principle, but—in practice—I've never run into a false positive and so would recommend enabling the warning and promoting warnings to errors.</p>
+<h2 id="type-aliases">Type aliases</h2>
+<p>Haskell provides <code>type</code> definitions used to create aliases, or alternative names, for existing types:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Int</span>
+
+<span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> <span class="dt">Ordinate</span> <span class="dt">Ordinate</span>
+
+<span class="ot">doubleInt ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+doubleInt x <span class="fu">=</span> x <span class="fu">*</span> <span class="dv">2</span>
+
+<span class="ot">doubleX ::</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+doubleX (<span class="dt">Point</span> x _) <span class="fu">=</span> doubleInt x
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> print (doubleX (<span class="dt">Point</span> <span class="dv">100</span> <span class="dv">200</span>))</code></pre></div>
+<p>You'll see <code>type</code> used a lot in Haskell code even though it doesn't give you any type safety—as shown in the sample above, <code>Ordinate</code> is completely indistinguishable from a regular <code>Int</code>.</p>
+<h2 id="strongly-typed-wrapper-types-using-newtype">Strongly-typed wrapper types using <code>newtype</code></h2>
+<p><code>newtype</code>, on the other hand, is an altogether different beast:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Ordinate</span> {<span class="ot"> unOrdinate ::</span> <span class="dt">Int</span> }
+
+<span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> <span class="dt">Ordinate</span> <span class="dt">Ordinate</span>
+
+<span class="ot">doubleInt ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+doubleInt x <span class="fu">=</span> x <span class="fu">*</span> <span class="dv">2</span>
+
+<span class="ot">doubleX ::</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+doubleX (<span class="dt">Point</span> x _) <span class="fu">=</span> doubleInt x
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> print (doubleX (<span class="dt">Point</span> <span class="dv">100</span> <span class="dv">200</span>))</code></pre></div>
+<p>Attempting to compile this example will result in the following:</p>
+<pre class="console"><code>Main.hs:9:33: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Ordinate’
+    • In the first argument of ‘doubleInt’, namely ‘x’
+      In the expression: doubleInt x
+      In an equation for ‘doubleX’: doubleX (Point x _) = doubleInt x</code></pre>
+<p><code>newtype</code> defines a distinct new type whose internal representation is equivalent to a base type. In this case the new type is <code>Ordinate</code> and the underlying (base) type is <code>Int</code>. Syntactically, a <code>newtype</code> definition is closer to a <code>data</code> definition—with exactly one data constructor and exactly one field inside it, which can be specified in normal or record syntax. Furthermore, like <code>data</code> and unlike <code>type</code>, the resulting type is distinct from, and not directly compatible with, the original type. In order to pass an <code>Ordinate</code> into a function expecting an <code>Int</code>, as in this example, one must first unwrap the field either using pattern matching or, in the case of record-style syntax, using the accessor function:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Ordinate</span> {<span class="ot"> unOrdinate ::</span> <span class="dt">Int</span> }
+<span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> {<span class="ot"> x ::</span> <span class="dt">Ordinate</span>,<span class="ot"> y ::</span> <span class="dt">Ordinate</span> }
+
+<span class="ot">translateBy ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+translateBy o ord <span class="fu">=</span> ord <span class="fu">+</span> o
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> p <span class="fu">=</span> <span class="dt">Point</span> (<span class="dt">Ordinate</span> <span class="dv">10</span>) (<span class="dt">Ordinate</span> <span class="dv">20</span>)
+        translate <span class="fu">=</span> translateBy <span class="dv">10</span>
+        translatedP <span class="fu">=</span> <span class="dt">Point</span> (<span class="dt">Ordinate</span> (translate (unOrdinate (x p)))) (<span class="dt">Ordinate</span> (translate (unOrdinate (y p))))
+        translatedX <span class="fu">=</span> unOrdinate (x translatedP)
+        translatedY <span class="fu">=</span> unOrdinate (y translatedP)
+    <span class="kw">in</span> putStrLn (<span class="st">&quot;x=&quot;</span> <span class="fu">++</span> show translatedX <span class="fu">++</span> <span class="st">&quot;, y=&quot;</span> <span class="fu">++</span> show translatedY)</code></pre></div>
+<p>We will return to this example shortly to explain some new things you may have spotted as well as some ways to make this less ugly while retaining type safety.</p>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<p><em>[Sources: <a href="https://wiki.haskell.org/Section_of_an_infix_operator">1</a>]</em></p>
+<p>This last example is ugly. Can we make it more pleasing to the eye?</p>
+<p>Recall <code>Ordinate (translate (unOrdinate someExpression))</code>. What we're really doing here is applying three functions in turn: we apply <code>unOrdinate</code> to <code>someExpression</code>, <code>translate</code> to the result of that and <code>Ordinate</code> to the result of that. This should leap out at you: it's simply the composition of three functions. This can, therefore, be rewritten as <code>(Ordinate . translate . unOrdinate) someExpression</code>. This doesn't save many characters of typing, but it does reveal a nice structure to the code by emphasizing the &quot;valueness&quot; of functions, since <code>Ordinate . translate . unOrdinate</code> is a value just like any other. This is core to a functional programming language.</p>
+<p>Let's use <code>$</code> and also observe that <code>translateBy</code> is really just the &quot;add this value to my argument function&quot;, which is the same as a <em>partially</em> applied <code>+</code> operator. Here's our ugly <code>Point</code> example rewritten to use <code>.</code> and <code>+</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Ordinate</span> {<span class="ot"> unOrdinate ::</span> <span class="dt">Int</span> }
+<span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> {<span class="ot"> x ::</span> <span class="dt">Ordinate</span>,<span class="ot"> y ::</span> <span class="dt">Ordinate</span> }
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> p <span class="fu">=</span> <span class="dt">Point</span> (<span class="dt">Ordinate</span> <span class="dv">10</span>) (<span class="dt">Ordinate</span> <span class="dv">20</span>)
+        translateOrdinate <span class="fu">=</span> <span class="dt">Ordinate</span> <span class="fu">.</span> ((<span class="fu">+</span>) <span class="dv">10</span>) <span class="fu">.</span> unOrdinate
+        translatedP <span class="fu">=</span> <span class="dt">Point</span> (translateOrdinate (x p)) (translateOrdinate (y p))
+        translatedX <span class="fu">=</span> unOrdinate <span class="fu">$</span> x translatedP
+        translatedY <span class="fu">=</span> unOrdinate <span class="fu">$</span> y translatedP
+    <span class="kw">in</span> putStrLn <span class="fu">$</span> <span class="st">&quot;x=&quot;</span> <span class="fu">++</span> show translatedX <span class="fu">++</span> <span class="st">&quot;, y=&quot;</span> <span class="fu">++</span> show translatedY</code></pre></div>
+<p>Partial application of a binary operator is known as a <em>left</em> or <em>right</em> <em>section</em> depending on the order in which the operands are handled. Conceptually:</p>
+<ul>
+<li><code>(2^)</code> (left section) is equivalent to <code>\x -&gt; 2 ^ x</code></li>
+<li><code>(^2)</code> (right section) is equivalent to <code>\x -&gt; x ^ 2</code></li>
+</ul>
+<p>Of course, <a href="http://english.stackexchange.com/questions/32123/origin-of-the-phrase-theres-more-than-one-way-to-skin-a-cat">there is more than one way to skin a cat</a>, and this code can be elegantly reformulated using pattern matching:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Ordinate</span> <span class="fu">=</span> <span class="dt">Ordinate</span> {<span class="ot"> unOrdinate ::</span> <span class="dt">Int</span> } <span class="kw">deriving</span> <span class="dt">Show</span>
+<span class="kw">data</span> <span class="dt">Point</span> <span class="fu">=</span> <span class="dt">Point</span> {<span class="ot"> x ::</span> <span class="dt">Ordinate</span>,<span class="ot"> y ::</span> <span class="dt">Ordinate</span> } <span class="kw">deriving</span> <span class="dt">Show</span>
+
+<span class="ot">translatedPoint ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Point</span>
+translatedPoint xOffset yOffset (<span class="dt">Point</span> (<span class="dt">Ordinate</span> xValue) (<span class="dt">Ordinate</span> yValue))
+    <span class="fu">=</span> <span class="dt">Point</span> (<span class="dt">Ordinate</span> <span class="fu">$</span> xValue <span class="fu">+</span> xOffset) (<span class="dt">Ordinate</span> <span class="fu">$</span> yValue <span class="fu">+</span> yOffset)
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    <span class="kw">let</span> p <span class="fu">=</span> <span class="dt">Point</span> (<span class="dt">Ordinate</span> <span class="dv">10</span>) (<span class="dt">Ordinate</span> <span class="dv">20</span>)
+        translatedP <span class="fu">=</span> translatedPoint <span class="dv">10</span> <span class="dv">10</span> p
+    <span class="kw">in</span> print translatedP</code></pre></div>
+<p>This also takes advantage of <em>automatic deriving</em> to eliminate the calls to <code>show</code>.</p>
+</body>
+</html>
