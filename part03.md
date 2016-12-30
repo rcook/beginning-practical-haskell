@@ -97,7 +97,7 @@ The type of `first indianaPi` is is also our first experience of a _list_ in Has
 We now have enough knowledge to look into some other _predefined_ Haskell types and polymorphic types that you'll run into a lot. These types are algebraic data types and can, therefore, be expressed using `data` definitions and derived from Haskell's primitive types. The "definition" is some cases is really an instructive approximation of the real definition and elide detail that is superfluous for our immediate purposes:
 
 Name                       | Definition                  | Description
-:--------------------------|:----------------------------|:-----------
+:--------------------------|:----------------------------|:-----------------------------------
 `Bool`                     | `data Bool = True | False`  | A [nullary type constructor][nullaryconstructor] with two nullary data constructors `True` and `False` representing Boolean truth values
 `String`                   | `type String = [Char]`      | A list of Unicode characters
 `Ratio a`                  | _n/a_                       | A rational number represented as a pair of primitive numeric values
