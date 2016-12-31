@@ -18,6 +18,7 @@ I wrote the original web scraper in Python in about two hours. The Haskell versi
 # Prerequisites
 
 * This course will use [Stack][stack]
+* The examples have been tested on recent versions of Windows, Mac OS X, Ubuntu and Centos operating systems
 * Please follow [setup instructions][stackhowto] to install Stack
 * Make sure the following example based on the setup guide works:
 
