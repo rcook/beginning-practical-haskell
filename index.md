@@ -35,7 +35,7 @@ If everything is working as expected, the last line should yield the output
 
 * This course will use the [LTS 7.8][lts78] snapshot of Stack which uses [GHC 8.0.1][ghc801]
 
-# Contents
+# Course overview
 
 * [Part 1](part01.md)
     * What is Haskell?
@@ -51,43 +51,9 @@ If everything is working as expected, the last line should yield the output
     * `do`-notation
 * [Part 6](part06.md)
     * Other
+* [Parts 7 to 10](under_development.md)
+    * _Under development_
 * [Questions and answers](q-and-a.md)
-
-> ***TODO:***
->
-> ## Library selection
->
-> * Making web requests (`wreq`)
-> * Parsing HTML
-> * Looping over things
-> * Conversion from strings to int/double/%/CI
-> * Handle noise/extraneous characters in parsing
-> * Handling Unicode
-> * Generating CSV or Excel files
-> * File I/O
->
-> ## Packages you'll learn about
->
-> * Strings and text:
->   * `bytestring`
->   * `text`
->   * `text-icu-translit`
->   * `string-conv`
->   * `strings`
-> * Specialized containers:
->   * `containers`
->   * `vector`
-> * Parsing and serialization:
->   * `cassava`
->   * `taggy`
->   * `taggy-lens`
-> * Network and file system:
->   * `directory`
->   * `filepath`
->   * `wreq`
-> * Others:
->   * `extra`
->   * `lens`
 
 [ghc801]: https://downloads.haskell.org/~ghc/master/users-guide/8.0.1-notes.html
 [lts78]: https://www.stackage.org/lts-7.8

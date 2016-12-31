@@ -15,6 +15,7 @@ INPUTFILES := \
   part04.md \
   part05.md \
   part06.md \
+  under_development.md \
   q-and-a.md
 
 .PHONY: all
