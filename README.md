@@ -2,8 +2,9 @@
 
 An introductory Haskell programming course by [Richard Cook][rcookdotorg]
 
-* [View course notes][notes]
-* [View GitHub repo][repo]
+This is the source code for the course notes. To view the latest version of the course online, please navigate to the following link:
+
+* [View course notes online][notes]
 
 ## Course contents
 
