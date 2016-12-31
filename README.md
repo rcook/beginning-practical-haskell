@@ -29,7 +29,7 @@ git submodule update --init
 
 ### Build the web site
 
-To regenerate the course notes in HTML, PDF, LaTeX or Microsoft Word format, and check out the [`gh-pages`][gh-pages] branch of this repo and run `make`:
+To regenerate the web version of the course notes:
 
 ```bash
 make
@@ -48,6 +48,8 @@ make cleanweb
 ```
 
 ### Build "print" versions of the notes
+
+To regenerate the course notes in Microsoft Word, PDF or LaTeX format:
 
 ```bash
 make out/notes.docx
