@@ -1,6 +1,5 @@
 ---
 title: Beginning Practical Haskell
-author: Richard Cook
 ...
 
 An introductory Haskell programming course by [Richard Cook][rcookdotorg]
