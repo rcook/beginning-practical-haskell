@@ -25,6 +25,15 @@ body {
   font-size: 120%;
 }
 
+a.disabled {
+  color: silver;
+}
+
+a.disabled:hover {
+  text-decoration: none;
+  cursor: default;
+}
+
 /* NOTES:
 
     Stuff tried and failed:
