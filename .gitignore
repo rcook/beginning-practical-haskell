@@ -1,6 +1,4 @@
 .DS_Store
 *.pyc
 .stack-work/
-/doc/
 /scratch/src/Main.hs
-/src/
