@@ -17,6 +17,7 @@ HTMLFILES := \
   part04.html \
   part05.html \
   part06.html \
+  under_development.html \
   q-and-a.html
 SOURCEDIR := src
 STRICTMODE := set -euo pipefail; IFS=$$'\n\t';
