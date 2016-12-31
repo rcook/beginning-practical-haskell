@@ -4,7 +4,9 @@ PANDOCOPTS := \
   --variable mainfont="Times New Roman" \
   --variable monofont=Menlo \
   -c css/buttondown.css \
+	--include-in-header templates/header.html \
 	--include-before-body templates/nav.html \
+	--include-after-body templates/footer.html \
 	--toc \
 	-N
 HTMLFILES := \

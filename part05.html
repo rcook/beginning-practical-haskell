@@ -44,6 +44,9 @@ code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
+  <meta name="author" content="Richard Cook"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 <nav>
@@ -177,5 +180,9 @@ main <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="fu">$</span> <span class="st">&quot;z = &quot;</span> <span class="fu">++</span> show z</code></pre></div>
 <p>Inside <code>do</code>-notation, Haskell also drops the <code>in</code> from let-bindings.</p>
 <p>What we have left is something that looks suspiciously like a regular, old &quot;imperative&quot; program but with fewer parentheses. Make no mistake, however: this is still program consisting of a <code>main</code> function that is the evaluation of a single expression. This all comes down to the guarantees of referential transparency we get from pure functions. Though it looks like a series of statements, this program is desugared to a series of expressions employing the <code>&gt;&gt;</code> and <code>&gt;&gt;=</code> operators. In the case of <code>IO</code>'s implementation of these operators, we have functional dependencies between producers and consumers of <code>IO</code>-wrapped values. These subexpressions are, therefore, guaranteed to not be reordered: the resulting code will execute in the expected order. Only subexpressions that do not have such functional dependencies will be amenable to interleaving since the reordering of such evaluation cannot be detected by external observers.</p>
+<hr/>
+<footer>
+  <small>Copyright &copy; 2016, Richard Cook</small>
+</footer>
 </body>
 </html>

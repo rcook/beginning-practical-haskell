@@ -44,6 +44,9 @@ code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
+  <meta name="author" content="Richard Cook"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 <nav>
@@ -176,5 +179,9 @@ f :: Floating t1 =&gt; t1 -&gt; t1
 λ&gt; sqrt . squareSumWith3 $ 4
 5.0</code></pre>
 <p>This doesn't look like much, but when dealing with multiple levels of nested parentheses, <code>$</code> can eliminate much of this line noise and go a long towards making the code look less <a href="http://wiki.c2.com/?LostInaSeaofParentheses">Lisp-like</a>. When you use parentheses, <code>$</code> or a combination of the two, is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.</p>
+<hr/>
+<footer>
+  <small>Copyright &copy; 2016, Richard Cook</small>
+</footer>
 </body>
 </html>
