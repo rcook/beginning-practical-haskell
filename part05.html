@@ -183,7 +183,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>What we have left is something that looks suspiciously like a regular, old &quot;imperative&quot; program but with fewer parentheses. Make no mistake, however: this is still program consisting of a <code>main</code> function that is the evaluation of a single expression. This all comes down to the guarantees of referential transparency we get from pure functions. Though it looks like a series of statements, this program is desugared to a series of expressions employing the <code>&gt;&gt;</code> and <code>&gt;&gt;=</code> operators. In the case of <code>IO</code>'s implementation of these operators, we have functional dependencies between producers and consumers of <code>IO</code>-wrapped values. These subexpressions are, therefore, guaranteed to not be reordered: the resulting code will execute in the expected order. Only subexpressions that do not have such functional dependencies will be amenable to interleaving since the reordering of such evaluation cannot be detected by external observers.</p>
 <hr/>
 <footer style="font-size: small; text-align: right;">
-  Copyright &copy; 2016, Richard Cook<br/>
+  Copyright &copy; 2016&ndash;2017, Richard Cook<br/>
   <a href="https://github.com/rcook/beginning-practical-haskell/">Source code on GitHub</a>
 </footer>
 </body>
