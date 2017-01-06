@@ -98,7 +98,7 @@ stack build --file-watch --exec child-health-data-app
 
 Released under [MIT License][mitlicense]
 
-Copyright &copy; 2016-2017 Richard Cook
+Copyright &copy; 2016&ndash;2017 Richard Cook
 
 [bph]: https://github.com/rcook/beginning-practical-haskell
 [haskell]: https://www.haskell.org/
