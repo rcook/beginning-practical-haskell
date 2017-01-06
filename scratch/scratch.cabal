@@ -3,11 +3,11 @@ version:             0.1.0.0
 synopsis:            Simple project template from stack
 description:         Please see README.md
 homepage:            https://github.com/rcook/scratch#readme
-license:             BSD3
+license:             MIT
 license-file:        LICENSE
 author:              Richard Cook
 maintainer:          rcook@rcook.org
-copyright:           2016 Richard Cook
+copyright:           2016-2017 Richard Cook
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
