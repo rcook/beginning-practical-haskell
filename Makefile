@@ -5,6 +5,7 @@ PANDOCOPTS := \
   --variable monofont=Menlo
 PANDOCHTMLOPTS := \
   -c css/buttondown.css \
+	--mathjax \
 	--include-in-header templates/header.html \
 	--include-before-body templates/nav.html \
 	--include-after-body templates/footer.html \

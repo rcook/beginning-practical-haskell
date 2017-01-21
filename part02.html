@@ -44,6 +44,7 @@ code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="css/buttondown.css" type="text/css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <meta name="author" content="Richard Cook"/>
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
   <script src="js/main.js"></script>
@@ -84,9 +85,9 @@ addIntegers :: Integer -&gt; Integer -&gt; Integer</code></pre>
 λ&gt; addIntegers 10 11
 21</code></pre>
 <p>Many languages use parentheses, <code>(</code> and <code>)</code>, to delimit the arguments of a function application or call. Functions are so central to the Haskell Way that the language designers intentionally chose the tersest syntax possible for function definitions and function application. Thus, instead of:</p>
-<p><span class="math inline">f(<em>x</em>, <em>y</em>)=<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
-<p><span class="math inline">g(<em>x</em>, <em>y</em>)=<em>x</em><sup>3</sup> + <em>y</em><sup>3</sup></span></p>
-<p><span class="math inline">h(<em>x</em>, <em>y</em>)=f(<em>x</em>, <em>y</em>)+g(<em>x</em>, <em>y</em>)</span></p>
+<p><span class="math inline">\(\operatorname{f}(x, y) = x ^ 2 + y ^ 2\)</span></p>
+<p><span class="math inline">\(\operatorname{g}(x, y) = x ^ 3 + y ^ 3\)</span></p>
+<p><span class="math inline">\(\operatorname{h}(x, y) = \operatorname{f}(x, y) + \operatorname{g}(x, y)\)</span></p>
 <p>Haskell uses:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f x y <span class="fu">=</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span>
 g x y <span class="fu">=</span> x <span class="fu">^</span> <span class="dv">3</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">3</span>
@@ -110,33 +111,33 @@ functionTakingAFunction f a b <span class="fu">=</span> f a b
 main <span class="fu">=</span> print (functionTakingAFunction addIntegers <span class="dv">5</span> <span class="dv">6</span>)</code></pre></div>
 <h1 id="anonymous-functions-and-lambda-abstraction"><span class="header-section-number">2</span> Anonymous functions and lambda abstraction</h1>
 <p>Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of <a href="https://en.wikipedia.org/wiki/Lambda_calculus">the lambda calculus</a>. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.</p>
-<p>Consider the named (mathematical) function <span class="math inline">square_sum</span>:</p>
-<p><span class="math inline">square_sum(<em>x</em>, <em>y</em>)=<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p>Consider the named (mathematical) function <span class="math inline">\(\operatorname{square\_sum}\)</span>:</p>
+<p><span class="math inline">\(\operatorname{square\_sum}(x, y) = x ^ 2 + y ^ 2\)</span></p>
 <p>Based on an initial simplification, rewriting in <em>anonymous form</em>, we obtain:</p>
-<p><span class="math inline">(<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
-<p>i.e. the pair of <span class="math inline"><em>x</em></span> and <span class="math inline"><em>y</em></span> maps to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>. In essence, this is a definition of a &quot;thing&quot; that maps <span class="math inline"><em>x</em></span> and <span class="math inline"><em>y</em></span> to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>.</p>
-<p>Similarly, the identity function, <span class="math inline">id</span>, is given by:</p>
-<p><span class="math inline">id(<em>x</em>)=<em>x</em></span></p>
+<p><span class="math inline">\((x,y) \mapsto x ^ 2 + y ^ 2\)</span></p>
+<p>i.e. the pair of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> maps to <span class="math inline">\(x ^ 2 + y ^ 2\)</span>. In essence, this is a definition of a &quot;thing&quot; that maps <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> to <span class="math inline">\(x ^ 2 + y ^ 2\)</span>.</p>
+<p>Similarly, the identity function, <span class="math inline">\(\operatorname{id}\)</span>, is given by:</p>
+<p><span class="math inline">\(\operatorname{id}(x) = x\)</span></p>
 <p>or</p>
-<p><span class="math inline"><em>x</em> ↦ <em>x</em></span></p>
-<p>in anonymous form. This anonymous form is a another &quot;thing&quot;: this time it's something that maps <span class="math inline"><em>x</em></span> to itself, i.e. <span class="math inline"><em>x</em></span>.</p>
-<p>Under the notion of <em>alpha-equivalence</em>, the exact name of the <em>bound variable</em>, in this case <span class="math inline"><em>x</em></span>, does not matter as long as there are no name collisions since the name <span class="math inline"><em>x</em></span> does not &quot;leak&quot; out of the anonymous function's body. With this intuition, it's straightforward to see that the anonymous form of <span class="math inline">id</span> is a &quot;thing&quot; that maps something to itself.</p>
-<p>A second simplification is to transform multiple-argument functions, such as <span class="math inline">square_sum</span>, into equivalent functions in a single argument, known as <a href="https://en.wikipedia.org/wiki/Haskell_Curry"><em>currying</em></a> (or <a href="https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel"><em>schönfinkelization</em></a>):</p>
-<p><span class="math inline">(<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span></p>
+<p><span class="math inline">\(x \mapsto x\)</span></p>
+<p>in anonymous form. This anonymous form is a another &quot;thing&quot;: this time it's something that maps <span class="math inline">\(x\)</span> to itself, i.e. <span class="math inline">\(x\)</span>.</p>
+<p>Under the notion of <em>alpha-equivalence</em>, the exact name of the <em>bound variable</em>, in this case <span class="math inline">\(x\)</span>, does not matter as long as there are no name collisions since the name <span class="math inline">\(x\)</span> does not &quot;leak&quot; out of the anonymous function's body. With this intuition, it's straightforward to see that the anonymous form of <span class="math inline">\(\operatorname{id}\)</span> is a &quot;thing&quot; that maps something to itself.</p>
+<p>A second simplification is to transform multiple-argument functions, such as <span class="math inline">\(\operatorname{square\_sum}\)</span>, into equivalent functions in a single argument, known as <a href="https://en.wikipedia.org/wiki/Haskell_Curry"><em>currying</em></a> (or <a href="https://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel"><em>schönfinkelization</em></a>):</p>
+<p><span class="math inline">\((x,y) \mapsto x ^ 2 + y ^ 2\)</span></p>
 <p>is equivalent to</p>
-<p><span class="math inline"><em>x</em> ↦ (<em>y</em> ↦ <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>)</span></p>
-<p>i.e. a function that maps <span class="math inline"><em>x</em></span> to another function in <span class="math inline"><em>y</em></span> that evaluates to <span class="math inline"><em>x</em><sup>2</sup> + <em>y</em><sup>2</sup></span>.</p>
-<p>Application of the function <span class="math inline">square_sum</span> to the arguments <span class="math inline">(5, 2)</span> yields:</p>
-<p><span class="math inline">((<em>x</em>, <em>y</em>)↦<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>)(5, 2)</span><br> <span class="math inline">=5<sup>2</sup> + 2<sup>2</sup></span><br> <span class="math inline">=29</span></p>
+<p><span class="math inline">\(x \mapsto (y \mapsto x ^ 2 + y ^ 2)\)</span></p>
+<p>i.e. a function that maps <span class="math inline">\(x\)</span> to another function in <span class="math inline">\(y\)</span> that evaluates to <span class="math inline">\(x ^ 2 + y ^ 2\)</span>.</p>
+<p>Application of the function <span class="math inline">\(\operatorname{square\_sum}\)</span> to the arguments <span class="math inline">\((5, 2)\)</span> yields:</p>
+<p><span class="math inline">\(((x,y) \mapsto x ^ 2 + y ^ 2)(5, 2)\)</span><br> <span class="math inline">\(= 5 ^ 2 + 2 ^ 2\)</span><br> <span class="math inline">\(= 29\)</span></p>
 <p>while applying our curried version looks like:</p>
-<p><span class="math inline">((<em>x</em> ↦ (<em>y</em> ↦ <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>))(5))(2)</span><br> <span class="math inline">=(<em>y</em> ↦ 5<sup>2</sup> + <em>y</em><sup>2</sup>)(2)</span><br> <span class="math inline">=5<sup>2</sup> + 2<sup>2</sup></span><br> <span class="math inline">=29</span></p>
+<p><span class="math inline">\(((x \mapsto (y \mapsto x ^ 2 + y ^ 2))(5))(2)\)</span><br> <span class="math inline">\(= (y \mapsto 5 ^ 2 + y ^ 2)(2)\)</span><br> <span class="math inline">\(= 5 ^ 2 + 2 ^ 2\)</span><br> <span class="math inline">\(= 29\)</span></p>
 <p>It can be shown that single-argument functions obtained by currying multiple-argument functions in this way are equivalent in expressive power and only differ in the number of steps required to evaluate them. The transformation is also obvious and completely mechanical. Furthermore, the additional steps required to evaluate curried functions can be trivially optimized away by the compiler.</p>
 <p>Finally, these anonymous functions can be rewritten as <em>lambda forms</em>:</p>
-<p><span class="math inline"><em>x</em> ↦ <em>x</em><sup>2</sup></span> is identical to <span class="math inline"><em>λ</em><em>x</em>.<em>x</em><sup>2</sup></span></p>
+<p><span class="math inline">\(x \mapsto x ^ 2\)</span> is identical to <span class="math inline">\(\lambda x . x ^ 2\)</span></p>
 <p>In Haskell this becomes:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
 <p>The backslash is chosen due its (questionable) resemblance to the lambda character.</p>
-<p>Similarly, the anonymous form of our <span class="math inline">square_sum</span> function becomes:</p>
+<p>Similarly, the anonymous form of our <span class="math inline">\(\operatorname{square\_sum}\)</span> function becomes:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x y <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
 <p>or, in curried form:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> x <span class="fu">^</span> <span class="dv">2</span> <span class="fu">+</span> y <span class="fu">^</span> <span class="dv">2</span></code></pre></div>
