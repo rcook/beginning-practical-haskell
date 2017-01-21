@@ -180,8 +180,8 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <h1 id="our-first-haskell-code"><span class="header-section-number">2</span> Our first Haskell code</h1>
 <h2 id="interactive-haskell"><span class="header-section-number">2.1</span> Interactive Haskell</h2>
 <p>First you'll need to start your terminal or command prompt. Once you've done that, we'll create a brand-new Stack project named <code>hello-world</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">stack</span> new hello-world simple --resolver=lts-7.8
-<span class="kw">cd</span> hello-world</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">stack</span> new hello-world simple --resolver=lts-7.8
+<span class="bu">cd</span> hello-world</code></pre></div>
 <p>The <code>simple</code> template is one of the simplest-possible Haskell projects: a project with a single executable target with the same name as the project itself, i.e. <code>hello-world</code> in this case. It consists of the following:</p>
 <ul>
 <li><code>LICENSE</code>: a licence file (BSD-compatible, by default)</li>
@@ -191,7 +191,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li><code>stack.yaml</code>: a Stack-specific configuration file</li>
 </ul>
 <p>Next we'll start up GHCi, the interactive Haskell interpreter:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">stack</span> ghci</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">stack</span> ghci</code></pre></div>
 <ul>
 <li>GHC is the Glasgow Haskell Compiler</li>
 <li>GHCi is GHC <em>Interactive</em></li>
@@ -298,7 +298,7 @@ main <span class="fu">=</span> print z</code></pre></div>
 <li><code>print</code> is a function that takes as an argument any value that has an instance of the <code>Show</code> type class: we'll talk about type classes more later</li>
 </ul>
 <p>Now we can run the program as follows:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">stack</span> runhaskell Hello.hs</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">stack</span> runhaskell Hello.hs</code></pre></div>
 <p>Now we'll change <code>Hello.hs</code> to the following to mimic our GHCi example:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x <span class="fu">=</span> <span class="dv">5</span>
 y <span class="fu">=</span> <span class="dv">6</span>
