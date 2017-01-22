@@ -32,19 +32,7 @@ git submodule update --init
 To regenerate the web version of the course notes:
 
 ```bash
-make
-```
-
-or
-
-```bash
 make web
-```
-
-To clean the web site only:
-
-```bash
-make cleanweb
 ```
 
 ### Build "print" versions of the notes
@@ -59,16 +47,10 @@ make out/notes.tex
 
 ### Build and clean everything
 
-Build everything:
+To clean and build everything:
 
 ```bash
-make all
-```
-
-Clean everything:
-
-```bash
-make cleanall
+make rebuild
 ```
 
 ## Utilities

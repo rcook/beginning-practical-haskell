@@ -36,36 +36,48 @@ STRICTMODE := set -euo pipefail; IFS=$$'\n\t';
 RESOURCES := css/buttondown.css images/region-of-abysmal-pain.png
 BASENAME := notes
 OUTDIR := out
-
-.PHONY: web
-web: cleanweb ${HTMLFILES}
+ALL_OBJS :=
 
 .PHONY: all
-all: cleanall ${HTMLFILES} ${OUTDIR}/${BASENAME}.docx ${OUTDIR}/${BASENAME}.pdf ${OUTDIR}/${BASENAME}.tex
+all: web ${OUTDIR}/${BASENAME}.docx ${OUTDIR}/${BASENAME}.pdf ${OUTDIR}/${BASENAME}.tex
 
-css/buttondown.css: ${SOURCEDIR}/css/buttondown.css
-	@${STRICTMODE} cp $< $@
+.PHONY: rebuild
+rebuild: clean all
 
-images/region-of-abysmal-pain.png: ${SOURCEDIR}/images/region-of-abysmal-pain.png
-	@${STRICTMODE} cp $< $@
+.PHONY: web
+web: ${HTMLFILES}
+ALL_OBJS += ${HTMLFILES}
 
 %.html: src/%.md ${RESOURCES}
-	${STRICTMODE} pandoc ${PANDOCOPTS} ${PANDOCHTMLOPTS} -s $< | sed 's/href="\([^.]*\)\.md"/href="\1.html"/g' > $@
+	@echo Making $@
+	@${STRICTMODE} pandoc ${PANDOCOPTS} ${PANDOCHTMLOPTS} -s $< | sed 's/href="\([^.]*\)\.md"/href="\1.html"/g' > $@
 
-${OUTDIR}/${BASENAME}.docx: ${MDFILES}
-	${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ $^
+css/buttondown.css: ${SOURCEDIR}/css/buttondown.css
+	@echo Making $@
+	@${STRICTMODE} cp $< $@
+ALL_OBJS += css/buttondown.css
 
-${OUTDIR}/${BASENAME}.pdf: ${MDFILES}
-	${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ $^
+images/region-of-abysmal-pain.png: ${SOURCEDIR}/images/region-of-abysmal-pain.png
+	@echo Making $@
+	@${STRICTMODE} cp $< $@
+ALL_OBJS += images/region-of-abysmal-pain.png
+
+${OUTDIR}/${BASENAME}.docx: ${MDFILES} images/region-of-abysmal-pain.png
+	@echo Making $@
+	@${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ ${MDFILES}
+ALL_OBJS += ${OUTDIR}/${BASENAME}.docx
+
+${OUTDIR}/${BASENAME}.pdf: ${MDFILES} images/region-of-abysmal-pain.png
+	@echo Making $@
+	@${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ ${MDFILES}
+ALL_OBJS += ${OUTDIR}/${BASENAME}.pdf
 
 ${OUTDIR}/${BASENAME}.tex: ${MDFILES}
-	${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ $^
+	@echo Making $@
+	@${STRICTMODE} pandoc ${PANDOCOPTS} -s -o $@ $^
+ALL_OBJS += ${OUTDIR}/${BASENAME}.tex
 
-.PHONY: cleanweb
-cleanweb:
-	@${STRICTMODE} rm -f ${HTMLFILES} ${RESOURCES}
-
-.PHONY: cleanall
-cleanall:
-	@${STRICTMODE} rm -f ${HTMLFILES} ${RESOURCES}
-	@${STRICTMODE} rm -f ${OUTDIR}/${BASENAME}.*
+.PHONY: clean
+clean:
+	@echo Cleaning everything
+	@rm -rf ${ALL_OBJS}
