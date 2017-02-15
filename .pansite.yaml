@@ -1,0 +1,32 @@
+routes:
+- path: ""
+  target: $(@D)/index.html
+- path: part01
+  target: $(@D)/part01.html
+- path: css/buttondown.css
+  target: resources/buttondown.css
+
+targets:
+- path: $(@D)/index.html
+  tool: pandoc
+  inputs:
+  - index.md
+  dependencies:
+  - .pansite.yaml
+- path: $(@D)/part01.html
+  tool: pandoc
+  inputs:
+  - part01.md
+  dependencies:
+  - .pansite.yaml
+
+tool-settings:
+  pandoc:
+    include-in-header-path: resources/header.html
+    include-before-body-path: resources/nav.html
+    include-after-body-path: resources/footer.html
+    number-sections: true
+    table-of-contents: true
+    template-path: resources/template.html
+    vars:
+    - [css, css/buttondown.css]

@@ -1,4 +1,5 @@
 .DS_Store
 *.pyc
-.stack-work/
-_scratch/
+/.stack-work/
+/_output/
+/_scratch/
