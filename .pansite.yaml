@@ -13,12 +13,18 @@ targets:
   - index.md
   dependencies:
   - .pansite.yaml
+  - resources/footer.html
+  - resources/header.html
+  - resources/nav.html
 - path: $(@D)/part01.html
   tool: pandoc
   inputs:
   - part01.md
   dependencies:
   - .pansite.yaml
+  - resources/footer.html
+  - resources/header.html
+  - resources/nav.html
 
 tool-settings:
   pandoc:
