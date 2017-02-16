@@ -52,7 +52,7 @@ ALL_OBJS += ${HTMLFILES}
 	@echo Making $@
 	@${STRICTMODE} pandoc ${PANDOCOPTS} ${PANDOCHTMLOPTS} -s $< | sed 's/href="\([^.]*\)\.md"/href="\1.html"/g' > $@
 
-css/buttondown.css: ${SOURCEDIR}/css/buttondown.css
+css/buttondown.css: ${SOURCEDIR}/resources/buttondown.css
 	@echo Making $@
 	@${STRICTMODE} cp $< $@
 ALL_OBJS += css/buttondown.css
