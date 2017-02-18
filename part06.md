@@ -1,6 +1,6 @@
 ---
 title: "Part 6: Other concepts and syntax"
-...
+---
 
 # Recursion and higher-order function abstractions
 

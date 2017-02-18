@@ -1,6 +1,6 @@
 ---
 title: "Part 1: Introduction"
-...
+---
 
 # What is Haskell?
 

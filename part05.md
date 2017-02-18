@@ -1,6 +1,6 @@
 ---
 title: "Part 6: Ugly code"
-...
+---
 
 Let's look at a more complicated example:
 
@@ -24,10 +24,7 @@ main = putStr "Enter x: "
         in putStrLn $ "z = " ++ show z
 ```
 
-This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an `Integer`, computes their sum and then writes the output to the terminal. Let's consider the new things we see here:
-
-* `let` and `in`: let-bindings introduce one or more new names with associated expressions into the expression after `in`
-*  `++`: pronounced "append"; joins two lists together; `String` is `[Char]`, so this joins two strings together
+This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an `Integer`, computes their sum and then writes the output to the terminal. This builds on what we've already seen. We've introduced the `++` operator, pronounced "append". This joins two lists together; `String` is `[Char]`, so this joins two strings together.
 
 I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this does not look pleasant. Let's try to do something about that. First, let's reflow the code:
 

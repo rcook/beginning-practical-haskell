@@ -1,6 +1,6 @@
 ---
 title: "Part 2: Functions"
-...
+---
 
 # Where are the functions?
 
@@ -211,6 +211,10 @@ We've already discussed function application. At this point it's worth mentionin
 ```
 
 This doesn't look like much, but when dealing with multiple levels of nested parentheses, `$` can eliminate much of this line noise and go a long towards making the code look less [Lisp-like][seaofparentheses]. When you use parentheses, `$` or a combination of the two, is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.
+
+# Functions, expressions and lexical scope
+
+* `let` and `in`: let-bindings introduce one or more new names with associated expressions into the expression after `in`
 
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus

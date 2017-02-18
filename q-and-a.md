@@ -1,6 +1,6 @@
 ---
 title: Questions and answers
-...
+---
 
 This will eventually become Frequently Asked Questions once the questions have been asked more than once each!
 

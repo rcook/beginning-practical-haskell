@@ -1,6 +1,6 @@
 ---
 title: "Part 3: Types"
-...
+---
 
 # Predefined and primitive types
 
