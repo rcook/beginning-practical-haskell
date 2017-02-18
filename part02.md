@@ -212,9 +212,61 @@ We've already discussed function application. At this point it's worth mentionin
 
 This doesn't look like much, but when dealing with multiple levels of nested parentheses, `$` can eliminate much of this line noise and go a long towards making the code look less [Lisp-like][seaofparentheses]. When you use parentheses, `$` or a combination of the two, is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.
 
-# Functions, expressions and lexical scope
+# Functions, expressions, scope and binding additional names
 
-* `let` and `in`: let-bindings introduce one or more new names with associated expressions into the expression after `in`
+Let's consider a minimal Haskell source file:
+
+```haskell
+double x = 2 * x
+treble x = 3 * x
+doubleThenTreble = treble . double
+main = print $ doubleThenTreble 5
+```
+
+Some important notes:
+
+* There are four "top-level bindings" namely, `double`, `treble`, `doubleThenTreble` and `main`
+* They are all "visible" to one another
+* The order in which they are declared does not matter: merely that they are in the same scope
+* The definition of each can refer to every other top-level name, including itself, i.e. they can be recursive and _mutually recursive_
+
+It is also possible to introduce child lexical scopes using either `let`&hellip;`in` or `where`. For example:
+
+```haskell
+doubleThenTreble = treble . double
+    where double x = 2 * x
+          treble x = 3 * x
+```
+
+This introduces the names `double` and `treble` into the scope of the expression on the right-hand of the `=`-sign. Thus, the expression `treble . double` "sees" these names. However, they _cannot_ be seen by other top-level bindings.
+
+Here is are two equivalent uses `let`&hellip;`in`, also known as `let`-bindings:
+
+```haskell
+doubleThenTreble' =
+    let double x = 2 * x
+        treble x = 3 * x
+    in treble . double
+
+doubleThenTreble'' =
+    let double x = 2 * x; treble x = 3 * x
+    in treble . double
+```
+
+This illustrates that `let` introduces one or more new names bound to expressions `in` the scope of another expression. The value of the overall expression is that of the `in`-expression. The `doubleThenTreble''` version illustrates that multiple expressions can be collapsed onto a single line using a semicolon. They are otherwise identical.
+
+There is yet another option:
+
+```haskell
+doubleThenTreble''' =
+    let double x = 2 * x
+    in let treble x = 3 * x
+    in treble . double
+```
+
+This is semantically slightly different in that `treble` is not visible at the point at which the name `double` is assign. This is a _nested_ `let`-binding: `double x = 2 * x` is introduced into the scope of the expression `let treble x = 3 * x in treble . double` which itself introduces `treble x` into the scope of the expression `treble . double`.
+
+It should be clear, therefore, that `let`&hellip;`in` is generally more powerful than `where` but that, in the simple case, they are equivalent. In this scenario, it is really a matter of personal preference: Should the names be (visually) introduced _before_ they're referenced or _after_ they're referenced.
 
 [haskellcurry]: https://en.wikipedia.org/wiki/Haskell_Curry
 [lambdacalculus]: https://en.wikipedia.org/wiki/Lambda_calculus
