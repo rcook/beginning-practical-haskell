@@ -70,6 +70,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#anonymous-functions-and-lambda-abstraction"><span class="toc-section-number">2</span> Anonymous functions and lambda abstraction</a></li>
 <li><a href="#function-composition"><span class="toc-section-number">3</span> Function composition</a></li>
 <li><a href="#more-function-application"><span class="toc-section-number">4</span> More function application</a></li>
+<li><a href="#functions-expressions-scope-and-binding-additional-names"><span class="toc-section-number">5</span> Functions, expressions, scope and binding additional names</a></li>
 </ul>
 </div>
 <h1 id="where-are-the-functions"><span class="header-section-number">1</span> Where are the functions?</h1>
@@ -181,6 +182,41 @@ f :: Floating t1 =&gt; t1 -&gt; t1
 λ&gt; sqrt . squareSumWith3 $ 4
 5.0</code></pre>
 <p>This doesn't look like much, but when dealing with multiple levels of nested parentheses, <code>$</code> can eliminate much of this line noise and go a long towards making the code look less <a href="http://wiki.c2.com/?LostInaSeaofParentheses">Lisp-like</a>. When you use parentheses, <code>$</code> or a combination of the two, is entirely a matter of taste, though you'll need to get used to it in order to be able read other people's code.</p>
+<h1 id="functions-expressions-scope-and-binding-additional-names"><span class="header-section-number">5</span> Functions, expressions, scope and binding additional names</h1>
+<p>Let's consider a minimal Haskell source file:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">double x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> x
+treble x <span class="fu">=</span> <span class="dv">3</span> <span class="fu">*</span> x
+doubleThenTreble <span class="fu">=</span> treble <span class="fu">.</span> double
+main <span class="fu">=</span> print <span class="fu">$</span> doubleThenTreble <span class="dv">5</span></code></pre></div>
+<p>Some important notes:</p>
+<ul>
+<li>There are four &quot;top-level bindings&quot; namely, <code>double</code>, <code>treble</code>, <code>doubleThenTreble</code> and <code>main</code></li>
+<li>They are all &quot;visible&quot; to one another</li>
+<li>The order in which they are declared does not matter: merely that they are in the same scope</li>
+<li>The definition of each can refer to every other top-level name, including itself, i.e. they can be recursive and <em>mutually recursive</em></li>
+</ul>
+<p>It is also possible to introduce child lexical scopes using either <code>let</code>…<code>in</code> or <code>where</code>. For example:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">doubleThenTreble <span class="fu">=</span> treble <span class="fu">.</span> double
+    <span class="kw">where</span> double x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> x
+          treble x <span class="fu">=</span> <span class="dv">3</span> <span class="fu">*</span> x</code></pre></div>
+<p>This introduces the names <code>double</code> and <code>treble</code> into the scope of the expression on the right-hand of the <code>=</code>-sign. Thus, the expression <code>treble . double</code> &quot;sees&quot; these names. However, they <em>cannot</em> be seen by other top-level bindings.</p>
+<p>Here is are two equivalent uses <code>let</code>…<code>in</code>, also known as <code>let</code>-bindings:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">doubleThenTreble&#39; <span class="fu">=</span>
+    <span class="kw">let</span> double x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> x
+        treble x <span class="fu">=</span> <span class="dv">3</span> <span class="fu">*</span> x
+    <span class="kw">in</span> treble <span class="fu">.</span> double
+
+doubleThenTreble&#39;&#39; <span class="fu">=</span>
+    <span class="kw">let</span> double x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> x; treble x <span class="fu">=</span> <span class="dv">3</span> <span class="fu">*</span> x
+    <span class="kw">in</span> treble <span class="fu">.</span> double</code></pre></div>
+<p>This illustrates that <code>let</code> introduces one or more new names bound to expressions <code>in</code> the scope of another expression. The value of the overall expression is that of the <code>in</code>-expression. The <code>doubleThenTreble''</code> version illustrates that multiple expressions can be collapsed onto a single line using a semicolon. They are otherwise identical.</p>
+<p>There is yet another option:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">doubleThenTreble&#39;&#39;&#39; <span class="fu">=</span>
+    <span class="kw">let</span> double x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> x
+    <span class="kw">in</span> <span class="kw">let</span> treble x <span class="fu">=</span> <span class="dv">3</span> <span class="fu">*</span> x
+    <span class="kw">in</span> treble <span class="fu">.</span> double</code></pre></div>
+<p>This is semantically slightly different in that <code>treble</code> is not visible at the point at which the name <code>double</code> is assign. This is a <em>nested</em> <code>let</code>-binding: <code>double x = 2 * x</code> is introduced into the scope of the expression <code>let treble x = 3 * x in treble . double</code> which itself introduces <code>treble x</code> into the scope of the expression <code>treble . double</code>.</p>
+<p>It should be clear, therefore, that <code>let</code>…<code>in</code> is generally more powerful than <code>where</code> but that, in the simple case, they are equivalent. In this scenario, it is really a matter of personal preference: Should the names be (visually) introduced <em>before</em> they're referenced or <em>after</em> they're referenced.</p>
 <hr/>
 <footer style="font-size: small; text-align: right;">
   Copyright &copy; 2016&ndash;2017, Richard Cook<br/>

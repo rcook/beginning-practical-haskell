@@ -81,11 +81,7 @@ main <span class="fu">=</span> putStr <span class="st">&quot;Enter x: &quot;</sp
             y <span class="fu">=</span> readInteger yStr
             z <span class="fu">=</span> x <span class="fu">+</span> y
         <span class="kw">in</span> putStrLn <span class="fu">$</span> <span class="st">&quot;z = &quot;</span> <span class="fu">++</span> show z</code></pre></div>
-<p>This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an <code>Integer</code>, computes their sum and then writes the output to the terminal. Let's consider the new things we see here:</p>
-<ul>
-<li><code>let</code> and <code>in</code>: let-bindings introduce one or more new names with associated expressions into the expression after <code>in</code></li>
-<li><code>++</code>: pronounced &quot;append&quot;; joins two lists together; <code>String</code> is <code>[Char]</code>, so this joins two strings together</li>
-</ul>
+<p>This program displays a prompt and reads in a line of input twice. It then converts each of the two lines into an <code>Integer</code>, computes their sum and then writes the output to the terminal. This builds on what we've already seen. We've introduced the <code>++</code> operator, pronounced &quot;append&quot;. This joins two lists together; <code>String</code> is <code>[Char]</code>, so this joins two strings together.</p>
 <p>I told you that Haskell had clean, minimal syntax. You've seen nearly everything here. However, this does not look pleasant. Let's try to do something about that. First, let's reflow the code:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">System.IO</span>
 
