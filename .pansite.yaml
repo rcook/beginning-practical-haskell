@@ -5,6 +5,16 @@ routes:
   target: $(@D)/part01.html
 - path: part02
   target: $(@D)/part02.html
+- path: part03
+  target: $(@D)/part03.html
+- path: part04
+  target: $(@D)/part04.html
+- path: part05
+  target: $(@D)/part05.html
+- path: part06
+  target: $(@D)/part06.html
+- path: q-and-a
+  target: $(@D)/q-and-a.html
 - path: css/buttondown.css
   target: resources/buttondown.css
 - path: js/main.js
@@ -20,19 +30,10 @@ targets:
   - resources/footer.html
   - resources/header.html
   - resources/nav.html
-- path: $(@D)/part01.html
+- path: "$(@D)/%.html"
   tool: pandoc
   inputs:
-  - part01.md
-  dependencies:
-  - .pansite.yaml
-  - resources/footer.html
-  - resources/header.html
-  - resources/nav.html
-- path: $(@D)/part02.html
-  tool: pandoc
-  inputs:
-  - part02.md
+  - "%.md"
   dependencies:
   - .pansite.yaml
   - resources/footer.html
