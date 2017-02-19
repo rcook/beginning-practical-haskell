@@ -2,6 +2,11 @@
 title: "Part 6: Ugly code"
 ---
 
+> ***TO DO***
+>
+> * Evaluating the definition of an action doesn't cause the action to happen, rather it builds up a structure potentially combining other I/O actions that, conceptually at least, are performed outside the expression evaluation.
+> See https://www.haskell.org/tutorial/io.html
+
 Let's look at a more complicated example:
 
 ```haskell
