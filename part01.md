@@ -40,7 +40,7 @@ title: "Part 1: Introduction"
 * Catch many kinds of programmer error at _compile time_
 * Expressive type system allows programmer lots of power and flexibility
 
-![Simon Peyton Jones Region of Abysmal Pain Venn diagram][spjvenn]
+![Simon Peyton Jones's "Region of Abysmal Pain" Venn diagram][spjvenn]
 
 ## Call-by-need
 
