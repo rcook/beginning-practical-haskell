@@ -12,6 +12,25 @@ The course notes are rendered using [Pandoc][pandoc] in the [`gh-pages`][gh-page
 
 You can also [view the content directly in GitHub](index.md), but note that this is only an approximation to the Pandoc output. GitHub does not, for example, render MathJax/LaTeX markup and so some of the mathematics and other advanced markup features in this course may only be viewable in its intended form in the Pandoc output.
 
+## Live preview
+
+Live preview of this content is supported using [Pansite][pansite]. Pansite is not currently on [Stackage][stackage], so you'll need to build it yourself for now:
+
+```
+git clone https://github.com/rcook/pansite.git
+cd pansite
+stack install
+```
+
+This will install the `pansite-app` executable into your path. Then you can `cd` into this repo and run `pansite-app`:
+
+```
+cd beginning-practical-haskell
+pansite-app
+```
+
+This will run a live preview on port 3000 by default: load `http://localhost:3000` into your browser to see what it looks like.
+
 ## Licence
 
 [![Creative Commons Licence][cclicenceimage]][cclicence]
@@ -27,4 +46,6 @@ Copyright &copy; 2016&ndash;2017, Richard Cook
 [gh-pages-readme]: https://github.com/rcook/beginning-practical-haskell/blob/gh-pages/README.md
 [mitlicense]: https://opensource.org/licenses/MIT
 [pandoc]: http://pandoc.org/
+[pansite]: https://github.com/rcook/pansite
 [rcookdotorg]: http://rcook.org/
+[stackage]: https://www.stackage.org/
