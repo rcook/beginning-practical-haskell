@@ -2,94 +2,150 @@
 title: "Part 1: Introduction"
 ---
 
+In this introduction, we'll get acqainted with Haskell in three indispensable ways. First, through a _very brief_ overview of its features to orient us in our study. Then we'll jump into a Haskell REPL to see some simple Haskell expressions, but also to practice using the REPL as a development tool. Finally, we'll work with a source file, and create a minimalist project with Stack.
+
 # What is Haskell?
 
 *[Sources: [1][haskellwikifp], [2][wikipediahaskell], [3][evaluation]]*
 
-* Purely functional programming language
-* Non-strict
-* Statically typed
-* Call-by-need
-* Whitespace-sensitive syntax
-* Memory managed using garbage collector
-* Naming conventions
+## Purely functional
 
-## Purely functional programming language
+Functions are first-class citizens that can be passed as arguments to other functions, "returned" from other functions, and stored in data structures, e.g. lists. (The notion of returning a value belongs to imperative languages, the appropriate term is _evaluates to_.)
 
-* Functional
-	* Functions are first-class objects
-	* Effectively values that can be passed around
-* Pure
-    * Haskell functions more closely resemble mathematical functions
-    * Given any input value, they return the same output
-    * This is _referential transparency_
-    * Typically operate on immutable data
-    * No side effects
-    * Referential transparency means that the compiler is free to do all kinds of optimization such as interleaving and inlining etc. which typically require additional annotations or data flow analysis in compilers for languages such as C++ and Java
+In Haskell, functions closely resemble [mathematical functions][mathematicalfunctions]: given any input value, they always return the same output; this is called [referential transparency][referentialtransparency]. Functions typically operate on _immutable_ data, and do not have side effects.
 
-## Non-strictness
+Referential transparency means that the compiler is free to do all kinds of optimization such as interleaving and [inlining][inlining] etc. which typically require additional annotations or data flow analysis in compilers for languages such as C++ and Java.
 
-* Function arguments not evaluated unless they're actually used
-* A strict function is one which always evaluates all of its arguments
-* Non-strictness allows lazy evaluation
-* Haskell has annotations for strict evaluation where necessary
-* Lazy evaluation allows control structures to be built from user-defined functions
+## Non-strict
 
-## Static typing
+Function arguments not evaluated unless they're actually used (a strict function is one which always evaluates all of its arguments). Non-strictness allows for _lazy evaluation_ (note the [difference][nonstrictversuslazy] between non-strictness and lazy evaluation).  Haskell employs lazy evaluation by default, but has annotations for strict evaluation where necessary. Lazy evaluation allows control structures to be built from user-defined functions.
 
-* Catch many kinds of programmer error at _compile time_
-* Expressive type system allows programmer lots of power and flexibility
+## Statically typed
+
+Haskell is a staticaly typed language, which allows the compiler to catch many kinds of programmer error at _compile time_.  But Haskell's type system is highly expressive, and allows programmer lots of power and flexibility.  The expressivity of the type system itself -- the same machanism which provides safety and certain guarantees about the program -- is one of the features which sets Haskell apart from other languages.
 
 ![Simon Peyton Jones's "Region of Abysmal Pain" Venn diagram][spjvenn]
 
 ## Call-by-need
 
-* Effectively call-by-name with memoization
-* _If a function is evaluated_ its value is stored for future uses
+Haskell uses a call-by-need evaluation strategy, which is effectively [call-by-name][callbyname] with memoization.  Call-by-name is an evaluation strategy where a function's arguments aren't evaluated prior to the function's call, but are substituted into the body of the function itself. With call-by-need, _if a function argument is evaluated_ its value is stored for future uses.
 
-## Whitespace-sensitive syntax
+## Minimalist syntax
 
-* Like Python, Haskell is an [off-side rule language][offsiderule]
-* Most of the time the required indentation is what feels right
+Haskell's syntax largely follows from the privileged role of functions, thus functions assume the simplest and least-decorated place in Haskell's syntax.  A mathematical function such as `f(x) = x` is rendered `f x = x` in Haskell; no elipses wrapping arguments, and no braces closing the function body.
 
-## Garbage collection
+In addition, Haskell uses an [off-side rule language][offsiderule] syntax, much like Python; most of the time the required indentation is what feels right.
 
-* Haskell computations can produce a lot of memory garbage
-* Partly a consequence of non-strict evaluation which involves accumulation of _thunks_ in memory
-* Also, partly a result of immutability
-* However, the GHC runtime's GC is highly tuned for this behaviour
-* Manual management of external resources such as externally allocated memory or resource handles is possible
+## Garbage collected
 
-## Naming conventions
-
-* Values and type variables start with initial lower-case letter
-* Types and type classes start with initial capital letter
-* Names typically employ medial capitalization, e.g. `MyType` and `myFunction` instead of `My_Type` and `my_function`, though this is not enforced
-* Punctuation such as `'` allowed
-* Some common, but not mandatory, suffixes exist including `M` and `M_` etc., e.g. `foldM`, `mapM` and `forM_`
-* Operators are no different from functions except their names are spelt with symbol characters and can be used infix
-* Backticks can be used to use regular functions infix while parentheses can be employed to use operators in function-style prefix position
-* Type and data constructors are separate namespaces and can, therefore, share names
-* It is not uncommon to see type constructors with identically named data constructors, which we'll see later
-
-## What else?
-
-* Haskell has a clean, minimal syntax
-* Much of this is a consequence of some of these other characteristics
-* Example: non-strict evaluation allows us to _build_ certain flow control constructs where other languages require language-level syntax
-* To a first approximation, Haskell programs consist of two elements:
-    * Definitions
-    * Expressions
-* Nontrivial Haskell programs will also likely include some extras:
-    * Type annotations
-    * Pragmas
-    * Import statements
+Haskell employs its own garbage collection to manage memory. Haskell computations can produce a lot of memory garbage, partly as a consequence of non-strict evaluation which involves accumulation of _thunks_ in memory, and partly a result of immutability. However, the GHC runtime's GC is highly tuned for this behaviour.   Haskell does afford manual management of external resources such as externally allocated memory or resource handles.
 
 # Our first Haskell code
 
-## Interactive Haskell
+Let's open a Haskell REPL and a project with a source file to work with.
 
-First you'll need to start your terminal or command prompt. Once you've done that, we'll create a brand-new Stack project named `hello-world`:
+## GHCi
+
+Next  we'll start up GHCi, the interactive Haskell interpreter.
+
+Run `stack ghci` and you'll see a prompt `Prelude>`.  GHC stands for the Glasgow Haskell Compiler, GHCi is GHC _Interactive_, GHC's read-evaluate-print-loop (REPL).
+
+You can configure the GHCi prompt by entering `:set prompt "ghci> "` into GHCi. You can also enter this line into a `.ghci` dotfile in your home directory. Here we've configured the prompt to display `λ>` for pertinence and brevity.
+
+For our first steps using Haskell, let's assign some values and evaluate some _expressions_.
+
+```bash
+λ> x = 5
+```
+
+This assigns name `x` to value `5`.
+
+Note that we say "assigns name `foo` to `bar`" as opposed to "assigns value `bar` to `foo`. In imperative programming languages `=` or equivalent operators typically perform _assignment_ and the different values can be assigned to existing names from time to time. In Haskell, the name `foo` is _defined to be_ the `value` in the equational sense of `=`: it's a definition and this is at the root of [equational reasoning][equationalreasoning].
+
+```bash
+λ> x = 5
+λ> y = 6
+λ> z = x + y
+```
+Now we've assigend the name `z` to the expression  `x + y`, but we still haven't seen any evaluation.
+
+```bash
+λ> z
+11
+```
+Here the expression `z` is evaluated.
+
+We can use GHCi to do more than assignments and evaluations. We can also retrieve information about values and expressions:
+
+```bash
+λ> :type z
+z :: Num a => a
+```
+
+We just asked GHC to tell us the `type` of the expression `z` and it printed out the type signature for `z`.  `Num a` is the type class `Num` with one type variable `a`. More on this later. Note, however, that we did not specify a type for `z`, the compiler inferred it. In the absence of type annotations&mdash;which we'll cover later&mdash;GHCi will typically assign the most general type possible to an expression, subject to certain rules.
+
+GHCi will assign exactly one type to a given expression. Despite the absence of explicit type annotations in this example, the expressions are still strongly and statically typed.
+
+A type signature consists of:
+
+* One or more constraints to the left of `=>` (such constraints are optional)
+* One or more types separated by `->`
+
+<span class="marginnote">Types and [_type classes_][typeclasses] always spelt with initial upper-case letter. Type variables always spelt with initial lower-case letter.</span>
+
+Let's look at another type:
+
+```bash
+λ> z = "hello"
+λ> z
+hello
+λ> :t z
+z :: [Char]
+```
+
+Here we've assigned `z` to "hello", evaluated it, and used the shorthand `:t` for `:type` to show its type signature.  The type `[Char]` is a list of `Char`. 
+
+```bash
+λ> :t (+)
+(+) :: Num a => a -> a -> a
+```
+
+Here are other GHCi commands:
+
+| Command | Alias | Use    | 
+|---------|---------|-------|
+| `:type` | `:t`  | type signature of the given value or  expression |
+| `:info` | `:i` | information about the given name |
+| `:kind` | `:k` | information about the kind of the given type |
+| `:quit` | `:q` | quit ghci |
+
+GHCi has many other commands, which you can peruse [here][ghcicommands].
+
+### Exercises 
+
+#### Use GHCi with to explore different values and expressions
+
+Familiarize yourself with GHCi by investigating the following expressions in GHCi with `:type` and `:info` and `:kind`
+
+1. `4`, `8 / 4`, and `4.0`
+2. `x = 42 + 3 ^ 2`
+3. `(+)` and `(-)`
+4. `(*)` and `(/)`
+5. `(^)`
+6. `True` and `False`
+7. `&&` and `||`
+8. `f a = a + 1`
+9. `g a b = a + b`
+10. `Num`
+11. `Integer`
+
+## Create a project with Stack
+
+Now that we have some familiarity with the REPL, let's look at how to work with a source file.
+
+As mentioned earlier, the examples in this course use Stack to run Haskell.  Here are [setup instructions][stacksetup].
+
+Stack provides templates for bootstrapping projects. In a terminal or command prompt create a brand-new Stack project named `hello-world`:
 
 ```bash
 stack new hello-world simple --resolver=lts-7.8
@@ -104,47 +160,7 @@ The `simple` template is one of the simplest-possible Haskell projects: a projec
 * `src/Main.hs`: a simple starter source file
 * `stack.yaml`: a Stack-specific configuration file
 
-Next we'll start up GHCi, the interactive Haskell interpreter:
-
-```bash
-stack ghci
-```
-
-* GHC is the Glasgow Haskell Compiler
-* GHCi is GHC _Interactive_
-* It's GHC's read-evaluate-print-loop (REPL)
-* I've configured my prompt to display `λ>` but the default is likely to be `Prelude>` or `Main>`
-* Let's assign some values and evaluate some _expressions_
-
-Input                           | Output            | Comment
-:-------------------------------|:------------------|:-------
-`λ> x = 5`                      |                   | Assigns name `x` to value `5`
-`λ> y = 6`                      |                   | Assigns name `y` to value `6`
-`λ> z = x + y`                  |                   | Assigns name `z` to value `x + y`
-`λ> z`                          | `11`              | Evaluates `z` and displays value
-`λ> :type z`<br>or<br>`λ> :t z` | `z :: Num a => a` | Shows type of `z`
-`λ> :t 5`                       | `5 :: Num t => t` | Shows type of `5`
-`λ> z = "hello"`                |                   | Assigns name `z` to value `"hello"`
-`λ> z`                          | `"hello"`         | Evaluates `z` and displays value
-`λ> :t z`                       | `z :: [Char]`     | Shows type of `z`
-`λ> :t (+)`											| `(+) :: Num a => a -> a -> a` | Shows type of `+` operator
-`λ> :q`                         |                   | Quits GHCi session
-
-Notes:
-
-* We say "assigns name `foo` to `bar`" as opposed to "assigns value `bar` to `foo`"
-    * In imperative programming languages `=` or equivalent operators typically perform _assignment_ and the different values can be assigned to existing names from time to time
-    * In Haskell, the name `foo` is _defined to be_ the `value` in the equational sense of `=`: it's a definition and this is at the root of [equational reasoning][equationalreasoning]
-* In the absence of type annotations&mdash;which we'll cover later&mdash;GHCi will typically assign the most general type possible to an expression, subject to certain rules
-* GHCi will assign exactly one type to a given expression
-* Despite the absence of explicit type annotations in this example, the expressions are still strongly and statically typed
-* Type signatures consist of:
-    * Optional: one or more constraints to the left of `=>` ([pronounced][pronunciation] "implies")
-    * Types and [_type classes_][typeclasses] always spelt with initial upper-case letter
-    * Type variables always spelt with initial lower-case letter
-    * One or more types separated by `->` (pronounced "to")
-    * We haven't seen any `->` yet, but we will soon
-* `Num a` is the type class `Num` with one type variable `a`: more on this later
+Because this project has only one source file, you can run that source file directly with `stack runhaskell src/Main.hs`, and get "hello world" triumphantly printed to the terminal. A more standard procedure for a project would be to `stack install` to resolve dependencies, then `stack build` to compile, and finally `stack exec hello-world`.
 
 ## Your first Haskell source file
 
@@ -158,9 +174,7 @@ z = x + y
 main = print z
 ```
 
-* Most things you type into GHCi are valid lines of code in a Haskell source file
-* In order to be able to run a program, a Haskell program must have exactly one function named `main` in the `Main` module (or unnamed module) and must have an `IO` type
-* `print` is a function that takes as an argument any value that has an instance of the `Show` type class: we'll talk about type classes more later
+Most things you type into GHCi are valid lines of code in a Haskell source file.  In order to be able to run a program, a Haskell program must have exactly one function named `main` in the `Main` module (or unnamed module) and must have an `IO` type. `print` is a function that takes as an argument any value that has an instance of the `Show` type class: we'll talk about type classes more later.
 
 Now we can run the program as follows:
 
@@ -196,15 +210,16 @@ There are naturally many differences between the interactive and non-interactive
 
 * Names can be _shadowed_ in GHCi: i.e. we can introduce a new `z` that _hides_ the previous definition with name `z`
 * In Haskell source files, a top-level name can be used exactly once
-* Shadowing is allowed within Haskell source files, specifically within nested lexical scopes
+* [Shadowing][shadowing] is allowed within Haskell source files, specifically within nested lexical scopes
 * In fact, that is exactly what's happening in GHCi: each line entered at the prompt is effectively a new lexical scope nested within the previous lexical scope
 
 # A more realistic example
 
 *[Sources: [1][haskellnumbers]]*
 
-* Let's add some type annotations
-* Start up GHCi again
+So far we've only seen type signatures when querying GHCi, but we can provide type annotations to expressions to explicitly declare types.  Let's do this in GHCi and then in a source file.
+
+Start up GHCi again:
 
 ```ghci
 λ> x :: Integer; x = 5
@@ -223,7 +238,7 @@ z :: Integer
 a :: Num t => t
 ```
 
-* Let's do that in our source file:
+Now do the same in our source file:
 
 ```haskell
 x :: Integer
@@ -239,23 +254,22 @@ main :: IO ()
 main = print z
 ```
 
-* Consider the type of `a`:
-    * Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
-    * `Num t` constrains `t` to be an instance of the `Num` type class
-    * `Num` has instances for (or "is implemented by") all primitive numeric types in Haskell
-* Consider the type of `x`, `y` and `z`:
-    * These have no `=>` and, therefore, no type constraints
-    * Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
-* We'll talk about `IO ()` next lesson
+Consider the contrasting result, in our GHCi example, for type of `a` as `a :: Num t = t`:
+
+* Lower-case `t` is a _type variable_ and can be any type that fulfils the type constraints
+* `Num t` _constrains_ `t` to be some type which is an instance of the `Num` type class
+* `Num` has instances for (or "is implemented by") all primitive numeric types in Haskell
+
+Consider the type of `x`, `y` and `z`:
+
+* These have no `=>` and, therefore, no type constraints
+* Upper-case `Integer` is a _concrete type_ corresponding to arbitrary-precision integers: this is an _instance_ of `Num`
+
+We'll talk about the `IO ()` type in the next lesson.
 
 ## When to use type annotations
 
-* Haskell has powerful type inference
-* Haskell designed in such a way that usually you won't need them
-* Sometimes ambiguities arise
-* Some more [advanced language features][dependenttypes] make ambiguities more likely
-* Even so, type annotations are useful as documentation and for type-driven development
-* Most experienced Haskell developers recommend that all _top-level_ definitions should carry a type annotation
+Haskell has powerful type inference, designed so that usually you won't need them.  But sometimes ambiguities arise, and some more [advanced language features][dependenttypes] make ambiguities more likely.  Even so, type annotations are useful as documentation and for type-driven development, and most experienced Haskell developers recommend that all _top-level_ definitions should carry a type annotation.
 
 [dependenttypes]: https://wiki.haskell.org/Dependent_type
 [equationalreasoning]: http://www.haskellforall.com/2013/12/equational-reasoning.html
@@ -267,3 +281,11 @@ main = print z
 [spjvenn]: images/region-of-abysmal-pain.png
 [typeclasses]: https://www.haskell.org/tutorial/classes.html
 [wikipediahaskell]: https://en.wikipedia.org/wiki/Haskell_(programming_language)
+[callbyname]: https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_name
+[mathematicalfunctions]: addenda#mathematical-functions
+[inlining]: https://en.wikipedia.org/wiki/Inline_expansion
+[referentialtransparency]: https://en.wikipedia.org/wiki/Referential_transparency
+[stacksetup]: https://docs.haskellstack.org/en/stable/README/#how-to-install
+[ghcicommands]: https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html#ghci-commands
+[shadowing]: https://en.wikipedia.org/wiki/Variable_shadowing
+[nonstrictversuslazy]: https://stackoverflow.com/questions/7140978/haskell-how-does-non-strict-and-lazy-differ#7141537
