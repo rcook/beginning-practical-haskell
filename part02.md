@@ -6,24 +6,38 @@ title: "Part 2: Functions"
 
 But, wait, isn't Haskell supposed to be a functional programming language? It's already part 2 of the course and we haven't encountered any functions yet.
 
-Since Haskell is a functional programming language, functions are first-class values. You will recall an earlier example with a value named `z` which was the result of applying the `+` operator to `x` and `y`. Let's generalize this to a function that adds its two arguments together:
+Since Haskell is a functional programming language, functions are first-class values. Recall our earlier example with a value named `z` which was the result of applying the `+` operator to `x` and `y`.
+
+
+```ghci
+λ> x = 5
+λ> y = 6
+λ> z = x + y
+λ> z
+11
+```
+
+Let's generalize this to a function that adds its two arguments together:
+
+```ghci
+λ> z x y = x + y
+λ> :t z
+z :: Num a => a
+λ> z 6 7
+11
+```
+
+Now lets rename our function `addIntegers` and provide a type annotation:
 
 ```ghci
 λ> addIntegers :: Integer -> Integer -> Integer; addIntegers x y = x + y
 λ> :t addIntegers
 addIntegers :: Integer -> Integer -> Integer
+λ> addIntegers 6 7
+11
 ```
 
 The `:t` command yields the type signature for `addIntegers`: in this case a function taking two `Integer`s and evaluating to a third `Integer`. The function's "return" type is the rightmost type in the signature. The `->` operator is read as "to" or "maps to".
-
-We can use this function as follows:
-
-```ghci
-λ> addIntegers 5 6
-11
-λ> addIntegers 10 11
-21
-```
 
 Many languages use parentheses, `(` and `)`, to delimit the arguments of a function application or call. Functions are so central to the Haskell Way that the language designers intentionally chose the tersest syntax possible for function definitions and function application. Thus, instead of:
 
@@ -41,6 +55,8 @@ g x y = x ^ 3 + y ^ 3
 h x y = f x y + g x y
 ```
 
+Note that `f` and `g` are in scope for `h`.
+
 To further reduce the use of parentheses, Haskell also assigns the highest precedence of all infix operators to function application.
 
 Moving our `addIntegers` function to a source file and adding its type signature, we get:
@@ -55,7 +71,7 @@ main = print (addIntegers 5 6)
 
 To reiterate, this defines a function `addIntegers` that takes an `Integer`, a second `Integer` and evaluates to an `Integer` (analogous to "returning" an `Integer` in imperative programming languages).
 
-Since `addIntegers` is a value much like `z`, albeit one with arguments, it can be passed as an argument to other functions. In this respect, `addIntegers` is much like `z` or  `5`, `"hello"` or any other value:
+Since `addIntegers` is a value much like `z`, albeit one with arguments, it can be passed as an argument to other functions. In this respect, `addIntegers` is much like `z` or  `5`, `"hello"` or any other value.
 
 ```haskell
 addIntegers :: Integer -> Integer -> Integer
@@ -70,7 +86,7 @@ main = print (functionTakingAFunction addIntegers 5 6)
 
 # Anonymous functions and lambda abstraction
 
-Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of [the lambda calculus][lambdacalculus]. Lambda calculus is a universal model of computation equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.
+Functions are so important in Haskell that we get to refer to them by name or with no name at all. They also get their own letter of the Greek alphabet: lambda, so-called because of [the lambda calculus][lambdacalculus]. Lambda calculus is a universal model of computation, equivalent in power to the Turing machine. It's based on function abstraction and function application and this is the bare minimum you need to know to get started with Haskell.
 
 Consider the named (mathematical) function $\operatorname{square\_sum}$:
 
