@@ -27,7 +27,7 @@ z :: Num a => a
 11
 ```
 
-Now lets rename our function `addIntegers` and provide a type annotation:
+Now let's rename our function `addIntegers` and provide a type annotation:
 
 ```ghci
 λ> addIntegers :: Integer -> Integer -> Integer; addIntegers x y = x + y
